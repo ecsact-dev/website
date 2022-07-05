@@ -1,0 +1,15 @@
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {ContentModule} from '../../components/layout/content/content.module';
+import {SidenavSectionModule} from '../../components/layout/sidenav-section/sidenav-section.module';
+import {SidenavModule} from '../../components/layout/sidenav/sidenav.module';
+
+import {DocsComponent} from './docs.component';
+
+@NgModule({
+	declarations: [DocsComponent],
+	imports: [RouterModule, SidenavModule, SidenavSectionModule, ContentModule],
+	exports: [DocsComponent],
+	bootstrap: [],
+})
+export class DocsModule {}

@@ -1,0 +1,35 @@
+<nav class="top-nav always-light" [class.search-focused]="search.isFocused()">
+	<div class="before-search">
+		<a
+			class="home-nav-item"
+			routerLink="/"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{exact: true}">
+			<span>Home</span>
+		</a>
+		<a routerLink="/getstarted" routerLinkActive="active">
+			<span>Getting Started</span>
+		</a>
+		<a routerLink="/install" routerLinkActive="active">
+			<span>Install</span>
+		</a>
+		<a routerLink="/docs" routerLinkActive="active">
+			<span>Docs</span>
+		</a>
+		<a routerLink="/tutorials" routerLinkActive="active">
+			<span>Tutorials</span>
+		</a>
+	</div>
+	<div class="search-flex"></div>
+	<ecsact-search #search></ecsact-search>
+	<div class="after-search"></div>
+</nav>
+
+<div class="router-outline-container">
+	<router-outlet></router-outlet>
+</div>
+
+<footer>
+	<a>contact@seaube.com</a>
+	<div>Copyright &copy; Seaube Software CORP. 2022</div>
+</footer>

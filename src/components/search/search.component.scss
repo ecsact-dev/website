@@ -1,0 +1,138 @@
+@keyframes show-search-results {
+	0% {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+
+	40% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+}
+
+:host {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: auto;
+}
+
+.search-box {
+	$search-results-max-height: 400px;
+
+	width: inherit;
+	border-radius: 4px;
+	border: 0;
+	padding: 0px;
+	box-sizing: border-box;
+	transition: 100ms ease border-color;
+
+	input {
+		border: 0;
+		padding: 4px 0px;
+		margin: 0px;
+		width: 100%;
+		font-size: 16px;
+		flex: 1;
+		outline: none;
+		background: transparent;
+	}
+
+	.search-results-container {
+		position: relative;
+	}
+
+	.search-results {
+		position: absolute;
+		z-index: 200;
+		top: -3px;
+		left: 0px;
+		right: 0px;
+		overflow-y: auto;
+		padding: 8px 0px;
+		max-height: $search-results-max-height;
+		background-color: var(--color-bg);
+		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px;
+		opacity: 0;
+		transform: translateY(-100%);
+		box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
+		animation: show-search-results 300ms ease;
+		animation-delay: 300ms;
+		animation-fill-mode: forwards;
+
+		@media (max-height: #{$search-results-max-height}) {
+			max-height: 100vh;
+		}
+
+		.search-results-item {
+			display: block;
+			cursor: pointer;
+			padding: 8px;
+			outline: none;
+
+			&:focus {
+				background-color: rgba(0, 0, 0, 0.1);
+			}
+
+			@media (hover: hover) {
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.1);
+				}
+			}
+		}
+	}
+
+	.search-input-container {
+		position: relative;
+		z-index: 201;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		background-color: var(--color-bg);
+		border-radius: 4px;
+		padding: 4px 12px;
+		outline: none;
+		border: 2px solid var(--color-bg);
+		transition: 100ms ease background-color;
+
+		&:focus {
+			background-color: var(--color-bg);
+		}
+	}
+
+	.focus-key-container {
+		$key-size: 24px;
+
+		position: absolute;
+		right: 8px;
+		top: 0px;
+		bottom: 0px;
+		width: $key-size;
+		user-select: none;
+
+		.focus-key {
+			font-size: 12px;
+			border-radius: 3px;
+			color: var(--color-secondary);
+			border: 1px solid rgba(0, 0, 0, 0.2);
+			opacity: 0.9;
+			box-sizing: border-box;
+			height: $key-size;
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			display: block;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+			line-height: $key-size;
+		}
+	}
+}

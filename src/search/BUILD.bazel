@@ -1,0 +1,20 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:typescript.bzl", "ts_project")
+
+package(default_visibility = ["//:__subpackages__"])
+
+ts_project(
+    name = "doxygen-def-types",
+    srcs = ["doxygen-def-types.ts"],
+)
+
+ng_ts_project(
+    name = "service",
+    srcs = ["search.service.ts"],
+    deps = [
+        ":doxygen-def-types",
+        "@npm//@angular/core",
+        "@npm//fuse.js",
+        "@npm//rxjs",
+    ],
+)

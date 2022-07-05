@@ -1,0 +1,39 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//:__subpackages__"])
+
+sass_binary(
+    name = "app_component_style",
+    src = "app.component.scss",
+)
+
+ng_ts_project(
+    name = "app",
+    srcs = glob(["*.ts"]),
+    angular_assets = [
+        "app.component.html",
+        ":app_component_style",
+    ],
+    deps = [
+        "//src/app/docs",
+        "//src/app/docs/implementations",
+        "//src/app/docs/runtime",
+        "//src/app/docs/runtime-builder",
+        "//src/app/getstarted",
+        "//src/app/home",
+        "//src/app/install",
+        "//src/app/integrations/unity/install",
+        "//src/app/introduction",
+        "//src/app/reference",
+        "//src/app/tutorials",
+        "//src/components/search",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
+        "@npm//@angular/router",
+        "@npm//@angular/service-worker",
+        "@npm//firebase",
+        "@npm//rxjs",
+    ],
+)

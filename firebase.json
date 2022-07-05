@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "bazel-bin/src/pwa-config",
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

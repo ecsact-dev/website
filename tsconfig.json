@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"lib": [
+			"ES7"
+		],
+		"strict": true
+	}
+}

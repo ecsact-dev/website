@@ -1,0 +1,38 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src/app/reference:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "repo-ref.component.scss",
+)
+
+ng_ts_project(
+    name = "repo-ref",
+    srcs = [
+        "repo-ref.component.ts",
+        "repo-ref.module.ts",
+    ],
+    angular_assets = [
+        "repo-ref.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/doxygen-class-def",
+        "//src/components/doxygen-define-def",
+        "//src/components/doxygen-dir-def",
+        "//src/components/doxygen-enum-def",
+        "//src/components/doxygen-enumvalue-def",
+        "//src/components/doxygen-file-def",
+        "//src/components/doxygen-function-def",
+        "//src/components/doxygen-namespace-def",
+        "//src/components/doxygen-struct-def",
+        "//src/components/doxygen-typedef-def",
+        "//src/components/doxygen-variable-def",
+        "//src/search:service",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

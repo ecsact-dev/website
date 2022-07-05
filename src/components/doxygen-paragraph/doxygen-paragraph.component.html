@@ -1,0 +1,23 @@
+<ng-container *ngFor="let comp of paragraph">
+	<ng-template #plainTextTpl>{{ comp }}</ng-template>
+	<ng-container *ngIf="isMarkup(comp); else plainTextTpl">
+		<!-- https://github.com/angular/angular/issues/20780 -->
+		<ng-container [ngSwitch]="comp.markupType">
+			<ng-container *ngSwitchCase="'computeroutput'">
+				<pre
+					class="doxygen-computeroutput"
+					*ngIf="comp.markupType === 'computeroutput'"
+					>{{ comp.content }}</pre
+				>
+			</ng-container>
+
+			<ng-container *ngSwitchCase="'itemizedlist'">
+				<ul *ngIf="comp.markupType === 'itemizedlist'">
+					<li *ngFor="let item of comp.items">
+						<doxygen-paragraph [paragraph]="item"></doxygen-paragraph>
+					</li>
+				</ul>
+			</ng-container>
+		</ng-container>
+	</ng-container>
+</ng-container>

@@ -1,0 +1,74 @@
+<ng-template #loadingTpl>
+	<div>Loading...</div>
+</ng-template>
+
+<ng-container *ngIf="def; else loadingTpl">
+	<!-- https://github.com/angular/angular/issues/20780 -->
+	<div [ngSwitch]="def.kind">
+		<ng-container *ngSwitchCase="'class'">
+			<doxygen-class-def
+				*ngIf="def.kind === 'class'"
+				[def]="def"></doxygen-class-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'define'">
+			<doxygen-define-def
+				*ngIf="def.kind === 'define'"
+				[def]="def"></doxygen-define-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'dir'">
+			<doxygen-dir-def *ngIf="def.kind === 'dir'" [def]="def"></doxygen-dir-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'enum'">
+			<doxygen-enum-def
+				*ngIf="def.kind === 'enum'"
+				[def]="def"></doxygen-enum-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'function'">
+			<doxygen-function-def
+				*ngIf="def.kind === 'function'"
+				[def]="def"></doxygen-function-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'file'">
+			<doxygen-file-def
+				*ngIf="def.kind === 'file'"
+				[def]="def"></doxygen-file-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'struct'">
+			<doxygen-struct-def
+				*ngIf="def.kind === 'struct'"
+				[def]="def"></doxygen-struct-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'typedef'">
+			<doxygen-typedef-def
+				*ngIf="def.kind === 'typedef'"
+				[def]="def"></doxygen-typedef-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'variable'">
+			<doxygen-variable-def
+				*ngIf="def.kind === 'variable'"
+				[def]="def"></doxygen-variable-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'namespace'">
+			<doxygen-namespace-def
+				*ngIf="def.kind === 'namespace'"
+				[def]="def"></doxygen-namespace-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'enum-value'">
+			<doxygen-enumvalue-def
+				*ngIf="def.kind === 'enum-value'"
+				[def]="def"></doxygen-enumvalue-def>
+		</ng-container>
+
+		<div *ngSwitchDefault>Unhandled kind: {{ def.kind }}</div>
+	</div>
+</ng-container>

@@ -1,0 +1,10 @@
+/bazel-*
+/node_modules
+/user.bazelrc
+/profile.json
+
+# Generated reference XML used during development
+/src/assets/_devref
+
+# previous inputs saved
+/scripts/*.inputs
