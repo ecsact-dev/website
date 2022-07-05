@@ -1,0 +1,13 @@
+startup --windows_enable_symlinks
+
+build --enable_platform_specific_config
+build --define=angular_ivy_enabled=True
+build --incompatible_strict_action_env
+build --nolegacy_external_runfiles
+build --enable_runfiles
+
+run --incompatible_strict_action_env
+
+build:release --compilation_mode=opt
+
+try-import %workspace%/user.bazelrc

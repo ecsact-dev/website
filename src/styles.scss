@@ -1,0 +1,17 @@
+// This is the root styles sheet. This file applies to all styles in the
+// application without encapsulation.
+
+:root {
+	--color-primary: #11cc88;
+	--color-secondary: #d87575;
+
+	@media (prefers-color-scheme: dark) {
+		--color-bg: #202120;
+		--color-text: #e5e6ea;
+	}
+
+	@media (prefers-color-scheme: light) {
+		--color-bg: #e5e6ea;
+		--color-text: #202120;
+	}
+}
