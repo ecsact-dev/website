@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"Angular.ng-template",
+		"esbenp.prettier-vscode",
+		"BazelBuild.vscode-bazel"
+	]
+}

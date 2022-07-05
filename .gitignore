@@ -1,6 +1,4 @@
 /bazel-*
 /node_modules
-user.bazelrc
-/realm/functions/*.js
-/realm/hosting/files
+/user.bazelrc
 /profile.json

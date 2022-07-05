@@ -1,8 +1,0 @@
-package(default_visibility = ["//:__subpackages__"])
-
-filegroup(
-    name = ".well-known",
-    srcs = [
-        "microsoft-identity-association.json",
-    ],
-)
