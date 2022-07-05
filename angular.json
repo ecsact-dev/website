@@ -8,7 +8,7 @@
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
-			"prefix": "seaube",
+			"prefix": "ecsact",
 			"schematics": {
 				"@schematics/angular:component": {
 					"style": "scss",

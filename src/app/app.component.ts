@@ -18,10 +18,10 @@ export class AppComponent {
 // 	ngOnInit() {
 // 		initializeApp({
 // 			apiKey: 'AIzaSyBKeB1T-abSePIotAnvIKATvInXTfi8UVM',
-// 			authDomain: 'seaube.firebaseapp.com',
-// 			databaseURL: 'https://seaube.firebaseio.com',
-// 			projectId: 'seaube',
-// 			storageBucket: 'seaube.appspot.com',
+// 			authDomain: 'ecsact.firebaseapp.com',
+// 			databaseURL: 'https://ecsact.firebaseio.com',
+// 			projectId: 'ecsact',
+// 			storageBucket: 'ecsact.appspot.com',
 // 			messagingSenderId: '481327578169',
 // 			appId: '1:481327578169:web:d83f7495110cdc7f5c21e8',
 // 		});

@@ -1,8 +1,8 @@
 {
-  "name": "@seaube/website",
+  "name": "@seaube/ecsact-dev-website",
   "version": "0.1.0",
-  "description": "Source code for seaube.com",
-  "repository": "https://github.com/seaube/website",
+  "description": "Source code for ecsact.dev",
+  "repository": "https://github.com/seaube/ecsact-dev-website",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {

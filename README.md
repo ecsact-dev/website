@@ -1,6 +1,6 @@
-# seaube.com
+# ecsact.dev
 
-Source code for <https://seaube.com>
+Source code for <https://ecsact.dev>
 
 ## Developing
 
