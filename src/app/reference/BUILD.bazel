@@ -16,6 +16,8 @@ ng_ts_project(
         ":reference_component_style",
     ],
     deps = [
+        "//src/app/reference/repo",
+        "//src/app/reference/repo-ref",
         "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",

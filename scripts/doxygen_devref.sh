@@ -26,6 +26,6 @@ $ECSACT_REPO/scripts/doxygen.sh
 
 ECSACT_DEVREF_PATH="$REPOSITORY_DIR/src/assets/_devref/ecsact"
 
+[ -d "$ECSACT_DEVREF_PATH" ] && rm -rd $ECSACT_DEVREF_PATH
 mkdir -p $ECSACT_DEVREF_PATH
-[ -d "$ECSACT_DEVREF_PATH"] && rm -rd $ECSACT_DEVREF_PATH
-cp -r $ECSACT_REPO/.doxygen/xml $ECSACT_DEVREF_PATH
+cp -r $ECSACT_REPO/.doxygen/xml/* $ECSACT_DEVREF_PATH

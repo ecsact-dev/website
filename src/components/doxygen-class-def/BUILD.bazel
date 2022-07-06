@@ -1,0 +1,27 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "doxygen-class-def.component.scss",
+)
+
+ng_ts_project(
+    name = "doxygen-class-def",
+    srcs = [
+        "doxygen-class-def.component.ts",
+        "doxygen-class-def.module.ts",
+    ],
+    angular_assets = [
+        "doxygen-class-def.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/search:doxygen-def-types",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

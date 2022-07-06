@@ -1,26 +1,41 @@
 <h1>Search Reference</h1>
-<input
-	#searchInput
-	type="search"
-	(input)="onSearchInputChange()"
-	placeholder="search ..." />
-<div
-	*ngFor="let compound of compounds; trackBy: compoundsTrackBy"
-	style="padding: 8px; margin: auto">
-	<p>
-		<a [routerLink]="'/reference/ecsact/' + compound.refid"
-			><strong>{{ compound.name }}</strong></a
-		>
-		<span
-			style="
-				display: inline-block;
-				margin: 8px;
-				border-radius: 4px;
-				background-color: grey;
-				padding: 2px 4px;
-				color: white;
-			"
-			>{{ compound.kind }}</span
-		>
-	</p>
+<div class="search-box" [class.has-input]="!!searchInput.value">
+	<label class="search-input-container">
+		<span class="i24">search</span>
+
+		<input
+			#searchInput
+			type="search"
+			(input)="onSearchInputChange()"
+			placeholder="search ..." />
+	</label>
+
+	<div *ngIf="searchInput.value" class="search-results thin-scroll">
+		<p *ngIf="!(searchReady$ | async)" style="text-align: center">Loading...</p>
+
+		<div *ngFor="let compound of compounds; trackBy: compoundsTrackBy">
+			<a
+				class="search-results-item"
+				[routerLink]="'/reference/ecsact/' + compound.refid">
+				<strong>{{ compound.name }}</strong>
+				<span
+					style="
+						display: inline-block;
+						margin: 8px;
+						border-radius: 4px;
+						background-color: grey;
+						padding: 2px 4px;
+						color: white;
+					"
+					>{{ compound.kind }}</span
+				>
+			</a>
+		</div>
+
+		<p
+			*ngIf="compounds.length === 0 && !pendingInput"
+			style="text-align: center">
+			No Results
+		</p>
+	</div>
 </div>
