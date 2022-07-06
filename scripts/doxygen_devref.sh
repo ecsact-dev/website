@@ -23,3 +23,9 @@ ECSACT_REPO="${ECSACT_REPO/#\~/$HOME}"
 [ ! -f "$ECSACT_REPO/Doxyfile" ] && echo "[ERROR] $ECSACT_REPO/Doxyfile is missing. Please double check that the repository directory you've inputed is a clone of the ecsact repository and you're on the correct branch." && exit 1
 
 $ECSACT_REPO/scripts/doxygen.sh
+
+ECSACT_DEVREF_PATH="$REPOSITORY_DIR/src/assets/_devref/ecsact"
+
+mkdir -p $ECSACT_DEVREF_PATH
+[ -d "$ECSACT_DEVREF_PATH"] && rm -rd $ECSACT_DEVREF_PATH
+cp -r $ECSACT_REPO/.doxygen/xml $ECSACT_DEVREF_PATH
