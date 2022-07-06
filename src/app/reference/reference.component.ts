@@ -1,5 +1,11 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Search} from '../../search/search.service';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	TrackByFunction,
+	ViewChild,
+} from '@angular/core';
+import {DoxygenBase, Search} from '../../search/search.service';
 
 @Component({
 	templateUrl: 'reference.component.html',
@@ -7,5 +13,20 @@ import {Search} from '../../search/search.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ReferenceComponent {
-	constructor(private search: Search) {}
+	@ViewChild('searchInput', {static: true})
+	searchInput?: ElementRef<HTMLInputElement>;
+
+	compounds: DoxygenBase[] = [];
+	readonly compoundsTrackBy: TrackByFunction<DoxygenBase>;
+
+	constructor(private search: Search) {
+		this.compoundsTrackBy = (index: number, item: DoxygenBase) => {
+			return item.refid;
+		};
+	}
+
+	onSearchInputChange() {
+		const searchValue = this.searchInput.nativeElement.value;
+		this.compounds = this.search.findCompound(searchValue);
+	}
 }

@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import Fuse from 'fuse.js';
 
-interface DoxygenBase {
+export interface DoxygenBase {
 	name: string;
 	refid: string;
 	kind: string;
 }
 
-interface DoxygenMember extends DoxygenBase {}
+export interface DoxygenMember extends DoxygenBase {}
 
-interface DoxygenCompound extends DoxygenBase {
+export interface DoxygenCompound extends DoxygenBase {
 	members: DoxygenMember[];
 }
 
@@ -36,8 +36,19 @@ function parseDoxygenCompound(el: Element): DoxygenCompound {
 
 @Injectable({providedIn: 'root'})
 export class Search {
+	private _compounds: DoxygenCompound[] = [];
+	private _flattendedIndex: (DoxygenCompound | DoxygenMember)[];
+
 	constructor() {
 		this.refresh();
+	}
+
+	findCompound(text: string): DoxygenBase[] {
+		const fuse = new Fuse(this._flattendedIndex, {
+			keys: ['name'],
+		});
+
+		return fuse.search(text).map(item => item.item);
 	}
 
 	refresh() {
@@ -48,11 +59,17 @@ export class Search {
 		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
-			const compounds = Array.from(
+			this._compounds = Array.from(
 				xhr.responseXML.documentElement.children,
 			).map(parseDoxygenCompound);
 
-			console.log(compounds);
+			this._flattendedIndex = this._compounds.reduce((items, compound) => {
+				items.push(compound);
+				if (compound.kind !== 'namespace') {
+					items.push(...compound.members);
+				}
+				return items;
+			}, [] as (DoxygenCompound | DoxygenMember)[]);
 		};
 
 		xhr.onerror = err => {

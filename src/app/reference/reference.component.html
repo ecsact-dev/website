@@ -1,0 +1,26 @@
+<h1>Search Reference</h1>
+<input
+	#searchInput
+	type="search"
+	(input)="onSearchInputChange()"
+	placeholder="search ..." />
+<div
+	*ngFor="let compound of compounds; trackBy: compoundsTrackBy"
+	style="padding: 8px; margin: auto">
+	<p>
+		<a [routerLink]="'/reference/ecsact/' + compound.refid"
+			><strong>{{ compound.name }}</strong></a
+		>
+		<span
+			style="
+				display: inline-block;
+				margin: 8px;
+				border-radius: 4px;
+				background-color: grey;
+				padding: 2px 4px;
+				color: white;
+			"
+			>{{ compound.kind }}</span
+		>
+	</p>
+</div>
