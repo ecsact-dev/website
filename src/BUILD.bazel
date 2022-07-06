@@ -105,7 +105,7 @@ pkg_web(
     srcs = _ASSETS + [
         ":bundle-es2015",
         ":inject_scripts_for_dev",
-        # "//src/assets",
+        "//src/assets",
         # Include polyfills that will be requested by old browsers
         "@npm//:node_modules/systemjs/dist/system.js",
     ],
@@ -167,7 +167,7 @@ pkg_web(
         ":bundle-es5.min",
         # each injected index file should be listed here
         ":inject_scripts_for_prod",
-        # "//src/assets",
+        "//src/assets",
         ":robots.txt",
         # Service worker
         "@npm//:node_modules/@angular/service-worker/ngsw-worker.js",

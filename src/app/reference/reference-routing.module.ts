@@ -12,6 +12,11 @@ import {ReferenceModule} from './reference.module';
 				pathMatch: 'full',
 				component: ReferenceComponent,
 			},
+			{
+				path: ':repo',
+				pathMatch: 'prefix',
+				component: ReferenceRepoHomeComponent,
+			},
 		]),
 	],
 	exports: [],

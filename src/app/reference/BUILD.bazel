@@ -16,6 +16,7 @@ ng_ts_project(
         ":reference_component_style",
     ],
     deps = [
+        "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
