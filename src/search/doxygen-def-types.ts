@@ -70,12 +70,65 @@ export interface DoxygenTypedefMemberDef extends DoxygenBaseDef {
 	kind: 'typedef';
 }
 
+export interface DoxygenFunctionParameter {
+	type: string;
+	typeRefid?: string;
+	name: string;
+	description: string;
+}
+
+export interface DoxygenFunctionReturn {
+	type: string;
+	typeRefid?: string;
+	description: string;
+}
+
+export interface DoxygenDefLocation {
+	file: string;
+	line: number;
+	column: number;
+}
+
+export type DoxygenPlainText = string;
+
+export interface DoxygenRefText {
+	refid: string;
+	kindref: string;
+	external?: string;
+	text: string;
+}
+
+export type DoxygenText = DoxygenPlainText | DoxygenRefText;
+
+export type DoxygenMarkup =
+	| DoxygenComputerOutputMarkup
+	| DoxygenItemizedListMarkup;
+
+export interface DoxygenComputerOutputMarkup {
+	markupType: 'computeroutput';
+	content: DoxygenText;
+}
+
+export interface DoxygenItemizedListMarkup {
+	markupType: 'itemizedlist';
+	items: DoxygenParagraph[];
+}
+
+export type DoxygenParagraph = (DoxygenText | DoxygenMarkup)[];
+
 export interface DoxygenFunctionMemberDef extends DoxygenBaseDef {
 	kind: 'function';
 	name: string;
+	definition: string;
+	argsstring: string;
 	static: boolean;
 	const: boolean;
 	explicit: boolean;
 	inline: boolean;
 	access: 'public' | 'protected' | 'private';
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	parameters: DoxygenFunctionParameter[];
+	return: DoxygenFunctionReturn;
+	location: DoxygenDefLocation;
 }

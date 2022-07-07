@@ -19,6 +19,7 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
+        "//src/components/doxygen-function-def",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",

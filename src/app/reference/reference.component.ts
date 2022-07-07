@@ -51,6 +51,7 @@ export class ReferenceComponent implements OnInit, OnDestroy {
 		const initialSearchText = this.route.snapshot.queryParams.q;
 		if (initialSearchText) {
 			this.searchInput.nativeElement.value = initialSearchText;
+			this.onSearchInputChange();
 		}
 	}
 
@@ -59,7 +60,7 @@ export class ReferenceComponent implements OnInit, OnDestroy {
 	}
 
 	onSearchInputChange() {
-		if (!this.searchInput.nativeElement) return;
+		if (!this.searchInput?.nativeElement) return;
 
 		this.pendingInput = true;
 		const searchValue = this.searchInput.nativeElement.value;
@@ -76,7 +77,7 @@ export class ReferenceComponent implements OnInit, OnDestroy {
 
 	private _onSearchReadyChange(ready: boolean) {
 		if (ready) {
-			const searchValue = this.searchInput.nativeElement?.value;
+			const searchValue = this.searchInput?.nativeElement?.value;
 
 			if (searchValue) {
 				this.onSearchInputChange();

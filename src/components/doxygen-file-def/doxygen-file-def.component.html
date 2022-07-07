@@ -1,1 +1,6 @@
-<p>doxygen-file-def works!</p>
+<h2>Functions</h2>
+<doxygen-function-def
+	*ngFor="let funcDef of def.functions"
+	[def]="funcDef"></doxygen-function-def>
+
+<pre>{{ def | json }}</pre>

@@ -5,16 +5,25 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {
 	DoxygenBase,
 	DoxygenBaseDef,
+	DoxygenClassDef,
 	DoxygenCompound,
 	DoxygenCompoundDef,
 	DoxygenCompoundDefInclude,
 	DoxygenDefineMemberDef,
+	DoxygenDefLocation,
+	DoxygenDirDef,
 	DoxygenEnumMemberDef,
 	DoxygenFileDef,
 	DoxygenFunctionMemberDef,
+	DoxygenFunctionParameter,
+	DoxygenFunctionReturn,
 	DoxygenMember,
 	DoxygenMemberDef,
 	DoxygenMemberWithOwner,
+	DoxygenParagraph,
+	DoxygenRefText,
+	DoxygenStructDef,
+	DoxygenText,
 	DoxygenTypedefMemberDef,
 } from './doxygen-def-types';
 
@@ -45,6 +54,78 @@ function isMemberWithOwner(
 	return !!(value as Partial<DoxygenMemberWithOwner>).owner;
 }
 
+function getTypeElCommonInfo(
+	el: Element,
+	info: {type: string; typeRefid?: string},
+) {
+	const typeEl = el.querySelector('type');
+	let typeRefEl: Element | null = null;
+
+	if (typeEl) {
+		info.type = typeEl.textContent.trim();
+		typeRefEl = typeEl.querySelector('ref');
+	} else {
+		typeRefEl = el.querySelector('ref');
+	}
+
+	if (typeRefEl) {
+		info.typeRefid = typeRefEl.getAttribute('refid');
+	}
+}
+
+function getDoxygenText(node: Node): DoxygenText {
+	if (node.nodeType === document.TEXT_NODE) {
+		return node.textContent;
+	} else if (node.nodeName === 'ref') {
+		const el = node as Element;
+		const refText: DoxygenRefText = {
+			kindref: el.getAttribute('kindref'),
+			refid: el.getAttribute('refid'),
+			text: el.textContent,
+		};
+
+		return refText;
+	}
+
+	console.warn(`Unknown doxygen text node: ${node.nodeName}`);
+	return '';
+}
+
+function getDoxygenParagraph(para: Element): DoxygenParagraph {
+	const doxygenParagraph: DoxygenParagraph = [];
+	for (const childNode of Array.from(para.childNodes)) {
+		if (childNode.nodeType === document.TEXT_NODE) {
+			doxygenParagraph.push(childNode.textContent);
+		} else if (childNode.nodeName === 'computeroutput') {
+			if (childNode.childNodes.length > 1) {
+				console.error('Unexpected extra child nodes (length > 1)');
+			}
+			doxygenParagraph.push({
+				markupType: 'computeroutput',
+				content: getDoxygenText(childNode.firstChild),
+			});
+		} else if (childNode.nodeName === 'itemizedlist') {
+			doxygenParagraph.push({
+				markupType: 'itemizedlist',
+				items: Array.from(
+					(childNode as Element).querySelectorAll('listitem'),
+				).map(itemEl => getDoxygenParagraph(itemEl.firstElementChild)),
+			});
+		} else if (
+			childNode.nodeName === 'parameterlist' ||
+			childNode.nodeName === 'simplesect'
+		) {
+			// Ignore special details
+		} else {
+			console.warn(
+				`Unhandled detailed description node '${childNode.nodeName}'. Treating as text.`,
+			);
+		}
+	}
+
+	return doxygenParagraph;
+}
+
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
 		return {
@@ -65,75 +146,197 @@ const doxygenMemberDefParseFns = {
 		};
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
+		const parameters: DoxygenFunctionParameter[] = [];
+		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
+		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
+			const param: DoxygenFunctionParameter = {
+				type: '',
+				name: '',
+				description: '',
+			};
+
+			getTypeElCommonInfo(paramEl, param);
+
+			const declnameEl = paramEl.querySelector('declname');
+			if (declnameEl) {
+				param.name = declnameEl.textContent.trim();
+			}
+
+			parameters.push(param);
+			if (param.name) {
+				paramByName[param.name] = param;
+			}
+		}
+
+		const returnDetails: DoxygenFunctionReturn = {
+			description: '',
+			type: '',
+		};
+
+		// Return type exists as <type> in the root of the <memberdef>
+		getTypeElCommonInfo(el, returnDetails);
+
+		const detailedDescription: DoxygenParagraph[] = [];
+
+		const detailedDescEl = el.querySelector('detaileddescription');
+		if (detailedDescEl) {
+			for (const para of Array.from(detailedDescEl.children)) {
+				const doxygenParagraph = getDoxygenParagraph(para);
+
+				if (doxygenParagraph.length > 0) {
+					detailedDescription.push(doxygenParagraph);
+				}
+			}
+
+			const returnDetailEl = detailedDescEl.querySelector(
+				'simplesect[kind=return]',
+			);
+			if (returnDetailEl) {
+				returnDetails.description = returnDetailEl.textContent;
+			}
+
+			const paramListEl = detailedDescEl.querySelector(
+				'parameterlist[kind=param]',
+			);
+			if (paramListEl) {
+				for (const paramItemEl of Array.from(paramListEl.children)) {
+					const paramItemNameEl =
+						paramItemEl.querySelector('parameternamelist');
+					const paramItemDescriptionEl = paramItemEl.querySelector(
+						'parameterdescription',
+					);
+
+					if (paramItemNameEl) {
+						const paramName = paramItemNameEl.textContent.trim();
+						const param = paramByName[paramName];
+						if (param && paramItemDescriptionEl) {
+							param.description = paramItemDescriptionEl.textContent.trim();
+						}
+					}
+				}
+			}
+		}
+
+		const location: DoxygenDefLocation = {
+			file: '',
+			column: 0,
+			line: 0,
+		};
+
+		const locationEl = el.querySelector('location');
+		if (locationEl) {
+			location.file = locationEl.getAttribute('file');
+			location.line = parseInt(locationEl.getAttribute('line'));
+			location.column = parseInt(locationEl.getAttribute('column'));
+		}
+
 		return {
 			...def,
 			kind: 'function',
 			name: el.querySelector('name').textContent,
+			definition: el.querySelector('definition').textContent.trim(),
+			argsstring: el.querySelector('argsstring').textContent.trim(),
 			access: el.getAttribute('prot') as any,
 			const: el.getAttribute('const') === 'yes',
 			explicit: el.getAttribute('explicit') === 'yes',
 			inline: el.getAttribute('inline') === 'yes',
 			static: el.getAttribute('static') === 'yes',
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			parameters,
+			return: returnDetails,
+			location,
+			detailedDescription,
 		};
 	},
 };
 
 const doxygenCompoundDefParseFns = {
-	// 'file': (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
-	// },
+	file: (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
+		console.log('TODO file def', el);
+
+		const sections = {
+			define: [] as DoxygenDefineMemberDef[],
+			enum: [] as DoxygenEnumMemberDef[],
+			typedef: [] as DoxygenTypedefMemberDef[],
+			function: [] as DoxygenFunctionMemberDef[],
+		};
+
+		const sectionDefs = Array.from(el.querySelectorAll('sectiondef'));
+
+		for (const sectionDef of sectionDefs) {
+			let kind = sectionDef.getAttribute('kind');
+			// Section def has a different 'kind' attribute _only_ for functions
+			if (kind == 'func') kind = 'function';
+
+			const memberDefs = Array.from(sectionDef.querySelectorAll('memberdef'));
+			for (const memberDef of memberDefs) {
+				const sectionMembers = sections[kind];
+				if (!sectionMembers) {
+					console.error(`Unhandled section kind: ${kind}`);
+					continue;
+				}
+
+				const parseFn = doxygenMemberDefParseFns[kind];
+				if (!parseFn) {
+					console.error(`Unhandled member def parse kind ${kind}`);
+					continue;
+				}
+
+				const def: DoxygenBaseDef = {
+					id: memberDef.getAttribute('id'),
+					kind: memberDef.getAttribute('kind'),
+				};
+
+				sections[kind].push(parseFn(def, memberDef));
+			}
+		}
+
+		return {
+			...def,
+			kind: 'file',
+			language: el.getAttribute('language'),
+			name: el.querySelector('compoundname').textContent,
+			defines: sections['define'],
+			enums: sections['enum'],
+			typedefs: sections['typedef'],
+			functions: sections['function'],
+		};
+	},
+	class: (def: DoxygenBaseDef, el: Element): DoxygenClassDef => {
+		console.log('TODO class def', el);
+		return {
+			...def,
+			kind: 'class',
+		};
+	},
+	struct: (def: DoxygenBaseDef, el: Element): DoxygenStructDef => {
+		console.log('TODO struct def', el);
+		return {
+			...def,
+			kind: 'struct',
+		};
+	},
+	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
+		console.log('TODO dir def', el);
+		return {
+			...def,
+			kind: 'dir',
+		};
+	},
 };
 
 function parseDoxygenCompoundDef(el: Element): DoxygenCompoundDef {
-	console.log('parseDoxygenCompoundDef', el);
-
-	const sections = {
-		define: [] as DoxygenDefineMemberDef[],
-		enum: [] as DoxygenEnumMemberDef[],
-		typedef: [] as DoxygenTypedefMemberDef[],
-		function: [] as DoxygenFunctionMemberDef[],
+	const def: DoxygenBaseDef = {
+		id: el.getAttribute('id'),
+		kind: el.getAttribute('kind'),
 	};
 
-	const sectionDefs = Array.from(el.querySelectorAll('sectiondef'));
-
-	for (const sectionDef of sectionDefs) {
-		let kind = sectionDef.getAttribute('kind');
-		// Section def has a different 'kind' attribute _only_ for functions
-		if (kind == 'func') kind = 'function';
-
-		const memberDefs = Array.from(sectionDef.querySelectorAll('memberdef'));
-		for (const memberDef of memberDefs) {
-			const sectionMembers = sections[kind];
-			if (!sectionMembers) {
-				console.error(`Unhandled section kind: ${kind}`);
-				continue;
-			}
-
-			const parseFn = doxygenMemberDefParseFns[kind];
-			if (!parseFn) {
-				console.error(`Unhandled member def parse kind ${kind}`);
-				continue;
-			}
-
-			const def: DoxygenBaseDef = {
-				id: memberDef.getAttribute('id'),
-				kind: memberDef.getAttribute('kind'),
-			};
-
-			sections[kind].push(parseFn(def, memberDef));
-		}
+	const defParseFn = doxygenCompoundDefParseFns[def.kind];
+	if (defParseFn) {
+		return defParseFn(def, el);
 	}
 
-	return {
-		id: el.getAttribute('id'),
-		// TODO(zaucy): support other compound types
-		kind: el.getAttribute('kind') as 'file',
-		language: el.getAttribute('language'),
-		name: el.querySelector('compoundname').textContent,
-		defines: sections['define'],
-		enums: sections['enum'],
-		typedefs: sections['typedef'],
-		functions: sections['function'],
-	};
+	throw new Error(`Unhandled compound def kind ${def.kind}`);
 }
 
 function parseDoxygenMemberDef(el: Element): DoxygenMemberDef {
