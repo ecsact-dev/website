@@ -1,0 +1,31 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	padding-top: 60px;
+	text-align: center;
+}
+
+.column {
+	font-size: 22px;
+}
+
+.grid-container {
+	max-width: 1200px;
+	display: grid;
+	column-gap: 30px;
+	row-gap: 30px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-auto-rows: auto;
+}
+
+.grid-item {
+	padding-top: 20px;
+	text-align: center;
+	font-size: 22px;
+	background-color: var(--color-bg);
+	border-radius: 5px;
+}
