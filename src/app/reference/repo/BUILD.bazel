@@ -1,0 +1,25 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src/app/reference:__subpackages__"])
+
+sass_binary(
+    name = "repo_component_style",
+    src = "repo.component.scss",
+)
+
+ng_ts_project(
+    name = "repo",
+    srcs = [
+        "repo.component.ts",
+        "repo.module.ts",
+    ],
+    angular_assets = [
+        "repo.component.html",
+        ":repo_component_style",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+    ],
+)

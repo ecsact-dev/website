@@ -1,0 +1,8 @@
+<h3>
+	<pre>{{ def.name }}</pre>
+</h3>
+<p *ngFor="let paragraph of def.detailedDescription">
+	<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
+</p>
+
+<pre>{{ def | json }}</pre>

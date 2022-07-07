@@ -1,0 +1,81 @@
+{
+	"version": "2.0.0",
+	"inputs": [
+		{
+			"id": "component_name",
+			"type": "promptString",
+			"description": "Angular component name"
+		},
+		{
+			"id": "module_name",
+			"type": "promptString",
+			"description": "Angular module name"
+		},
+		{
+			"id": "component_module_name",
+			"type": "promptString",
+			"description": "Which module should this component be part of?"
+		}
+	],
+	"tasks": [
+		{
+			"label": "Generate Angular Routing Module",
+			"type": "shell",
+			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"args": [
+				"g",
+				"module",
+				"--interactive=false",
+				"${input:module_name}",
+				"--routing"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Generate Angular Module",
+			"type": "shell",
+			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"args": [
+				"g",
+				"module",
+				"--interactive=false",
+				"${input:module_name}"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Generate Angular Component",
+			"type": "shell",
+			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"args": [
+				"g",
+				"component",
+				"--interactive=false",
+				"${input:component_name}",
+				"--change-detection=OnPush",
+				"--export",
+				"--skip-tests",
+				"--module=${input:component_module_name}"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Generate Angular Module + Component",
+			"type": "shell",
+			"command": "${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:component_name} && ${workspaceFolder}/node_modules/.bin/ng g component --interactive=false ${input:component_name} --change-detection=OnPush --export --skip-tests --module=${input:component_name}",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		}
+	]
+}
