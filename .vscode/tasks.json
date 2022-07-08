@@ -21,11 +21,14 @@
 		{
 			"label": "Generate Angular Routing Module",
 			"type": "shell",
-			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"linux": {
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node"
+			},
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
 			"args": [
+				"${workspaceFolder}/node_modules/.bin/ng",
 				"g",
 				"module",
 				"--interactive=false",
@@ -37,11 +40,14 @@
 		{
 			"label": "Generate Angular Module",
 			"type": "shell",
-			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"linux": {
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node"
+			},
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
 			"args": [
+				"${workspaceFolder}/node_modules/.bin/ng",
 				"g",
 				"module",
 				"--interactive=false",
@@ -52,11 +58,14 @@
 		{
 			"label": "Generate Angular Component",
 			"type": "shell",
-			"command": "${workspaceFolder}/node_modules/.bin/ng",
+			"linux": {
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node"
+			},
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
 			"args": [
+				"${workspaceFolder}/node_modules/.bin/ng",
 				"g",
 				"component",
 				"--interactive=false",
@@ -71,7 +80,9 @@
 		{
 			"label": "Generate Angular Module + Component",
 			"type": "shell",
-			"command": "${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:component_name} && ${workspaceFolder}/node_modules/.bin/ng g component --interactive=false ${input:component_name} --change-detection=OnPush --export --skip-tests --module=${input:component_name}",
+			"linux": {
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:component_name} && ${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g component --interactive=false ${input:component_name} --change-detection=OnPush --export --skip-tests --module=${input:component_name}"
+			},
 			"options": {
 				"cwd": "${workspaceFolder}"
 			},
