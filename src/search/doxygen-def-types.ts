@@ -38,6 +38,12 @@ export interface DoxygenDataTypeDef extends DoxygenBaseDef {
 
 export interface DoxygenDirDef extends DoxygenBaseDef {
 	kind: 'dir';
+	name: string;
+	innerFiles: DoxygenInnerFileDef[];
+	innerDirs: DoxygenInnerDirDef[];
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	location: DoxygenDefLocation;
 }
 
 export interface DoxygenFileDef extends DoxygenBaseDef {
@@ -220,6 +226,16 @@ export interface DoxygenInnerClassDef {
 }
 
 export interface DoxygenInnerNamespaceDef {
+	id: string;
+	name: string;
+}
+
+export interface DoxygenInnerFileDef {
+	id: string;
+	name: string;
+}
+
+export interface DoxygenInnerDirDef {
 	id: string;
 	name: string;
 }

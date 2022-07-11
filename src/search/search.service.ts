@@ -35,6 +35,8 @@ import {
 	DoxygenDefineParameter,
 	DoxygenInnerNamespaceDef,
 	DoxygenEnumValueMemberDef,
+	DoxygenInnerFileDef,
+	DoxygenInnerDirDef,
 } from './doxygen-def-types';
 
 function parseDoxygenBase(el: Element): DoxygenBase {
@@ -138,8 +140,6 @@ function getDoxygenParagraph(para: Element): DoxygenParagraph {
 
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
-		console.log('TODO define', el);
-
 		const defineParams: DoxygenDefineParameter[] = [];
 
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -416,15 +416,45 @@ const doxygenCompoundDefParseFns = {
 		return doxygenConstructDataType(def, el, 'struct');
 	},
 	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
-		console.log('TODO dir def', el);
+		const innerFiles = el.querySelectorAll('innerfile');
+		let innerFilesList: DoxygenInnerFileDef[] = [];
+		if (innerFiles) {
+			for (const innerFileEl of Array.from(innerFiles)) {
+				let innerFile: DoxygenInnerFileDef = {
+					id: innerFileEl.getAttribute('refid'),
+					name: innerFileEl.textContent.trim(),
+				};
+				innerFilesList.push(innerFile);
+			}
+		}
+
+		const innerDirs = el.querySelectorAll('innerdir');
+		let innerDirsList: DoxygenInnerFileDef[] = [];
+
+		if (innerDirs) {
+			for (const innerDirsEl of Array.from(innerDirs)) {
+				let innerDir: DoxygenInnerDirDef = {
+					id: innerDirsEl.getAttribute('refid'),
+					name: innerDirsEl.textContent.trim(),
+				};
+				innerDirsList.push(innerDir);
+			}
+		}
+
+		const detailedDescription = getDetailedDescription(el);
+
 		return {
 			...def,
 			kind: 'dir',
+			name: el.querySelector('compoundname').textContent.trim(),
+			innerFiles: innerFilesList,
+			innerDirs: innerDirsList,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription: detailedDescription,
+			location: getLocation(el),
 		};
 	},
 	namespace: (def: DoxygenBaseDef, el: Element): DoxygenNamespaceDef => {
-		console.log('TODO namespace', el);
-
 		var varType = el.querySelector('sectiondef[kind=var]');
 		let varTypeList: DoxygenVariableMemberDef[] = [];
 
@@ -600,7 +630,7 @@ export class Search {
 
 		this._flattendedIndex = compounds.reduce((items, compound) => {
 			items.push(compound);
-			// TODO: Add enum value edge case
+			// TODO: Add enum value edge case issue #25
 			if (compound.kind !== 'namespace') {
 				items.push(...compound.members.map(mem => ({...mem, owner: compound})));
 			}
