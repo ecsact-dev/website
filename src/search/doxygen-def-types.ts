@@ -24,16 +24,26 @@ export interface DoxygenCompoundDefInclude {
 	path: string;
 }
 
-export interface DoxygenClassDef extends DoxygenBaseDef {
-	kind: 'class';
-}
-
-export interface DoxygenStructDef extends DoxygenBaseDef {
-	kind: 'struct';
+export interface DoxygenDataTypeDef extends DoxygenBaseDef {
+	kind: 'class' | 'struct';
+	name: string;
+	publicTypes: DoxygenTypedefMemberDef[];
+	privateTypes: DoxygenTypedefMemberDef[];
+	publicVariables: DoxygenVariableMemberDef[];
+	privateVariables: DoxygenVariableMemberDef[];
+	publicFunctions: DoxygenFunctionMemberDef[];
+	publicStaticFunctions: DoxygenFunctionMemberDef[];
+	enums: DoxygenEnumMemberDef[];
 }
 
 export interface DoxygenDirDef extends DoxygenBaseDef {
 	kind: 'dir';
+	name: string;
+	innerFiles: DoxygenInnerFileDef[];
+	innerDirs: DoxygenInnerDirDef[];
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	location: DoxygenDefLocation;
 }
 
 export interface DoxygenFileDef extends DoxygenBaseDef {
@@ -44,30 +54,102 @@ export interface DoxygenFileDef extends DoxygenBaseDef {
 	enums: DoxygenEnumMemberDef[];
 	typedefs: DoxygenTypedefMemberDef[];
 	functions: DoxygenFunctionMemberDef[];
+	enumValues: DoxygenEnumValueMemberDef[];
 }
 
 export type DoxygenCompoundDef =
 	| DoxygenFileDef
-	| DoxygenClassDef
-	| DoxygenStructDef
+	| DoxygenDataTypeDef
+	| DoxygenNamespaceDef
 	| DoxygenDirDef;
 
 export type DoxygenMemberDef =
 	| DoxygenDefineMemberDef
 	| DoxygenEnumMemberDef
 	| DoxygenTypedefMemberDef
-	| DoxygenFunctionMemberDef;
+	| DoxygenFunctionMemberDef
+	| DoxygenVariableMemberDef
+	| DoxygenEnumValueMemberDef;
 
 export interface DoxygenDefineMemberDef extends DoxygenBaseDef {
 	kind: 'define';
+	access: 'public' | 'protected' | 'private';
+	static: boolean;
+	parameters: DoxygenDefineParameter[];
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	location: DoxygenDefLocation;
+}
+
+export interface DoxygenDefineParameter {
+	name: string;
 }
 
 export interface DoxygenEnumMemberDef extends DoxygenBaseDef {
 	kind: 'enum';
+	name: string;
+	static: boolean;
+	access: 'public' | 'protected' | 'private';
+	parameters: DoxygenEnumParameter[];
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	return: DoxygenEnumReturn;
+	location: DoxygenDefLocation;
 }
+
+export interface DoxygenEnumParameter {
+	access: 'public' | 'protected' | 'private';
+	name: string;
+	initializer: string;
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+}
+
+export interface DoxygenEnumReturn {}
+
+export interface DoxygenNamespaceDef extends DoxygenBaseDef {
+	kind: 'namespace';
+	name: string;
+	variables: DoxygenVariableMemberDef[];
+	innerClasses: DoxygenInnerClassDef[];
+	innerNamespaces: DoxygenInnerNamespaceDef[];
+}
+
+export interface DoxygenTypeDefParameter {
+	type: string;
+}
+
+export interface DoxygenTypeDefReturn {}
 
 export interface DoxygenTypedefMemberDef extends DoxygenBaseDef {
 	kind: 'typedef';
+	name: string;
+	definition: string;
+	static: boolean;
+	access: 'public' | 'protected' | 'private';
+	parameters: DoxygenTypeDefParameter[];
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	return: DoxygenTypeDefReturn;
+	location: DoxygenDefLocation;
+}
+
+export interface DoxygenVariableParameter {}
+
+export interface DoxygenVariableReturn {}
+
+export interface DoxygenVariableMemberDef extends DoxygenBaseDef {
+	kind: 'variable';
+	name: string;
+	definition: string;
+	argsstring: string;
+	static: boolean;
+	access: 'public' | 'protected' | 'private';
+	mutable: boolean;
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	return: DoxygenVariableReturn;
+	location: DoxygenDefLocation;
 }
 
 export interface DoxygenFunctionParameter {
@@ -131,4 +213,29 @@ export interface DoxygenFunctionMemberDef extends DoxygenBaseDef {
 	parameters: DoxygenFunctionParameter[];
 	return: DoxygenFunctionReturn;
 	location: DoxygenDefLocation;
+}
+
+export interface DoxygenEnumValueMemberDef extends DoxygenBaseDef {
+	kind: 'enum-value';
+}
+
+export interface DoxygenInnerClassDef {
+	id: string;
+	name: string;
+	access: 'public' | 'protected' | 'private';
+}
+
+export interface DoxygenInnerNamespaceDef {
+	id: string;
+	name: string;
+}
+
+export interface DoxygenInnerFileDef {
+	id: string;
+	name: string;
+}
+
+export interface DoxygenInnerDirDef {
+	id: string;
+	name: string;
 }

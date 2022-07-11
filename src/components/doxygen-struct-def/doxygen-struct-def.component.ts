@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
-import {DoxygenStructDef} from '../../search/doxygen-def-types';
+import {DoxygenDataTypeDef} from '../../search/doxygen-def-types';
 
 @Component({
 	selector: 'doxygen-struct-def',
@@ -9,7 +9,7 @@ import {DoxygenStructDef} from '../../search/doxygen-def-types';
 })
 export class DoxygenStructDefComponent implements OnInit {
 	@Input()
-	def: DoxygenStructDef;
+	def: DoxygenDataTypeDef;
 
 	constructor() {}
 

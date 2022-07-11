@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {
 	DoxygenBase,
 	DoxygenBaseDef,
-	DoxygenClassDef,
+	DoxygenDataTypeDef,
 	DoxygenCompound,
 	DoxygenCompoundDef,
 	DoxygenCompoundDefInclude,
@@ -13,6 +13,8 @@ import {
 	DoxygenDefLocation,
 	DoxygenDirDef,
 	DoxygenEnumMemberDef,
+	DoxygenEnumParameter,
+	DoxygenEnumReturn,
 	DoxygenFileDef,
 	DoxygenFunctionMemberDef,
 	DoxygenFunctionParameter,
@@ -22,9 +24,19 @@ import {
 	DoxygenMemberWithOwner,
 	DoxygenParagraph,
 	DoxygenRefText,
-	DoxygenStructDef,
 	DoxygenText,
 	DoxygenTypedefMemberDef,
+	DoxygenTypeDefParameter,
+	DoxygenTypeDefReturn,
+	DoxygenVariableMemberDef,
+	DoxygenVariableReturn,
+	DoxygenNamespaceDef,
+	DoxygenInnerClassDef,
+	DoxygenDefineParameter,
+	DoxygenInnerNamespaceDef,
+	DoxygenEnumValueMemberDef,
+	DoxygenInnerFileDef,
+	DoxygenInnerDirDef,
 } from './doxygen-def-types';
 
 function parseDoxygenBase(el: Element): DoxygenBase {
@@ -128,21 +140,97 @@ function getDoxygenParagraph(para: Element): DoxygenParagraph {
 
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
+		const defineParams: DoxygenDefineParameter[] = [];
+
+		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
+			const param: DoxygenDefineParameter = {
+				name: el.querySelector('defname').textContent.trim(),
+			};
+
+			defineParams.push(param);
+		}
+
+		const detailedDescription = getDetailedDescription(el);
+
+		const location = getLocation(el);
+
 		return {
 			...def,
 			kind: 'define',
+			access: el.querySelector('prot') as any,
+			static: el.getAttribute('static') === 'yes',
+			parameters: defineParams,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription: detailedDescription,
+			location,
 		};
 	},
 	enum: (def: DoxygenBaseDef, el: Element): DoxygenEnumMemberDef => {
+		console.log('TODO enum', el);
+		const enumValueParameters: DoxygenEnumParameter[] = [];
+		for (const paramEl of Array.from(el.querySelectorAll('enumvalue'))) {
+			const detailedDescription = getDetailedDescription(paramEl);
+
+			let param: DoxygenEnumParameter = {
+				//@NOTE: Does this take nested name, or parent?
+				name: paramEl.querySelector('name').textContent.trim(),
+				initializer: paramEl.querySelector('initializer').textContent.trim(),
+				access: paramEl.querySelector('prot') as any,
+				//@NOTE: Does this take the nested or parent detaileddescription?
+				brief: paramEl.querySelector('briefdescription').textContent.trim(),
+				detailedDescription: detailedDescription,
+			};
+			enumValueParameters.push(param);
+		}
+
+		const detailedDescription = getDetailedDescription(el);
+		const location = getLocation(el);
+
+		const enumReturn: DoxygenEnumReturn = {};
+
 		return {
 			...def,
 			kind: 'enum',
+			name: el.querySelector('name').textContent.trim(),
+			static: el.getAttribute('static') === 'yes',
+			access: el.getAttribute('prot') as any,
+			parameters: enumValueParameters,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription: detailedDescription,
+			return: enumReturn,
+			location,
 		};
 	},
 	typedef: (def: DoxygenBaseDef, el: Element): DoxygenTypedefMemberDef => {
+		const templateParameters: DoxygenTypeDefParameter[] = [];
+		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
+			const param: DoxygenTypeDefParameter = {
+				type: '',
+			};
+			const typeEl = paramEl.querySelector('type');
+
+			param.type = typeEl.textContent.trim();
+
+			templateParameters.push(param);
+		}
+
+		const detailedDescription = getDetailedDescription(el);
+		const location = getLocation(el);
+
+		const returnDetails: DoxygenTypeDefReturn = {};
+
 		return {
 			...def,
 			kind: 'typedef',
+			name: el.querySelector('name').textContent,
+			definition: el.querySelector('definition').textContent.trim(),
+			static: el.getAttribute('static') === 'yes',
+			access: el.getAttribute('prot') as any,
+			parameters: templateParameters,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription,
+			return: returnDetails,
+			location,
 		};
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
@@ -217,18 +305,7 @@ const doxygenMemberDefParseFns = {
 			}
 		}
 
-		const location: DoxygenDefLocation = {
-			file: '',
-			column: 0,
-			line: 0,
-		};
-
-		const locationEl = el.querySelector('location');
-		if (locationEl) {
-			location.file = locationEl.getAttribute('file');
-			location.line = parseInt(locationEl.getAttribute('line'));
-			location.column = parseInt(locationEl.getAttribute('column'));
-		}
+		const location = getLocation(el);
 
 		return {
 			...def,
@@ -248,6 +325,34 @@ const doxygenMemberDefParseFns = {
 			detailedDescription,
 		};
 	},
+	variable: (def: DoxygenBaseDef, el: Element): DoxygenVariableMemberDef => {
+		const location = getLocation(el);
+		const detailedDescription = getDetailedDescription(el);
+
+		const returnDetails: DoxygenVariableReturn = {};
+
+		return {
+			...def,
+			kind: 'variable',
+			name: el.querySelector('name').textContent,
+			definition: el.querySelector('definition').textContent.trim(),
+			argsstring: el.querySelector('argsstring').textContent.trim(),
+			static: el.getAttribute('static') === 'yes',
+			access: el.getAttribute('prot') as any,
+			mutable: el.getAttribute('mutable') === 'yes',
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription,
+			return: returnDetails,
+			location,
+		};
+	},
+	enumValue: (def: DoxygenBaseDef, el: Element): DoxygenEnumValueMemberDef => {
+		console.log('enumValue: ', el);
+		return {
+			...def,
+			kind: 'enum-value',
+		};
+	},
 };
 
 const doxygenCompoundDefParseFns = {
@@ -259,6 +364,7 @@ const doxygenCompoundDefParseFns = {
 			enum: [] as DoxygenEnumMemberDef[],
 			typedef: [] as DoxygenTypedefMemberDef[],
 			function: [] as DoxygenFunctionMemberDef[],
+			enumValue: [] as DoxygenEnumValueMemberDef[],
 		};
 
 		const sectionDefs = Array.from(el.querySelectorAll('sectiondef'));
@@ -300,27 +406,96 @@ const doxygenCompoundDefParseFns = {
 			enums: sections['enum'],
 			typedefs: sections['typedef'],
 			functions: sections['function'],
+			enumValues: sections['enum-value'],
 		};
 	},
-	class: (def: DoxygenBaseDef, el: Element): DoxygenClassDef => {
-		console.log('TODO class def', el);
-		return {
-			...def,
-			kind: 'class',
-		};
+	class: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
+		return doxygenConstructDataType(def, el, 'class');
 	},
-	struct: (def: DoxygenBaseDef, el: Element): DoxygenStructDef => {
-		console.log('TODO struct def', el);
-		return {
-			...def,
-			kind: 'struct',
-		};
+	struct: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
+		return doxygenConstructDataType(def, el, 'struct');
 	},
 	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
-		console.log('TODO dir def', el);
+		const innerFiles = el.querySelectorAll('innerfile');
+		let innerFilesList: DoxygenInnerFileDef[] = [];
+		if (innerFiles) {
+			for (const innerFileEl of Array.from(innerFiles)) {
+				let innerFile: DoxygenInnerFileDef = {
+					id: innerFileEl.getAttribute('refid'),
+					name: innerFileEl.textContent.trim(),
+				};
+				innerFilesList.push(innerFile);
+			}
+		}
+
+		const innerDirs = el.querySelectorAll('innerdir');
+		let innerDirsList: DoxygenInnerFileDef[] = [];
+
+		if (innerDirs) {
+			for (const innerDirsEl of Array.from(innerDirs)) {
+				let innerDir: DoxygenInnerDirDef = {
+					id: innerDirsEl.getAttribute('refid'),
+					name: innerDirsEl.textContent.trim(),
+				};
+				innerDirsList.push(innerDir);
+			}
+		}
+
+		const detailedDescription = getDetailedDescription(el);
+
 		return {
 			...def,
 			kind: 'dir',
+			name: el.querySelector('compoundname').textContent.trim(),
+			innerFiles: innerFilesList,
+			innerDirs: innerDirsList,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription: detailedDescription,
+			location: getLocation(el),
+		};
+	},
+	namespace: (def: DoxygenBaseDef, el: Element): DoxygenNamespaceDef => {
+		var varType = el.querySelector('sectiondef[kind=var]');
+		let varTypeList: DoxygenVariableMemberDef[] = [];
+
+		if (varType) {
+			for (const varMemDef of Array.from(varType.children)) {
+				let kind = varMemDef.getAttribute('kind');
+				let func = doxygenMemberDefParseFns[kind];
+
+				const def: DoxygenBaseDef = {
+					id: varMemDef.getAttribute('id'),
+					kind: kind,
+				};
+
+				varTypeList.push(func(def, varMemDef));
+			}
+		}
+
+		var innerClassType = el.querySelectorAll('innerclass');
+		let innerClassList: DoxygenInnerClassDef[] = [];
+
+		if (innerClassType) {
+			for (const innerClassDef of Array.from(innerClassType)) {
+				innerClassList.push(doxygenInnerClass(innerClassDef));
+			}
+		}
+
+		var innerNamespaceType = el.querySelectorAll('innernamespace');
+		let innerNamespaceList: DoxygenInnerNamespaceDef[] = [];
+		if (innerNamespaceType) {
+			for (const innerNamespaceDef of Array.from(innerNamespaceType)) {
+				innerNamespaceList.push(doxygenInnerNamespace(innerNamespaceDef));
+			}
+		}
+
+		return {
+			...def,
+			kind: 'namespace',
+			name: el.querySelector('compoundname').textContent.trim(),
+			variables: varTypeList,
+			innerClasses: innerClassList,
+			innerNamespaces: innerNamespaceList,
 		};
 	},
 };
@@ -403,6 +578,7 @@ export class Search {
 		repo: string,
 		refid: string,
 	): Promise<DoxygenCompoundDef | DoxygenMemberDef> {
+		//Add another branch for enum value
 		await this._refreshPromise;
 
 		const index = this._refidMap[refid];
@@ -454,6 +630,7 @@ export class Search {
 
 		this._flattendedIndex = compounds.reduce((items, compound) => {
 			items.push(compound);
+			// TODO: Add enum value edge case issue #25
 			if (compound.kind !== 'namespace') {
 				items.push(...compound.members.map(mem => ({...mem, owner: compound})));
 			}
@@ -465,4 +642,190 @@ export class Search {
 			this._refidMap[item.refid] = index;
 		});
 	}
+}
+
+function doxygenConstructDataType(
+	def: DoxygenBaseDef,
+	el: Element,
+	kind: string,
+): DoxygenDataTypeDef {
+	var publicType = el.querySelector('sectiondef[kind=public-type]');
+	let publicTypeList: DoxygenTypedefMemberDef[] = [];
+
+	if (publicType) {
+		for (const publicTypeDefMem of Array.from(publicType.children)) {
+			let kind = publicTypeDefMem.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: publicTypeDefMem.getAttribute('id'),
+				kind: kind,
+			};
+
+			publicTypeList.push(func(def, publicTypeDefMem));
+		}
+	}
+
+	var privateType = el.querySelector('sectiondef[kind=private-type');
+	let privateTypeList: DoxygenTypedefMemberDef[] = [];
+
+	if (privateType) {
+		for (const privateTypeDefMem of Array.from(privateType.children)) {
+			let kind = privateTypeDefMem.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: privateTypeDefMem.getAttribute('id'),
+				kind: kind,
+			};
+
+			privateTypeList.push(func(def, privateTypeDefMem));
+		}
+	}
+
+	var publicAttrib = el.querySelector('sectiondef[kind=public-attrib]');
+	let publicVariableList: DoxygenVariableMemberDef[] = [];
+
+	if (publicAttrib) {
+		for (const publicVariableMemDef of Array.from(publicAttrib.children)) {
+			let kind = publicVariableMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: publicVariableMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			publicVariableList.push(func(def, publicVariableMemDef));
+		}
+	}
+	``;
+	var privateAttrib = el.querySelector('sectiondef[kind=private-attrib]');
+	let privateVariableList: DoxygenVariableMemberDef[] = [];
+
+	if (privateAttrib) {
+		for (const privateVariableMemDef of Array.from(privateAttrib.children)) {
+			let kind = privateVariableMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: privateVariableMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			privateVariableList.push(func(def, privateVariableMemDef));
+		}
+	}
+
+	var publicFunc = el.querySelector('sectiondef[kind=public-func]');
+	let publicFunctionList: DoxygenFunctionMemberDef[] = [];
+
+	if (publicFunc) {
+		for (const publicFuncMemDef of Array.from(publicFunc.children)) {
+			let kind = publicFuncMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: publicFuncMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			publicFunctionList.push(func(def, publicFuncMemDef));
+		}
+	}
+
+	var pubStaticFunc = el.querySelector('sectiondef[kind=public-static-func]');
+	let pubStaticFunctionList: DoxygenFunctionMemberDef[] = [];
+
+	if (pubStaticFunc) {
+		for (const pubStaticFuncMemDef of Array.from(pubStaticFunc.children)) {
+			let kind = pubStaticFuncMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: pubStaticFuncMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			pubStaticFunctionList.push(func(def, pubStaticFuncMemDef));
+		}
+	}
+
+	var enums = el.querySelector('sectiondef[kind=enum');
+	let enumList: DoxygenEnumMemberDef[] = [];
+
+	if (enums) {
+		for (const enumMemDef of Array.from(enums.children)) {
+			let kind = enumMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: enumMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			enumList.push(func(def, enumMemDef));
+		}
+	}
+
+	return {
+		...def,
+		kind: 'class',
+		name: el.querySelector('compoundname').textContent,
+		publicTypes: publicTypeList,
+		privateTypes: privateTypeList,
+		privateVariables: privateVariableList,
+		publicVariables: publicVariableList,
+		publicFunctions: publicFunctionList,
+		publicStaticFunctions: pubStaticFunctionList,
+		enums: enumList,
+	};
+}
+
+function doxygenInnerClass(el: Element): DoxygenInnerClassDef {
+	return {
+		id: el.getAttribute('refid'),
+		name: el.textContent.trim(),
+		access: el.getAttribute('prot') as any,
+	};
+}
+
+function doxygenInnerNamespace(el: Element): DoxygenInnerNamespaceDef {
+	return {
+		id: el.getAttribute('refid'),
+		name: el.textContent.trim(),
+	};
+}
+
+function getDetailedDescription(el: Element): DoxygenParagraph[] {
+	const detailedDescription: DoxygenParagraph[] = [];
+	const detailedDescEl = el.querySelector('detaileddescription');
+
+	if (detailedDescEl) {
+		for (const para of Array.from(detailedDescEl.children)) {
+			const doxygenParagraph = getDoxygenParagraph(para);
+
+			if (doxygenParagraph.length > 0) {
+				detailedDescription.push(doxygenParagraph);
+			}
+		}
+	}
+
+	return detailedDescription;
+}
+
+function getLocation(el: Element): DoxygenDefLocation {
+	const location: DoxygenDefLocation = {
+		file: '',
+		column: 0,
+		line: 0,
+	};
+
+	const locationEl = el.querySelector('location');
+	if (locationEl) {
+		location.file = locationEl.getAttribute('file');
+		location.line = parseInt(locationEl.getAttribute('line'));
+		location.column = parseInt(locationEl.getAttribute('column'));
+	}
+	return location;
 }

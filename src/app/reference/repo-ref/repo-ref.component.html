@@ -51,6 +51,24 @@
 				[def]="def"></doxygen-typedef-def>
 		</ng-container>
 
+		<ng-container *ngSwitchCase="'variable'">
+			<doxygen-variable-def
+				*ngIf="def.kind === 'variable'"
+				[def]="def"></doxygen-variable-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'enumvalue'">
+			<doxygen-namespace-def
+				*ngIf="def.kind === 'namespace'"
+				[def]="def"></doxygen-namespace-def>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="'enum-value'">
+			<doxygen-enumvalue-def
+				*ngIf="def.kind === 'enum-value'"
+				[def]="def"></doxygen-enumvalue-def>
+		</ng-container>
+
 		<div *ngSwitchDefault>Unhandled kind: {{ def.kind }}</div>
 	</div>
 </ng-container>
