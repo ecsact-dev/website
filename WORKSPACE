@@ -64,9 +64,9 @@ sass_repositories()
 
 http_archive(
     name = "rules_blender",
-    sha256 = "bb6c65d756fe1c24c63c8a893703a1005948854cd89c4e72ac42c2dfa169caf5",
-    strip_prefix = "rules_blender-7cb1c679864619801cc5a78054bb620926a29c3d",
-    urls = ["https://github.com/zaucy/rules_blender/archive/7cb1c679864619801cc5a78054bb620926a29c3d.zip"],
+    sha256 = "8618bbba55f19e0715c2c43c2892e80465741684bc4a603df6b56765edcf13bc",
+    strip_prefix = "rules_blender-a69fce3cf2a358ce547520fe4abc7741d3dc3b5c",
+    urls = ["https://github.com/zaucy/rules_blender/archive/a69fce3cf2a358ce547520fe4abc7741d3dc3b5c.zip"],
 )
 
 load("@rules_blender//:repo.bzl", "blender_repository")
