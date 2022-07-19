@@ -4,6 +4,8 @@ import {
 	ChangeDetectionStrategy,
 	ViewChild,
 	ElementRef,
+	ChangeDetectorRef,
+	TrackByFunction,
 } from '@angular/core';
 
 export interface ContentPageAnchor {
@@ -53,7 +55,13 @@ export class ContentComponent implements OnInit {
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
 
-	constructor() {}
+	readonly trackBy: TrackByFunction<ContentPageAnchor>;
+
+	constructor(private cdr: ChangeDetectorRef) {
+		this.trackBy = (index, item) => {
+			return item.id;
+		};
+	}
 
 	ngOnInit(): void {
 		this.refreshPageAnchors();
@@ -65,7 +73,6 @@ export class ContentComponent implements OnInit {
 
 	refreshPageAnchors() {
 		const mainEl = this.mainContent!.nativeElement;
-
 		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(
 			createPageAnchor,
 		);
@@ -80,5 +87,7 @@ export class ContentComponent implements OnInit {
 		if (smallestIndent > 0) {
 			this.pageAnchors.forEach(item => (item.indent -= smallestIndent));
 		}
+
+		this.cdr.detectChanges();
 	}
 }

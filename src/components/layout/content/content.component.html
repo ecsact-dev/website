@@ -25,7 +25,7 @@
 	<div class="page-anchors">
 		<div><strong>On this page</strong></div>
 		<a
-			*ngFor="let pageAnchor of pageAnchors"
+			*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
 			[routerLink]=""
 			[fragment]="pageAnchor.id"
 			[style.text-indent]="pageAnchor.indent * 8">
