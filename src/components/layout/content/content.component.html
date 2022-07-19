@@ -28,7 +28,8 @@
 			*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
 			[routerLink]=""
 			[fragment]="pageAnchor.id"
-			[style.text-indent]="pageAnchor.indent * 8">
+			[style.text-indent]="pageAnchor.indent * 8"
+			[class.active]="activePageAnchorId === pageAnchor.id">
 			{{ pageAnchor.title }}
 		</a>
 	</div>
