@@ -71,7 +71,8 @@
 		}
 
 		.search-results-item {
-			display: block;
+			display: flex;
+			flex-direction: column;
 			cursor: pointer;
 			padding: 8px;
 			outline: none;
@@ -83,7 +84,29 @@
 			@media (hover: hover) {
 				&:hover {
 					background-color: rgba(0, 0, 0, 0.1);
+					text-decoration: none;
 				}
+			}
+
+			.search-results-item-title {
+				display: flex;
+				flex-direction: row;
+				gap: 8px;
+
+				.compound-title {
+				}
+
+				.kind-tag {
+					border-radius: 4px;
+					background-color: grey;
+					padding: 2px 4px;
+					color: white;
+				}
+			}
+
+			.search-results-item-category {
+				margin-left: 4px;
+				font-size: 12px;
 			}
 		}
 	}

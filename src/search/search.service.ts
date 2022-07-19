@@ -553,6 +553,10 @@ export class Search {
 				},
 				{
 					name: 'kind',
+					weight: 3,
+				},
+				{
+					name: 'owner.name',
 					weight: 1,
 				},
 			],
