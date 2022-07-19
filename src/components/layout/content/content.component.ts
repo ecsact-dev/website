@@ -8,6 +8,7 @@ import {
 	TrackByFunction,
 	HostListener,
 } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 export interface ContentPageAnchor {
 	id: string;
@@ -53,10 +54,14 @@ export class ContentComponent implements OnInit {
 
 	readonly trackBy: TrackByFunction<ContentPageAnchor>;
 
-	constructor(private cdr: ChangeDetectorRef) {
+	constructor(private cdr: ChangeDetectorRef, route: ActivatedRoute) {
 		this.trackBy = (index, item) => {
 			return item.id;
 		};
+
+		route.fragment.subscribe(fragment => {
+			this.activePageAnchorId = fragment;
+		});
 	}
 
 	@HostListener('window:scroll', ['$event'])
