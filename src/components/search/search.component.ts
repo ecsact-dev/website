@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
 	@ViewChild('searchResultsContainer', {static: true})
 	searchResultsContainer?: ElementRef<HTMLDivElement>;
 
-	compounds: DoxygenBase[] = [];
+	compounds: any[] = [];
 	pendingInput: boolean = false;
 	readonly compoundsTrackBy: TrackByFunction<DoxygenBase>;
 	readonly searchReady$: Observable<boolean>;
@@ -84,11 +84,6 @@ export class SearchComponent implements OnInit {
 
 		if (ev.key === 'Escape') {
 			(document.activeElement as any).blur();
-		} else if (ev.key === 'Enter') {
-			if (this.compounds[0]) {
-				const refid = this.compounds[0].refid;
-				this.router.navigateByUrl(`/reference/ecsact/${refid}`);
-			}
 		} else if (ev.key == 'ArrowDown') {
 			this.focusNextSearchItem();
 			ev.preventDefault();

@@ -46,7 +46,7 @@ pre {
 }
 
 code {
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: var(--color-bg);
 	border-radius: 3px;
 	padding: 0 4px;
 	box-sizing: content-box;
@@ -124,6 +124,14 @@ table {
 	}
 }
 
+.always-dark {
+	@include dark-color-scheme;
+}
+
+.always-light {
+	@include light-color-scheme;
+}
+
 .inverse-color-scheme {
 	@media (prefers-color-scheme: light) {
 		@include dark-color-scheme;
@@ -134,12 +142,12 @@ table {
 	}
 }
 
-.always-dark {
-	@include dark-color-scheme;
+.always-dark .inverse-color-scheme {
+	@include light-color-scheme;
 }
 
-.always-light {
-	@include light-color-scheme;
+.always-light .inverse-color-scheme {
+	@include dark-color-scheme;
 }
 
 .i48 {
