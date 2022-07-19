@@ -6,12 +6,14 @@ import {
 	ElementRef,
 	ChangeDetectorRef,
 	TrackByFunction,
+	HostListener,
 } from '@angular/core';
 
 export interface ContentPageAnchor {
 	id: string;
 	title: string;
 	indent: number;
+	element: Element;
 }
 
 function getElementIndent(element: Element): number {
@@ -32,14 +34,6 @@ function getElementIndent(element: Element): number {
 	return 0;
 }
 
-function createPageAnchor(element: Element) {
-	return {
-		id: element.id,
-		title: element.firstChild.textContent.trim(),
-		indent: getElementIndent(element),
-	};
-}
-
 /**
  * Main content of site. Only one of these should exist at a time.
  */
@@ -50,7 +44,9 @@ function createPageAnchor(element: Element) {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentComponent implements OnInit {
+	private _anchorEventListenerCleanupFns: (() => void)[] = [];
 	pageAnchors: ContentPageAnchor[] = [];
+	activePageAnchorId: string = '';
 
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
@@ -63,6 +59,9 @@ export class ContentComponent implements OnInit {
 		};
 	}
 
+	@HostListener('window:scroll', ['$event'])
+	onScroll(ev: any) {}
+
 	ngOnInit(): void {
 		this.refreshPageAnchors();
 	}
@@ -71,10 +70,32 @@ export class ContentComponent implements OnInit {
 		this.refreshPageAnchors();
 	}
 
+	private createPageAnchor(element: Element) {
+		const eventHandler = ev => {
+			this.activePageAnchorId = element.id;
+			this.cdr.detectChanges();
+		};
+		element.addEventListener('mouseover', eventHandler);
+		this._anchorEventListenerCleanupFns.push(() => {
+			element.removeEventListener('mouseover', eventHandler);
+		});
+		return {
+			id: element.id,
+			title: element.firstChild.textContent.trim(),
+			indent: getElementIndent(element),
+			element,
+		};
+	}
+
 	refreshPageAnchors() {
+		for (const fn of this._anchorEventListenerCleanupFns) {
+			fn();
+		}
+		this._anchorEventListenerCleanupFns = [];
+
 		const mainEl = this.mainContent!.nativeElement;
-		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(
-			createPageAnchor,
+		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(el =>
+			this.createPageAnchor(el),
 		);
 
 		const smallestIndent = this.pageAnchors.reduce((smallestIndent, item) => {
