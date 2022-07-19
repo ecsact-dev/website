@@ -63,7 +63,6 @@
 		transform: translateY(-100%);
 		box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.15);
 		animation: show-search-results 300ms ease;
-		animation-delay: 300ms;
 		animation-fill-mode: forwards;
 
 		@media (max-height: #{$search-results-max-height}) {
@@ -92,9 +91,6 @@
 				display: flex;
 				flex-direction: row;
 				gap: 8px;
-
-				.compound-title {
-				}
 
 				.kind-tag {
 					border-radius: 4px;
