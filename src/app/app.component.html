@@ -1,33 +1,29 @@
-<div class="container">
-	<div class="top">
-		<div class="nav-container">
-			<nav>
-				<a class="home-nav-item" routerLink="/">Home</a>
-				<a
-					class="home-nav-item"
-					routerLink="/getstarted"
-					routerLinkActive="active"
-					>Getting Started
-				</a>
-				<a class="home-nav-item" routerLink="/install" routerLinkActive="active"
-					>Install
-				</a>
-				<a class="home-nav-item" routerLink="/docs" routerLinkActive="active"
-					>Docs
-				</a>
-				<a class="home-nav-item" routerLink="/reference" routerLinkActive="true"
-					>Reference
-				</a>
-				<a
-					class="home-nav-item"
-					routerLink="/tutorials"
-					routerLinkActive="active"
-					>Tutorials
-				</a>
-			</nav>
-		</div>
+<nav class="top-nav always-light" [class.search-focused]="search.isFocused()">
+	<div class="before-search">
+		<a
+			class="home-nav-item"
+			routerLink="/"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{exact: true}">
+			<span>Home</span>
+		</a>
+		<a routerLink="/getstarted" routerLinkActive="active">
+			<span>Getting Started</span>
+		</a>
+		<a routerLink="/install" routerLinkActive="active">
+			<span>Install</span>
+		</a>
+		<a routerLink="/docs" routerLinkActive="active">
+			<span>Docs</span>
+		</a>
+		<a routerLink="/tutorials" routerLinkActive="active">
+			<span>Tutorials</span>
+		</a>
 	</div>
-</div>
+	<div class="search-flex"></div>
+	<ecsact-search #search></ecsact-search>
+	<div class="after-search"></div>
+</nav>
 
 <div class="router-outline-container">
 	<router-outlet></router-outlet>

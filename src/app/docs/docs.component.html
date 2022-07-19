@@ -1,11 +1,18 @@
-<div>
-	<div>
-		<nav class="docs_list">
-			<a routerLink="/docs/runtime/implementations">Implementations</a>
-			<a routerLink="/docs/runtime">Runtime</a>
-			<a routerLink="/docs/runtime-builder"
-				routerLinkActive="active">Runtime-Builder
-			</a>
-		</nav>
-	</div>
-</div>
+<ecsact-sidenav>
+	<ecsact-sidenav-section title="Basics">
+		<a routerLink="/docs/lang" routerLinkActive="active">Language</a>
+	</ecsact-sidenav-section>
+	<ecsact-sidenav-section title="Runtime">
+		<a routerLink="/docs/runtime" routerLinkActive="active">Runtime</a>
+		<a routerLink="/docs/runtime-builder" routerLinkActive="active"
+			>Runtime Builder</a
+		>
+		<a routerLink="/docs/runtime/implementations" routerLinkActive="active"
+			>Implementations</a
+		>
+	</ecsact-sidenav-section>
+</ecsact-sidenav>
+
+<ecsact-content>
+	<router-outlet></router-outlet>
+</ecsact-content>

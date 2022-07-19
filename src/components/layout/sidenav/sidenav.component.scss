@@ -1,0 +1,17 @@
+:host {
+	position: fixed;
+	width: var(--side-nav-width);
+	top: var(--top-nav-height);
+	bottom: 0px;
+	background-color: var(--color-bg);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	padding: 16px 0px;
+
+	@media (max-width: 1044px) {
+		top: 0px;
+		z-index: 100;
+
+		// TODO(zaucy): mobile nav
+		display: none;
+	}
+}

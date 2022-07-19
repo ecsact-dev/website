@@ -11,79 +11,55 @@ const routes: Routes = [
 			import('./home/home-routing.module').then(m => m.HomeRoutingModule),
 	},
 	{
-		path:'docs',
+		path: 'docs',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./docs/docs-routing.module').then(m => m.DocsRoutingModule),
 	},
 	{
-		path:'getstarted',
+		path: 'getstarted',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./getstarted/getstarted-routing.module').then(
-				m => m.GetStartedRoutingModule
+				m => m.GetStartedRoutingModule,
 			),
 	},
 	{
-		path:'docs/runtime/implementations',
-		pathMatch: 'prefix',
-		loadChildren: () =>
-			import('./docs/implementations/implementations-routing.module').then(
-				m => m.ImplementationsRoutingModule
-			),
-	},
-	{
-		path:'install',
+		path: 'install',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./install/install-routing.module').then(
-				m => m.InstallRoutingModule
+				m => m.InstallRoutingModule,
 			),
 	},
 	{
-		path:'introduction',
+		path: 'introduction',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./introduction/introduction-routing.module').then(
-				m => m.IntroductionRoutingModule
+				m => m.IntroductionRoutingModule,
 			),
 	},
 	{
-		path:'docs/runtime',
-		pathMatch: 'prefix',
-		loadChildren: () =>
-			import('./docs/runtime/runtime-routing.module').then(
-				m => m.RuntimeRoutingModule
-			),
-	},
-	{
-		path:'docs/runtime-builder',
-		pathMatch: 'prefix',
-		loadChildren: () =>
-			import('./docs/runtime-builder/runtime-builder-routing.module').then(
-				m => m.Runtime_BuilderRoutingModule
-			),
-	},
-	{
-		path:'tutorials',
+		path: 'tutorials',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./tutorials/tutorials-routing.module').then(
-				m => m.TutorialsRoutingModule
+				m => m.TutorialsRoutingModule,
 			),
 	},
 	{
-		path:'integrations/unity/install',
+		path: 'integrations/unity/install',
 		loadChildren: () =>
 			import('./integrations/unity/install/install-routing.module').then(
-				m => m.UnityInstallPageRoutingModule
+				m => m.UnityInstallPageRoutingModule,
 			),
 	},
 	{
-		path:'reference',
+		path: 'reference',
 		loadChildren: () =>
 			import('./reference/reference-routing.module').then(
-				m => m.ReferenceRoutingModule
+				m => m.ReferenceRoutingModule,
 			),
 	},
 	// {

@@ -17,6 +17,14 @@
 			"description": "Which module should this component be part of?"
 		}
 	],
+	"options": {
+		"shell": {
+			"executable": "bash",
+			"args": [
+				"-c"
+			]
+		}
+	},
 	"tasks": [
 		{
 			"label": "Generate Angular Routing Module",

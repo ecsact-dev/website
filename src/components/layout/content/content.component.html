@@ -1,0 +1,37 @@
+<div></div>
+<main #mainContent (cdkObserveContent)="onContentChange($event)">
+	<ng-content></ng-content>
+</main>
+
+<ng-template #pageAnchorListItem let-pageAnchor>
+	<li>
+		<a [href]="'#' + pageAnchor.id">
+			{{ pageAnchor.title }}
+			<ol *ngIf="pageAnchor.childPageAnchors.length > 0">
+				<ng-container
+					*ngFor="let childPageAnchor of pageAnchor.childPageAnchors">
+					<ng-container
+						*ngTemplateOutlet="
+							pageAnchorListItem;
+							context: {$implicit: childPageAnchor}
+						"></ng-container>
+				</ng-container>
+			</ol>
+		</a>
+	</li>
+</ng-template>
+
+<div>
+	<div class="page-anchors">
+		<div><strong>On this page</strong></div>
+		<ol>
+			<ng-container *ngFor="let pageAnchor of pageAnchors">
+				<ng-container
+					*ngTemplateOutlet="
+						pageAnchorListItem;
+						context: {$implicit: pageAnchor}
+					"></ng-container>
+			</ng-container>
+		</ol>
+	</div>
+</div>

@@ -1,8 +1,12 @@
-
-.docs_list {
-	min-height: 200px;
+nav {
+	position: sticky;
+	top: 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	a.active {
+		font-weight: bold;
+	}
 }
