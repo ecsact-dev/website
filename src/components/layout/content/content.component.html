@@ -22,15 +22,17 @@
 </ng-template>
 
 <div>
-	<div class="page-anchors">
-		<div><strong>On this page</strong></div>
-		<a
-			*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
-			[routerLink]=""
-			[fragment]="pageAnchor.id"
-			[style.text-indent]="pageAnchor.indent * 8"
-			[class.active]="activePageAnchorId === pageAnchor.id">
-			{{ pageAnchor.title }}
-		</a>
+	<div class="page-anchors-container">
+		<div class="page-anchors">
+			<div><strong>On this page</strong></div>
+			<a
+				*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
+				[routerLink]=""
+				[fragment]="pageAnchor.id"
+				[style.text-indent]="pageAnchor.indent * 8"
+				[class.active]="activePageAnchorId === pageAnchor.id">
+				{{ pageAnchor.title }}
+			</a>
+		</div>
 	</div>
 </div>

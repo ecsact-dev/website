@@ -15,9 +15,14 @@ main {
 	margin: 32px 0px;
 }
 
+.page-anchors-container {
+	position: sticky;
+	top: var(--top-nav-height);
+	padding-top: 32px;
+}
+
 .page-anchors {
 	font-size: 80%;
-	margin-top: 32px;
 	padding-left: 6px;
 	border-left: 2px solid var(--color-primary);
 	box-sizing: border-box;
