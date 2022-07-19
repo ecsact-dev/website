@@ -12,8 +12,28 @@ const routes: Routes = [
 		children: [
 			{
 				path: 'lang',
-				pathMatch: 'full',
 				component: LangComponent,
+			},
+			{
+				path: 'runtime',
+				loadChildren: () =>
+					import('./runtime/runtime-routing.module').then(
+						m => m.RuntimeRoutingModule,
+					),
+			},
+			{
+				path: 'runtime-builder',
+				loadChildren: () =>
+					import('./runtime-builder/runtime-builder-routing.module').then(
+						m => m.Runtime_BuilderRoutingModule,
+					),
+			},
+			{
+				path: 'runtime-implementations',
+				loadChildren: () =>
+					import('./implementations/implementations-routing.module').then(
+						m => m.ImplementationsRoutingModule,
+					),
 			},
 		],
 	},
