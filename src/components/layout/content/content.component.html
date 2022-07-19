@@ -24,14 +24,12 @@
 <div>
 	<div class="page-anchors">
 		<div><strong>On this page</strong></div>
-		<ol>
-			<ng-container *ngFor="let pageAnchor of pageAnchors">
-				<ng-container
-					*ngTemplateOutlet="
-						pageAnchorListItem;
-						context: {$implicit: pageAnchor}
-					"></ng-container>
-			</ng-container>
-		</ol>
+		<a
+			*ngFor="let pageAnchor of pageAnchors"
+			[routerLink]=""
+			[fragment]="pageAnchor.id"
+			[style.text-indent]="pageAnchor.indent * 8">
+			{{ pageAnchor.title }}
+		</a>
 	</div>
 </div>
