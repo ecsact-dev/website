@@ -83,7 +83,7 @@ table {
 
 	tr:first-child {
 		position: sticky;
-		top: 0px;
+		top: var(--top-nav-height);
 		background-color: var(--color-content-bg);
 
 		th {
