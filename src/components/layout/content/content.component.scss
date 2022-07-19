@@ -22,6 +22,10 @@ main {
 	border-left: 2px solid var(--color-primary);
 	box-sizing: border-box;
 	min-height: 48px;
+
+	a {
+		display: block;
+	}
 }
 
 @media (max-width: 1280px) {

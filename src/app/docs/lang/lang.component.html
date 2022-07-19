@@ -4,4 +4,75 @@
 		This article gives you everything you need to know on how to write
 		<code>.ecsact</code> files.
 	</p>
+
+	<h2 id="define-component">Defining A Component</h2>
+	<p>
+		Let's take a simple example where we want to maintain our entities position.
+	</p>
+	<pre class="lang-ecsact">{{ DEFINE_COMPONENT_SAMPLE_01 }}</pre>
+
+	<h2 id="fields">Fields</h2>
+	<p>Both components and actions may contain any number of fields</p>
+	<h3 id="field-types">Field Types</h3>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Size</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td><code>bool</code></td>
+			<td>at least 1 bit</td>
+			<td>Boolean. Can be <code>true</code> or <code>false</code>.</td>
+		</tr>
+		<tr>
+			<td><code>int8</code></td>
+			<td>1 byte</td>
+			<td>Signed 8 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>uint8</code></td>
+			<td>1 byte</td>
+			<td>Unsigned 8 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>int16</code></td>
+			<td>2 byte</td>
+			<td>Signed 16 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>uint16</code></td>
+			<td>2 byte</td>
+			<td>Unsigned 16 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>int32</code></td>
+			<td>4 byte</td>
+			<td>Signed 32 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>uint32</code></td>
+			<td>4 byte</td>
+			<td>Unsigned 32 bit integer.</td>
+		</tr>
+		<tr>
+			<td><code>decimal32</code></td>
+			<td>4 bytes</td>
+			<td>
+				32 bit
+				<a href="https://en.wikipedia.org/wiki/IEEE_754" target="_blank"
+					>IEEE-754</a
+				>
+				decimal format.
+			</td>
+		</tr>
+		<tr>
+			<td><code>entity</code></td>
+			<td>unspecified</td>
+			<td>
+				Opaque type that represents an entity ID. Likely an integer, but any
+				access to the underlying type is considered undefined behaviour.
+			</td>
+		</tr>
+	</table>
 </article>

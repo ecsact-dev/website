@@ -4,22 +4,37 @@ import {
 	ChangeDetectionStrategy,
 	ViewChild,
 	ElementRef,
-	ChangeDetectorRef,
 } from '@angular/core';
 
 export interface ContentPageAnchor {
 	id: string;
 	title: string;
-	childPageAnchors: ContentPageAnchor[];
+	indent: number;
+}
+
+function getElementIndent(element: Element): number {
+	switch (element.nodeName.toLowerCase()) {
+		case 'h1':
+			return 0;
+		case 'h2':
+			return 1;
+		case 'h3':
+			return 2;
+		case 'h4':
+			return 3;
+		case 'h5':
+			return 4;
+		case 'h6':
+			return 5;
+	}
+	return 0;
 }
 
 function createPageAnchor(element: Element) {
 	return {
 		id: element.id,
 		title: element.firstChild.textContent.trim(),
-		childPageAnchors: Array.from(element.children)
-			.filter(el => !!el.id)
-			.map(createPageAnchor),
+		indent: getElementIndent(element),
 	};
 }
 
@@ -38,7 +53,7 @@ export class ContentComponent implements OnInit {
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
 
-	constructor(private cdr: ChangeDetectorRef) {}
+	constructor() {}
 
 	ngOnInit(): void {
 		this.refreshPageAnchors();
@@ -49,8 +64,21 @@ export class ContentComponent implements OnInit {
 	}
 
 	refreshPageAnchors() {
-		this.pageAnchors = Array.from(this.mainContent!.nativeElement.children)
-			.filter(el => !!el.id)
-			.map(createPageAnchor);
+		const mainEl = this.mainContent!.nativeElement;
+
+		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(
+			createPageAnchor,
+		);
+
+		const smallestIndent = this.pageAnchors.reduce((smallestIndent, item) => {
+			if (item.indent < smallestIndent) {
+				smallestIndent = item.indent;
+			}
+			return smallestIndent;
+		}, 10);
+
+		if (smallestIndent > 0) {
+			this.pageAnchors.forEach(item => (item.indent -= smallestIndent));
+		}
 	}
 }
