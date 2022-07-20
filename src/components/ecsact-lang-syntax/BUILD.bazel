@@ -5,22 +5,25 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "lang.component.scss",
+    src = "ecsact-lang-syntax.component.scss",
 )
 
 ng_ts_project(
-    name = "lang",
+    name = "ecsact-lang-syntax",
     srcs = [
-        "lang.component.ts",
-        "lang.module.ts",
+        "ecsact-lang-syntax.component.ts",
+        "ecsact-lang-syntax.module.ts",
     ],
     angular_assets = [
-        "lang.component.html",
+        "ecsact-lang-syntax.component.html",
         ":styles",
     ],
     deps = [
-        "//src/components/ecsact-lang-syntax",
+        "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//@types/prismjs",
+        "@npm//prismjs",
     ],
 )
