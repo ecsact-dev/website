@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {initializeApp} from 'firebase/app';
+import {NavigationEnd, Router} from '@angular/router';
+import {SearchMeta} from '../search/search-meta.service';
 
 import {ServiceWorkerService} from './service-worker.service';
 
@@ -10,8 +11,18 @@ import {ServiceWorkerService} from './service-worker.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-	constructor(private swService: ServiceWorkerService) {
+	constructor(
+		private swService: ServiceWorkerService,
+		searchMeta: SearchMeta,
+		router: Router,
+	) {
 		this.swService.launchUpdateCheckingRoutine();
+
+		router.events.subscribe(routerEvent => {
+			if (routerEvent instanceof NavigationEnd) {
+				searchMeta.useSearchablePageInfo();
+			}
+		});
 	}
 
 	onSearchFocused() {}

@@ -28,6 +28,7 @@ ng_ts_project(
         "//src/app/reference",
         "//src/app/tutorials",
         "//src/components/search",
+        "//src/search:meta-service",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
