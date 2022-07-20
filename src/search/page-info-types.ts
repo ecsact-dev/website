@@ -1,4 +1,5 @@
 export enum PageCategory {
+	Page = 'Page',
 	Documentation = 'Documentation',
 	Tutorial = 'Tutorial',
 }
