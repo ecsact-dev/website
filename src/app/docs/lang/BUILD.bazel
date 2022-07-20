@@ -19,7 +19,6 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
-        "//src/search:meta-service",
         "@npm//@angular/common",
         "@npm//@angular/core",
     ],
