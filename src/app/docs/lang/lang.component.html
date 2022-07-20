@@ -5,15 +5,79 @@
 		<code>.ecsact</code> files.
 	</p>
 
+	<h2 id="syntax">Syntax</h2>
+	<p>
+		Ecsact language syntax is composed of a series of statements that end with
+		<code>;</code> or a block of new statements surrounded by
+		<code>{{ '{' }}</code> <code>{{ '}' }}</code
+		>. Statements within blocks are contextually relevant to the statement it
+		proceeds.
+	</p>
+	<pre><code ecsactLangSyntax>{{ SYNTAX_SAMPLE_01 }}</code></pre>
+	<p>
+		An empty block is the same as having no block. Both these statements are
+		equivalent.
+	</p>
+	<pre><code ecsactLangSyntax>{{ SYNTAX_SAMPLE_02 }}</code></pre>
+	<p>
+		Comments are also allowed. Anything after <code>//</code> on the same line
+		or anything between <code>/*</code> and <code>*/</code> across multiple
+		lines are considered comments.
+	</p>
+	<pre><code ecsactLangSyntax>{{ SYNTAX_COMMENT_SAMPLE }}</code></pre>
+
+	<h3 id="top-level-statements">Top Level Statements</h3>
+	<p>Top level statements are separated into 3 sections.</p>
+	<ol>
+		<li>The <code>package</code> statement</li>
+		<li><code>import</code> statements</li>
+		<li>
+			<code>component</code>, <code>system</code>, <code>action</code>, and
+			<code>enum</code> statements
+		</li>
+	</ol>
+	<p>
+		The order of each <em>section</em> must be as defined above. Here's an
+		example:
+	</p>
+	<pre><code ecsactLangSyntax>
+		// 1. Package
+		main package my.example;
+		
+		// 2. Imports
+		import other.example;
+		import fancy;
+		
+		// 3. Everything else
+		component MyExampleComponent {{ '{' }} /* ... */ {{ '}' }}
+		system MyExampleSystem {{ '{' }} /* ... */ {{ '}' }}
+		action MyExampleAction {{ '{' }} /* ... */ {{ '}' }}
+	</code></pre>
+
 	<h2 id="define-components">Defining Components</h2>
 	<p>
 		Let's take a simple example where we want to maintain our entities position.
 	</p>
-	<pre class="lang-ecsact">{{ DEFINE_COMPONENT_SAMPLE_01 }}</pre>
+	<pre><code ecsactLangSyntax>{{ DEFINE_COMPONENT_SAMPLE_01 }}</code></pre>
 
 	<h2 id="define-systems">Defining Systems</h2>
+	<pre><code ecsactLangSyntax>
+		// Apply poison damage to entity health over time
+		system PoisonDamage {{'{'}}
+			required readonly Poisoned;
+			required Health;
+		{{'}'}}
+	</code></pre>
 
 	<h2 id="define-actions">Defining Actions</h2>
+	<pre><code ecsactLangSyntax>
+		// Entities controlled by player `player_id` starts attacking
+		action Attack {{'{'}}
+			int32 player_id;
+			required readonly PlayerControlled;
+			adds Attacking;
+		{{'}'}}
+	</code></pre>
 
 	<h2 id="fields">Fields</h2>
 	<p>Both components and actions may contain any number of fields</p>

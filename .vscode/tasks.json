@@ -7,6 +7,11 @@
 			"description": "Angular component name"
 		},
 		{
+			"id": "directive_name",
+			"type": "promptString",
+			"description": "Angular directive name"
+		},
+		{
 			"id": "module_name",
 			"type": "promptString",
 			"description": "Angular module name"
@@ -90,6 +95,17 @@
 			"type": "shell",
 			"linux": {
 				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:component_name} && ${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g component --interactive=false ${input:component_name} --change-detection=OnPush --export --skip-tests --module=${input:component_name}"
+			},
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Generate Angular Module + Directive",
+			"type": "shell",
+			"linux": {
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:directive_name} && ${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g directive --interactive=false ${input:directive_name} --change-detection=OnPush --export --skip-tests --module=${input:directive_name}"
 			},
 			"options": {
 				"cwd": "${workspaceFolder}"
