@@ -574,7 +574,6 @@ export class Search {
 
 	constructor() {
 		this._fuseInstance = new Fuse(this._searchItems, {
-			minMatchCharLength: 3,
 			shouldSort: true,
 			keys: [
 				{
