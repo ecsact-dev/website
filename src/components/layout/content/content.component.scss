@@ -7,8 +7,18 @@
 		minmax(230px, 1fr);
 }
 
+.main-content-scroll-buffer {
+	// This extra buffer is for usability sake when clicking or linking anchors.
+	// Scrolling to an anchor will properly scroll without issue.
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
 main {
 	display: block;
+	overflow: hidden;
 	background-color: var(--color-content-bg);
 	border-radius: 3px;
 	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.1);

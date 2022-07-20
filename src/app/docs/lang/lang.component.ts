@@ -1,4 +1,5 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {SearchMeta} from '../../../search/search-meta.service';
 
 const DEFINE_COMPONENT_SAMPLE_01 = `
 package example;
@@ -16,7 +17,9 @@ component Position {
 })
 export class LangComponent implements OnInit {
 	readonly DEFINE_COMPONENT_SAMPLE_01 = DEFINE_COMPONENT_SAMPLE_01;
-	constructor() {}
+	constructor(searchMeta: SearchMeta) {
+		searchMeta.useSearchablePageInfo();
+	}
 
 	ngOnInit(): void {}
 }

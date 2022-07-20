@@ -8,11 +8,38 @@ ts_project(
     srcs = ["doxygen-def-types.ts"],
 )
 
+ts_project(
+    name = "page-info-types",
+    srcs = ["page-info-types.ts"],
+)
+
+ts_project(
+    name = "searchable-page-infos",
+    srcs = ["searchable-page-infos.ts"],
+    deps = [
+        ":page-info-types",
+    ],
+)
+
+ng_ts_project(
+    name = "meta-service",
+    srcs = ["search-meta.service.ts"],
+    deps = [
+        ":page-info-types",
+        ":searchable-page-infos",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/platform-browser",
+    ],
+)
+
 ng_ts_project(
     name = "service",
     srcs = ["search.service.ts"],
     deps = [
         ":doxygen-def-types",
+        ":page-info-types",
+        ":searchable-page-infos",
         "@npm//@angular/core",
         "@npm//fuse.js",
         "@npm//rxjs",

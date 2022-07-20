@@ -48,6 +48,7 @@ export class ContentComponent implements OnInit {
 	private _anchorEventListenerCleanupFns: (() => void)[] = [];
 	pageAnchors: ContentPageAnchor[] = [];
 	activePageAnchorId: string = '';
+	wantsScrollTo = false;
 
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
@@ -61,11 +62,10 @@ export class ContentComponent implements OnInit {
 
 		route.fragment.subscribe(fragment => {
 			this.activePageAnchorId = fragment;
+			this.wantsScrollTo = true;
+			this.consumeScrollToIfNeeded();
 		});
 	}
-
-	@HostListener('window:scroll', ['$event'])
-	onScroll(ev: any) {}
 
 	ngOnInit(): void {
 		this.refreshPageAnchors();
@@ -73,6 +73,34 @@ export class ContentComponent implements OnInit {
 
 	onContentChange(changes: MutationRecord[]) {
 		this.refreshPageAnchors();
+	}
+
+	private scrollToPageAnchor(pageAnchor: ContentPageAnchor) {
+		const topPadding = 8;
+		const topHeight = parseInt(
+			getComputedStyle(document.documentElement).getPropertyValue(
+				'--top-nav-height',
+			),
+		);
+		const y =
+			pageAnchor.element.getBoundingClientRect().top +
+			window.pageYOffset -
+			topHeight -
+			topPadding;
+
+		window.scrollTo({top: y, behavior: 'smooth'});
+	}
+
+	private consumeScrollToIfNeeded() {
+		if (!this.wantsScrollTo) return;
+
+		for (const pageAnchor of this.pageAnchors) {
+			if (pageAnchor.id === this.activePageAnchorId) {
+				this.scrollToPageAnchor(pageAnchor);
+				this.wantsScrollTo = false;
+				break;
+			}
+		}
 	}
 
 	private createPageAnchor(element: Element) {
@@ -115,5 +143,6 @@ export class ContentComponent implements OnInit {
 		}
 
 		this.cdr.detectChanges();
+		this.consumeScrollToIfNeeded();
 	}
 }

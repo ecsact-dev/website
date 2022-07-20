@@ -21,26 +21,49 @@
 				Loading...
 			</p>
 
-			<a
-				*ngFor="let compound of compounds; trackBy: compoundsTrackBy"
-				tabindex="0"
-				class="search-results-item"
-				[routerLink]="'/reference/ecsact/' + compound.refid">
-				<div class="search-results-item-title">
-					<code class="compound-title">{{ compound.name }}</code>
-					<div style="flex: auto"></div>
-					<code class="inverse-color-scheme">{{ compound.kind }}</code>
-				</div>
-				<div class="search-results-item-category">
-					reference / ecsact
-					<ng-container *ngIf="compound.owner"
-						>/ <code>{{ compound.owner?.name }}</code></ng-container
-					>
-				</div>
-			</a>
+			<ng-container
+				*ngFor="
+					let searchItem of searchResultItems;
+					trackBy: searchItemTrackBy
+				">
+				<a
+					*ngIf="searchItem.type === 'reference'"
+					tabindex="0"
+					class="search-results-item"
+					[routerLink]="
+						'/reference/' + searchItem.repo + '/' + searchItem.item.refid
+					">
+					<div class="search-results-item-title">
+						<span class="i24">code</span>
+						<code class="reference-title">{{ searchItem.item.name }}</code>
+						<div style="flex: auto"></div>
+						<code class="reference-kind inverse-color-scheme">{{
+							searchItem.item.kind
+						}}</code>
+					</div>
+					<div class="search-results-item-category">
+						reference / {{ searchItem.repo }}
+					</div>
+				</a>
+
+				<a
+					*ngIf="searchItem.type === 'page'"
+					tabindex="0"
+					[routerLink]="searchItem.path"
+					[fragment]="searchItem.fragment || undefined"
+					class="search-results-item">
+					<div class="search-results-item-title">
+						<span class="i24">article</span>
+						<strong>{{ searchItem.item.title }}</strong>
+					</div>
+					<div class="search-results-item-category">
+						{{ searchItem.item.description || '(no description)' }}
+					</div>
+				</a>
+			</ng-container>
 
 			<p
-				*ngIf="compounds.length === 0 && !pendingInput"
+				*ngIf="searchResultItems.length === 0 && !pendingInput"
 				style="text-align: center">
 				No Results
 			</p>

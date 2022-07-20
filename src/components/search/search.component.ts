@@ -3,19 +3,15 @@ import {
 	ChangeDetectorRef,
 	Component,
 	ElementRef,
-	EventEmitter,
 	HostListener,
-	OnDestroy,
 	OnInit,
-	Output,
 	TrackByFunction,
 	ViewChild,
 } from '@angular/core';
-import {Search} from '../../search/search.service';
-import {DoxygenBase} from '../../search/doxygen-def-types';
-import {first, Observable, Subscription} from 'rxjs';
+import {Search, SearchResultItem} from '../../search/search.service';
+import {Observable, Subscription} from 'rxjs';
 import {Location} from '@angular/common';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 
 @Component({
 	selector: 'ecsact-search',
@@ -30,9 +26,9 @@ export class SearchComponent implements OnInit {
 	@ViewChild('searchResultsContainer', {static: true})
 	searchResultsContainer?: ElementRef<HTMLDivElement>;
 
-	compounds: any[] = [];
+	searchResultItems: SearchResultItem[] = [];
 	pendingInput: boolean = false;
-	readonly compoundsTrackBy: TrackByFunction<DoxygenBase>;
+	readonly searchItemTrackBy: TrackByFunction<SearchResultItem>;
 	readonly searchReady$: Observable<boolean>;
 	readonly searchFocusKey = '/';
 
@@ -47,13 +43,21 @@ export class SearchComponent implements OnInit {
 		private router: Router,
 		private hostElement: ElementRef,
 	) {
-		this.compoundsTrackBy = (index: number, item: DoxygenBase) => {
-			return item.refid;
+		this.searchItemTrackBy = (index: number, item: SearchResultItem) => {
+			return item.type === 'reference' ? item.item.refid : index;
 		};
 
 		this.searchReady$ = this.search.ready$;
 		this._searchReadySubscription = this.search.ready$.subscribe(ready => {
 			this._onSearchReadyChange(ready);
+		});
+
+		this.router.events.subscribe(routerEv => {
+			if (routerEv instanceof NavigationStart) {
+				if (this.isFocused()) {
+					(document.activeElement as any).blur();
+				}
+			}
 		});
 	}
 
@@ -103,6 +107,24 @@ export class SearchComponent implements OnInit {
 						const value = this.searchInput.nativeElement.value;
 						this.searchInput.nativeElement.focus();
 						this.searchInput.nativeElement.setSelectionRange(0, value.length);
+					}
+				}
+			}
+		}
+	}
+
+	@HostListener('mousedown', ['$event'])
+	onHostMousedown(ev: MouseEvent) {
+		if (this.isFocused()) {
+			if (ev.target instanceof HTMLElement) {
+				if (this.isWithinSearchResultsContainer(ev.target)) {
+					let parent = ev.target;
+					while (parent) {
+						if (parent.nodeName.toLowerCase() === 'a') {
+							parent.focus();
+							break;
+						}
+						parent = parent.parentElement;
 					}
 				}
 			}
@@ -172,7 +194,7 @@ export class SearchComponent implements OnInit {
 
 		clearTimeout(this._inputTimeout);
 		this._inputTimeout = setTimeout(() => {
-			this.compounds = this.search.findCompound(searchValue);
+			this.searchResultItems = this.search.search(searchValue);
 			this.pendingInput = false;
 			this.cdr.markForCheck();
 		}, 100);

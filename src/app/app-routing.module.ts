@@ -71,8 +71,13 @@ const routes: Routes = [
 @NgModule({
 	imports: [
 		RouterModule.forRoot(routes, {
-			onSameUrlNavigation: 'reload',
-			scrollPositionRestoration: 'enabled',
+			onSameUrlNavigation: 'ignore',
+			// We handle this ourselves due to the custom offsets we need to apply
+			// from the nav bar.
+			anchorScrolling: 'disabled',
+			urlUpdateStrategy: 'deferred',
+			useHash: false,
+			scrollPositionRestoration: 'disabled',
 		}),
 	],
 	exports: [RouterModule],
