@@ -12,6 +12,16 @@ import {Search, SearchResultItem} from '../../search/search.service';
 import {Observable, Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import {searchablePageInfos} from '../../search/searchable-page-infos';
+
+function shuffle<T>(array: T[]) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+}
 
 @Component({
 	selector: 'ecsact-search',
@@ -26,6 +36,7 @@ export class SearchComponent implements OnInit {
 	@ViewChild('searchResultsContainer', {static: true})
 	searchResultsContainer?: ElementRef<HTMLDivElement>;
 
+	defaultSearchResultItems: SearchResultItem[];
 	searchResultItems: SearchResultItem[] = [];
 	pendingInput: boolean = false;
 	readonly searchItemTrackBy: TrackByFunction<SearchResultItem>;
@@ -43,8 +54,14 @@ export class SearchComponent implements OnInit {
 		private router: Router,
 		private hostElement: ElementRef,
 	) {
+		this.defaultSearchResultItems = search.defaultSearchItems();
+		shuffle(this.defaultSearchResultItems);
+
+		this.searchResultItems = this.defaultSearchResultItems;
 		this.searchItemTrackBy = (index: number, item: SearchResultItem) => {
-			return item.type === 'reference' ? item.item.refid : index;
+			return item.type === 'reference'
+				? item.item.refid
+				: item.path + ('#' + item.fragment);
 		};
 
 		this.searchReady$ = this.search.ready$;
@@ -192,12 +209,16 @@ export class SearchComponent implements OnInit {
 		const query = searchValue ? `q=${searchValue}` : '';
 		this.location.replaceState(window.location.pathname, query);
 
-		clearTimeout(this._inputTimeout);
-		this._inputTimeout = setTimeout(() => {
-			this.searchResultItems = this.search.search(searchValue);
-			this.pendingInput = false;
-			this.cdr.markForCheck();
-		}, 100);
+		if (searchValue) {
+			clearTimeout(this._inputTimeout);
+			this._inputTimeout = setTimeout(() => {
+				this.searchResultItems = this.search.search(searchValue);
+				this.pendingInput = false;
+				this.cdr.markForCheck();
+			}, 100);
+		} else {
+			this.searchResultItems = this.defaultSearchResultItems;
+		}
 	}
 
 	private _onSearchReadyChange(ready: boolean) {

@@ -575,6 +575,7 @@ export class Search {
 	constructor() {
 		this._fuseInstance = new Fuse(this._searchItems, {
 			minMatchCharLength: 3,
+			shouldSort: true,
 			keys: [
 				{
 					name: 'main',
@@ -654,17 +655,28 @@ export class Search {
 		}
 	}
 
-	async refresh() {
-		this._readySubj.next(false);
-
-		this._refidMap = {};
-		this._searchItems = [
+	allPageSearchItems(): SearchResultItem[] {
+		return [
 			...Object.keys(searchablePageInfos).map(path => ({
 				...getPathWithFragment(path),
 				type: 'page' as 'page',
 				item: searchablePageInfos[path]!,
 			})),
 		];
+	}
+
+	/**
+	 * Search items that should show up when there is no search input
+	 */
+	defaultSearchItems(): SearchResultItem[] {
+		return this.allPageSearchItems();
+	}
+
+	async refresh() {
+		this._readySubj.next(false);
+
+		this._refidMap = {};
+		this._searchItems = this.allPageSearchItems();
 
 		this._refreshPromise = Promise.all([this.loadDoxygenXml('ecsact')]).then(
 			() => {
