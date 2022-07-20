@@ -6,11 +6,41 @@ import {PageCategory, PageInfo} from './page-info-types';
  * TODO(zaucy): Automatically fill in a build step
  */
 export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
+	'/': {
+		category: PageCategory.Page,
+		description: 'Home page',
+		keywords: ['home'],
+		title: 'Ecsact',
+	},
+	'/getstarted': {
+		category: PageCategory.Page,
+		description: 'Learn about Ecsact and why it could be the right fit for your project',
+		keywords: [],
+		title: 'Getting Started',
+	},
+	'/install': {
+		category: PageCategory.Page,
+		description: '',
+		keywords: ['install'],
+		title: 'Install Overview',
+	},
+	'/tutorials': {
+		category: PageCategory.Page,
+		description: '',
+		keywords: ['tutorial'],
+		title: 'Tutorials Overview',
+	},
+	'/integrations/unity/install': {
+		category: PageCategory.Page,
+		description: 'Install ecsact integration as a Unity package',
+		keywords: ['unity'],
+		title: 'Install Ecsact Unity Package',
+	},
 	'/docs': {
-		category: PageCategory.Documentation,
+		category: PageCategory.Page,
 		description: 'Brief summary of available documentation',
 		keywords: [],
-		title: 'Overview',
+		title: 'Documentation Overview',
 	},
 	'/docs/lang': {
 		category: PageCategory.Documentation,
