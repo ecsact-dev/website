@@ -92,17 +92,18 @@
 				flex-direction: row;
 				gap: 8px;
 
-				.kind-tag {
-					border-radius: 4px;
-					background-color: grey;
-					padding: 2px 4px;
-					color: white;
+				.reference-kind,
+				.reference-title {
+					font-size: 14px;
 				}
 			}
 
 			.search-results-item-category {
-				margin-left: 4px;
 				font-size: 12px;
+				margin-top: 4px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 			}
 		}
 	}

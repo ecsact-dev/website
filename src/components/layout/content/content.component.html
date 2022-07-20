@@ -1,7 +1,13 @@
 <div></div>
-<main #mainContent (cdkObserveContent)="onContentChange($event)">
-	<ng-content></ng-content>
-</main>
+<div class="main-container">
+	<main #mainContent (cdkObserveContent)="onContentChange($event)">
+		<ng-content></ng-content>
+	</main>
+	<div class="main-content-scroll-buffer">
+		<div style="flex: auto"></div>
+		<div>end ~ 👈(ﾟヮﾟ👈)</div>
+	</div>
+</div>
 
 <ng-template #pageAnchorListItem let-pageAnchor>
 	<li>

@@ -38,6 +38,8 @@ import {
 	DoxygenInnerFileDef,
 	DoxygenInnerDirDef,
 } from './doxygen-def-types';
+import {PageInfo} from './page-info-types';
+import {searchablePageInfos} from './searchable-page-infos';
 
 function parseDoxygenBase(el: Element): DoxygenBase {
 	return {
@@ -528,41 +530,87 @@ function parseDoxygenMemberDef(el: Element): DoxygenMemberDef {
 	throw new Error(`Unhandled member def kind ${def.kind}`);
 }
 
+export interface SearchResultReferenceItem {
+	type: 'reference';
+	repo: string;
+	item: DoxygenCompound | DoxygenMemberWithOwner;
+}
+
+export interface SearchResultPageItem {
+	type: 'page';
+	path: string;
+	fragment: string;
+	item: PageInfo;
+}
+
+export type SearchResultItem = SearchResultReferenceItem | SearchResultPageItem;
+
+const mainKeyMap = {
+	refernece: 'name',
+	page: 'title',
+};
+
+function getPathWithFragment(path: string): {path: string; fragment: string} {
+	const fragmentStartIndex = path.indexOf('#');
+	if (fragmentStartIndex !== -1) {
+		return {
+			path: path.substring(0, fragmentStartIndex),
+			fragment: path.substring(fragmentStartIndex + 1),
+		};
+	}
+
+	return {path, fragment: ''};
+}
+
 @Injectable({providedIn: 'root'})
 export class Search {
 	private _refreshPromise?: Promise<void>;
 	private _readySubj = new BehaviorSubject<boolean>(false);
-	private _flattendedIndex: (DoxygenCompound | DoxygenMemberWithOwner)[];
+	private _searchItems: SearchResultItem[];
+	private _fuseInstance: Fuse<SearchResultItem>;
 	private _refidMap: {[refid: string]: number} = {};
 
 	public ready$: Observable<boolean> = this._readySubj.asObservable();
 
 	constructor() {
-		this.refresh();
-	}
-
-	findCompound(text: string): DoxygenBase[] {
-		const fuse = new Fuse(this._flattendedIndex, {
-			useExtendedSearch: true,
-			ignoreLocation: true,
+		this._fuseInstance = new Fuse(this._searchItems, {
 			minMatchCharLength: 3,
 			keys: [
 				{
-					name: 'name',
+					name: 'main',
+					getFn: item => item.item[mainKeyMap[item.type]],
 					weight: 10,
 				},
 				{
-					name: 'kind',
+					name: 'item.description',
+					weight: 5,
+				},
+				{
+					name: 'item.keywords',
+					weight: 12,
+				},
+				{
+					name: 'item.kind',
 					weight: 3,
 				},
 				{
-					name: 'owner.name',
+					name: 'item.owner.name',
+					weight: 2,
+				},
+				{
+					name: 'type',
 					weight: 1,
 				},
 			],
 		});
+		this.refresh();
+	}
 
-		return fuse.search(text).map(item => item.item);
+	search(text: string): SearchResultItem[] {
+		return this._fuseInstance
+			.search(text)
+			.slice(0, 20)
+			.map(item => item.item);
 	}
 
 	private async _getCompoundDef(repo: string, refid: string) {
@@ -590,14 +638,18 @@ export class Search {
 			throw new Error(`Unknown refid ${refid}`);
 		}
 
-		const item = this._flattendedIndex[index];
-		if (isMemberWithOwner(item)) {
-			const ownerDef = await this._getCompoundDef(repo, item.owner.refid);
+		const item = this._searchItems[index];
+		if (item.type !== 'reference') {
+			throw new Error(`Unknown refid ${refid}. Found ${item.type} instead.`);
+		}
+
+		if (isMemberWithOwner(item.item)) {
+			const ownerDef = await this._getCompoundDef(repo, item.item.owner.refid);
 			return parseDoxygenMemberDef(
-				ownerDef.querySelector(`memberdef#${item.refid}`),
+				ownerDef.querySelector(`memberdef#${item.item.refid}`),
 			);
 		} else {
-			const el = await this._getCompoundDef(repo, item.refid);
+			const el = await this._getCompoundDef(repo, item.item.refid);
 			return parseDoxygenCompoundDef(el);
 		}
 	}
@@ -605,20 +657,33 @@ export class Search {
 	async refresh() {
 		this._readySubj.next(false);
 
-		this._refreshPromise = Promise.all([
-			this.loadDoxygenXml('/assets/_devref/ecsact/index.xml'),
-		]).then(() => {
-			delete this._refreshPromise;
-		});
+		this._refidMap = {};
+		this._searchItems = [
+			...Object.keys(searchablePageInfos).map(path => ({
+				...getPathWithFragment(path),
+				type: 'page' as 'page',
+				item: searchablePageInfos[path]!,
+			})),
+		];
+
+		this._refreshPromise = Promise.all([this.loadDoxygenXml('ecsact')]).then(
+			() => {
+				delete this._refreshPromise;
+			},
+		);
 
 		try {
 			await this._refreshPromise;
 		} finally {
+			this._fuseInstance.setCollection(this._searchItems);
 			this._readySubj.next(true);
 		}
 	}
 
-	private async loadDoxygenXml(path: string) {
+	private async loadDoxygenXml(repo: string) {
+		// TODO(zaucy): Use different path for production
+		const path = `/assets/_devref/${repo}/index.xml`;
+
 		const doc = await new Promise<Document>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 			xhr.onload = () => resolve(xhr.responseXML);
@@ -632,18 +697,27 @@ export class Search {
 			parseDoxygenCompound,
 		);
 
-		this._flattendedIndex = compounds.reduce((items, compound) => {
-			items.push(compound);
+		const referenceSearchItems = compounds.reduce((items, compound) => {
+			items.push({type: 'reference', repo, item: compound});
 			// TODO: Add enum value edge case issue #25
 			if (compound.kind !== 'namespace') {
-				items.push(...compound.members.map(mem => ({...mem, owner: compound})));
+				items.push(
+					...compound.members.map(mem => ({
+						type: 'reference' as 'reference',
+						repo,
+						item: {...mem, owner: compound},
+					})),
+				);
 			}
 			return items;
-		}, [] as (DoxygenCompound | DoxygenMemberWithOwner)[]);
+		}, [] as SearchResultReferenceItem[]);
 
-		this._refidMap = {};
-		this._flattendedIndex.forEach((item, index) => {
-			this._refidMap[item.refid] = index;
+		const offset = this._searchItems.length;
+
+		this._searchItems.push(...referenceSearchItems);
+
+		referenceSearchItems.forEach((item, index) => {
+			this._refidMap[item.item.refid] = index + offset;
 		});
 	}
 }
