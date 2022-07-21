@@ -65,7 +65,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 	private _intersectionObserver: IntersectionObserver;
 	pageAnchors: ContentPageAnchor[] = [];
 	activePageAnchorId: string = '';
-	wantsScrollTo = false;
+	wantsScrollTo: string = '';
 
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
@@ -78,28 +78,41 @@ export class ContentComponent implements OnInit, OnDestroy {
 		};
 
 		route.fragment.subscribe(fragment => {
-			this.activePageAnchorId = fragment;
-			this.wantsScrollTo = true;
+			this.wantsScrollTo = fragment;
 			this.consumeScrollToIfNeeded();
 		});
-
-		this._intersectionObserver = new IntersectionObserver(
-			entries => this.onIntersect(entries),
-			{
-				rootMargin: '-80px',
-			},
-		);
 	}
 
 	private onIntersect(entries: IntersectionObserverEntry[]) {
 		const entry = entries[0];
-		if (entry.boundingClientRect.top < 80) {
-			this.activePageAnchorId = entry.target.id;
-			this.cdr.detectChanges();
+		if (entry.boundingClientRect.top < 90) {
+			if (entry.isIntersecting) {
+				for (let i = 0; this.pageAnchors.length > i; ++i) {
+					if (this.pageAnchors[i].id == entry.target.id) {
+						const prevIndex = i - 1;
+						if (prevIndex > 0) {
+							this.activePageAnchorId = this.pageAnchors[prevIndex].id;
+						} else {
+							this.activePageAnchorId = entry.target.id;
+						}
+
+						this.cdr.detectChanges();
+						break;
+					}
+				}
+			} else {
+				this.activePageAnchorId = entry.target.id;
+				this.cdr.detectChanges();
+			}
 		}
 	}
 
 	ngOnInit(): void {
+		this._intersectionObserver = new IntersectionObserver(
+			entries => this.onIntersect(entries),
+			{rootMargin: '-90px 0px 0px 0px'},
+		);
+
 		this.refreshPageAnchors();
 	}
 
@@ -131,9 +144,9 @@ export class ContentComponent implements OnInit, OnDestroy {
 		if (!this.wantsScrollTo) return;
 
 		for (const pageAnchor of this.pageAnchors) {
-			if (pageAnchor.id === this.activePageAnchorId) {
+			if (pageAnchor.id === this.wantsScrollTo) {
 				this.scrollToPageAnchor(pageAnchor);
-				this.wantsScrollTo = false;
+				this.wantsScrollTo = '';
 				break;
 			}
 		}
