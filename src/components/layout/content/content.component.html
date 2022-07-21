@@ -9,24 +9,6 @@
 	</div>
 </div>
 
-<ng-template #pageAnchorListItem let-pageAnchor>
-	<li>
-		<a [href]="'#' + pageAnchor.id">
-			{{ pageAnchor.title }}
-			<ol *ngIf="pageAnchor.childPageAnchors.length > 0">
-				<ng-container
-					*ngFor="let childPageAnchor of pageAnchor.childPageAnchors">
-					<ng-container
-						*ngTemplateOutlet="
-							pageAnchorListItem;
-							context: {$implicit: childPageAnchor}
-						"></ng-container>
-				</ng-container>
-			</ol>
-		</a>
-	</li>
-</ng-template>
-
 <div>
 	<div class="page-anchors-container">
 		<div class="page-anchors">
@@ -35,7 +17,7 @@
 				*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
 				[routerLink]=""
 				[fragment]="pageAnchor.id"
-				[style.text-indent]="pageAnchor.indent * 8"
+				[style.padding-left]="pageAnchor.indent * 8"
 				[class.active]="activePageAnchorId === pageAnchor.id">
 				{{ pageAnchor.title }}
 			</a>
