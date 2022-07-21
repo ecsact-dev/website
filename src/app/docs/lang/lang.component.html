@@ -13,18 +13,35 @@
 		>. Statements within blocks are contextually relevant to the statement it
 		proceeds.
 	</p>
-	<pre><code ecsactLangSyntax>{{ SYNTAX_SAMPLE_01 }}</code></pre>
+	<pre><code ecsactLangSyntax>
+		statement;
+		statement {{'{'}}
+			statement;
+			statement {{'{'}}
+				statement;
+			{{'}'}}
+		{{'}'}}
+	</code></pre>
 	<p>
 		An empty block is the same as having no block. Both these statements are
 		equivalent.
 	</p>
-	<pre><code ecsactLangSyntax>{{ SYNTAX_SAMPLE_02 }}</code></pre>
+	<pre><code ecsactLangSyntax>
+		statement;
+		statement {{'{}'}}
+	</code></pre>
 	<p>
 		Comments are also allowed. Anything after <code>//</code> on the same line
 		or anything between <code>/*</code> and <code>*/</code> across multiple
 		lines are considered comments.
 	</p>
-	<pre><code ecsactLangSyntax>{{ SYNTAX_COMMENT_SAMPLE }}</code></pre>
+	<pre><code ecsactLangSyntax>
+		// This line is a comment
+		/*
+		This entire block across multiple
+		lines is a comment.
+		*/
+	</code></pre>
 
 	<h3 id="top-level-statements">Top Level Statements</h3>
 	<p>Top level statements are separated into 3 sections.</p>
@@ -55,10 +72,12 @@
 	</code></pre>
 
 	<h2 id="define-components">Defining Components</h2>
-	<p>
-		Let's take a simple example where we want to maintain our entities position.
-	</p>
-	<pre><code ecsactLangSyntax>{{ DEFINE_COMPONENT_SAMPLE_01 }}</code></pre>
+	<pre><code ecsactLangSyntax>
+		component Position {{'{'}}
+			int32 x;
+			int32 y;
+		{{'}'}}
+	</code></pre>
 
 	<h2 id="define-systems">Defining Systems</h2>
 	<pre><code ecsactLangSyntax>
