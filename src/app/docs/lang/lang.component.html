@@ -71,6 +71,56 @@
 		action MyExampleAction {{ '{' }} /* ... */ {{ '}' }}
 	</code></pre>
 
+	<h2 id="packages">Packages</h2>
+	<p>
+		Every <code>.ecsact</code> file is considered a <em>package</em>. A package
+		has a name specified by the package statement at the top. The package
+		statement must be the top-most statement.
+	</p>
+	<p>
+		The name of the package may only be made of lowercase letters or the
+		<code>.</code> character and must not contain the word 'ecsact'. Sequential
+		<code>.</code> characters are not allowed.
+	</p>
+	<pre><code ecsactLangSyntax>
+		// Top of .ecsact file
+		package example;
+	</code></pre>
+	<h3 id="import-packages">Importing other packages</h3>
+	<p>
+		Packages can be imported by their name.
+		<a [routerLink]="" fragment="main-package"><code>main</code></a> packages
+		cannot be imported.
+	</p>
+	<pre><code ecsactLangSyntax>
+		package example;
+
+		import other.library;
+	</code></pre>
+	<p>
+		Execution order of other package systems are in the order specified by your
+		<code>import</code> statements. Consequentially that means all imported
+		packages run before systems in the file that imports them. This can be
+		easily negated by splitting your systems up into multiple packages and
+		importing your packages in the order you'd like in the
+		<a [routerLink]="" fragment="main-package"><code>main</code></a> package.
+	</p>
+
+	<h3 id="main-package">The <code>main</code> package</h3>
+	<p>
+		When running ecsact code generators there may be at most 1 package that is
+		the
+		<code>main</code> package specified with the <code>main</code> keyword
+		before the <code>package</code> keyword.
+		<span class="i24">warning</span> Some code generators <em>only</em> work
+		with the main package. It is recommended that you have a main package for
+		your project. If you're creating an ecsact library a main package is not
+		very useful since main packages cannot be imported.
+	</p>
+	<pre><code ecsactLangSyntax>
+		main package example;
+	</code></pre>
+
 	<h2 id="define-components">Defining Components</h2>
 	<pre><code ecsactLangSyntax>
 		component Position {{'{'}}
