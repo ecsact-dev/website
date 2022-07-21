@@ -40,6 +40,9 @@ main {
 
 	a {
 		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
 
 		&.active {
 			font-weight: bold;

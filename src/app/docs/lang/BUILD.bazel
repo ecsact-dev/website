@@ -22,5 +22,6 @@ ng_ts_project(
         "//src/components/ecsact-lang-syntax",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/router",
     ],
 )

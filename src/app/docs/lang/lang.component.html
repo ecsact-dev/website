@@ -70,6 +70,13 @@
 	</code></pre>
 
 	<h2 id="define-actions">Defining Actions</h2>
+	<p>
+		Defining <em>only</em> systems and components can get you a simulation that
+		works well, but that simulation will be fully deterministic without
+		<strong>input</strong>. Actions are just like systems except they also can
+		have <a [routerLink]="" fragment="fields">fields</a> and are only executed
+		when asked to be. This makes actions a perfect candidate for player input.
+	</p>
 	<pre><code ecsactLangSyntax>
 		// Entities controlled by player `player_id` starts attacking
 		action Attack {{'{'}}
@@ -143,4 +150,68 @@
 			</td>
 		</tr>
 	</table>
+
+	<h2 id="interact-multiple-entity">Interacting with multiple entities</h2>
+	<p>It is often required that entities</p>
+	<h3 id="nested-systems">Nested Systems</h3>
+	<p>
+		The simplest way to interact with multiple entities is with nested systems.
+		A nested system is a system that runs once for every entity the parent
+		system is ran on.
+	</p>
+	<p>
+		To declare a nested system simply declare your system within another system.
+	</p>
+	<pre><code ecsactLangSyntax>
+		system ParentSystem {{'{'}}
+			required Position;
+			system NestedSystem {{'{'}}
+				required ExampleComponent;
+			{{'}'}}
+		{{'}'}}
+	</code></pre>
+	<p>
+		In the above the <code>NestedSystem</code> implementation has access the
+		parent system (<code>ParentSystem</code>) components, but is implicitly
+		<code>readonly</code>.
+	</p>
+
+	<h3 id="with-entity">
+		Using the <code>with</code> keyword on <code>entity</code> fields
+	</h3>
+	<p>
+		The <code>entity</code> field is used to store an entity ID on a
+		<code>component</code> or an <code>action</code>. Using the
+		<code>with</code> keyword systems can select components from
+		<em>other</em> entities in the same execution context. Simply put systems
+		and actions execute on 1 entity usually, but the <code>with</code> keyword
+		allows a system to run on more than 1 entity at a time.
+	</p>
+	<p>
+		For example lets say we have an <code>Attacking</code> component with an
+		<code>entity</code> field holding the attack target.
+	</p>
+	<pre><code ecsactLangSyntax>
+		component Attacking {{'{'}}
+			entity target;
+		{{'}'}}
+	</code></pre>
+	<p>
+		We could then write a system that applies the attackers damage to the
+		targets health.
+	</p>
+	<pre><code ecsactLangSyntax>
+		system ApplyAttackDamage {{'{'}}
+			required readonly AttackDamage;
+			required readonly Attacking with target {{'{'}}
+				required Health;
+			{{'}'}}
+		{{'}'}}
+	</code></pre>
+	<p>
+		<code>ApplyAttackDamage</code> will run on every entity that has
+		<code>AttackDamage</code> and <code>Attacking</code> with the
+		<code>Attacking</code> <code>target</code> entity also having
+		<code>Health</code>.
+	</p>
 </article>

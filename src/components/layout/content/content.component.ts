@@ -35,6 +35,21 @@ function getElementIndent(element: Element): number {
 	return 0;
 }
 
+function getAnchorTitleText(element: Element): string {
+	let title = '';
+	// return element.textContent;
+	for (const child of Array.from(element.childNodes)) {
+		const childNodeName = child.nodeName.toLowerCase();
+		if (childNodeName === 'code') {
+			title += `\`${child.textContent.trim()}\` `;
+		} else {
+			title += child.textContent + ' ';
+		}
+	}
+
+	return title.trim();
+}
+
 /**
  * Main content of site. Only one of these should exist at a time.
  */
@@ -114,7 +129,7 @@ export class ContentComponent implements OnInit {
 		});
 		return {
 			id: element.id,
-			title: element.firstChild.textContent.trim(),
+			title: getAnchorTitleText(element),
 			indent: getElementIndent(element),
 			element,
 		};
