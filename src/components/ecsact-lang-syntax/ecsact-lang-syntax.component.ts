@@ -75,7 +75,6 @@ export class EcsactLangSyntaxComponent implements AfterViewInit {
 		for (let i = 1; linesCount > i; ++i) {
 			if (!lines[i].trim()) continue;
 			const wsPrefix = getPrefixWhitespace(lines[i]);
-			console.log(lines[i], 'wsPrefix:', `"${wsPrefix}"`, wsPrefix.length);
 			if (wsPrefix.length < smallestPrefixWhitespace.length) {
 				smallestPrefixWhitespace = wsPrefix;
 			}

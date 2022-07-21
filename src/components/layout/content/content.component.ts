@@ -7,6 +7,7 @@ import {
 	ChangeDetectorRef,
 	TrackByFunction,
 	HostListener,
+	OnDestroy,
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
@@ -59,8 +60,9 @@ function getAnchorTitleText(element: Element): string {
 	styleUrls: ['./content.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, OnDestroy {
 	private _anchorEventListenerCleanupFns: (() => void)[] = [];
+	private _intersectionObserver: IntersectionObserver;
 	pageAnchors: ContentPageAnchor[] = [];
 	activePageAnchorId: string = '';
 	wantsScrollTo = false;
@@ -80,10 +82,29 @@ export class ContentComponent implements OnInit {
 			this.wantsScrollTo = true;
 			this.consumeScrollToIfNeeded();
 		});
+
+		this._intersectionObserver = new IntersectionObserver(
+			entries => this.onIntersect(entries),
+			{
+				rootMargin: '-80px',
+			},
+		);
+	}
+
+	private onIntersect(entries: IntersectionObserverEntry[]) {
+		const entry = entries[0];
+		if (entry.boundingClientRect.top < 80) {
+			this.activePageAnchorId = entry.target.id;
+			this.cdr.detectChanges();
+		}
 	}
 
 	ngOnInit(): void {
 		this.refreshPageAnchors();
+	}
+
+	ngOnDestroy(): void {
+		this._intersectionObserver.disconnect();
 	}
 
 	onContentChange(changes: MutationRecord[]) {
@@ -141,6 +162,10 @@ export class ContentComponent implements OnInit {
 		}
 		this._anchorEventListenerCleanupFns = [];
 
+		for (const {element} of this.pageAnchors) {
+			this._intersectionObserver.unobserve(element);
+		}
+
 		const mainEl = this.mainContent!.nativeElement;
 		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(el =>
 			this.createPageAnchor(el),
@@ -155,6 +180,10 @@ export class ContentComponent implements OnInit {
 
 		if (smallestIndent > 0) {
 			this.pageAnchors.forEach(item => (item.indent -= smallestIndent));
+		}
+
+		for (const {element} of this.pageAnchors) {
+			this._intersectionObserver.observe(element);
 		}
 
 		this.cdr.detectChanges();
