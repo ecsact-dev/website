@@ -29,6 +29,7 @@ nav.top-nav {
 		white-space: nowrap;
 		opacity: 1;
 		transition: 300ms ease-out opacity;
+		color: var(--color-text);
 
 		&.active {
 			font-weight: bold;

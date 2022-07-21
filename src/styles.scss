@@ -35,9 +35,13 @@ $whiteColor: #d4d4d4;
 	}
 }
 
+html,
+body {
+	color: var(--color-text);
+}
+
 * {
 	font-family: 'Raleway', sans-serif;
-	color: var(--color-text);
 }
 
 code,
