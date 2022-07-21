@@ -208,6 +208,7 @@ export interface DoxygenFunctionMemberDef extends DoxygenBaseDef {
 	explicit: boolean;
 	inline: boolean;
 	access: 'public' | 'protected' | 'private';
+	virtual: 'virtual' | 'pure-virtual' | 'non-virtual';
 	brief: string;
 	detailedDescription: DoxygenParagraph[];
 	parameters: DoxygenFunctionParameter[];

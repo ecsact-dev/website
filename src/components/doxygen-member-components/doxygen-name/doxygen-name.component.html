@@ -1,0 +1,10 @@
+<h3 class="name">
+	<span *ngIf="const">const</span>
+	<span>{{ access }}</span>
+	<span *ngIf="static">static</span>
+	<span *ngIf="mutable">mutable</span>
+	<span *ngIf="explicit">explicit</span>
+	<span *ngIf="inline">inline</span>
+	<span *ngIf="isVirtual()">{{ virtual }}</span>
+	<span>{{ name }}</span>
+</h3>

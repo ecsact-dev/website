@@ -236,6 +236,7 @@ const doxygenMemberDefParseFns = {
 		};
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
+		console.log('function', el);
 		const parameters: DoxygenFunctionParameter[] = [];
 		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -316,6 +317,7 @@ const doxygenMemberDefParseFns = {
 			definition: el.querySelector('definition').textContent.trim(),
 			argsstring: el.querySelector('argsstring').textContent.trim(),
 			access: el.getAttribute('prot') as any,
+			virtual: el.getAttribute('virt') as any,
 			const: el.getAttribute('const') === 'yes',
 			explicit: el.getAttribute('explicit') === 'yes',
 			inline: el.getAttribute('inline') === 'yes',

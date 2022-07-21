@@ -1,0 +1,12 @@
+<div>
+	<h3>Parameters</h3>
+	<div class="paramList">
+		<div *ngFor="let parameter of parameters" class="param">
+			<div class="name">
+				<span class="type">{{ parameter.type }}</span>
+				{{ parameter.name }}
+			</div>
+			<div class="description">{{ parameter.description }}</div>
+		</div>
+	</div>
+</div>

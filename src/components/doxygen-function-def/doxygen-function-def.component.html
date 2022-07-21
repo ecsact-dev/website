@@ -1,8 +1,18 @@
-<h3>
-	<pre>{{ def.name }}</pre>
-</h3>
-<p *ngFor="let paragraph of def.detailedDescription">
-	<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
-</p>
-
-<pre>{{ def | json }}</pre>
+<doxygen-member-block>
+	<doxygen-name
+		name
+		[name]="def.name"
+		[access]="def.access"
+		[static]="def.static"
+		[explicit]="def.explicit"
+		[inline]="def.inline"
+		[virtual]="def.virtual"></doxygen-name>
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+	<doxygen-definition
+		[definition]="def.definition"
+		[argsstring]="def.argsstring"></doxygen-definition>
+	<doxygen-parameters [parameters]="def.parameters"></doxygen-parameters>
+	<doxygen-return [return]="def.return"></doxygen-return>
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-member-block>
