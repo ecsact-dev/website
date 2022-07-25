@@ -1,0 +1,34 @@
+<doxygen-compound-block>
+	<doxygen-name
+		name
+		[name]="def.name"
+		[access]="def.access"
+		[id]="'name'"></doxygen-name>
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+	<h2 id="public-functions">Public Functions</h2>
+	<div class="functions" *ngFor="let function of def.publicFunctions">
+		<doxygen-function-def [def]="function"></doxygen-function-def>
+	</div>
+	<h2 id="private-functions">Private Functions</h2>
+	<div class="functions" *ngFor="let function of def.privateFunctions">
+		<doxygen-function-def [def]="function"></doxygen-function-def>
+	</div>
+	<h2 id="public-types">Public Types</h2>
+	<div *ngFor="let type of def.publicTypes">
+		<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+	</div>
+	<h2 id="private-types">Private Types</h2>
+	<div *ngFor="let type of def.privateTypes">
+		<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+	</div>
+	<h2 id="public-variables">Public Variables</h2>
+	<div *ngFor="let variable of def.publicVariables">
+		<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+	</div>
+	<h2 id="private-variables">Private Variables</h2>
+	<div *ngFor="let variable of def.privateVariables">
+		<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+	</div>
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-compound-block>

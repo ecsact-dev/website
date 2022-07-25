@@ -1,7 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items:flex-start;
 }
 
 .head {
@@ -11,10 +11,6 @@
 }
 
 .block {
-	flex-direction: column;
-	padding: 10px;
-	background-color: rgb(55, 55, 55);
-	border-radius: 5px;
 }
 
 .location {

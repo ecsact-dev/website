@@ -3,38 +3,23 @@ import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
 
 @Component({
 	selector: 'doxygen-name',
+	preserveWhitespaces: true,
 	templateUrl: './doxygen-name.component.html',
 	styleUrls: ['./doxygen-name.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DoxygenNameComponent {
 	@Input()
+	combinedName: string;
+
+	@Input()
 	name: string;
 
 	@Input()
-	virtual: string;
+	link: string;
 
 	@Input()
-	access: string;
-
-	@Input()
-	mutable: boolean;
-
-	@Input()
-	static: boolean;
-
-	@Input()
-	const: boolean;
-
-	@Input()
-	explicit: boolean;
-
-	@Input()
-	inline: boolean;
-
-	isVirtual() {
-		return this.virtual != 'non-virtual';
-	}
+	page_id: string;
 
 	constructor() {}
 }

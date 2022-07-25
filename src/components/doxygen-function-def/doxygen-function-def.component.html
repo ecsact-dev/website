@@ -12,7 +12,12 @@
 	<doxygen-definition
 		[definition]="def.definition"
 		[argsstring]="def.argsstring"></doxygen-definition>
-	<doxygen-parameters [parameters]="def.parameters"></doxygen-parameters>
+	<h3>Parameters</h3>
+	<div *ngFor="let parameter of def.parameters">
+		<doxygen-parameters
+			[name]="parameter.name"
+			[description]="parameter.detailedDescription"></doxygen-parameters>
+	</div>
 	<doxygen-return [return]="def.return"></doxygen-return>
 	<doxygen-location [location]="def.location"></doxygen-location>
 </doxygen-member-block>

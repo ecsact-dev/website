@@ -5,10 +5,10 @@
 <ng-container *ngIf="def; else loadingTpl">
 	<!-- https://github.com/angular/angular/issues/20780 -->
 	<div [ngSwitch]="def.kind">
-		<ng-container *ngSwitchCase="'class'">
-			<doxygen-class-def
-				*ngIf="def.kind === 'class'"
-				[def]="def"></doxygen-class-def>
+		<ng-container *ngSwitchCase="'datatype'">
+			<doxygen-datatype-def
+				*ngIf="def.kind === 'datatype'"
+				[def]="def"></doxygen-datatype-def>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'define'">
@@ -37,12 +37,6 @@
 			<doxygen-file-def
 				*ngIf="def.kind === 'file'"
 				[def]="def"></doxygen-file-def>
-		</ng-container>
-
-		<ng-container *ngSwitchCase="'struct'">
-			<doxygen-struct-def
-				*ngIf="def.kind === 'struct'"
-				[def]="def"></doxygen-struct-def>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'typedef'">

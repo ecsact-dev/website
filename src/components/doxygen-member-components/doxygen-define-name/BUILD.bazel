@@ -5,25 +5,21 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-enum-def.component.scss",
+    src = "doxygen-define-name.component.scss",
 )
 
 ng_ts_project(
-    name = "doxygen-enum-def",
+    name = "doxygen-define-name",
     srcs = [
-        "doxygen-enum-def.component.ts",
-        "doxygen-enum-def.module.ts",
+        "doxygen-define-name.component.ts",
+        "doxygen-define-name.module.ts",
     ],
     angular_assets = [
-        "doxygen-enum-def.component.html",
+        "doxygen-define-name.component.html",
         ":styles",
     ],
     deps = [
-        "//src/components/doxygen-member-block",
-        "//src/components/doxygen-member-components/doxygen-description",
-        "//src/components/doxygen-member-components/doxygen-location",
         "//src/components/doxygen-member-components/doxygen-name",
-        "//src/components/doxygen-member-components/doxygen-parameters",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",

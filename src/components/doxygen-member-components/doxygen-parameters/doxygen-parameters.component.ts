@@ -1,5 +1,8 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
-import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
+import {
+	DoxygenFunctionParameter,
+	DoxygenParagraph,
+} from '../../../search/doxygen-def-types';
 
 @Component({
 	selector: 'doxygen-parameters',
@@ -9,7 +12,16 @@ import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
 })
 export class DoxygenParametersComponent {
 	@Input()
-	parameters: DoxygenFunctionParameter[];
+	name: string;
+
+	@Input()
+	description: DoxygenParagraph[];
+
+	@Input()
+	access: 'public' | 'protected' | 'private';
+
+	@Input()
+	initializer: string;
 
 	constructor() {}
 }

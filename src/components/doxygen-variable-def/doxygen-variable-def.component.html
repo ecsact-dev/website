@@ -1,10 +1,22 @@
 <doxygen-member-block>
-	<doxygen-name
-		name
-		[name]="def.name"
-		[access]="def.access"
-		[static]="def.static"
-		[mutable]="def.mutable"></doxygen-name>
+	<div *ngIf="linkForName; else elseBlock">
+		<doxygen-name
+			name
+			[name]="def.name"
+			[access]="def.access"
+			[static]="def.static"
+			[mutable]="def.mutable"
+			[link]="linkForName"></doxygen-name>
+	</div>
+	<ng-template #elseBlock>
+		<doxygen-name
+			name
+			[name]="def.name"
+			[access]="def.access"
+			[static]="def.static"
+			[mutable]="def.mutable"></doxygen-name
+	></ng-template>
+
 	<doxygen-description
 		[description]="def.detailedDescription"></doxygen-description>
 	<doxygen-definition

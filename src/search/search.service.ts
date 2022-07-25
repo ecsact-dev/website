@@ -174,11 +174,9 @@ const doxygenMemberDefParseFns = {
 			const detailedDescription = getDetailedDescription(paramEl);
 
 			let param: DoxygenEnumParameter = {
-				//@NOTE: Does this take nested name, or parent?
 				name: paramEl.querySelector('name').textContent.trim(),
 				initializer: paramEl.querySelector('initializer').textContent.trim(),
 				access: paramEl.querySelector('prot') as any,
-				//@NOTE: Does this take the nested or parent detaileddescription?
 				brief: paramEl.querySelector('briefdescription').textContent.trim(),
 				detailedDescription: detailedDescription,
 			};
@@ -228,22 +226,20 @@ const doxygenMemberDefParseFns = {
 			definition: el.querySelector('definition').textContent.trim(),
 			static: el.getAttribute('static') === 'yes',
 			access: el.getAttribute('prot') as any,
-			parameters: templateParameters,
 			brief: el.querySelector('briefdescription').textContent.trim(),
 			detailedDescription,
-			return: returnDetails,
 			location,
 		};
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
-		console.log('function', el);
 		const parameters: DoxygenFunctionParameter[] = [];
 		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
 			const param: DoxygenFunctionParameter = {
 				type: '',
 				name: '',
-				description: '',
+				brief: '',
+				detailedDescription: [],
 			};
 
 			getTypeElCommonInfo(paramEl, param);
@@ -301,7 +297,10 @@ const doxygenMemberDefParseFns = {
 						const paramName = paramItemNameEl.textContent.trim();
 						const param = paramByName[paramName];
 						if (param && paramItemDescriptionEl) {
-							param.description = paramItemDescriptionEl.textContent.trim();
+							param.detailedDescription = getDetailedDescription(
+								paramItemDescriptionEl,
+							);
+							param.brief = paramItemDescriptionEl.textContent.trim();
 						}
 					}
 				}
@@ -414,9 +413,11 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	class: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
+		console.log('class', el);
 		return doxygenConstructDataType(def, el, 'class');
 	},
 	struct: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
+		console.log('struct', el);
 		return doxygenConstructDataType(def, el, 'struct');
 	},
 	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
@@ -459,6 +460,7 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	namespace: (def: DoxygenBaseDef, el: Element): DoxygenNamespaceDef => {
+		console.log('namespace', el);
 		var varType = el.querySelector('sectiondef[kind=var]');
 		let varTypeList: DoxygenVariableMemberDef[] = [];
 
@@ -500,6 +502,10 @@ const doxygenCompoundDefParseFns = {
 			variables: varTypeList,
 			innerClasses: innerClassList,
 			innerNamespaces: innerNamespaceList,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			access: 'namespace',
+			detailedDescription: getDetailedDescription(el),
+			location: getLocation(el),
 		};
 	},
 };
@@ -609,10 +615,12 @@ export class Search {
 	}
 
 	search(text: string): SearchResultItem[] {
-		return this._fuseInstance
-			.search(text)
-			.slice(0, 20)
-			.map(item => item.item);
+		return (
+			this._fuseInstance
+				.search(text)
+				// .slice(0, 20)
+				.map(item => item.item)
+		);
 	}
 
 	private async _getCompoundDef(repo: string, refid: string) {
@@ -825,6 +833,23 @@ function doxygenConstructDataType(
 		}
 	}
 
+	var privateFunc = el.querySelector('sectiondef[kind=private-func]');
+	let privateFunctionList: DoxygenFunctionMemberDef[] = [];
+
+	if (privateFunc) {
+		for (const privateFuncMemDef of Array.from(privateFunc.children)) {
+			let kind = privateFuncMemDef.getAttribute('kind');
+			let func = doxygenMemberDefParseFns[kind];
+
+			const def: DoxygenBaseDef = {
+				id: privateFuncMemDef.getAttribute('id'),
+				kind: kind,
+			};
+
+			privateFunctionList.push(func(def, privateFuncMemDef));
+		}
+	}
+
 	var pubStaticFunc = el.querySelector('sectiondef[kind=public-static-func]');
 	let pubStaticFunctionList: DoxygenFunctionMemberDef[] = [];
 
@@ -859,17 +884,24 @@ function doxygenConstructDataType(
 		}
 	}
 
+	const detailedDescription = getDetailedDescription(el);
+
 	return {
 		...def,
-		kind: 'class',
+		kind: 'datatype',
+		access: el.getAttribute('prot') as any,
+		brief: el.querySelector('briefdescription').textContent.trim(),
+		detailedDescription: detailedDescription,
 		name: el.querySelector('compoundname').textContent,
 		publicTypes: publicTypeList,
 		privateTypes: privateTypeList,
 		privateVariables: privateVariableList,
 		publicVariables: publicVariableList,
 		publicFunctions: publicFunctionList,
+		privateFunctions: privateFunctionList,
 		publicStaticFunctions: pubStaticFunctionList,
 		enums: enumList,
+		location: getLocation(el),
 	};
 }
 

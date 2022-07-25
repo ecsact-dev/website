@@ -1,6 +1,7 @@
 <div>
 	<h3>Description</h3>
-	<p *ngFor="let paragraph of description">
-		<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
-	</p>
+	<doxygen-container>
+		<p *ngFor="let paragraph of description">
+			<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph></p
+	></doxygen-container>
 </div>

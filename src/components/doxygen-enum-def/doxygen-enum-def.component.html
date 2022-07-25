@@ -1,1 +1,20 @@
+<doxygen-member-block>
+	<doxygen-name
+		name
+		[name]="def.name"
+		[access]="def.access"
+		[static]="def.static"></doxygen-name>
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+	<h3>Parameters</h3>
+	<div *ngFor="let parameter of def.parameters">
+		<doxygen-parameters
+			[name]="parameter.name"
+			[description]="parameter.detailedDescription"
+			[access]="parameter.access"
+			[initializer]="parameter.initializer"></doxygen-parameters>
+	</div>
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-member-block>
+
 <pre>{{ def | json }}</pre>

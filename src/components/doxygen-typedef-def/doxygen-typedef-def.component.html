@@ -1,1 +1,11 @@
-<pre>{{ def | json }}</pre>
+<doxygen-member-block>
+	<doxygen-name
+		name
+		[name]="def.name"
+		[access]="def.access"
+		[static]="def.static"></doxygen-name>
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+	<doxygen-definition [definition]="def.definition"></doxygen-definition>
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-member-block>
