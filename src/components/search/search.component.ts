@@ -8,7 +8,11 @@ import {
 	TrackByFunction,
 	ViewChild,
 } from '@angular/core';
-import {Search, SearchResultItem} from '../../search/search.service';
+import {
+	isMemberWithOwner,
+	Search,
+	SearchResultItem,
+} from '../../search/search.service';
 import {Observable, Subscription} from 'rxjs';
 import {Location} from '@angular/common';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
@@ -42,6 +46,7 @@ export class SearchComponent implements OnInit {
 	readonly searchItemTrackBy: TrackByFunction<SearchResultItem>;
 	readonly searchReady$: Observable<boolean>;
 	readonly searchFocusKey = '/';
+	readonly isMemberWithOwner = isMemberWithOwner;
 
 	private _searchReadySubscription: Subscription;
 	private _inputTimeout: number = 0;

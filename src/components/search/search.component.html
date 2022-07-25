@@ -43,6 +43,9 @@
 					</div>
 					<div class="search-results-item-category">
 						reference / {{ searchItem.repo }}
+						<ng-container *ngIf="isMemberWithOwner(searchItem.item)">
+							/ <code>{{ searchItem.item.owner.name }}</code>
+						</ng-container>
 					</div>
 				</a>
 
