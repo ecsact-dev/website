@@ -62,7 +62,7 @@ function parseDoxygenCompound(el: Element): DoxygenCompound {
 	};
 }
 
-function isMemberWithOwner(
+export function isMemberWithOwner(
 	value: DoxygenCompound | DoxygenMemberWithOwner,
 ): value is DoxygenMemberWithOwner {
 	return !!(value as Partial<DoxygenMemberWithOwner>).owner;
@@ -546,8 +546,8 @@ export interface SearchResultPageItem {
 export type SearchResultItem = SearchResultReferenceItem | SearchResultPageItem;
 
 const mainKeyMap = {
-	refernece: 'name',
 	page: 'title',
+	reference: 'name',
 };
 
 function getPathWithFragment(path: string): {path: string; fragment: string} {
