@@ -20,6 +20,8 @@ ng_ts_project(
     ],
     deps = [
         "//src/components/doxygen-function-def",
+        "//src/components/doxygen-member-components/doxygen-name",
+        "//src/components/doxygen-parent-block",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",

@@ -18,6 +18,9 @@ ng_ts_project(
     deps = [
         "//src/app/reference/repo",
         "//src/app/reference/repo-ref",
+        "//src/components/layout/content",
+        "//src/components/layout/sidenav",
+        "//src/components/layout/sidenav-section",
         "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",

@@ -1,1 +1,6 @@
-<pre>{{ def | json }}</pre>
+<div *ngIf="def.detailedDescription.length > 0">
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+</div>
+<doxygen-definition [definition]="def.definition"></doxygen-definition>
+<doxygen-location [location]="def.location"></doxygen-location>

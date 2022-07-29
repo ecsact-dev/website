@@ -1,0 +1,28 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "doxygen-location.component.scss",
+)
+
+ng_ts_project(
+    name = "doxygen-location",
+    srcs = [
+        "doxygen-location.component.ts",
+        "doxygen-location.module.ts",
+    ],
+    angular_assets = [
+        "doxygen-location.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/doxygen-member-components/doxygen-container",
+        "//src/search:doxygen-def-types",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

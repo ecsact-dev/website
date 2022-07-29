@@ -25,15 +25,20 @@ export interface DoxygenCompoundDefInclude {
 }
 
 export interface DoxygenDataTypeDef extends DoxygenBaseDef {
-	kind: 'class' | 'struct';
+	kind: 'datatype';
 	name: string;
+	access: 'public' | 'protected' | 'private';
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
 	publicTypes: DoxygenTypedefMemberDef[];
 	privateTypes: DoxygenTypedefMemberDef[];
 	publicVariables: DoxygenVariableMemberDef[];
 	privateVariables: DoxygenVariableMemberDef[];
 	publicFunctions: DoxygenFunctionMemberDef[];
+	privateFunctions: DoxygenFunctionMemberDef[];
 	publicStaticFunctions: DoxygenFunctionMemberDef[];
 	enums: DoxygenEnumMemberDef[];
+	location: DoxygenDefLocation;
 }
 
 export interface DoxygenDirDef extends DoxygenBaseDef {
@@ -55,6 +60,8 @@ export interface DoxygenFileDef extends DoxygenBaseDef {
 	typedefs: DoxygenTypedefMemberDef[];
 	functions: DoxygenFunctionMemberDef[];
 	enumValues: DoxygenEnumValueMemberDef[];
+	innerClasses: DoxygenInnerClassDef[];
+	innerNamespaces: DoxygenInnerNamespaceDef[];
 }
 
 export type DoxygenCompoundDef =
@@ -73,6 +80,7 @@ export type DoxygenMemberDef =
 
 export interface DoxygenDefineMemberDef extends DoxygenBaseDef {
 	kind: 'define';
+	name: string;
 	access: 'public' | 'protected' | 'private';
 	static: boolean;
 	parameters: DoxygenDefineParameter[];
@@ -113,6 +121,10 @@ export interface DoxygenNamespaceDef extends DoxygenBaseDef {
 	variables: DoxygenVariableMemberDef[];
 	innerClasses: DoxygenInnerClassDef[];
 	innerNamespaces: DoxygenInnerNamespaceDef[];
+	access: 'namespace';
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	location: DoxygenDefLocation;
 }
 
 export interface DoxygenTypeDefParameter {
@@ -127,10 +139,8 @@ export interface DoxygenTypedefMemberDef extends DoxygenBaseDef {
 	definition: string;
 	static: boolean;
 	access: 'public' | 'protected' | 'private';
-	parameters: DoxygenTypeDefParameter[];
 	brief: string;
 	detailedDescription: DoxygenParagraph[];
-	return: DoxygenTypeDefReturn;
 	location: DoxygenDefLocation;
 }
 
@@ -156,7 +166,8 @@ export interface DoxygenFunctionParameter {
 	type: string;
 	typeRefid?: string;
 	name: string;
-	description: string;
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
 }
 
 export interface DoxygenFunctionReturn {
@@ -208,6 +219,7 @@ export interface DoxygenFunctionMemberDef extends DoxygenBaseDef {
 	explicit: boolean;
 	inline: boolean;
 	access: 'public' | 'protected' | 'private';
+	virtual: 'virtual' | 'pure-virtual' | 'non-virtual';
 	brief: string;
 	detailedDescription: DoxygenParagraph[];
 	parameters: DoxygenFunctionParameter[];

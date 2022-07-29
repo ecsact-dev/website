@@ -5,20 +5,22 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-struct-def.component.scss",
+    src = "doxygen-description.component.scss",
 )
 
 ng_ts_project(
-    name = "doxygen-struct-def",
+    name = "doxygen-description",
     srcs = [
-        "doxygen-struct-def.component.ts",
-        "doxygen-struct-def.module.ts",
+        "doxygen-description.component.ts",
+        "doxygen-description.module.ts",
     ],
     angular_assets = [
-        "doxygen-struct-def.component.html",
+        "doxygen-description.component.html",
         ":styles",
     ],
     deps = [
+        "//src/components/doxygen-member-components/doxygen-container",
+        "//src/components/doxygen-paragraph",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",
