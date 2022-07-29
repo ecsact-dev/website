@@ -142,6 +142,7 @@ function getDoxygenParagraph(para: Element): DoxygenParagraph {
 
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
+		console.log('define', el);
 		const defineParams: DoxygenDefineParameter[] = [];
 
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -159,6 +160,7 @@ const doxygenMemberDefParseFns = {
 		return {
 			...def,
 			kind: 'define',
+			name: el.querySelector('name').textContent.trim(),
 			access: el.querySelector('prot') as any,
 			static: el.getAttribute('static') === 'yes',
 			parameters: defineParams,
@@ -400,6 +402,23 @@ const doxygenCompoundDefParseFns = {
 			}
 		}
 
+		var innerClassType = el.querySelectorAll('innerclass');
+		let innerClassList: DoxygenInnerClassDef[] = [];
+
+		if (innerClassType) {
+			for (const innerClassDef of Array.from(innerClassType)) {
+				innerClassList.push(doxygenInnerClass(innerClassDef));
+			}
+		}
+
+		var innerNamespaceType = el.querySelectorAll('innernamespace');
+		let innerNamespaceList: DoxygenInnerNamespaceDef[] = [];
+		if (innerNamespaceType) {
+			for (const innerNamespaceDef of Array.from(innerNamespaceType)) {
+				innerNamespaceList.push(doxygenInnerNamespace(innerNamespaceDef));
+			}
+		}
+
 		return {
 			...def,
 			kind: 'file',
@@ -410,6 +429,8 @@ const doxygenCompoundDefParseFns = {
 			typedefs: sections['typedef'],
 			functions: sections['function'],
 			enumValues: sections['enum-value'],
+			innerClasses: innerClassList,
+			innerNamespaces: innerNamespaceList,
 		};
 	},
 	class: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {

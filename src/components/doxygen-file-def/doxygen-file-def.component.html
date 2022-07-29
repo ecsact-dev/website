@@ -1,6 +1,45 @@
-<h2>Functions</h2>
-<doxygen-function-def
-	*ngFor="let funcDef of def.functions"
-	[def]="funcDef"></doxygen-function-def>
+<doxygen-compound-block>
+	<doxygen-name
+		><h1>{{ def.name }}</h1></doxygen-name
+	>
+	<div *ngIf="def.defines.length != 0">
+		<h2>Defines</h2>
+		<div *ngFor="let define of def.defines">
+			<a [routerLink]="'/reference/ecsact/' + define.id">{{ define.name }}</a>
+		</div>
+	</div>
 
-<pre>{{ def | json }}</pre>
+	<div *ngIf="def.enums.length != 0">
+		<h2>Enums</h2>
+		<div *ngFor="let enum of def.enums">
+			<a [routerLink]="'/reference/ecsact/' + enum.id">{{ enum.name }}</a>
+		</div>
+	</div>
+
+	<div *ngIf="def.typedefs.length != 0">
+		<h2>Types</h2>
+		<div *ngFor="let type of def.typedefs">
+			<a [routerLink]="'/reference/ecsact/' + type.id">{{ type.name }}</a>
+		</div>
+	</div>
+
+	<div *ngIf="def.functions.length != 0">
+		<h2>Functions</h2>
+		<div *ngFor="let func of def.functions">
+			<a [routerLink]="'/reference/ecsact/' + func.id">{{ func.name }}</a>
+		</div>
+	</div>
+
+	<h2 id="namespaces">Namespaces</h2>
+	<div *ngFor="let namespace of def.innerNamespaces">
+		<a [routerLink]="'/reference/ecsact/' + namespace.id">{{
+			namespace.name
+		}}</a>
+	</div>
+	<h2 id="classes">Classes</h2>
+	<div *ngFor="let innerClass of def.innerClasses">
+		<a [routerLink]="'/reference/ecsact/' + innerClass.id">{{
+			innerClass.name
+		}}</a>
+	</div>
+</doxygen-compound-block>

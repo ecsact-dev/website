@@ -1,1 +1,22 @@
-<pre>{{ def | json }}</pre>
+<doxygen-compound-block>
+	<doxygen-name
+		><h1>{{ def.name }}</h1></doxygen-name
+	>
+	<div *ngIf="def.detailedDescription.length > 0">
+		<doxygen-description [description]="def.detailedDescription">
+		</doxygen-description>
+	</div>
+	<div *ngIf="def.innerDirs.length != 0">
+		<h2>Directories</h2>
+		<div *ngFor="let dir of def.innerDirs">
+			<a [routerLink]="'/reference/ecsact/' + dir.id">{{ dir.name }}</a>
+		</div>
+	</div>
+	<div *ngIf="def.innerFiles.length != 0">
+		<h2>Files</h2>
+		<div *ngFor="let file of def.innerFiles">
+			<a [routerLink]="'/reference/ecsact/' + file.id">{{ file.name }}</a>
+		</div>
+	</div>
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-compound-block>

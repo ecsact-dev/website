@@ -1,23 +1,22 @@
 <doxygen-member-block>
-	<doxygen-name
-		name
-		[name]="def.name"
-		[access]="def.access"
-		[static]="def.static"
-		[explicit]="def.explicit"
-		[inline]="def.inline"
-		[virtual]="def.virtual"></doxygen-name>
-	<doxygen-description
-		[description]="def.detailedDescription"></doxygen-description>
+	<div *ngIf="def.detailedDescription.length > 0">
+		<doxygen-description
+			[description]="def.detailedDescription"></doxygen-description>
+	</div>
 	<doxygen-definition
 		[definition]="def.definition"
 		[argsstring]="def.argsstring"></doxygen-definition>
 	<h3>Parameters</h3>
 	<div *ngFor="let parameter of def.parameters">
-		<doxygen-parameters
-			[name]="parameter.name"
-			[description]="parameter.detailedDescription"></doxygen-parameters>
+		<div *ngIf="parameter.name != ''">
+			<doxygen-parameters
+				[name]="parameter.name"
+				[description]="parameter.detailedDescription"></doxygen-parameters>
+		</div>
 	</div>
-	<doxygen-return [return]="def.return"></doxygen-return>
+	<div *ngIf="def.return.type != ''">
+		<doxygen-return [return]="def.return"></doxygen-return>
+	</div>
+
 	<doxygen-location [location]="def.location"></doxygen-location>
 </doxygen-member-block>

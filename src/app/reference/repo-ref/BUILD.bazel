@@ -26,6 +26,7 @@ ng_ts_project(
         "//src/components/doxygen-enumvalue-def",
         "//src/components/doxygen-file-def",
         "//src/components/doxygen-function-def",
+        "//src/components/doxygen-member-components/doxygen-name",
         "//src/components/doxygen-namespace-def",
         "//src/components/doxygen-typedef-def",
         "//src/components/doxygen-variable-def",

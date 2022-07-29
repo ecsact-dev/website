@@ -11,6 +11,7 @@ import {DoxygenTypedefDefModule} from '../../../components/doxygen-typedef-def/d
 import {DoxygenVariableDefModule} from '../../../components/doxygen-variable-def/doxygen-variable-def.module';
 import {DoxygenNamespaceDefModule} from '../../../components/doxygen-namespace-def/doxygen-namespace-def.module';
 import {DoxygenEnumValueDefModule} from '../../../components/doxygen-enumvalue-def/doxygen-enumvalue-def.module';
+import {DoxygenNameModule} from '../../../components/doxygen-member-components/doxygen-name/doxygen-name.module';
 
 @NgModule({
 	declarations: [RepoRefComponent],
@@ -26,6 +27,7 @@ import {DoxygenEnumValueDefModule} from '../../../components/doxygen-enumvalue-d
 		DoxygenVariableDefModule,
 		DoxygenNamespaceDefModule,
 		DoxygenEnumValueDefModule,
+		DoxygenNameModule,
 	],
 	exports: [RepoRefComponent],
 })

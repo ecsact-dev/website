@@ -5,62 +5,113 @@
 <ng-container *ngIf="def; else loadingTpl">
 	<!-- https://github.com/angular/angular/issues/20780 -->
 	<div [ngSwitch]="def.kind">
-		<ng-container *ngSwitchCase="'datatype'">
-			<doxygen-datatype-def
-				*ngIf="def.kind === 'datatype'"
-				[def]="def"></doxygen-datatype-def>
-		</ng-container>
-
+		<article>
+			<ng-container *ngSwitchCase="'datatype'">
+				<doxygen-datatype-def
+					*ngIf="def.kind === 'datatype'"
+					[def]="def"></doxygen-datatype-def>
+			</ng-container>
+		</article>
 		<ng-container *ngSwitchCase="'define'">
-			<doxygen-define-def
-				*ngIf="def.kind === 'define'"
-				[def]="def"></doxygen-define-def>
+			<article>
+				<ng-container *ngIf="def.kind === 'define'">
+					<doxygen-name
+						[name]="def.name"
+						[access]="def.access"
+						[static]="def.static"
+						><h1>{{ def.name }}</h1></doxygen-name
+					>
+				</ng-container>
+
+				<doxygen-define-def
+					*ngIf="def.kind === 'define'"
+					[def]="def"></doxygen-define-def>
+			</article>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'dir'">
-			<doxygen-dir-def *ngIf="def.kind === 'dir'" [def]="def"></doxygen-dir-def>
+			<article>
+				<doxygen-dir-def
+					*ngIf="def.kind === 'dir'"
+					[def]="def"></doxygen-dir-def>
+			</article>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'enum'">
-			<doxygen-enum-def
-				*ngIf="def.kind === 'enum'"
-				[def]="def"></doxygen-enum-def>
+			<article>
+				<doxygen-enum-def
+					*ngIf="def.kind === 'enum'"
+					[def]="def"></doxygen-enum-def>
+			</article>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'function'">
-			<doxygen-function-def
-				*ngIf="def.kind === 'function'"
-				[def]="def"></doxygen-function-def>
+			<ng-container *ngIf="def.kind === 'function'">
+				<article>
+					<doxygen-name
+						[name]="def.name"
+						[access]="def.access"
+						[const]="def.const"
+						[inline]="def.inline"
+						[virtual]="def.virtual"
+						[explicit]="def.explicit"
+						><h1>{{ def.name }}</h1></doxygen-name
+					>
+					<doxygen-function-def [def]="def"></doxygen-function-def></article
+			></ng-container>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'file'">
-			<doxygen-file-def
-				*ngIf="def.kind === 'file'"
-				[def]="def"></doxygen-file-def>
+			<article>
+				<doxygen-file-def
+					*ngIf="def.kind === 'file'"
+					[def]="def"></doxygen-file-def>
+			</article>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'typedef'">
-			<doxygen-typedef-def
-				*ngIf="def.kind === 'typedef'"
-				[def]="def"></doxygen-typedef-def>
+			<ng-container *ngIf="def.kind === 'typedef'">
+				<article>
+					<doxygen-name
+						[name]="def.name"
+						[static]="def.static"
+						[access]="def.access"
+						><h1>{{ def.name }}</h1></doxygen-name
+					>
+					<doxygen-typedef-def [def]="def"></doxygen-typedef-def>
+				</article>
+			</ng-container>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'variable'">
-			<doxygen-variable-def
-				*ngIf="def.kind === 'variable'"
-				[def]="def"></doxygen-variable-def>
+			<ng-container *ngIf="def.kind === 'variable'">
+				<article>
+					<doxygen-name
+						[name]="def.name"
+						[access]="def.access"
+						[mutable]="def.mutable"
+						[static]="def.static"
+						><h1>{{ def.name }}</h1></doxygen-name
+					>
+					<doxygen-variable-def [def]="def"></doxygen-variable-def>
+				</article>
+			</ng-container>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'namespace'">
-			<doxygen-namespace-def
-				*ngIf="def.kind === 'namespace'"
-				[def]="def"></doxygen-namespace-def>
+			<article>
+				<doxygen-namespace-def
+					*ngIf="def.kind === 'namespace'"
+					[def]="def"></doxygen-namespace-def>
+			</article>
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'enum-value'">
-			<doxygen-enumvalue-def
-				*ngIf="def.kind === 'enum-value'"
-				[def]="def"></doxygen-enumvalue-def>
+			<article>
+				<doxygen-enumvalue-def
+					*ngIf="def.kind === 'enum-value'"
+					[def]="def"></doxygen-enumvalue-def>
+			</article>
 		</ng-container>
 
 		<div *ngSwitchDefault>Unhandled kind: {{ def.kind }}</div>

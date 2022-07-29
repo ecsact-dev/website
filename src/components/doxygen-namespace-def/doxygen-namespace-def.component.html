@@ -1,12 +1,24 @@
 <doxygen-compound-block>
-	<doxygen-name name [name]="def.name" [access]="def.access"></doxygen-name>
-	<doxygen-description [description]="def.detailedDescription">
-	</doxygen-description>
+	<doxygen-name name [name]="def.name" [access]="def.access"
+		><h1>{{ def.name }}</h1></doxygen-name
+	>
+	<div *ngIf="def.detailedDescription.length > 0">
+		<doxygen-description [description]="def.detailedDescription">
+		</doxygen-description>
+	</div>
+
 	<h2 id="variables">Variables</h2>
 	<div *ngFor="let variable of def.variables">
-		<doxygen-variable-def
-			[def]="variable"
-			[linkForName]="'/reference/ecsact/' + variable.id"></doxygen-variable-def>
+		<doxygen-name
+			[access]="variable.access"
+			[name]="variable.name"
+			[mutable]="variable.mutable"
+			[static]="variable.static"
+			><a [routerLink]="'/reference/ecsact/' + variable.id"
+				><h2>{{ variable.name }}</h2></a
+			></doxygen-name
+		>
+		<doxygen-variable-def [def]="variable"></doxygen-variable-def>
 	</div>
 	<h2 id="namespaces">Namespaces</h2>
 	<div *ngFor="let namespace of def.innerNamespaces">
@@ -22,5 +34,3 @@
 	</div>
 	<doxygen-location [location]="def.location"></doxygen-location>
 </doxygen-compound-block>
-
-<pre>{{ def | json }}</pre>

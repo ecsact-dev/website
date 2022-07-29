@@ -9,6 +9,7 @@ import {DoxygenVariableDefModule} from '../doxygen-variable-def/doxygen-variable
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 
 import {DoxygenDataTypeDefComponent} from './doxygen-datatype-def.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
 	declarations: [DoxygenDataTypeDefComponent],
@@ -21,6 +22,7 @@ import {DoxygenDataTypeDefComponent} from './doxygen-datatype-def.component';
 		DoxygenTypedefDefModule,
 		DoxygenVariableDefModule,
 		DoxygenLocationModule,
+		RouterModule,
 	],
 	exports: [DoxygenDataTypeDefComponent],
 })

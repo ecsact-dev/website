@@ -23,7 +23,6 @@ ng_ts_project(
         "//src/components/doxygen-member-components/doxygen-definition",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
-        "//src/components/doxygen-member-components/doxygen-name",
         "//src/components/doxygen-member-components/doxygen-parameters",
         "//src/components/doxygen-member-components/doxygen-return",
         "//src/components/doxygen-paragraph",

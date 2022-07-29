@@ -12,9 +12,6 @@ export class DoxygenVariableDefComponent implements OnInit {
 	@Input()
 	def: DoxygenVariableMemberDef;
 
-	@Input()
-	linkForName: string;
-
 	constructor() {}
 
 	ngOnInit(): void {}

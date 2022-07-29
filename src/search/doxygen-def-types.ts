@@ -60,6 +60,8 @@ export interface DoxygenFileDef extends DoxygenBaseDef {
 	typedefs: DoxygenTypedefMemberDef[];
 	functions: DoxygenFunctionMemberDef[];
 	enumValues: DoxygenEnumValueMemberDef[];
+	innerClasses: DoxygenInnerClassDef[];
+	innerNamespaces: DoxygenInnerNamespaceDef[];
 }
 
 export type DoxygenCompoundDef =
@@ -78,6 +80,7 @@ export type DoxygenMemberDef =
 
 export interface DoxygenDefineMemberDef extends DoxygenBaseDef {
 	kind: 'define';
+	name: string;
 	access: 'public' | 'protected' | 'private';
 	static: boolean;
 	parameters: DoxygenDefineParameter[];

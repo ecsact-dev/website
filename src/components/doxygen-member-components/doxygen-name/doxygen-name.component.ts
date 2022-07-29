@@ -10,16 +10,38 @@ import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
 })
 export class DoxygenNameComponent {
 	@Input()
-	combinedName: string;
+	name: string;
 
 	@Input()
-	name: string;
+	virtual: string;
+
+	@Input()
+	access: string;
+
+	@Input()
+	mutable: boolean;
+
+	@Input()
+	static: boolean;
+
+	@Input()
+	const: boolean;
+
+	@Input()
+	explicit: boolean;
+
+	@Input()
+	inline: boolean;
+
+	@Input()
+	page_id: string;
 
 	@Input()
 	link: string;
 
-	@Input()
-	page_id: string;
+	isVirtual() {
+		return this.virtual != 'non-virtual';
+	}
 
 	constructor() {}
 }

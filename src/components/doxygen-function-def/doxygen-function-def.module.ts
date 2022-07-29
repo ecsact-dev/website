@@ -8,7 +8,6 @@ import {DoxygenParametersModule} from '../doxygen-member-components/doxygen-para
 import {DoxygenReturnModule} from '../doxygen-member-components/doxygen-return/doxygen-return.module';
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 import {DoxygenDefinitionModule} from '../doxygen-member-components/doxygen-definition/doxygen-definition.module';
-import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxygen-name.module';
 
 @NgModule({
 	declarations: [DoxygenFunctionDefComponent],
@@ -21,7 +20,6 @@ import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxyg
 		DoxygenReturnModule,
 		DoxygenLocationModule,
 		DoxygenDefinitionModule,
-		DoxygenNameModule,
 	],
 	exports: [DoxygenFunctionDefComponent],
 })
