@@ -2,12 +2,12 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import {DoxygenDataTypeDef} from '../../search/doxygen-def-types';
 
 @Component({
-	selector: 'doxygen-class-def',
-	templateUrl: './doxygen-class-def.component.html',
-	styleUrls: ['./doxygen-class-def.component.scss'],
+	selector: 'doxygen-block',
+	templateUrl: './doxygen-block.component.html',
+	styleUrls: ['./doxygen-block.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DoxygenClassDefComponent implements OnInit {
+export class DoxygenBlockComponent implements OnInit {
 	@Input()
 	def: DoxygenDataTypeDef;
 

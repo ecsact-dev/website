@@ -11,18 +11,20 @@ import {RepoComponent} from './repo/repo.component';
 		RouterModule.forChild([
 			{
 				path: '',
-				pathMatch: 'full',
+				pathMatch: 'prefix',
 				component: ReferenceComponent,
-			},
-			{
-				path: ':repo',
-				pathMatch: 'full',
-				component: RepoComponent,
-			},
-			{
-				path: ':repo/:refid',
-				pathMatch: 'full',
-				component: RepoRefComponent,
+				children: [
+					{
+						path: ':repo',
+						pathMatch: 'full',
+						component: RepoComponent,
+					},
+					{
+						path: ':repo/:refid',
+						pathMatch: 'full',
+						component: RepoRefComponent,
+					},
+				],
 			},
 		]),
 	],

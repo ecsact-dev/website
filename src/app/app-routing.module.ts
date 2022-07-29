@@ -77,7 +77,7 @@ const routes: Routes = [
 			anchorScrolling: 'disabled',
 			urlUpdateStrategy: 'deferred',
 			useHash: false,
-			scrollPositionRestoration: 'disabled',
+			scrollPositionRestoration: 'top',
 		}),
 	],
 	exports: [RouterModule],

@@ -2,12 +2,12 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import {DoxygenDataTypeDef} from '../../search/doxygen-def-types';
 
 @Component({
-	selector: 'doxygen-struct-def',
-	templateUrl: './doxygen-struct-def.component.html',
-	styleUrls: ['./doxygen-struct-def.component.scss'],
+	selector: 'doxygen-datatype-def',
+	templateUrl: './doxygen-datatype-def.component.html',
+	styleUrls: ['./doxygen-datatype-def.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DoxygenStructDefComponent implements OnInit {
+export class DoxygenDataTypeDefComponent implements OnInit {
 	@Input()
 	def: DoxygenDataTypeDef;
 

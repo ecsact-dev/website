@@ -1,0 +1,19 @@
+<div *ngIf="link; else elseBlock">
+	<a [routerLink]="link"
+		><div *ngIf="page_id; else noID">
+			<ng-content id="page_id"></ng-content>
+		</div>
+		<ng-template #noID> <ng-content></ng-content> </ng-template
+	></a>
+</div>
+<ng-template #elseBlock><ng-content></ng-content> </ng-template>
+<div class="full-name">
+	<span *ngIf="const">const</span>
+	<span>{{ access }}</span>
+	<span *ngIf="static">static</span>
+	<span *ngIf="mutable">mutable</span>
+	<span *ngIf="explicit">explicit</span>
+	<span *ngIf="inline">inline</span>
+	<span *ngIf="isVirtual()">{{ virtual }}</span>
+	<span>{{ name }}</span>
+</div>

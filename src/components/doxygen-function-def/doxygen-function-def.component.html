@@ -1,8 +1,20 @@
-<h3>
-	<pre>{{ def.name }}</pre>
-</h3>
-<p *ngFor="let paragraph of def.detailedDescription">
-	<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
-</p>
+<div *ngIf="def.detailedDescription.length > 0">
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+</div>
+<doxygen-definition
+	[definition]="def.definition"
+	[argsstring]="def.argsstring"></doxygen-definition>
+<h3>Parameters</h3>
+<div *ngFor="let parameter of def.parameters">
+	<div *ngIf="parameter.name != ''">
+		<doxygen-parameters
+			[name]="parameter.name"
+			[description]="parameter.detailedDescription"></doxygen-parameters>
+	</div>
+</div>
+<div *ngIf="def.return.type != ''">
+	<doxygen-return [return]="def.return"></doxygen-return>
+</div>
 
-<pre>{{ def | json }}</pre>
+<doxygen-location [location]="def.location"></doxygen-location>

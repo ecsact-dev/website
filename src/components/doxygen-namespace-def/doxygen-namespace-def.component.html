@@ -1,1 +1,52 @@
-<pre>{{ def | json }}</pre>
+<doxygen-parent-block>
+	<doxygen-name name [name]="def.name" [access]="def.access"
+		><h1>{{ def.name }}</h1></doxygen-name
+	>
+	<div *ngIf="def.detailedDescription.length > 0">
+		<doxygen-description [description]="def.detailedDescription">
+		</doxygen-description>
+	</div>
+
+	<h2 id="variables">Variables</h2>
+	<div *ngFor="let variable of def.variables">
+		<doxygen-child-block>
+			<doxygen-name
+				[access]="variable.access"
+				[name]="variable.name"
+				[mutable]="variable.mutable"
+				[static]="variable.static"
+				><a [routerLink]="'/reference/ecsact/' + variable.id"
+					><h2>{{ variable.name }}</h2></a
+				></doxygen-name
+			>
+			<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+		</doxygen-child-block>
+	</div>
+	<div *ngIf="def.innerNamespaces.length > 0">
+		<doxygen-child-block>
+			<h2 id="namespaces">Namespaces</h2>
+			<ul *ngFor="let namespace of def.innerNamespaces">
+				<li>
+					<a [routerLink]="'/reference/ecsact/' + namespace.id">{{
+						namespace.name
+					}}</a>
+				</li>
+			</ul>
+		</doxygen-child-block>
+	</div>
+
+	<div *ngIf="def.innerClasses.length > 0">
+		<doxygen-child-block>
+			<h2 id="classes">Classes</h2>
+			<ul *ngFor="let innerClass of def.innerClasses">
+				<li>
+					<a [routerLink]="'/reference/ecsact/' + innerClass.id">{{
+						innerClass.name
+					}}</a>
+				</li>
+			</ul>
+		</doxygen-child-block>
+	</div>
+
+	<doxygen-location [location]="def.location"></doxygen-location>
+</doxygen-parent-block>

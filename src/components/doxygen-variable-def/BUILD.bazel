@@ -19,7 +19,9 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
-        "//src/search:doxygen-def-types",
+        "//src/components/doxygen-member-components/doxygen-definition",
+        "//src/components/doxygen-member-components/doxygen-description",
+        "//src/components/doxygen-member-components/doxygen-location",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
