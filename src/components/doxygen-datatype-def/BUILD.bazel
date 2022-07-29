@@ -19,11 +19,12 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
-        "//src/components/doxygen-compound-block",
+        "//src/components/doxygen-child-block",
         "//src/components/doxygen-function-def",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
         "//src/components/doxygen-member-components/doxygen-name",
+        "//src/components/doxygen-parent-block",
         "//src/components/doxygen-typedef-def",
         "//src/components/doxygen-variable-def",
         "//src/search:doxygen-def-types",

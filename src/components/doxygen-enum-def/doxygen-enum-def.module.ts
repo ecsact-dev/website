@@ -4,7 +4,6 @@ import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxyg
 import {DoxygenParametersModule} from '../doxygen-member-components/doxygen-parameters/doxygen-parameters.module';
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 import {DoxygenDescriptionModule} from '../doxygen-member-components/doxygen-description/doxygen-description.module';
-import {DoxygenMemberBlockModule} from '../doxygen-member-block/doxygen-member-block.module';
 import {DoxygenDescriptionComponent} from '../doxygen-member-components/doxygen-description/doxygen-description.component';
 
 import {DoxygenEnumDefComponent} from './doxygen-enum-def.component';
@@ -17,7 +16,6 @@ import {DoxygenEnumDefComponent} from './doxygen-enum-def.component';
 		DoxygenParametersModule,
 		DoxygenLocationModule,
 		DoxygenDescriptionModule,
-		DoxygenMemberBlockModule,
 		DoxygenDescriptionModule,
 	],
 	exports: [DoxygenEnumDefComponent],

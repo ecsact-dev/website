@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DoxygenMemberBlockComponent} from './doxygen-member-block.component';
+import {DoxygenParentBlockComponent} from './doxygen-parent-block.component';
 import {DoxygenParagraphModule} from '../doxygen-paragraph/doxygen-paragraph.module';
 import {DoxygenBlockModule} from '../doxygen-block/doxygen-block.module';
 
 @NgModule({
-	declarations: [DoxygenMemberBlockComponent],
+	declarations: [DoxygenParentBlockComponent],
 	imports: [CommonModule, DoxygenParagraphModule, DoxygenBlockModule],
-	exports: [DoxygenMemberBlockComponent],
+	exports: [DoxygenParentBlockComponent],
 })
-export class DoxygenMemberBlockModule {}
+export class DoxygenParentBlockModule {}

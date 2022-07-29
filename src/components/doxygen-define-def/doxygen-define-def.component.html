@@ -1,13 +1,11 @@
-<doxygen-member-block>
-	<div *ngIf="def.detailedDescription.length > 0">
-		<doxygen-description
-			[description]="def.detailedDescription"></doxygen-description>
+<div *ngIf="def.detailedDescription.length > 0">
+	<doxygen-description
+		[description]="def.detailedDescription"></doxygen-description>
+</div>
+<div *ngIf="def.parameters.length != 0">
+	<h2>Parameters</h2>
+	<div *ngFor="let parameter of def.parameters">
+		<div>{{ parameter.name }}</div>
 	</div>
-	<div *ngIf="def.parameters.length != 0">
-		<h2>Parameters</h2>
-		<div *ngFor="let parameter of def.parameters">
-			<div>{{ parameter.name }}</div>
-		</div>
-	</div>
-	<doxygen-location [location]="def.location"></doxygen-location>
-</doxygen-member-block>
+</div>
+<doxygen-location [location]="def.location"></doxygen-location>

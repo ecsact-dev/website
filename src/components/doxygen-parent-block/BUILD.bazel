@@ -5,17 +5,17 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-compound-block.component.scss",
+    src = "doxygen-parent-block.component.scss",
 )
 
 ng_ts_project(
-    name = "doxygen-compound-block",
+    name = "doxygen-parent-block",
     srcs = [
-        "doxygen-compound-block.component.ts",
-        "doxygen-compound-block.module.ts",
+        "doxygen-parent-block.component.ts",
+        "doxygen-parent-block.module.ts",
     ],
     angular_assets = [
-        "doxygen-compound-block.component.html",
+        "doxygen-parent-block.component.html",
         ":styles",
     ],
     deps = [

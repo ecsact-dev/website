@@ -1,4 +1,4 @@
-<doxygen-compound-block>
+<doxygen-parent-block>
 	<doxygen-name
 		[page_id]="'class-name'"
 		name
@@ -14,101 +14,110 @@
 	<div *ngIf="def.privateFunctions.length > 0">
 		<h2 id="public-functions">Public Functions</h2>
 		<div class="functions" *ngFor="let function of def.publicFunctions">
-			<doxygen-name
-				[name]="function.name"
-				[access]="function.access"
-				[const]="function.const"
-				[inline]="function.inline"
-				[virtual]="function.virtual"
-				[explicit]="function.explicit"
-				><a [routerLink]="'/reference/ecsact/' + function.id"
-					><h3>{{ function.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-function-def [def]="function"></doxygen-function-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="function.name"
+					[access]="function.access"
+					[const]="function.const"
+					[inline]="function.inline"
+					[virtual]="function.virtual"
+					[explicit]="function.explicit"
+					><a [routerLink]="'/reference/ecsact/' + function.id"
+						><h3>{{ function.name }}</h3></a
+					></doxygen-name
+				>
+				<doxygen-function-def [def]="function"></doxygen-function-def>
+			</doxygen-child-block>
 		</div>
 	</div>
 
 	<div *ngIf="def.privateFunctions.length > 0">
 		<h2 id="private-functions">Private Functions</h2>
 		<div class="functions" *ngFor="let function of def.privateFunctions">
-			<doxygen-name
-				[name]="function.name"
-				[access]="function.access"
-				[const]="function.const"
-				[inline]="function.inline"
-				[virtual]="function.virtual"
-				[explicit]="function.explicit"
-				><a [routerLink]="'/reference/ecsact/' + function.id"
-					><h3>{{ function.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-function-def [def]="function"></doxygen-function-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="function.name"
+					[access]="function.access"
+					[const]="function.const"
+					[inline]="function.inline"
+					[virtual]="function.virtual"
+					[explicit]="function.explicit"
+					><a [routerLink]="'/reference/ecsact/' + function.id"
+						><h3>{{ function.name }}</h3></a
+					></doxygen-name
+				>
+				<doxygen-function-def [def]="function"></doxygen-function-def>
+			</doxygen-child-block>
 		</div>
 	</div>
 
 	<div *ngIf="def.publicTypes.length > 0">
 		<h2 id="public-types">Public Types</h2>
 		<div *ngFor="let type of def.publicTypes">
-			<doxygen-name
-				[name]="type.name"
-				[static]="type.static"
-				[access]="type.access"
-				><a [routerLink]="'/reference/ecsact/' + type.id"
-					><h3>{{ type.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="type.name"
+					[static]="type.static"
+					[access]="type.access"
+					><a [routerLink]="'/reference/ecsact/' + type.id"
+						><h3>{{ type.name }}</h3></a
+					></doxygen-name
+				>
+				<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+			</doxygen-child-block>
 		</div>
 	</div>
 
 	<div *ngIf="def.privateTypes.length > 0">
 		<h2 id="private-types">Private Types</h2>
 		<div *ngFor="let type of def.privateTypes">
-			<doxygen-name
-				[name]="type.name"
-				[static]="type.static"
-				[access]="type.access"
-				><a [routerLink]="'/reference/ecsact/' + type.id"
-					><h3>{{ type.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="type.name"
+					[static]="type.static"
+					[access]="type.access"
+					><a [routerLink]="'/reference/ecsact/' + type.id"
+						><h3>{{ type.name }}</h3></a
+					></doxygen-name
+				>
+				<doxygen-typedef-def [def]="type"></doxygen-typedef-def>
+			</doxygen-child-block>
 		</div>
 	</div>
 	<div *ngIf="def.publicVariables.length > 0">
 		<h2 id="public-variables">Public Variables</h2>
 		<div *ngFor="let variable of def.publicVariables">
-			<doxygen-name
-				[name]="variable.name"
-				[access]="variable.access"
-				[mutable]="variable.mutable"
-				[static]="variable.static"
-				><a [routerLink]="'/reference/ecsact/' + variable.id"
-					><h3>{{ variable.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="variable.name"
+					[access]="variable.access"
+					[mutable]="variable.mutable"
+					[static]="variable.static"
+					><a [routerLink]="'/reference/ecsact/' + variable.id"
+						><h3>{{ variable.name }}</h3></a
+					></doxygen-name
+				>
+				<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+			</doxygen-child-block>
 		</div>
 	</div>
-
-	<div *ngIf="def.publicVariables.length > 0"></div>
 
 	<div *ngIf="def.privateVariables.length > 0">
 		<h2 id="private-variables">Private Variables</h2>
 		<div *ngFor="let variable of def.privateVariables">
-			<doxygen-name
-				[name]="variable.name"
-				[access]="variable.access"
-				[mutable]="variable.mutable"
-				[static]="variable.static"
-				><a [routerLink]="'/reference/ecsact/' + variable.id"
-					><h3>{{ variable.name }}</h3></a
-				></doxygen-name
-			>
-			<doxygen-variable-def [def]="variable"></doxygen-variable-def>
+			<doxygen-child-block>
+				<doxygen-name
+					[name]="variable.name"
+					[access]="variable.access"
+					[mutable]="variable.mutable"
+					[static]="variable.static"
+					><a [routerLink]="'/reference/ecsact/' + variable.id"
+						><h3>{{ variable.name }}</h3></a
+					></doxygen-name
+				><doxygen-variable-def [def]="variable"></doxygen-variable-def
+			></doxygen-child-block>
 		</div>
 	</div>
 
 	<doxygen-location [location]="def.location"></doxygen-location>
-</doxygen-compound-block>
+</doxygen-parent-block>

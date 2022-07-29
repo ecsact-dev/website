@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DoxygenCompoundBlockModule} from '../doxygen-compound-block/doxygen-compound-block.module';
+import {DoxygenParentBlockModule} from '../doxygen-parent-block/doxygen-parent-block.module';
 import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxygen-name.module';
 import {DoxygenDescriptionModule} from '../doxygen-member-components/doxygen-description/doxygen-description.module';
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
@@ -12,7 +12,7 @@ import {RouterModule} from '@angular/router';
 	declarations: [DoxygenDirDefComponent],
 	imports: [
 		CommonModule,
-		DoxygenCompoundBlockModule,
+		DoxygenParentBlockModule,
 		DoxygenDescriptionModule,
 		DoxygenLocationModule,
 		DoxygenNameModule,
