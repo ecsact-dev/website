@@ -62,6 +62,18 @@ const routes: Routes = [
 				m => m.ReferenceRoutingModule,
 			),
 	},
+	{
+		path: 'docs/ecs',
+		loadChildren: () =>
+			import('./docs/ecs/ecs-routing.module').then(m => m.EcsRoutingModule),
+	},
+	{
+		path: 'docs/setup',
+		loadChildren: () =>
+			import('./docs/setup/setup-routing.module').then(
+				m => m.SetupRoutingModule,
+			),
+	},
 	// {
 	// 	path: '**',
 	// 	redirectTo: '/',

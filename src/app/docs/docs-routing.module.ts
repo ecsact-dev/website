@@ -50,6 +50,18 @@ const routes: Routes = [
 						m => m.ImplementationsRoutingModule,
 					),
 			},
+			{
+				path: 'ecs',
+				loadChildren: () =>
+					import('./ecs/ecs-routing.module').then(m => m.EcsRoutingModule),
+			},
+			{
+				path: 'setup',
+				loadChildren: () =>
+					import('./setup/setup-routing.module').then(
+						m => m.SetupRoutingModule,
+					),
+			},
 		],
 	},
 ];
