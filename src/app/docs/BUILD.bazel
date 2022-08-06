@@ -16,10 +16,13 @@ ng_ts_project(
         ":docs_component_style",
     ],
     deps = [
+        "//src/app/docs/cpp-system-impl-wasm",
         "//src/app/docs/implementations",
         "//src/app/docs/lang",
         "//src/app/docs/runtime",
         "//src/app/docs/runtime-builder",
+        "//src/app/docs/system-impl",
+        "//src/app/docs/system-impl-wasm",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",

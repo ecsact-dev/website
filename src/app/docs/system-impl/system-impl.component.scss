@@ -1,0 +1,42 @@
+.enable-disable-table-container {
+	overflow-x: auto;
+	padding-bottom: 16px;
+
+	table tr {
+		position: relative;
+	}
+
+	table td,
+	table th {
+		.i24 {
+			color: var(--color-text);
+
+			&.error {
+				color: var(--color-error);
+			}
+
+			&.success {
+				color: var(--color-success);
+			}
+
+			// Not applicable
+			&.na {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	table.align-center td,
+	table.align-center th {
+		&:not(:first-child) {
+			text-align: center;
+		}
+	}
+
+	table.align-left td,
+	table.align-left th {
+		&:not(:first-child) {
+			text-align: left;
+		}
+	}
+}

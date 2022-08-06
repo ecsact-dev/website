@@ -1,0 +1,267 @@
+<ng-template #errorIcon>
+	<td><span class="i24 error">close</span></td>
+</ng-template>
+<ng-template #successIcon>
+	<td><span class="i24 success">check</span></td>
+</ng-template>
+<ng-template #naIcon>
+	<td><span class="i24 na">check_indeterminate_small</span></td>
+</ng-template>
+
+<article>
+	<h1>System Implementations</h1>
+	<p>
+		No matter what programming language or runtime execution style you use every
+		system implementation <em>function signature</em> looks like this:
+	</p>
+	<pre><code>
+		void ( ecsact_system_execution_context* );
+	</code></pre>
+	<p>
+		Returning <code>void</code> (i.e. nothing) and taking a single parameter to
+		the execution context pointer (represented as an integer on some
+		platforms/languages.) Some languages (such as C++) have code generators that
+		generate wrappers to make creating a system implementation easier, but it
+		always goes back to the signature above.
+	</p>
+	<p>
+		The systme implementation function body may <strong>not</strong> call any of
+		the ecsact runtime functions (directly or indirectly) except for the
+		<code>ecsact_system_execution_context_*</code> functions in the dynamic
+		module. The exhaustive list are the following:
+	</p>
+	<ul>
+		<li><code>ecsact_system_execution_context_action</code></li>
+		<li><code>ecsact_system_execution_context_add</code></li>
+		<li><code>ecsact_system_execution_context_generate</code></li>
+		<li><code>ecsact_system_execution_context_get</code></li>
+		<li><code>ecsact_system_execution_context_has</code></li>
+		<li><code>ecsact_system_execution_context_id</code></li>
+		<li><code>ecsact_system_execution_context_parent</code></li>
+		<li><code>ecsact_system_execution_context_remove</code></li>
+		<li><code>ecsact_system_execution_context_same</code></li>
+		<li><code>ecsact_system_execution_context_update</code></li>
+	</ul>
+	<h2 id="system-capabilities">System Capabilities</h2>
+	<p>
+		Depending on the system capabilities set in your system declaration block
+		some of the functions above are not allowed to be called. Depending on the
+		runtime implementation calling them could be undefined behaviour or cause an
+		exception to occur.
+	</p>
+	<h3 id="fns-by-type">Allowed functions by system type</h3>
+	<div class="enable-disable-table-container thin-scroll">
+		<table hasHiddenRows class="align-center">
+			<tr>
+				<th></th>
+				<th>System</th>
+				<th>Action</th>
+				<th>Nested System</th>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_action</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_add</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_generate</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_get</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_has</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_id</code></td>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_parent</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_remove</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_same</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_update</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+		</table>
+	</div>
+
+	<h3 id="system-component-access">System Component Access</h3>
+	<div class="enable-disable-table-container thin-scroll">
+		<table hasHiddenRows class="align-center">
+			<tr>
+				<th></th>
+				<th><code>readwrite</code></th>
+				<th><code>readonly</code></th>
+				<th><code>writeonly</code></th>
+				<th><code>optional</code></th>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_action</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_add</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_generate</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_get</code></td>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_has</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_id</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_parent</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_remove</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_same</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_update</code></td>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+		</table>
+	</div>
+
+	<h3 id="component-assignment-fns">Component Assignment Functions</h3>
+	<div class="enable-disable-table-container thin-scroll">
+		<table hasHiddenRows class="align-center">
+			<tr>
+				<th></th>
+				<th><code>adds</code></th>
+				<th><code>removes</code></th>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_action</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_add</code></td>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_generate</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_get</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_has</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_id</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_parent</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr>
+				<td><code>ecsact_system_execution_context_remove</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="successIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_same</code></td>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="naIcon"></ng-container>
+			</tr>
+			<tr hiddenRow>
+				<td><code>ecsact_system_execution_context_update</code></td>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+				<ng-container *ngTemplateOutlet="errorIcon"></ng-container>
+			</tr>
+		</table>
+	</div>
+</article>

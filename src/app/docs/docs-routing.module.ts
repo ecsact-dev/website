@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {CppSystemImplWasmComponent} from './cpp-system-impl-wasm/cpp-system-impl-wasm.component';
 import {DocsComponent} from './docs.component';
 import {DocsModule} from './docs.module';
 import {LangComponent} from './lang/lang.component';
 import {LangModule} from './lang/lang.module';
+import {SystemImplWasmComponent} from './system-impl-wasm/system-impl-wasm.component';
+import {SystemImplComponent} from './system-impl/system-impl.component';
 
 const routes: Routes = [
 	{
@@ -13,6 +16,18 @@ const routes: Routes = [
 			{
 				path: 'lang',
 				component: LangComponent,
+			},
+			{
+				path: 'system-impl',
+				component: SystemImplComponent,
+			},
+			{
+				path: 'system-impl-wasm',
+				component: SystemImplWasmComponent,
+			},
+			{
+				path: 'cpp-system-impl-wasm',
+				component: CppSystemImplWasmComponent,
 			},
 			{
 				path: 'runtime',

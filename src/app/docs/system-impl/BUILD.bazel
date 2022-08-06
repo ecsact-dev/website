@@ -1,0 +1,27 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "system-impl.component.scss",
+)
+
+ng_ts_project(
+    name = "system-impl",
+    srcs = [
+        "system-impl.component.ts",
+        "system-impl.module.ts",
+    ],
+    angular_assets = [
+        "system-impl.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/hidden-table-rows",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

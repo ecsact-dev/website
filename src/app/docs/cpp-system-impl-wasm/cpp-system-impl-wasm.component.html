@@ -1,0 +1,26 @@
+<article>
+	<h1>C++ System Implementations with Wasm</h1>
+
+	<h2 id="manual">Manually compile .wasm files without a build system</h2>
+	<pre><code>ecsact_cpp_header_codegen example.ecsact --constexpr_component_ids</code></pre>
+	<h3 id="manual-compiler-choice">Choose the right compiler</h3>
+
+	<h2 id="bazel">Build with Bazel (experimental)</h2>
+	<p>
+		The
+		<a href="https://github.com/seaube/ecsact" target="_blank"
+			>ecsact repository</a
+		>
+		is built with bazel and also contains bazel rules for code generation.
+	</p>
+
+	<h2 id="other">Other build tools</h2>
+	<p>
+		Following the
+		<a [routerLink]="" fragment="manual">manual instructions</a> should give
+		enough information to create your system implementations in any build
+		system. If you have an open source contribution for easing C++ system
+		implementation generation in other build systems please share it with us and
+		we can advertise it here.
+	</p>
+</article>
