@@ -25,7 +25,7 @@
 		always goes back to the signature above.
 	</p>
 	<p>
-		The systme implementation function body may <strong>not</strong> call any of
+		The system implementation function body may <strong>not</strong> call any of
 		the ecsact runtime functions (directly or indirectly) except for the
 		<code>ecsact_system_execution_context_*</code> functions in the dynamic
 		module. The exhaustive list are the following:
@@ -48,6 +48,35 @@
 		some of the functions above are not allowed to be called. Depending on the
 		runtime implementation calling them could be undefined behaviour or cause an
 		exception to occur.
+	</p>
+	<pre><code ecsactLangSyntax>
+		system PlatformerGravity {{ '{' }}
+			readwrite Position;
+			adds Grounded;
+		{{ '}' }}
+	</code></pre>
+	<p>
+		In the above example a system implementation is only allowed to use the
+		following component related calls.
+	</p>
+	<ul>
+		<li>
+			<code>ecsact_system_execution_context_get</code> on the
+			<code>Position</code> component
+		</li>
+		<li>
+			<code>ecsact_system_execution_context_update</code> on the
+			<code>Position</code> component
+		</li>
+		<li>
+			<code>ecsact_system_execution_context_add</code> on the
+			<code>Grounded</code> component
+		</li>
+	</ul>
+	<p>
+		Additionally some general functions may be used to query information about
+		the system and the context it is in. Refer to the tables below to understand
+		what functions can be called based on the systems capabilities.
 	</p>
 	<h3 id="fns-by-type">Allowed functions by system type</h3>
 	<div class="enable-disable-table-container thin-scroll">
