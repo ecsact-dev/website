@@ -5,7 +5,8 @@
 	"editor.insertSpaces": false,
 	"angular.forceStrictTemplates": true,
 	"[html]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnType": true
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

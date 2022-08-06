@@ -3,12 +3,21 @@ import {RouterModule} from '@angular/router';
 import {ContentModule} from '../../components/layout/content/content.module';
 import {SidenavSectionModule} from '../../components/layout/sidenav-section/sidenav-section.module';
 import {SidenavModule} from '../../components/layout/sidenav/sidenav.module';
+import {CppSystemImplWasmModule} from './cpp-system-impl-wasm/cpp-system-impl-wasm.module';
 
 import {DocsComponent} from './docs.component';
+import {SystemImplWasmModule} from './system-impl-wasm/system-impl-wasm.module';
 
 @NgModule({
 	declarations: [DocsComponent],
-	imports: [RouterModule, SidenavModule, SidenavSectionModule, ContentModule],
+	imports: [
+		RouterModule,
+		SidenavModule,
+		SidenavSectionModule,
+		ContentModule,
+		SystemImplWasmModule,
+		CppSystemImplWasmModule,
+	],
 	exports: [DocsComponent],
 	bootstrap: [],
 })
