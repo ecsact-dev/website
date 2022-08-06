@@ -16,8 +16,11 @@ ng_ts_project(
         ":home_component_style",
     ],
     deps = [
+        "//src/components/ecsact-lang-syntax",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
+        "@npm//@types/node",
+        "@npm//detect-browser",
     ],
 )
