@@ -19,6 +19,7 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
+        "//src/components/ecsact-lang-syntax",
         "//src/components/hidden-table-rows",
         "@npm//@angular/common",
         "@npm//@angular/core",
