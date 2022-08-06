@@ -1,0 +1,33 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "ecsact-wasm-system-impl-validator.component.scss",
+)
+
+ng_ts_project(
+    name = "ecsact-wasm-system-impl-validator",
+    srcs = [
+        "ecsact-wasm-system-impl-validator.component.ts",
+        "ecsact-wasm-system-impl-validator.module.ts",
+    ],
+    angular_assets = [
+        "ecsact-wasm-system-impl-validator.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/doxygen-member-components/doxygen-definition",
+        "//src/components/doxygen-member-components/doxygen-description",
+        "//src/components/doxygen-member-components/doxygen-location",
+        "//src/components/doxygen-member-components/doxygen-parameters",
+        "//src/components/doxygen-member-components/doxygen-return",
+        "//src/components/doxygen-paragraph",
+        "//src/search:doxygen-def-types",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
