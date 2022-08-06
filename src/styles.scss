@@ -280,6 +280,9 @@ main article {
 	margin: 32px;
 
 	> pre {
+		// Always using the dark theme in pre article tags
+		@include dark-color-scheme;
+		color: var(--color-text);
 		margin: 0px -32px;
 		padding: 16px 32px;
 		background-color: #182122;
