@@ -71,3 +71,13 @@ main {
 			minmax(0px, 0px);
 	}
 }
+
+@media (max-width: 599px) {
+	:host {
+		display: block;
+	}
+
+	main {
+		margin: 0;
+	}
+}

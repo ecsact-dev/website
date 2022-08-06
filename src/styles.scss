@@ -158,6 +158,8 @@ table {
 			padding: 4px 8px;
 			border-radius: 3px;
 			background-color: var(--color-b);
+			position: sticky;
+			left: 8px;
 		}
 	}
 
@@ -281,6 +283,15 @@ main article {
 		margin: 0px -32px;
 		padding: 16px 32px;
 		background-color: #182122;
+	}
+
+	@media (max-width: 374px) {
+		margin: 16px;
+
+		> pre {
+			margin: 0px -16px;
+			padding: 8px 16px;
+		}
 	}
 }
 
