@@ -117,6 +117,18 @@ export class EcsactWasmSystemImplValidatorComponent implements OnInit {
 												preview.validationCode =
 													EcsactWasmExportValidationCode.InvalidSignature;
 												this.cdr.detectChanges();
+											} else {
+												try {
+													let result = wasmExport(0);
+													if (typeof result !== 'undefined') {
+														preview.validationCode =
+															EcsactWasmExportValidationCode.InvalidSignature;
+														this.cdr.detectChanges();
+													}
+												} catch (err) {
+													console.error('Invocation error:', err);
+													console.error('Invocation error name:', err.name);
+												}
 											}
 										}
 										break;
