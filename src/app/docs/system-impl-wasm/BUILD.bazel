@@ -19,6 +19,7 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
+        "//src/components/ecsact-wasm-system-impl-validator",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

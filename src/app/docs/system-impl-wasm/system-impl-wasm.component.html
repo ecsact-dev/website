@@ -11,6 +11,28 @@
 		This article should give you everything you need to know in order to create
 		a <strong>valid</strong> system implementation <code>.wasm</code> file.
 	</p>
-	<h2>Expected Wasm Export(s)</h2>
-	<p></p>
+	<h2 id="imports-and-exports">Wasm Imports & Exports</h2>
+	<p>
+		Only certain exports of a <code>.wasm</code> file are used by the ecsact
+		runtime and a limited set of imports are allowed. Valid exports are only
+		functions with the system execution signature. Exports that do not meet that
+		requirement are completely ignored. Imports are much more strict than
+		exports. The only imports that are allowed are
+		<code>ecsact_system_execution_context_*</code> functions from the ecsact
+		runtime.
+	</p>
+	<p>
+		The system implementation signature in <code>wasm32</code> would look like
+		this:
+	</p>
+	<pre><code>
+		(func (param i32) (result void) ...)
+	</code></pre>
+	<p>
+		Fortunately wasm works natively in the browser which means we can easily
+		have a validator right here for you to try! Input your
+		<code>.wasm</code> file down below and we'll show your exports and imports
+		and whether or not they are suitable to use with Ecsact.
+	</p>
+	<ecsact-wasm-system-impl-validator></ecsact-wasm-system-impl-validator>
 </article>

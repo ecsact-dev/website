@@ -1,0 +1,49 @@
+<input #fileInput type="file" (change)="onFileInput($event)" />
+
+<div *ngFor="let item of previewModules">
+	<div>{{ item.name }}</div>
+	<div style="display: flex; flex-direction: row">
+		<div style="flex: auto">
+			<div>Imports</div>
+			<div
+				*ngFor="let import of item.imports"
+				style="display: flex; flex-direction: row; align-items: center">
+				<div>
+					<div style="display: flex; flex-direction: row; align-items: center">
+						<ng-container [ngSwitch]="import.validationCode">
+							<span *ngSwitchCase="'Ok'" class="i24">check</span>
+							<span *ngSwitchDefault class="i24">close</span>
+						</ng-container>
+						<code>{{ import.descriptor.name }}</code>
+					</div>
+					<ng-container [ngSwitch]="import.validationCode">
+						<p *ngSwitchCase="'NonFunction'">
+							Import name is correct, however the import kind is
+							<code>{{ import.descriptor.kind }}</code
+							>. Expected <code>function</code>.
+						</p>
+						<p *ngSwitchCase="'UnknownImportName'">
+							Incorrect import name. The import import names that are allowed
+							are the <code>ecsact_system_execution_context_</code> prefixed
+							functions from the ecsact runtime.
+						</p>
+					</ng-container>
+				</div>
+			</div>
+		</div>
+		<div style="flex: auto">
+			<div>Exports</div>
+			<div
+				*ngFor="let export of item.exports"
+				style="display: flex; flex-direction: row; align-items: center">
+				<div style="display: flex; flex-direction: row; align-items: center">
+					<ng-container [ngSwitch]="export.validationCode">
+						<span *ngSwitchCase="'Ok'" class="i24">check</span>
+						<span *ngSwitchDefault class="i24">close</span>
+					</ng-container>
+					<code>{{ export.descriptor.name }}</code>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
