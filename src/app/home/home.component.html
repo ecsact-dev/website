@@ -1,27 +1,45 @@
-<div class="container-wrap">
-	<div class="container">
-		<div class="item-container">
-			<div class="item-content">
-				<nav>
-					<a routerLink="/install" routerLinkActive="active" class="button-link">
-						Install Ecsact
-					</a>
-				</nav>
-			</div>
-		</div>
-	</div>
+<div class="header-block">
+	<div class="title">Create with Ecsact</div>
+	<div class="subtitle">A language to describe your ECS</div>
 </div>
 
-<div class="container-wrap">
-	<div class="container">
-		<div class="item-container">
-			<div class="item-content">
-				<nav>
-					<a routerLink="/getstarted" routerLinkActive="active" class="button-link">
-						Get Started
-					</a>
-				</nav>
-			</div>
-		</div>
+<ecsact-example-diagram
+	style="margin: 32px auto; max-width: 1200px; padding: 0px 16px"
+	[verticalLayout]="smallWidth()">
+	<pre
+		diagramStart
+		style="font-size: 90%; margin: 0; padding: 16px"><code ecsactLangSyntax>
+		package example;
+		
+		component Health {{'{'}} f32 value; {{'}'}}
+		component Poisoned {{'{'}} i32 potency; {{'}'}}
+		component Invincible;
+		system PoisonDamage {{'{'}}
+			readonly Poisoned;
+			readwrite Health;
+			exclude Invincible;
+		{{'}'}}
+	</code></pre>
+
+	<div diagramMid1 style="margin: 8px">Strongly Typed Components & Actions</div>
+
+	<div diagramMid2 style="margin: 8px">
+		PoisonDamage
+		<br />
+		System Implementation
+		<br />
+		Native / Wasm
 	</div>
-</div>
+
+	<div diagramMid3 style="margin: 8px">Optimized Runtime</div>
+
+	<div diagramMid4 style="margin: 8px">
+		Component Events
+		<br />
+		Init / Update / Remove
+	</div>
+
+	<div diagramEnd style="margin: 16px">
+		<p>(TODO animate character dying)</p>
+	</div>
+</ecsact-example-diagram>
