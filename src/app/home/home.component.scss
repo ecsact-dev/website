@@ -3,6 +3,21 @@
 	background-color: var(--color-content-bg);
 }
 
-.content {
-	max-width: 1200px;
+.header-block {
+	padding: 16px;
+	margin: 32px 0px;
+	margin-bottom: 64px;
+}
+
+.title {
+	text-align: center;
+	color: var(--color-secondary);
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.subtitle {
+	text-align: center;
+	color: var(--color-text);
+	font-size: 14px;
 }

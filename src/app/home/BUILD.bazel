@@ -16,6 +16,7 @@ ng_ts_project(
         ":home_component_style",
     ],
     deps = [
+        "//src/components/ecsact-example-diagram",
         "//src/components/ecsact-lang-syntax",
         "@npm//@angular/common",
         "@npm//@angular/core",

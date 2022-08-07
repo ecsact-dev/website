@@ -1,0 +1,50 @@
+:host {
+	display: block;
+	--diagram-outline-color: var(--color-text);
+	--diagram-fill-color: var(--color-bg);
+	--diagram-cap-height: 220px;
+}
+
+svg path[stroke-width] {
+	stroke: var(--diagram-outline-color);
+}
+
+svg path.diagram-fill {
+	fill: var(--diagram-fill-color);
+}
+
+foreignObject {
+	overflow: hidden;
+	border: 1px solid var(--diagram-outline-color);
+	background-color: var(--diagram-fill-color);
+	border-radius: 8px;
+}
+
+foreignObject.mid-object {
+	width: 163px;
+	height: 75px;
+	transform: scale(0.69);
+}
+
+foreignObject.cap-object {
+	width: 384px;
+	height: var(--diagram-cap-height);
+	transform: scale(0.69) translateY(calc(var(--diagram-cap-height) / -2));
+}
+
+svg {
+	display: block;
+}
+
+svg.vertical-layout {
+	margin: auto;
+	max-width: 395px;
+
+	foreignObject.start-object {
+		transform: scale(0.69) translateY(calc(var(--diagram-cap-height) * -1));
+	}
+
+	foreignObject.end-object {
+		transform: scale(0.69);
+	}
+}
