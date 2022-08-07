@@ -1,0 +1,362 @@
+<ng-template #diagramStartTpl>
+	<ng-content select="[diagramStart]"></ng-content>
+</ng-template>
+
+<ng-template #diagramMid1Tpl>
+	<ng-content select="[diagramMid1]"></ng-content>
+</ng-template>
+
+<ng-template #diagramMid2Tpl>
+	<ng-content select="[diagramMid2]"></ng-content>
+</ng-template>
+
+<ng-template #diagramMid3Tpl>
+	<ng-content select="[diagramMid3]"></ng-content>
+</ng-template>
+
+<ng-template #diagramMid4Tpl>
+	<ng-content select="[diagramMid4]"></ng-content>
+</ng-template>
+
+<ng-template #diagramEndTpl>
+	<ng-content select="[diagramEnd]"></ng-content>
+</ng-template>
+
+<svg
+	*ngIf="!verticalLayout; else verticalLayoutTpl"
+	version="1.1"
+	fill="none"
+	stroke="none"
+	stroke-linecap="square"
+	stroke-miterlimit="10"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 828 283"
+	preserveAspectRatio="xMidYMid meet"
+	class="horizontal-layout">
+	<clipPath id="p.0">
+		<path
+			d="m0 0l828.05774 0l0 283.00262l-828.05774 0l0 -283.00262z"
+			clip-rule="nonzero" />
+	</clipPath>
+	<g clip-path="url(#p.0)">
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m267.43045 141.50131l44.960632 0l0 -37.76378l44.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m267.43045 141.50131l44.960632 0l0 -37.76378l38.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m351.3517 105.38927l4.538086 -1.6517334l-4.538086 -1.6517334z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m267.43045 141.50131l44.960632 0l0 37.76378l44.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m267.43045 141.50131l44.960632 0l0 37.76378l38.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m351.3517 180.91682l4.538086 -1.6517334l-4.538086 -1.6517334z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m414.02887 129.72179l0 23.559052"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m414.02887 129.72179l0 17.559052"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m412.37714 147.28084l1.6517334 4.538101l1.6517334 -4.538101z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m267.43045 141.50131l44.960632 0l0 -113.25984l44.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m267.43045 141.50131l44.960632 0l0 -113.25984l38.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m351.3517 29.893202l4.538086 -1.6517315l-4.538086 -1.6517334z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m414.02887 54.225723l0 11.779526l0.06298828 0l0 11.779526"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m414.02887 54.225723l0 11.779526l0.06298828 0l0 5.7795258"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m412.44012 71.784775l1.6517334 4.538101l1.6517334 -4.538101z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m414.02887 205.21785l0 11.779526l0.06298828 0l0 11.779526"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m414.02887 205.21785l0 11.779526l0.06298828 0l0 5.7795258"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m412.44012 222.7769l1.6517334 4.538101l1.6517334 -4.538101z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m470.70602 28.257217l44.960663 0l0 113.25984l44.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m470.70602 28.257217l44.960663 0l0 113.25984l38.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m554.6273 143.1688l4.538086 -1.6517334l-4.538086 -1.6517334z"
+			fill-rule="evenodd" />
+		<path
+			fill="#000000"
+			fill-opacity="0.0"
+			d="m470.70602 254.7454l44.960663 0l0 -113.25984l44.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linejoin="round"
+			stroke-linecap="butt"
+			d="m470.70602 254.7454l44.960663 0l0 -113.25984l38.960632 0"
+			fill-rule="evenodd" />
+		<path
+			stroke-width="1.0"
+			stroke-linecap="butt"
+			d="m554.6273 143.1373l4.538086 -1.6517334l-4.538086 -1.6517334z"
+			fill-rule="evenodd" />
+
+		<foreignObject x="4" y="204" class="cap-object">
+			<ng-container *ngTemplateOutlet="diagramStartTpl"></ng-container>
+		</foreignObject>
+
+		<foreignObject y="3" x="518" class="mid-object">
+			<ng-container *ngTemplateOutlet="diagramMid1Tpl"></ng-container>
+		</foreignObject>
+
+		<foreignObject y="113" x="518" class="mid-object">
+			<ng-container *ngTemplateOutlet="diagramMid2Tpl"></ng-container>
+		</foreignObject>
+
+		<foreignObject y="223" x="518" class="mid-object">
+			<ng-container *ngTemplateOutlet="diagramMid3Tpl"></ng-container>
+		</foreignObject>
+
+		<foreignObject y="333" x="518" class="mid-object">
+			<ng-container *ngTemplateOutlet="diagramMid4Tpl"></ng-container>
+		</foreignObject>
+
+		<foreignObject x="812" y="204" class="cap-object">
+			<ng-container *ngTemplateOutlet="diagramEndTpl"></ng-container>
+		</foreignObject>
+	</g>
+</svg>
+
+<ng-template #verticalLayoutTpl>
+	<svg
+		#verticalLayoutEl
+		version="1.1"
+		viewBox="0.0 0.0 271.0288713910761 531.2939632545932"
+		preserveAspectRatio="xMidYMid meet"
+		fill="none"
+		stroke="none"
+		stroke-linecap="square"
+		stroke-miterlimit="10"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		xmlns="http://www.w3.org/2000/svg"
+		class="vertical-layout">
+		<g>
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m135.19685 155.47769l0 23.721756l-51.590553 0l0 23.711319"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m135.19685 155.47769l0 23.72174l-51.590553 0l0 17.711334"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m81.95457 196.91077l1.6517334 4.538086l1.6517334 -4.538086z"
+				fill-rule="evenodd" />
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m135.19685 155.47769l0 23.721756l75.68504 0l0 23.711319"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m135.19685 155.47769l0 23.72174l75.68504 0l0 17.711334"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m209.23016 196.91077l1.6517334 4.538086l1.6517181 -4.538086z"
+				fill-rule="evenodd" />
+			<path
+				_ngcontent-ihu-c19=""
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m209.23016 269.91077l1.6517334 4.538086l1.6517181 -4.538086z"
+				fill-rule="evenodd" />
+
+			<path
+				_ngcontent-jot-c19=""
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m210.79318 269.43832l0 -9.290039l0.06298828 0l0 -3.292633"
+				fill-rule="evenodd" />
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m135.19685 155.47769l0 23.097565l-130.13074 0l0 120.83945l21.847271 0"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m135.19685 155.47769l0 23.097565l-130.13074 0l0 120.83945l15.847271 0"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m20.913385 301.06644l4.5380974 -1.6517334l-4.5380974 -1.6517334z"
+				fill-rule="evenodd" />
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m83.59318 325.37534l0 25.143066l51.590553 0l0 25.156128"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m83.59318 325.37534l0 25.143066l51.590553 0l0 19.156128"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m133.532 369.67453l1.6517334 4.5381165l1.6517334 -4.5381165z"
+				fill-rule="evenodd" />
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m210.86613 328.21783l0 22.598541l-75.653534 0l0 24.834534"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m210.86613 328.21783l0 22.598572l-75.653534 0l0 18.834503"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m133.56087 369.6509l1.6517334 4.5381165l1.6517334 -4.5381165z"
+				fill-rule="evenodd" />
+			<path
+				fill="#000000"
+				fill-opacity="0.0"
+				d="m83.59318 273.43832l0 -9.290039l0.06298828 0l0 -9.292648"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linejoin="round"
+				stroke-linecap="butt"
+				d="m83.59318 273.43832l0 -9.290039l0.06298828 0l0 -3.292633"
+				fill-rule="evenodd" />
+			<path
+				stroke="#ffffff"
+				stroke-width="1.0"
+				stroke-linecap="butt"
+				d="m85.3079 260.85565l-1.6517334 -4.5381165l-1.6517334 4.5381165z"
+				fill-rule="evenodd" />
+
+			<foreignObject x="4" y="225" class="cap-object start-object">
+				<ng-container *ngTemplateOutlet="diagramStartTpl"></ng-container>
+			</foreignObject>
+
+			<foreignObject y="400" x="40" class="mid-object">
+				<ng-container *ngTemplateOutlet="diagramMid1Tpl"></ng-container>
+			</foreignObject>
+
+			<foreignObject y="295" x="40" class="mid-object">
+				<ng-container *ngTemplateOutlet="diagramMid2Tpl"></ng-container>
+			</foreignObject>
+
+			<foreignObject y="295" x="224" class="mid-object">
+				<ng-container *ngTemplateOutlet="diagramMid3Tpl"></ng-container>
+			</foreignObject>
+
+			<foreignObject y="400" x="224" class="mid-object">
+				<ng-container *ngTemplateOutlet="diagramMid4Tpl"></ng-container>
+			</foreignObject>
+
+			<foreignObject x="4" y="545" class="cap-object end-object">
+				<ng-container *ngTemplateOutlet="diagramEndTpl"></ng-container>
+			</foreignObject>
+		</g>
+	</svg>
+</ng-template>

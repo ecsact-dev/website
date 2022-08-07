@@ -1,0 +1,26 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "ecsact-example-diagram.component.scss",
+)
+
+ng_ts_project(
+    name = "ecsact-example-diagram",
+    srcs = [
+        "ecsact-example-diagram.component.ts",
+        "ecsact-example-diagram.module.ts",
+    ],
+    angular_assets = [
+        "ecsact-example-diagram.component.html",
+        ":styles",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

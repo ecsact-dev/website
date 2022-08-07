@@ -18,7 +18,8 @@ languages.ecsact = {
 		pattern: /component|system|action|package|main|import/,
 	},
 	function: {
-		pattern: /required|readonly|optional|adds|removes|include|exclude/,
+		pattern:
+			/required|readonly|readwrite|readonly|optional|adds|removes|include|exclude/,
 	},
 	variable: {
 		pattern:
