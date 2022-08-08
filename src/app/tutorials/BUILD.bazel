@@ -16,6 +16,10 @@ ng_ts_project(
         ":tutorials_component_style",
     ],
     deps = [
+        "//src/app/tutorials/sys-impl/emsdk-cpp",
+        "//src/components/layout/content",
+        "//src/components/layout/sidenav",
+        "//src/components/layout/sidenav-section",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

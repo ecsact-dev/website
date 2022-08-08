@@ -9,8 +9,16 @@ import {TutorialsModule} from './tutorials.module';
 		RouterModule.forChild([
 			{
 				path: '',
-				pathMatch: 'full',
 				component: TutorialsComponent,
+				children: [
+					{
+						path: 'sys-impl/emsdk-cpp',
+						loadChildren: () =>
+							import('./sys-impl/emsdk-cpp/emsdk-cpp-routing.module').then(
+								m => m.EmsdkCppRoutingModule,
+							),
+					},
+				],
 			},
 		]),
 	],
