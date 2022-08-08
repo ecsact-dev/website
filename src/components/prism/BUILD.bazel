@@ -1,0 +1,29 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "prism.component.scss",
+)
+
+ng_ts_project(
+    name = "prism",
+    srcs = [
+        "prism.component.ts",
+        "prism.module.ts",
+    ],
+    angular_assets = [
+        "prism.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/search:doxygen-def-types",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+        "@npm//@types/prismjs",
+        "@npm//prismjs",
+    ],
+)
