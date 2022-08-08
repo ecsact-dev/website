@@ -1,1 +1,369 @@
-<article>TODO</article>
+<article>
+	<h1>Create Wasm system implementations with C++</h1>
+
+	<section>
+		<h2 id="introduction">Introduction</h2>
+		<p>
+			If you're already familiar with the basics of Ecsact and want to start
+			creating system implementations then this is the tutorial for you. Here
+			you will learn what it takes to create a Wasm system implementation
+			written in C++ and compiled with Emscripten.
+		</p>
+
+		<h3 id="prerequisites">Prerequisites</h3>
+		<p></p>
+		<ol>
+			<li>
+				<a routerLink="/install">Ecsact SDK</a> for the C++ code generators
+			</li>
+			<li>
+				<a href="https://emscripten.org/" target="_blank"
+					>Emsciprten <span class="i24">open_in_new</span></a
+				>
+				for the <code>emcc</code> compiler
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2 id="step1">Step 1: Creating your Ecsact file</h2>
+		<p>
+			First lets create an ecsact file with a system we'd like to implement.
+			We'll call our file <code>tutorial.ecsact</code>. This is the part where
+			you should design and plan what systems and components you'd like. We'll
+			do something really simple and create a <code>Position</code> component
+			and a system that always moves the <code>x</code> coodinate in the
+			positive direction. We'll call that system
+			<code>AlwaysMoveRight</code> (positive <code>x</code> is <em>right</em> in
+			this tutorial.)
+		</p>
+		<pre><code ecsactLangSyntax>
+			package tutorial;
+
+			component Position {{'{'}}
+				decimal32 x;
+				decimal32 y;
+			{{'}'}}
+
+			system AlwaysMoveRight {{'{'}}
+				required Position;
+			{{'}'}}
+		</code></pre>
+	</section>
+
+	<section>
+		<h2 id="step2">Step 2: Code Generators</h2>
+		<p>
+			The Ecsact SDK comes with several code generators. We'll be using
+			<code>ecsact_cpp_header_codegen</code>,
+			<code>ecsact_systems_header_codegen</code>,
+			<code>ecsact_cpp_systems_header_codegen</code>, and
+			<code>ecsact_cpp_systems_source_static_codegen</code>. In this section
+			we'll talk about each one. The order these are executed does not matter.
+		</p>
+		<p>
+			<span class="i24">info</span> Everytime your ecsact file changes you must
+			re-run your code generators.
+		</p>
+
+		<h3><code>ecsact_cpp_header_codegen</code></h3>
+		<pre><code>
+			ecsact_cpp_header_codegen tutorial.ecsact --constexpr_component_ids
+		</code></pre>
+		<p>
+			This will generate the <code>tutorial.ecsact.hh</code> C++ header file
+			which contains structs for all the declared types in our
+			<code>tutorial.ecsact</code> file.
+		</p>
+		<p>
+			The <code>--constexpr_component_ids</code> flag makes the component IDs
+			available at compile time. This allows us to avoid using another another
+			code generator for this tutorial.
+		</p>
+		<p>
+			<span class="i24">info</span> If the ecsact runtime you are using does not
+			allow for component IDs to be available at compile time you may omit this
+			flag and also utilize the
+			<code>ecsact_cpp_systems_source_static_codegen</code> code generator.
+		</p>
+
+		<h3><code>ecsact_systems_header_codegen</code></h3>
+		<pre><code>
+			ecsact_systems_header_codegen tutorial.ecsact
+		</code></pre>
+		<p>
+			This will generate the <code>tutorial.ecsact.systems.h</code> C header
+			which contains function expected to be implemented by you, the developer.
+			For our <code>tutorial.ecsact</code> file it will look like this:
+		</p>
+		<pre><code>
+			void tutorial__AlwaysMoveRight ecsact_system_execution_context*);
+		</code></pre>
+		<p>
+			The function signature perfectly matches what is described in the
+			<a routerLink="/docs/system-impl">System Implementation Documentation</a>.
+		</p>
+		<p>
+			However, in this tutorial we aren't writing C. We're writing C++! While
+			you could implement these C functions in C++ there is a better way. In the
+			next code generator we'll talk about generating a wrapper for these
+			functions that enables us to write our system implementations in an
+			ergonomic C++ friendly way.
+		</p>
+
+		<h3><code>ecsact_cpp_systems_header_codegen</code></h3>
+		<pre><code>
+			ecsact_cpp_systems_header_codegen tutorial.ecsact
+		</code></pre>
+		<p>
+			In the last code generator a C system implementation function was
+			generated. You might've guessed from the name of this code generator that
+			this will create a C++ system implementation function. That is correct!
+			The above command will generate something similar to this:
+		</p>
+		<pre><code>
+			namespace tutorial {{'{'}}
+				struct AlwaysMoveRight {{'{'}}
+					struct context {{'{'}} /* ... */ {{'}'}};
+					/* ... */
+				{{'}'}};
+				void AlwaysMoveRight(AlwaysMoveRight::context&);
+			{{'}'}}
+		</code></pre>
+		<p>
+			Now instead of implementing C function
+			<code>tutorial__AlwaysMoveRight</code> you're expected to implement C++
+			function
+			<code>tutorial::AlwaysMoveRight(AlwaysMoveRight::context&)</code> instead.
+			The <code>tutorial::AlwaysMoveRight::context</code> object contains all
+			the functionality the <code>AlwaysMoveRight</code> system is allowed. You
+			can read more about the details in the
+			<a>C++ systems code generators docs</a>.
+		</p>
+
+		<h3><code>ecsact_cpp_systems_source_static_codegen</code></h3>
+		<pre><code>
+			ecsact_cpp_systems_source_static_codegen tutorial.ecsact
+		</code></pre>
+		<p>
+			Generates <code>tutorial.ecsact.systems.static.cc</code> which holds the
+			implementations for the C++ systems wrapper function
+			<code>context</code> methods i.e. all the <code>ctx.*</code> functions.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="step3">Step 3: Writing the implementation</h2>
+		<p>
+			Now that we've generated all the files we need we can start writing our
+			system implementation. Let's first start by creating a C++ source file.
+			Any name will do, but for the tutorial I'll refer to this file as
+			<code>AlwaysMoveRight.cc</code>.
+		</p>
+		<pre><code>
+			#include "tutorial.ecsact.systems.hh"
+
+			void tutorial::AlwaysMoveRight(AlwaysMoveRight::context& ctx) {{'{'}}
+				auto pos = ctx.get{{'<'}}Position{{'>'}}();
+				pos.x += 1;
+				ctx.update(pos);
+			{{'}'}}
+		</code></pre>
+		<p>
+			There we go! Fairly simply system implementation. Get the position and
+			update the position. Let's move on to generating a valid Wasm file with
+			this system implementation.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="step4">Step 4: Compile</h2>
+		<p>
+			With our generated files and our system implementation written we're ready
+			to compile our Wasm file. Before we do that let's talk about what we
+			expect the wasm file to output.
+		</p>
+		<p>We're expecting the following to be available in the Wasm file.</p>
+		<ul>
+			<li>
+				Exported function <code>tutorial__AlwaysMoveRight</code> because that's
+				the name of our C function implementation
+			</li>
+			<li>
+				Imported function
+				<code>ecsact_system_execution_context_get</code> because our system
+				implementation used <code>ctx.get</code>
+			</li>
+			<li>
+				Imported function
+				<code>ecsact_system_execution_context_update</code> becuse our system
+				implementation used <code>ctx.update</code>
+			</li>
+		</ul>
+		<p>
+			You can read more details in the
+			<a routerLink="/docs/system-impl-wasm">Wasm Systems Overview doc</a>. At
+			the end of this tutorial we'll supply you with a form to validate your
+			Wasm file right here in the tutorial.
+		</p>
+		<h3 id="using-emsdk">Compile with <code>emcc</code></h3>
+		<p>
+			If you haven't installed
+			<a
+				href="https://emscripten.org/docs/getting_started/downloads.html"
+				target="_blank"
+				>emsdk <span class="i24">open_in_new</span></a
+			>
+			yet you must do that now. Make sure you either have <code>emcc</code> in
+			your <code>PATH</code> or you're using a direct path to
+			<code>emcc</code> while following along.
+		</p>
+		<p>
+			This tutorial should work with all fairly recent versions of emsdk, but at
+			the time of wriring this tutorial <code>emcc -v</code> outputs the
+			following:
+		</p>
+		<pre><code>
+			emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.18 (d5ca9bba6513763d5bdddbd0efff759332bd85d7)
+			clang version 16.0.0 (https://github.com/llvm/llvm-project 48129cf0ed5053ed3fdf4f928180635e84892614)
+			Target: wasm32-unknown-emscripten
+			Thread model: posix
+			InstalledDir: C:\emsdk\upstream\bin
+		</code></pre>
+		<p>
+			Lets skip to the good part. Here's a snippet that you can run in
+			powershell to compile a Wasm file named <code>AlwaysMoveRight.wasm</code>.
+		</p>
+		<pre><code>$EcsactInc = (ecsact --includedir)
+emcc -std=c++20 --no-entry -I"$EcsactInc" `
+     -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight `
+     -sERROR_ON_UNDEFINED_SYMBOLS=0 `
+     -Wno-js-compiler `
+     -o AlwaysMoveRight.wasm `
+     AlwaysMoveRight.cc `
+     tutorial.ecsact.systems.static.cc</code></pre>
+		<p>I'll go over each command line option in order.</p>
+
+		<ul>
+			<li>
+				<p><code>--std=c++20</code></p>
+				<p>
+					Tells the compiler to use the C++20 standard. All of ecsact is
+					expected to run in a C++20 compatible compiler.
+				</p>
+			</li>
+
+			<li>
+				<p><code>--no-entry</code></p>
+				<p>
+					Tells compiler to not use a main function. Wasm files built for ecsact
+					do not run on their own. They instead run specific exported functions.
+					An entry point is not required and shouldn't exist.
+				</p>
+			</li>
+			<li>
+				<p><code>-I</code></p>
+				<p>
+					Tells the compiler where to find include headers. The code generators
+					utilise headers from the Ecsat SDK that need to be found. The output
+					from
+					<code>ecsact --includedir</code> will show you where your ecsact
+					headers are installed.
+				</p>
+			</li>
+			<li>
+				<p><code>-sEXPORTED_FUNCTIONS=tutorial__AlwaysMoveRight</code></p>
+				<p>
+					Tells the compiler explicitly to export our C system implementation
+					function <code>tutorial__AlwaysMoveRight</code>.
+					<span class="i24">info</span> The leading underscore is only necessary
+					for Windows builds. <br /><br />
+					Read more about the <code>-sEXPORTED_FUNCTIONS</code> argument in the
+					<a
+						href="https://emscripten.org/docs/tools_reference/emcc.html?highlight=exported_functions#arguments"
+						>emcc docs <span class="i24">open_in_new</span></a
+					>
+				</p>
+			</li>
+
+			<li>
+				<p><code>-sERROR_ON_UNDEFINED_SYMBOLS=0</code></p>
+				<p>
+					Tells the compiler to ignore imports that don't have implementations
+					at compile time. Some functions the Wasm file will import are provided
+					by the ecsact runtime. Namely the
+					<code>ecsact_system_execution_context_*</code> functions. <br /><br />
+
+					Read more about the <code>-sERROR_ON_UNDEFINED_SYMBOLS</code> argument
+					in the
+					<a
+						href="https://emscripten.org/docs/tools_reference/emcc.html?highlight=exported_functions#arguments"
+						>emcc docs <span class="i24">open_in_new</span></a
+					>
+				</p>
+			</li>
+
+			<li>
+				<p><code>-Wno-js-compiler</code></p>
+				<p>Supresses a warning that is irrelevant to ecsact wasm files.</p>
+			</li>
+
+			<li>
+				<p><code>-o AlwaysMoveRight.wasm</code></p>
+				<p>
+					Specify the output path for our Wasm file. <code>emcc</code> supports
+					other file extension, but ecsact only works with
+					<code>.wasm</code> files.
+				</p>
+			</li>
+
+			<li>
+				<p><code>AlwaysMoveRight.cc</code></p>
+				<p>The source file we wrote our system implementation in.</p>
+			</li>
+
+			<li>
+				<p><code>tutorial.ecsact.systems.static.cc</code></p>
+				<p>
+					Generated source file responsible for implementation all the `ctx.*`
+					functions. The order here matters. This file must be <em>after</em>
+					<code>AlwaysMoveRight.cc</code>.
+				</p>
+			</li>
+		</ul>
+
+		<h3 id="validate">Validate your Wasm file</h3>
+		<p>
+			Lets check if we got the imports and exports we expected. Select your
+			<code>AlwaysMoveRight.wasm</code> file in the file select menu below.
+		</p>
+		<ecsact-wasm-system-impl-validator></ecsact-wasm-system-impl-validator>
+		<p>
+			If you see <strong>only </strong>
+			<code>ecsact_system_execution_context_*</code> methods in the imports and
+			<code>tutorial__AlwaysMoveRight</code> in the exports with a
+			<span class="i24">check</span> next to it then you've created a valid Wasm
+			file suitable for use as a system implementation.
+		</p>
+	</section>
+
+	<section>
+		<h1 id="next-steps">Next Steps</h1>
+		<p>
+			You've created a valid Wasm file to utilise in your project, but now it's
+			time to use it. Here are some more resources to continue learning:
+		</p>
+		<ul>
+			<li>
+				To keep learning about wasm system implementations, read the
+				<a routerLink="/docs/system-impl-wasm"
+					>Wasm Systems Overview documentation</a
+				>.
+			</li>
+			<li>
+				To start using your Wasm system implementation, read the
+				<a>using your systems in Unity</a> tutorial.
+			</li>
+		</ul>
+	</section>
+</article>
