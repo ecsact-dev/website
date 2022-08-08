@@ -19,6 +19,7 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
+        "//src/components/prism",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

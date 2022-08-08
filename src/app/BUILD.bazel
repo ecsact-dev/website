@@ -17,9 +17,11 @@ ng_ts_project(
     ],
     deps = [
         "//src/app/docs",
+        "//src/app/docs/ecs",
         "//src/app/docs/implementations",
         "//src/app/docs/runtime",
         "//src/app/docs/runtime-builder",
+        "//src/app/docs/setup",
         "//src/app/getstarted",
         "//src/app/home",
         "//src/app/install",

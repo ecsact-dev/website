@@ -1,0 +1,246 @@
+<article>
+	<div>
+		<h2>Setting up Ecsact</h2>
+		<p>
+			Learn about integrations, custom use, and various ways that Ecsact can be
+			implemented
+		</p>
+
+		<h3 id="unity-integration">Unity Integration</h3>
+		<p>
+			Ecsact has an officially developed integration for Unity that compiles
+			langauge changes, provides a runtime API, and different methods to execute
+			your .ecsact files. We will go through an example with source code that
+			will help you get started.
+		</p>
+
+		<div>To install the integration in Unity:</div>
+		<ol>
+			<li>
+				Go to Windows <span class="i48">arrow_forward</span> Package Manager
+			</li>
+			<li>
+				Go the top left of the Package Manager window and select "Add Package
+				from gitURL"
+			</li>
+			<li>
+				Paste the link:
+				<a routerLink="https://github.com/seaube/ecsact-unity.git"
+					>https://github.com/seaube/ecsact-unity.git</a
+				>
+			</li>
+		</ol>
+
+		<h4 id="unity-ecsact">Unity Integration: Creating the .ecsact File</h4>
+		<p>
+			Create an ecsact file in the assets folder of your Unity project. You can
+			name it whatever you want as long as it ends in the extension ".ecsact".
+		</p>
+
+		<p>This is the ecsact code we'll be using for this basic example:</p>
+		<pre><code ecsactLangSyntax>
+		main package example;
+
+		component Example {{'{'}}
+			int32 example_value;
+		{{'}'}}
+
+		system UseExample {{'{'}}
+			required Example;
+		{{'}'}}
+		</code></pre>
+
+		<p>
+			<span class="i48">info</span>
+			Check out the
+			<a routerLink="/docs/lang" routerLinkActive="active">Language</a> section
+			to learn more about Ecsact syntax
+		</p>
+		<p>
+			<b>NOTE:</b> You may get errors about missing components that you will
+			need to install. Ecsact uses
+			<a href="https://github.com/microsoft/vswhere" target="_blank">vswhere</a>
+			to output these errors, and you can search the outputs for entries
+			<a
+				href="https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2022"
+				target="_blank"
+				>here</a
+			>.
+		</p>
+		<p>
+			Assuming there are no errors, you've successfully generated C# from your
+			Ecsact file!
+		</p>
+
+		<h4 id="ecsact-code-output">Ecsact code output</h4>
+		<p>When the code is generated in C# and any other language being used</p>
+		<ul>
+			<li>Packages are namespaces</li>
+			<li>Components are structs</li>
+		</ul>
+
+		<h4 id="using-unity-ecsact">Using the Unity Integration</h4>
+		<p>
+			<b>NOTE:</b> This tutorial assumes you have a basic understanding of Unity
+			(Creating scripts, gameObjects).
+		</p>
+		<p>Let's start by creating a C# script</p>
+		<p>
+			You have access to the Ecsact runtime apis via the
+			<code>EcsactRuntime</code> class. You can create a default instance of the
+			runtime with
+		</p>
+		<pre><code prism language="csharp" class="language-csharp">EcsactRuntime.GetOrLoadDefault();</code></pre>
+		<p>
+			A lot of the api calls require a registry. You can create an instance
+			using the runtime api:
+		</p>
+		<pre><code prism language="csharp" class="language-csharp">ecsactRuntimeInstance.core.CreateRegistry()</code></pre>
+		<p>
+			Or you can use the default registry in the settings with the default
+			runner. If you're interested, read the next section
+		</p>
+		<p>IMAGE HERE</p>
+
+		<h4 id="default runner">Default Runner</h4>
+		<p>
+			If you want to avoid creating and destroying instances of registries, you
+			can set up the default runner in the Ecsact settings
+		</p>
+		<ol>
+			<li>
+				Go to Edit <span class="i24">arrow_forward</span> Project Settings
+				<span class="i24">arrow_forward</span>
+				Ecsact
+			</li>
+			<li>Open the Default Registry List under Runtime Settings</li>
+			<li>
+				Create a new default registry and give it a name. In this example it
+				will be called <b>ExampleReg</b>
+			</li>
+			<img
+				src="../assets/registry.png"
+				alt="Registry_IMG"
+				height="120"
+				width="800" />
+			<li>Add to the list and give your registry a name</li>
+			<li>There are 3 options for using a runner</li>
+
+			<ul>
+				<li>None - You have to call ExecuteSystems yourself</li>
+				<li>Update - ExecuteSystems runs on unity Update()</li>
+				<li>Fixed Update - ExecuteSystems runs on unity FixedUpdate()</li>
+			</ul>
+		</ol>
+		<div>
+			<span class="i48">info</span> You can choose to have a default registry
+			without a runner. In this example we will be using Fixed Update
+		</div>
+		<p>
+			When using a runner there will be a game object created for you that will
+			exist for the lifetime of your application. The component on the game
+			object will be different depending on your runner settings:
+		</p>
+		<div>In our case that would be <code>Ecsact.DefaultFixedRunner</code></div>
+		<p>
+			<b>NOTE:</b> You can retrieve all default registries with:
+			`EcsactRuntimeSettings.Get().defaultRegistries`.
+		</p>
+
+		<h3>Basic Runtime Examples</h3>
+		<h4>Without Using Systems</h4>
+		<p>
+			If you're interested in seeing some of the workflow of Ecsact without
+			setting up systems, follow this section.
+		</p>
+		<p>
+			First, we'll create an entity using the runtime instance we declared
+			earlier. This returns a unique integer we can use to identify it
+		</p>
+		<pre><code prism language="csharp">entityId = runtime.core.CreateEntity(runner.registryId);</code></pre>
+
+		<p>
+			Next, we'll add a component to the entity using its ID. The component used
+			will be the example from earlier, and its internal value of
+			"example_value" will be equal to 5
+		</p>
+		<pre><code prism language="csharp" class="language-csharp">
+					// Add component to your entity
+					runtime.core.AddComponent(
+						runner.registryId,
+						entityId,
+						new example.Example {{'{'}}
+							example_value = 5,
+						{{'}'}}
+					);
+				</code></pre>
+
+		<p>
+			Because we are using the FixedUpdate runner, we'll want to declare the
+			<code>FixedUpdate()</code> function in Unity.From there, we'll retrieve
+			the component from the entity we created
+		</p>
+
+		<pre><code  prism language="csharp" class="language-csharp">
+				// Retrieve the component added in the Start function
+				var componentPtr = runtime.core.GetComponent(
+						runner.registryId,
+						entityId,
+						example.Example.id
+				);
+			</code></pre>
+		<p>
+			Now that we have an instance of the component, we can modify its
+			underlying data. In this case we only have "example_value", we'll increase
+			its value by 1 per FixedUpdate
+		</p>
+
+		<pre><code  prism language="csharp" class="language-csharp">
+				// Update component's example_value
+				component.example_value +=1;
+			</code></pre>
+
+		<p>
+			With the value increasing by 1, we want a simple way to see the result of
+			our changes. Let's log it out in the console
+		</p>
+
+		<pre><code  prism language="csharp" class="language-csharp">
+				Debug.Log("Component example_value: " + component.example_value);
+			</code></pre>
+
+		<p>
+			So the value has increased by 1, but how do we make sure the values inside
+			of the component is changed the next time it's retrieved? We'll call a
+			function to update the component so the changes you make are permanent
+		</p>
+		<pre><code  prism language="csharp" class="language-csharp">
+				// Update the component value on each FixedUpdate
+				runtime.core.UpdateComponent(
+						runner.registryId,
+						entityId,
+						example.Example.id,
+						component
+				);
+			</code></pre>
+
+		<p>
+			Now that our script is ready to go, it needs to be put into a scene to
+			have any effect. Create a GameObject in your scene and add the script to
+			it.
+		</p>
+		<div>Consider putting IMAGE here</div>
+
+		<p>
+			When you run the game you should the example_value in our Example
+			component incrementing by 1!
+		</p>
+		<h5>Next steps</h5>
+		<p>
+			If you enjoyed using Ecsact, and see the potential it can offer then check
+			out how systems can be used. SOME LINK TO systems tutorial
+		</p>
+		<div>Next Steps Filler</div>
+		<div>Next Steps Filler</div>
+	</div>
+</article>

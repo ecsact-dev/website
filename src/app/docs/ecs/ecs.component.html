@@ -1,0 +1,47 @@
+<article>
+	<h1 id="ecs">What is ECS?</h1>
+	<p>
+		ECS stands for Entity Component System. It's an architecture that uses data
+		assocation over traditional methods like inheritance. Up to this point it's
+		been most commonly used for designing video games (Although it can and has
+		been used elsewhere)
+	</p>
+
+	<h2 id="entities">Entities</h2>
+	<p>
+		An entitiy is a unique identifer that can hold zero or more components.
+		Components can be added or removed from the entity dynamically
+	</p>
+
+	<h2 id="components">Components</h2>
+	<p>
+		A component is a datatype that can be attached to an entity. Components
+		don't hold any behaviours and provides ways to be iterated over in systems
+	</p>
+
+	<pre><code ecsactLangSyntax>
+		// Creates a component in Ecsact called Health
+		component Health {{'{'}}
+			int32 value;
+		{{'}'}}
+	</code></pre>
+
+	<h2 id="systems">Systems</h2>
+	<p>
+		A system iterates over entities with the request components. They can add,
+		remove, and manipulate the data on components. This changes the behaviour of
+		an entity and alters its state through associated components
+	</p>
+	<pre><code ecsactLangSyntax>
+		// This system iterates over every entity that has a Health Component
+		system UpdateHealth {{'{'}}
+			required Health;
+		{{'}'}}
+	</code></pre>
+
+	<h2>Benefits to using ECS</h2>
+	<p>
+		ECS has high reusability and prevents creating constrictive design. With the
+		right components, an entity can be anything
+	</p>
+</article>
