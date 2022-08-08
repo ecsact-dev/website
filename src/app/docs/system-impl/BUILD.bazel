@@ -21,6 +21,7 @@ ng_ts_project(
     deps = [
         "//src/components/ecsact-lang-syntax",
         "//src/components/hidden-table-rows",
+        "//src/components/prism",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

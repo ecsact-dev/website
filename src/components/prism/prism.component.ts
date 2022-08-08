@@ -7,6 +7,12 @@ import {
 } from '@angular/core';
 import {highlight, languages} from 'prismjs';
 
+import 'prismjs/components/prism-csharp';
+import 'prismjs/components/prism-c';
+import 'prismjs/components/prism-cpp';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-wasm';
+
 function getPrefixWhitespace(str: string): string {
 	const firstNonWhitespaceIndex = str.search(/\S/);
 	if (firstNonWhitespaceIndex === -1) return '';
@@ -22,7 +28,7 @@ function getPrefixWhitespace(str: string): string {
 })
 export class PrismComponent implements AfterViewInit {
 	@Input() code: string;
-	@Input() language = 'javascript';
+	@Input() language: string;
 	constructor(private el: ElementRef) {}
 	ngAfterViewInit() {
 		const code = this.code || this.el.nativeElement.innerText;
