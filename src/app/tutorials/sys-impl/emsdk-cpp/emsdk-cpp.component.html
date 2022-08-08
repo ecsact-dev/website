@@ -67,7 +67,7 @@
 		</p>
 
 		<h3><code>ecsact_cpp_header_codegen</code></h3>
-		<pre><code>
+		<pre><code prism language="shell">
 			ecsact_cpp_header_codegen tutorial.ecsact --constexpr_component_ids
 		</code></pre>
 		<p>
@@ -82,7 +82,7 @@
 		</p>
 
 		<h3><code>ecsact_systems_header_codegen</code></h3>
-		<pre><code>
+		<pre><code prism language="shell">
 			ecsact_systems_header_codegen tutorial.ecsact
 		</code></pre>
 		<p>
@@ -90,7 +90,7 @@
 			which contains function expected to be implemented by you, the developer.
 			For our <code>tutorial.ecsact</code> file it will look like this:
 		</p>
-		<pre><code>
+		<pre><code prism language="c">
 			void tutorial__AlwaysMoveRight ecsact_system_execution_context*);
 		</code></pre>
 		<p>
@@ -106,7 +106,7 @@
 		</p>
 
 		<h3><code>ecsact_cpp_systems_header_codegen</code></h3>
-		<pre><code>
+		<pre><code prism language="shell">
 			ecsact_cpp_systems_header_codegen tutorial.ecsact
 		</code></pre>
 		<p>
@@ -115,7 +115,7 @@
 			this will create a C++ system implementation function. That is correct!
 			The above command will generate something similar to this:
 		</p>
-		<pre><code>
+		<pre><code prism language="cpp">
 			namespace tutorial {{'{'}}
 				struct AlwaysMoveRight {{'{'}}
 					struct context {{'{'}} /* ... */ {{'}'}};
@@ -136,7 +136,7 @@
 		</p>
 
 		<h3><code>ecsact_cpp_systems_source_static_codegen</code></h3>
-		<pre><code>
+		<pre><code prism language="shell">
 			ecsact_cpp_systems_source_static_codegen tutorial.ecsact
 		</code></pre>
 		<p>
@@ -154,7 +154,7 @@
 			Any name will do, but for the tutorial I'll refer to this file as
 			<code>AlwaysMoveRight.cc</code>.
 		</p>
-		<pre><code>
+		<pre><code prism language="cpp">
 			#include "tutorial.ecsact.systems.hh"
 
 			void tutorial::AlwaysMoveRight(AlwaysMoveRight::context& ctx) {{'{'}}
@@ -217,7 +217,7 @@
 			the time of wriring this tutorial <code>emcc -v</code> outputs the
 			following:
 		</p>
-		<pre><code>
+		<pre><code prism language="shell">
 			emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.18 (d5ca9bba6513763d5bdddbd0efff759332bd85d7)
 			clang version 16.0.0 (https://github.com/llvm/llvm-project 48129cf0ed5053ed3fdf4f928180635e84892614)
 			Target: wasm32-unknown-emscripten
@@ -228,7 +228,7 @@
 			Lets skip to the good part. Here's a snippet that you can run in
 			powershell to compile a Wasm file named <code>AlwaysMoveRight.wasm</code>.
 		</p>
-		<pre><code>$EcsactInc = (ecsact --includedir)
+		<pre><code prism language="shell">$EcsactInc = (ecsact --includedir)
 emcc -std=c++20 --no-entry -I"$EcsactInc" `
      -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight `
      -sERROR_ON_UNDEFINED_SYMBOLS=0 `

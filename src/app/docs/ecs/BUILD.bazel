@@ -1,0 +1,24 @@
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//:__subpackages__"])
+
+sass_binary(
+    name = "ecs_component_style",
+    src = "ecs.component.scss",
+)
+
+ng_ts_project(
+    name = "ecs",
+    srcs = glob(["*.ts"]),
+    angular_assets = [
+        "ecs.component.html",
+        ":ecs_component_style",
+    ],
+    deps = [
+        "//src/components/ecsact-lang-syntax",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
