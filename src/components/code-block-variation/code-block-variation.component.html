@@ -1,0 +1,24 @@
+<div style="display: flex; flex-direction: row">
+	<select
+		#optionSelect
+		(change)="onSelectChange()"
+		[class.no-options]="options.length === 1">
+		<option *ngFor="let option of options; let i = index" [value]="i">
+			{{ option.optionTitle }}
+		</option>
+	</select>
+	<div style="flex: auto"></div>
+	<button
+		class="copy-btn"
+		[class.copy-done]="clipboardCopyDone"
+		(click)="copyActiveTextContent()">
+		<span class="i24">content_copy</span>
+		{{ clipboardCopyDone ? 'Copied' : 'Copy' }}
+	</button>
+</div>
+<div
+	class="code-block-container"
+	#codeBlocksContainer
+	(cdkObserveContent)="onContentChange()">
+	<ng-content select="[codeBlockVariationOption]"></ng-content>
+</div>

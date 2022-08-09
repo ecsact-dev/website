@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {EcsactLangSyntaxModule} from '../../../../components/ecsact-lang-syntax/ecsact-lang-syntax.module';
 import {EcsactWasmSystemImplValidatorModule} from '../../../../components/ecsact-wasm-system-impl-validator/ecsact-wasm-system-impl-validator.module';
 import {PrismModule} from '../../../../components/prism/prism.module';
+import {CodeBlockVariationModule} from '../../../../components/code-block-variation/code-block-variation.module';
 
 @NgModule({
 	declarations: [EmsdkCppComponent],
@@ -14,6 +15,7 @@ import {PrismModule} from '../../../../components/prism/prism.module';
 		EcsactLangSyntaxModule,
 		EcsactWasmSystemImplValidatorModule,
 		PrismModule,
+		CodeBlockVariationModule,
 	],
 	exports: [EmsdkCppComponent],
 })

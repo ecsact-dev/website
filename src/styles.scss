@@ -286,9 +286,17 @@ table.sticky {
 	}
 }
 
+code-block-variation > .code-block-container > pre {
+	display: none;
+	&.active {
+		display: block;
+	}
+}
+
 main article {
 	margin: 32px;
 
+	code-block-variation,
 	> section > pre,
 	> pre {
 		// Always using the dark theme in pre article tags
@@ -302,6 +310,7 @@ main article {
 	@media (max-width: 374px) {
 		margin: 16px;
 
+		code-block-variation,
 		> section > pre,
 		> pre {
 			margin: 0px -16px;
