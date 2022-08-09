@@ -228,7 +228,7 @@
 			Lets skip to the good part. Here's a snippet that you can run in
 			powershell to compile a Wasm file named <code>AlwaysMoveRight.wasm</code>.
 		</p>
-		<pre><code prism language="shell">$EcsactInc = (ecsact --includedir)
+		<pre><code prism language="powershell">$EcsactInc = (ecsact --includedir)
 emcc -std=c++20 --no-entry -I"$EcsactInc" `
      -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight `
      -sERROR_ON_UNDEFINED_SYMBOLS=0 `

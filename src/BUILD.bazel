@@ -1,5 +1,5 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
@@ -16,9 +16,15 @@ ts_config(
     src = "tsconfig.json",
 )
 
+sass_library(
+    name = "syntax-highlighting-styles",
+    srcs = ["syntax-highlighting.scss"],
+)
+
 sass_binary(
     name = "styles",
     src = "styles.scss",
+    deps = [":syntax-highlighting-styles"],
 )
 
 ng_ts_project(
