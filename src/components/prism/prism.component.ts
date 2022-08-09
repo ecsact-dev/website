@@ -12,6 +12,7 @@ import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-wasm';
+import 'prismjs/components/prism-powershell';
 
 function getPrefixWhitespace(str: string): string {
 	const firstNonWhitespaceIndex = str.search(/\S/);
@@ -27,13 +28,22 @@ function getPrefixWhitespace(str: string): string {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrismComponent implements AfterViewInit {
-	@Input() code: string;
-	@Input() language: string;
-	constructor(private el: ElementRef) {}
+	private _language: string;
+	get language(): string {
+		return this._language;
+	}
+	@Input()
+	set language(value: string) {
+		this.hostEl.nativeElement.classList.remove(`language-${this._language}`);
+		this._language = value;
+		this.hostEl.nativeElement.classList.add(`language-${this._language}`);
+	}
+
+	constructor(private hostEl: ElementRef<HTMLElement>) {}
+
 	ngAfterViewInit() {
-		const code = this.code || this.el.nativeElement.innerText;
 		const grammar = languages[this.language];
-		let lines = this.el.nativeElement.innerText.split('\n');
+		let lines = this.hostEl.nativeElement.innerText.split('\n');
 		while (!lines[0].trim()) {
 			lines.shift();
 		}
@@ -56,7 +66,11 @@ export class PrismComponent implements AfterViewInit {
 				line.substring(smallestPrefixWhitespace.length),
 			);
 		}
-		const html = highlight(lines.join('\n'), grammar, this.language);
-		this.el.nativeElement.innerHTML = html;
+
+		this.hostEl.nativeElement.innerHTML = highlight(
+			lines.join('\n'),
+			grammar,
+			this.language,
+		);
 	}
 }
