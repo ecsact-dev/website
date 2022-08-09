@@ -60,7 +60,9 @@ function getPrefixWhitespace(str: string): string {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EcsactLangSyntaxComponent implements AfterViewInit {
-	constructor(private hostEl: ElementRef<HTMLElement>) {}
+	constructor(private hostEl: ElementRef<HTMLElement>) {
+		this.hostEl.nativeElement.classList.add('language-ecsact');
+	}
 
 	ngAfterViewInit(): void {
 		let lines = this.hostEl.nativeElement.innerText.split('\n');
