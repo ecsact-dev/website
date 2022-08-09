@@ -4,6 +4,7 @@ import {
 	ChangeDetectionStrategy,
 	AfterViewInit,
 	ElementRef,
+	HostBinding,
 } from '@angular/core';
 import {languages, highlight} from 'prismjs';
 
@@ -60,6 +61,9 @@ function getPrefixWhitespace(str: string): string {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EcsactLangSyntaxComponent implements AfterViewInit {
+	@HostBinding('attr.language')
+	readonly language = 'ecsact';
+
 	constructor(private hostEl: ElementRef<HTMLElement>) {
 		this.hostEl.nativeElement.classList.add('language-ecsact');
 	}

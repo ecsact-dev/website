@@ -37,18 +37,20 @@
 			<code>AlwaysMoveRight</code> (positive <code>x</code> is <em>right</em> in
 			this tutorial.)
 		</p>
-		<pre><code ecsactLangSyntax>
-			package tutorial;
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				package tutorial;
 
-			component Position {{'{'}}
-				decimal32 x;
-				decimal32 y;
-			{{'}'}}
+				component Position {{'{'}}
+					decimal32 x;
+					decimal32 y;
+				{{'}'}}
 
-			system AlwaysMoveRight {{'{'}}
-				required Position;
-			{{'}'}}
-		</code></pre>
+				system AlwaysMoveRight {{'{'}}
+					required Position;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
 	</section>
 
 	<section>
@@ -67,9 +69,11 @@
 		</p>
 
 		<h3><code>ecsact_cpp_header_codegen</code></h3>
-		<pre><code prism language="shell">
-			ecsact_cpp_header_codegen tutorial.ecsact --constexpr_component_ids
-		</code></pre>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="shell">
+				ecsact_cpp_header_codegen tutorial.ecsact --constexpr_component_ids
+			</code></pre>
+		</code-block-variation>
 		<p>
 			This will generate the <code>tutorial.ecsact.hh</code> C++ header file
 			which contains structs for all the declared types in our
@@ -82,9 +86,11 @@
 		</p>
 
 		<h3><code>ecsact_systems_header_codegen</code></h3>
-		<pre><code prism language="shell">
-			ecsact_systems_header_codegen tutorial.ecsact
-		</code></pre>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="shell">
+				ecsact_systems_header_codegen tutorial.ecsact
+			</code></pre>
+		</code-block-variation>
 		<p>
 			This will generate the <code>tutorial.ecsact.systems.h</code> C header
 			which contains function expected to be implemented by you, the developer.
@@ -106,9 +112,11 @@
 		</p>
 
 		<h3><code>ecsact_cpp_systems_header_codegen</code></h3>
-		<pre><code prism language="shell">
-			ecsact_cpp_systems_header_codegen tutorial.ecsact
-		</code></pre>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="shell">
+				ecsact_cpp_systems_header_codegen tutorial.ecsact
+			</code></pre>
+		</code-block-variation>
 		<p>
 			In the last code generator a C system implementation function was
 			generated. You might've guessed from the name of this code generator that
@@ -136,9 +144,11 @@
 		</p>
 
 		<h3><code>ecsact_cpp_systems_source_static_codegen</code></h3>
-		<pre><code prism language="shell">
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="shell">
 			ecsact_cpp_systems_source_static_codegen tutorial.ecsact
 		</code></pre>
+		</code-block-variation>
 		<p>
 			Generates <code>tutorial.ecsact.systems.static.cc</code> which holds the
 			implementations for the C++ systems wrapper function
@@ -154,7 +164,10 @@
 			Any name will do, but for the tutorial I'll refer to this file as
 			<code>AlwaysMoveRight.cc</code>.
 		</p>
-		<pre><code prism language="cpp">
+		<code-block-variation>
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
 			#include "tutorial.ecsact.systems.hh"
 
 			void tutorial::AlwaysMoveRight(AlwaysMoveRight::context& ctx) {{'{'}}
@@ -163,6 +176,7 @@
 				ctx.update(pos);
 			{{'}'}}
 		</code></pre>
+		</code-block-variation>
 		<p>
 			There we go! Fairly simply system implementation. Get the position and
 			update the position. Let's move on to generating a valid Wasm file with
@@ -225,17 +239,31 @@
 			InstalledDir: C:\emsdk\upstream\bin
 		</code></pre>
 		<p>
-			Lets skip to the good part. Here's a snippet that you can run in
-			powershell to compile a Wasm file named <code>AlwaysMoveRight.wasm</code>.
+			Lets skip to the good part. Here's a snippet that you can run to compile a
+			Wasm file named <code>AlwaysMoveRight.wasm</code>.
 		</p>
-		<pre><code prism language="powershell">$EcsactInc = (ecsact --includedir)
-emcc -std=c++20 --no-entry -I"$EcsactInc" `
-     -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight `
-     -sERROR_ON_UNDEFINED_SYMBOLS=0 `
-     -Wno-js-compiler `
-     -o AlwaysMoveRight.wasm `
-     AlwaysMoveRight.cc `
-     tutorial.ecsact.systems.static.cc</code></pre>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="powershell">
+				$EcsactInc = (ecsact --includedir)
+				emcc -std=c++20 --no-entry -I"$EcsactInc" `
+				     -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight `
+				     -sERROR_ON_UNDEFINED_SYMBOLS=0 `
+				     -Wno-js-compiler `
+				     -o AlwaysMoveRight.wasm `
+				     AlwaysMoveRight.cc `
+				     tutorial.ecsact.systems.static.cc
+			</code></pre>
+			<pre codeBlockVariationOption><code prism language="bash">
+				EcsactInc=$(ecsact --includedir)
+				emcc -std=c++20 --no-entry -I"$EcsactInc" \
+				     -sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight \
+				     -sERROR_ON_UNDEFINED_SYMBOLS=0 \
+				     -Wno-js-compiler \
+				     -o AlwaysMoveRight.wasm \
+				     AlwaysMoveRight.cc \
+				     tutorial.ecsact.systems.static.cc
+			</code></pre>
+		</code-block-variation>
 		<p>I'll go over each command line option in order.</p>
 
 		<ul>

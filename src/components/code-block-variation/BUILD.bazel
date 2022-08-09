@@ -5,25 +5,22 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "emsdk-cpp.component.scss",
+    src = "code-block-variation.component.scss",
 )
 
 ng_ts_project(
-    name = "emsdk-cpp",
+    name = "code-block-variation",
     srcs = [
-        "emsdk-cpp.component.ts",
-        "emsdk-cpp.module.ts",
-        "emsdk-cpp-routing.module.ts",
+        "code-block-variation.component.ts",
+        "code-block-variation.module.ts",
+        "code-block-variation-option.directive.ts",
     ],
     angular_assets = [
-        "emsdk-cpp.component.html",
+        "code-block-variation.component.html",
         ":styles",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/ecsact-wasm-system-impl-validator",
-        "//src/components/prism",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

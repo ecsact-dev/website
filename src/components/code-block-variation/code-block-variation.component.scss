@@ -1,0 +1,41 @@
+:host {
+	display: block;
+}
+
+select {
+	margin: 0px;
+	border: 1px solid var(--color-text);
+	background-color: transparent;
+	color: var(--color-text);
+	padding: 4px 8px;
+	border-radius: 3px;
+
+	option {
+		color: var(--color-text);
+		background-color: var(--color-bg);
+		border: 1px solid var(--color-text);
+		border-radius: 3px;
+	}
+
+	&.no-options {
+		opacity: 0.5;
+		pointer-events: none;
+		appearance: none;
+	}
+}
+
+button.copy-btn {
+	margin: 0px;
+	color: var(--color-text);
+	border: 1px solid var(--color-text);
+	background-color: transparent;
+	cursor: pointer;
+	padding: 4px 8px;
+	border-radius: 3px;
+	transition: 100ms ease color, 100ms ease border-color;
+
+	&.copy-done {
+		color: var(--color-primary);
+		border-color: var(--color-primary);
+	}
+}
