@@ -266,10 +266,10 @@ emcc -std=c++20 --no-entry -I"$EcsactInc" `
 				</p>
 			</li>
 			<li>
-				<p><code>-sEXPORTED_FUNCTIONS=tutorial__AlwaysMoveRight</code></p>
+				<p><code>-sEXPORTED_FUNCTIONS=_tutorial__AlwaysMoveRight</code></p>
 				<p>
 					Tells the compiler explicitly to export our C system implementation
-					function <code>tutorial__AlwaysMoveRight</code>.
+					function <code>_tutorial__AlwaysMoveRight</code>.
 					<span class="i24">info</span> The leading underscore is only necessary
 					for Windows builds. <br /><br />
 					Read more about the <code>-sEXPORTED_FUNCTIONS</code> argument in the
@@ -320,7 +320,7 @@ emcc -std=c++20 --no-entry -I"$EcsactInc" `
 				<p><code>tutorial.ecsact.systems.static.cc</code></p>
 				<p>
 					Generated source file responsible for implementation all the `ctx.*`
-					functions. The order here matters. This file must be <em>after</em>
+					functions. The order here matters. This file must be <em>after </em>
 					<code>AlwaysMoveRight.cc</code>.
 				</p>
 			</li>
