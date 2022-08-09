@@ -1,6 +1,8 @@
 // This is the root styles sheet. This file applies to all styles in the
 // application without encapsulation.
 
+@import 'syntax-highlighting';
+
 $blackColor: #202120;
 $whiteColor: #d4d4d4;
 
@@ -318,48 +320,3 @@ a {
 		}
 	}
 }
-
-////////////////////////////////////
-/// BEGIN Syntax highlighting
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-	color: slategray;
-}
-
-.token.punctuation {
-	color: #999;
-}
-
-.token.keyword {
-	color: #c678dd;
-}
-
-.token.function {
-	color: #61afef;
-}
-.token.builtin,
-.token.class-name {
-	color: #e5c07b;
-}
-
-.token.variable {
-	color: #e06c75;
-}
-
-.token.important,
-.token.bold {
-	font-weight: bold;
-}
-.token.italic {
-	font-style: italic;
-}
-
-.token.entity {
-	cursor: help;
-}
-/// END Syntax highlighting
-////////////////////////////////////
-///
