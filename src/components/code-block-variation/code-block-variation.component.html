@@ -10,10 +10,19 @@
 	<div style="flex: auto"></div>
 	<button
 		class="copy-btn"
-		[class.copy-done]="clipboardCopyDone"
-		(click)="copyActiveTextContent()">
-		<span class="i24">content_copy</span>
-		{{ clipboardCopyDone ? 'Copied' : 'Copy' }}
+		[class.copy-done]="clipboardStatus === 'Copied'"
+		[class.copy-failed]="clipboardStatus === 'CopyFailed'"
+		(click)="copyActiveTextContent()"
+		[ngSwitch]="clipboardStatus">
+		<span class="i24 success-icon" aria-hidden="true">check</span>
+		<span class="i24 default-icon" aria-hidden="true">content_copy</span>
+
+		<ng-container *ngSwitchCase="'Copying'"> Copying... </ng-container>
+		<ng-container *ngSwitchCase="'Copied'"> Copied </ng-container>
+		<ng-container *ngSwitchCase="'CopyFailed'">
+			<span class="i24" aria-hidden="true">error</span> Cannot Copy
+		</ng-container>
+		<ng-container *ngSwitchDefault> Copy </ng-container>
 	</button>
 </div>
 <div
