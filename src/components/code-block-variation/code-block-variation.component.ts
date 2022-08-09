@@ -18,6 +18,12 @@ export interface ICodeBlockVariationOption {
 	getTextContent(): string;
 }
 
+export type CodeBlockVariationClipboardStatus =
+	| ''
+	| 'Copying'
+	| 'Copied'
+	| 'CopyFailed';
+
 @Component({
 	selector: 'code-block-variation',
 	templateUrl: './code-block-variation.component.html',
@@ -33,7 +39,7 @@ export class CodeBlockVariationComponent
 
 	optionIndex = 0;
 	options: ICodeBlockVariationOption[] = [];
-	clipboardCopyDone = false;
+	clipboardStatus: CodeBlockVariationClipboardStatus = '';
 
 	@ViewChild('codeBlocksContainer', {static: true})
 	codeBlocksContainer?: ElementRef<HTMLDivElement>;
@@ -49,13 +55,13 @@ export class CodeBlockVariationComponent
 			this.options[this.optionIndex]?.setActive(false);
 			this.optionIndex = value;
 			this.options[this.optionIndex]?.setActive(true);
-			this.clipboardCopyDone = false;
+			this.clipboardStatus = '';
 			this.cdr.detectChanges();
 		}
 	}
 
 	copyActiveTextContent() {
-		this.clipboardCopyDone = false;
+		this.clipboardStatus = 'Copying';
 
 		const activeOption = this.options[this.optionIndex];
 		const activeTextContent = activeOption?.getTextContent() || '';
@@ -70,14 +76,16 @@ export class CodeBlockVariationComponent
 			} else {
 				pending.destroy();
 
-				if (result) {
-					try {
-						CodeBlockVariationComponent.globalCopyCurrent = this;
-						this.clipboardCopyDone = true;
-						this.cdr.markForCheck();
-					} finally {
-						CodeBlockVariationComponent.globalCopyEvent.emit();
+				try {
+					CodeBlockVariationComponent.globalCopyCurrent = this;
+					if (result) {
+						this.clipboardStatus = 'Copied';
+					} else {
+						this.clipboardStatus = 'CopyFailed';
 					}
+					this.cdr.markForCheck();
+				} finally {
+					CodeBlockVariationComponent.globalCopyEvent.emit();
 				}
 			}
 		};
@@ -89,7 +97,7 @@ export class CodeBlockVariationComponent
 			() => {
 				if (CodeBlockVariationComponent.globalCopyCurrent === this) return;
 
-				this.clipboardCopyDone = false;
+				this.clipboardStatus = '';
 				this.cdr.detectChanges();
 			},
 		);

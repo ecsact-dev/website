@@ -25,6 +25,8 @@ select {
 }
 
 button.copy-btn {
+	position: relative;
+	overflow: hidden;
 	margin: 0px;
 	color: var(--color-text);
 	border: 1px solid var(--color-text);
@@ -34,8 +36,49 @@ button.copy-btn {
 	border-radius: 3px;
 	transition: 100ms ease color, 100ms ease border-color;
 
+	.default-icon,
+	.success-icon {
+		display: inline-block;
+		transition: 100ms ease opacity, 200ms ease transform;
+	}
+
+	.default-icon {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+
+	.success-icon {
+		margin-right: -1em;
+		opacity: 0;
+		transform: translateX(75%);
+	}
+
 	&.copy-done {
-		color: var(--color-primary);
-		border-color: var(--color-primary);
+		color: var(--color-success);
+		border-color: var(--color-success);
+
+		.default-icon {
+			opacity: 0;
+			transform: translateX(-75%);
+		}
+
+		.success-icon {
+			opacity: 1;
+			transform: translateX(0%);
+		}
+	}
+
+	&.copy-failed {
+		color: var(--color-error);
+		border-color: var(--color-error);
+		animation: error-shake 300ms 1 linear;
+
+		.default-icon {
+			display: none;
+		}
+
+		.success-icon {
+			display: none;
+		}
 	}
 }
