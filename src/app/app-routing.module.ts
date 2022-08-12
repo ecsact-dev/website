@@ -89,7 +89,9 @@ const routes: Routes = [
 			anchorScrolling: 'disabled',
 			urlUpdateStrategy: 'deferred',
 			useHash: false,
-			scrollPositionRestoration: 'top',
+			// This is set to disabled because scroll position is controlled by the
+			// ContentComponent when a fragment exists and the AppComponent otherwise.
+			scrollPositionRestoration: 'disabled',
 		}),
 	],
 	exports: [RouterModule],

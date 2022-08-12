@@ -21,6 +21,9 @@ export class AppComponent {
 		router.events.subscribe(routerEvent => {
 			if (routerEvent instanceof NavigationEnd) {
 				searchMeta.useSearchablePageInfo();
+				if (!location.hash) {
+					window.scrollTo({top: 0, behavior: 'auto'});
+				}
 			}
 		});
 	}
