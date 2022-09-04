@@ -5,6 +5,7 @@ import {DocsComponent} from './docs.component';
 import {DocsModule} from './docs.module';
 import {LangComponent} from './lang/lang.component';
 import {LangModule} from './lang/lang.module';
+import {SystemExecutionComponent} from './system-execution/system-execution.component';
 import {SystemImplWasmComponent} from './system-impl-wasm/system-impl-wasm.component';
 import {SystemImplComponent} from './system-impl/system-impl.component';
 
@@ -28,6 +29,10 @@ const routes: Routes = [
 			{
 				path: 'cpp-system-impl-wasm',
 				component: CppSystemImplWasmComponent,
+			},
+			{
+				path: 'system-execution',
+				component: SystemExecutionComponent,
 			},
 			{
 				path: 'runtime',

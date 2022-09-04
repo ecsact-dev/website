@@ -1,0 +1,120 @@
+<article>
+	<h1>System Execution</h1>
+	<p>System execution is an important part of Ecsact.</p>
+
+	<h2 id="execution-order">Execution Order</h2>
+	<p>
+		System execution order is determined by the declaration order in your ecsact
+		file.
+	</p>
+	<pre><code ecsactLangSyntax>
+		system Foo {{ '{ /* ... */ }' }}
+		action Bar {{ '{ /* ... */ }' }}
+		system Baz {{ '{ /* ... */ }' }}
+	</code></pre>
+	<p>
+		In the above example the systems and actions are executed in order
+		<code>Foo</code>, <code>Bar</code>, and then <code>Baz</code>. If systems or
+		actions do not have <a>conflicting component capabilities</a> they may
+		<a>execute in parallel</a>. This makes your system and action declaration
+		order a design and performance decision.
+	</p>
+
+	<h2 id="parallel-execution">Parallel Execution</h2>
+	<p>
+		Systems and actions that do not have conflciting component capabilities are
+		able to execute in parallel. This is not guaranteed for every runtime
+		implementation and is more of an implementation detail. However, it is
+		valuable to know in order to design performant Ecsact files.
+	</p>
+
+	<h3 id="conflicting-component-capabilities">
+		Conflicting Component Capabilities
+	</h3>
+	<p>
+		Conflicting capabilities are system and action capabilities that do not
+		allow a system or action from executing in parallel with each other.
+		Generally speaking all write operations on the same components may not be
+		done in parallel. This includes <code>readwrite</code>, <code>adds</code>,
+		<code>removes</code>, and <code>generate</code>.
+	</p>
+
+	<h3 id="lanes-and-steps">Execution Lanes & Steps</h3>
+	<p>
+		Parallel execution is split into lanes and steps. For every lane there are 1
+		or more steps and for every step there are or 1 or more systems & actions.
+		Every system in a step can be executed in parallel and every lane can
+		execute in parallel.
+	</p>
+	<pre><code ecsactLangSyntax>
+		package example;
+
+		component Health {{ '{' }} f32 value; {{ '}' }}
+		component Position {{ '{' }} f32 x; f32 y; {{ '}' }}
+		component Velocity {{ '{' }} f32 vel_x; f32 vel_y; {{ '}' }}
+		component Poisoned {{ '{' }} f32 potency; {{ '}' }}
+		component Flying;
+		component Player;
+		component PoisonGeyser;
+
+		action Fly {{'{'}}
+			include Player;
+			adds Flying;
+		{{'}'}}
+
+		system Gravity {{ '{' }}
+			readwrite Velocity;
+			exclude Flying;
+		{{ '}' }}
+
+		action Move {{'{'}}
+			f32 dir_x;
+			f32 dir_y;
+			readwrite Velocity;
+		{{'}'}}
+
+		system {{ '{' }}
+			readonly Position;
+			include PoisonGeyser;
+			system PoisonNearby {{ '{' }}
+				readonly Position;
+				adds Poisoned;
+			{{ '}'}}
+		{{ '}' }}
+
+		system ApplyPoisonDamage {{ '{' }}
+			readwrite Health;
+			readonly Poisoned;
+		{{ '}' }}
+		
+		transient PoisonExpired;
+		system PoisonDecay {{ '{' }}
+			readwrite Poisoned;
+			adds PoisonExpired;
+		{{ '}' }}
+
+		system {{ '{' }}
+			include PoisonExpired;
+			removes Poisoned;
+		{{ '}' }}
+
+		system ApplyVelocity {{ '{' }}
+			readonly Velocity;
+			readwrite Position;
+		{{ '}' }}
+	</code></pre>
+	<p>
+		In the above example there is a single lane with 5 steps, 2 of which have
+		parallel execution.
+	</p>
+	<div style="display: flex; flex-direction: row">
+		<ecsact-exec-lane-vis
+			[steps]="[
+				{systems: ['Fly']},
+				{systems: ['Gravity']},
+				{systems: ['Move', 'PoisonNearby']},
+				{systems: ['ApplyPoisonDamage']},
+				{systems: ['PoisonDecay', 'ApplyVelocity']}
+			]"></ecsact-exec-lane-vis>
+	</div>
+</article>

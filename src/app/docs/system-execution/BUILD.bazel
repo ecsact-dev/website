@@ -1,0 +1,28 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "system-execution.component.scss",
+)
+
+ng_ts_project(
+    name = "system-execution",
+    srcs = [
+        "system-execution.component.ts",
+        "system-execution.module.ts",
+    ],
+    angular_assets = [
+        "system-execution.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/exec-lane-vis",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
