@@ -124,8 +124,8 @@
 	<h2 id="define-components">Defining Components</h2>
 	<pre><code ecsactLangSyntax>
 		component Position {{'{'}}
-			int32 x;
-			int32 y;
+			i32 x;
+			i32 y;
 		{{'}'}}
 	</code></pre>
 
@@ -133,8 +133,8 @@
 	<pre><code ecsactLangSyntax>
 		// Apply poison damage to entity health over time
 		system PoisonDamage {{'{'}}
-			required readonly Poisoned;
-			required Health;
+			readonly Poisoned;
+			readwrite Health;
 		{{'}'}}
 	</code></pre>
 
@@ -149,8 +149,8 @@
 	<pre><code ecsactLangSyntax>
 		// Entities controlled by player `player_id` starts attacking
 		action Attack {{'{'}}
-			int32 player_id;
-			required readonly PlayerControlled;
+			i32 player_id;
+			readonly PlayerControlled;
 			adds Attacking;
 		{{'}'}}
 	</code></pre>
@@ -233,9 +233,9 @@
 	</p>
 	<pre><code ecsactLangSyntax>
 		system ParentSystem {{'{'}}
-			required Position;
+			readwrite Position;
 			system NestedSystem {{'{'}}
-				required ExampleComponent;
+				readwrite ExampleComponent;
 			{{'}'}}
 		{{'}'}}
 	</code></pre>
@@ -271,9 +271,9 @@
 	</p>
 	<pre><code ecsactLangSyntax>
 		system ApplyAttackDamage {{'{'}}
-			required readonly AttackDamage;
-			required readonly Attacking with target {{'{'}}
-				required Health;
+			readonly AttackDamage;
+			readonly Attacking with target {{'{'}}
+				readwrite Health;
 			{{'}'}}
 		{{'}'}}
 	</code></pre>
