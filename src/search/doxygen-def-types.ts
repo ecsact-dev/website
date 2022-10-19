@@ -66,11 +66,21 @@ export interface DoxygenFileDef extends DoxygenBaseDef {
 	innerNamespaces: DoxygenInnerNamespaceDef[];
 }
 
+export interface DoxygenPageDef extends DoxygenBaseDef {
+	kind: 'page';
+	name: string;
+	title: string;
+	brief: string;
+	detailedDescription: DoxygenParagraph[];
+	location: DoxygenDefLocation;
+}
+
 export type DoxygenCompoundDef =
 	| DoxygenFileDef
 	| DoxygenDataTypeDef
 	| DoxygenNamespaceDef
-	| DoxygenDirDef;
+	| DoxygenDirDef
+	| DoxygenPageDef;
 
 export type DoxygenMemberDef =
 	| DoxygenDefineMemberDef

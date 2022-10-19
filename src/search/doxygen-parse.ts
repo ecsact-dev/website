@@ -33,6 +33,7 @@ import {
 	DoxygenEnumValueMemberDef,
 	DoxygenInnerFileDef,
 	DoxygenInnerDirDef,
+	DoxygenPageDef,
 } from './doxygen-def-types';
 
 function getDoxygenText(node: Node): DoxygenText {
@@ -309,6 +310,19 @@ const doxygenMemberDefParseFns = {
 };
 
 const doxygenCompoundDefParseFns = {
+	page: (def: DoxygenBaseDef, el: Element): DoxygenPageDef => {
+		console.log('page def el', el);
+
+		return {
+			...def,
+			kind: 'page',
+			name: el.querySelector('compoundname').textContent,
+			title: el.querySelector('title').textContent,
+			brief: el.querySelector('briefdescription').textContent.trim(),
+			detailedDescription: getDetailedDescription(el),
+			location: getLocation(el),
+		};
+	},
 	file: (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
 		console.log('TODO file def', el);
 

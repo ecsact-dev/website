@@ -6,6 +6,7 @@ import {
 	DoxygenBase,
 	DoxygenCompound,
 	DoxygenCompoundDef,
+	DoxygenPageDef,
 	DoxygenMember,
 	DoxygenMemberDef,
 	DoxygenMemberWithOwner,
@@ -86,6 +87,20 @@ export class Search {
 
 	public ready$: Observable<boolean> = this._readySubj.asObservable();
 
+	public readonly repos = [
+		'ecsact_runtime',
+		'ecsact_parse',
+		'ecsact_interpret',
+		'ecsact_rtb',
+		'ecsact_rt_entt',
+		'ecsact_si_wasm',
+		'ecsact_sdk',
+		'ecsact_lang_cpp',
+		'ecsact_lang_csharp',
+		'ecsact_lang_json',
+		'ecsact_unity',
+	];
+
 	constructor() {
 		this._fuseInstance = new Fuse(this._searchItems, {
 			shouldSort: true,
@@ -147,6 +162,12 @@ export class Search {
 		return this._compounds[repo] || [];
 	}
 
+	getDef(
+		repo: string,
+		refid: string,
+	): Promise<DoxygenCompoundDef | DoxygenMemberDef>;
+	getDef(repo: string, refid: 'indexpage'): Promise<DoxygenPageDef>;
+
 	async getDef(
 		repo: string,
 		refid: string,
@@ -200,18 +221,9 @@ export class Search {
 		this._refidMap = {};
 		this._searchItems = this.allPageSearchItems();
 
-		this._refreshPromise = Promise.all([
-			this.loadDoxygenXml('ecsact_runtime'),
-			this.loadDoxygenXml('ecsact_parse'),
-			this.loadDoxygenXml('ecsact_interpret'),
-			this.loadDoxygenXml('ecsact_rtb'),
-			this.loadDoxygenXml('ecsact_rt_entt'),
-			this.loadDoxygenXml('ecsact_si_wasm'),
-			this.loadDoxygenXml('ecsact_sdk'),
-			this.loadDoxygenXml('ecsact_lang_cpp'),
-			this.loadDoxygenXml('ecsact_lang_csharp'),
-			this.loadDoxygenXml('ecsact_lang_json'),
-		]).then(() => {
+		this._refreshPromise = Promise.all(
+			this.repos.map(repo => this.loadDoxygenXml(repo)),
+		).then(() => {
 			delete this._refreshPromise;
 		});
 
