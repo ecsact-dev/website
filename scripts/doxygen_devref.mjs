@@ -171,9 +171,16 @@ async function extractRepoArchive(repo, task) {
 
 async function generateCompileCommands(repo, task) {
 	const dir = repoDevRefDir(repo);
-	await execa('bazel', ['run', '@hedron_compile_commands//:refresh_all'], {
-		cwd: dir,
-	});
+	if (
+		existsSync(path.resolve(dir, 'WORKSPACE')) ||
+		existsSync(path.resolve(dir, 'WORKSPACE.bazel'))
+	) {
+		await execa('bazel', ['run', '@hedron_compile_commands//:refresh_all'], {
+			cwd: dir,
+		});
+	} else {
+		task.skip('Not a bazel repository');
+	}
 }
 
 async function runDoxygen(repo, task) {

@@ -19,6 +19,7 @@ ng_ts_project(
         ":repo_component_style",
     ],
     deps = [
+        "//src/components/doxygen-page-def",
         "//src/components/doxygen-refid-link",
         "//src/search:doxygen-def-types",
         "//src/search:service",

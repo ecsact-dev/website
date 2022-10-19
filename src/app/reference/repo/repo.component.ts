@@ -6,7 +6,10 @@ import {
 	TrackByFunction,
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DoxygenCompound} from '../../../search/doxygen-def-types';
+import {
+	DoxygenCompound,
+	DoxygenPageDef,
+} from '../../../search/doxygen-def-types';
 import {Search} from '../../../search/search.service';
 
 export enum RepoCompoundsView {
@@ -42,8 +45,10 @@ export class RepoComponent {
 		},
 	];
 
+	mainPagePromise: Promise<DoxygenPageDef>;
 	compoundsPromise: Promise<DoxygenCompound[]>;
 	view = RepoCompoundsView.ByKind;
+	showInternals = false;
 
 	readonly filterInternal = (compounds: DoxygenCompound[]) => {
 		return compounds.filter(compound => !compound.internal);
@@ -66,8 +71,10 @@ export class RepoComponent {
 
 	constructor(search: Search, route: ActivatedRoute, cdr: ChangeDetectorRef) {
 		this.compoundsPromise = new Promise<DoxygenCompound[]>(() => {});
+		this.mainPagePromise = new Promise<DoxygenPageDef>(() => {});
 		route.params.subscribe(params => {
 			this.compoundsPromise = search.getCompounds(params.repo);
+			this.mainPagePromise = search.getDef(params.repo, 'indexpage');
 			cdr.markForCheck();
 		});
 	}

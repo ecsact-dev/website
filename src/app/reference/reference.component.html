@@ -1,35 +1,11 @@
 <ecsact-sidenav>
 	<ecsact-sidenav-section title="Repositories">
-		<a routerLinkActive="active" routerLink="/reference/ecsact_runtime"
-			>ecsact_runtime</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_parse"
-			>ecsact_parse</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_interpret"
-			>ecsact_interpret</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_rtb"
-			>ecsact_rtb</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_rt_entt"
-			>ecsact_rt_entt</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_si_wasm"
-			>ecsact_si_wasm</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_sdk"
-			>ecsact_sdk</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_lang_cpp"
-			>ecsact_lang_cpp</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_lang_csharp"
-			>ecsact_lang_csharp</a
-		>
-		<a routerLinkActive="active" routerLink="/reference/ecsact_lang_json"
-			>ecsact_lang_json</a
-		>
+		<a
+			*ngFor="let repo of repos"
+			routerLinkActive="active"
+			[routerLink]="'/reference/' + repo">
+			{{ repo }}
+		</a>
 	</ecsact-sidenav-section>
 </ecsact-sidenav>
 

@@ -1,11 +1,11 @@
-<ng-template #loadingTpl> Loading... </ng-template>
-
 <ng-template #compoundsListTpl let-compounds>
 	<p *ngIf="compounds.length === 0">(none)</p>
 	<ul>
 		<li
 			*ngFor="
-				let compound of sortByName(filterInternal(compounds));
+				let compound of sortByName(
+					showInternals ? compounds : filterInternal(compounds)
+				);
 				trackBy: trackyByRefid
 			"
 			class="compound-list-item">
@@ -18,11 +18,22 @@
 	</ul>
 </ng-template>
 
-<article *ngIf="compoundsPromise | async as compounds; else loadingTpl">
-	<select [(ngModel)]="view">
-		<option [value]="RepoCompoundsView.ByKind">By Kind</option>
-		<option [value]="RepoCompoundsView.List">List</option>
-	</select>
+<article *ngIf="mainPagePromise | async as mainPage">
+	<doxygen-page-def [page]="mainPage"></doxygen-page-def>
+</article>
+
+<article *ngIf="compoundsPromise | async as compounds">
+	<h1 id="ref-index">Repository Reference Index</h1>
+	<div style="display: flex; flex-direction: row; gap: 8px">
+		<select [(ngModel)]="view">
+			<option [value]="RepoCompoundsView.ByKind">By Kind</option>
+			<option [value]="RepoCompoundsView.List">List</option>
+		</select>
+		<label>
+			<input type="checkbox" [(ngModel)]="showInternals" />
+			<span>Show Internal APIs</span>
+		</label>
+	</div>
 
 	<ng-container [ngSwitch]="view">
 		<ng-container *ngSwitchCase="RepoCompoundsView.List">
@@ -36,7 +47,7 @@
 		<ng-container *ngSwitchCase="RepoCompoundsView.ByKind">
 			<div class="compounds-view-by-kind-container">
 				<div *ngFor="let block of byKindBlocks">
-					<h2>{{ block.title }}</h2>
+					<h2 id="{{ block.title.toLowerCase() }}">{{ block.title }}</h2>
 					<ng-container
 						*ngTemplateOutlet="
 							compoundsListTpl;
