@@ -4,6 +4,7 @@ nodejs_binary(
     name = "doxygen_devref",
     data = [
         "@npm//download",
+        "@npm//execa",
         "@npm//listr",
         "@npm//yauzl",
     ],

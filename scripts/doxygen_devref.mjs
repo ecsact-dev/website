@@ -165,7 +165,7 @@ async function extractRepoArchive(repo, task) {
 
 	task.title = `Extracted ${archivePath}`;
 }
-// bazel run @hedron_compile_commands//:refresh_all
+
 async function generateCompileCommands(repo, task) {
 	const dir = repoDevRefDir(repo);
 	await execa('bazel', ['run', '@hedron_compile_commands//:refresh_all'], {
