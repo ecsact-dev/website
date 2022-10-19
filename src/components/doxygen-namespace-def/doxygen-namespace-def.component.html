@@ -15,7 +15,7 @@
 				[name]="variable.name"
 				[mutable]="variable.mutable"
 				[static]="variable.static"
-				><a [routerLink]="'/reference/ecsact/' + variable.id"
+				><a [doxygenRefidLink]="variable.id"
 					><h2>{{ variable.name }}</h2></a
 				></doxygen-name
 			>
@@ -27,9 +27,7 @@
 			<h2 id="namespaces">Namespaces</h2>
 			<ul *ngFor="let namespace of def.innerNamespaces">
 				<li>
-					<a [routerLink]="'/reference/ecsact/' + namespace.id">{{
-						namespace.name
-					}}</a>
+					<a [doxygenRefidLink]="namespace.id">{{ namespace.name }}</a>
 				</li>
 			</ul>
 		</doxygen-child-block>
@@ -40,9 +38,7 @@
 			<h2 id="classes">Classes</h2>
 			<ul *ngFor="let innerClass of def.innerClasses">
 				<li>
-					<a [routerLink]="'/reference/ecsact/' + innerClass.id">{{
-						innerClass.name
-					}}</a>
+					<a [doxygenRefidLink]="innerClass.id">{{ innerClass.name }}</a>
 				</li>
 			</ul>
 		</doxygen-child-block>

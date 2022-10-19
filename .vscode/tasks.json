@@ -105,7 +105,7 @@
 			"label": "Generate Angular Module + Directive",
 			"type": "shell",
 			"linux": {
-				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:directive_name} && ${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g directive --interactive=false ${input:directive_name} --change-detection=OnPush --export --skip-tests --module=${input:directive_name}"
+				"command": "${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g module --interactive=false ${input:directive_name} && ${workspaceFolder}/bazel-ecsact-dev-website/external/nodejs_linux_amd64/bin/node ${workspaceFolder}/node_modules/.bin/ng g directive --interactive=false ${input:directive_name} --export --skip-tests --module=${input:directive_name}"
 			},
 			"options": {
 				"cwd": "${workspaceFolder}"

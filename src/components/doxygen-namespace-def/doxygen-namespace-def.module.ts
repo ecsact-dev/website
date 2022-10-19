@@ -8,8 +8,8 @@ import {DoxygenDescriptionModule} from '../doxygen-member-components/doxygen-des
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 import {DoxygenChildBlockModule} from '../doxygen-child-block/doxygen-child-block.module';
 import {RouterModule} from '@angular/router';
-
 import {DoxygenNamespaceDefComponent} from './doxygen-namespace-def.component';
+import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.module';
 
 @NgModule({
 	declarations: [DoxygenNamespaceDefComponent],
@@ -23,6 +23,7 @@ import {DoxygenNamespaceDefComponent} from './doxygen-namespace-def.component';
 		DoxygenLocationModule,
 		DoxygenChildBlockModule,
 		RouterModule,
+		DoxygenRefidLinkModule,
 	],
 	exports: [DoxygenNamespaceDefComponent],
 })
