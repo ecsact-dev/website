@@ -708,11 +708,20 @@ export class Search {
 		this._refidMap = {};
 		this._searchItems = this.allPageSearchItems();
 
-		this._refreshPromise = Promise.all([this.loadDoxygenXml('ecsact')]).then(
-			() => {
-				delete this._refreshPromise;
-			},
-		);
+		this._refreshPromise = Promise.all([
+			this.loadDoxygenXml('ecsact_runtime'),
+			this.loadDoxygenXml('ecsact_parse'),
+			this.loadDoxygenXml('ecsact_interpret'),
+			this.loadDoxygenXml('ecsact_rtb'),
+			this.loadDoxygenXml('ecsact_rt_entt'),
+			this.loadDoxygenXml('ecsact_si_wasm'),
+			this.loadDoxygenXml('ecsact_sdk'),
+			this.loadDoxygenXml('ecsact_lang_cpp'),
+			this.loadDoxygenXml('ecsact_lang_csharp'),
+			this.loadDoxygenXml('ecsact_lang_json'),
+		]).then(() => {
+			delete this._refreshPromise;
+		});
 
 		try {
 			await this._refreshPromise;
@@ -723,7 +732,6 @@ export class Search {
 	}
 
 	private async loadDoxygenXml(repo: string) {
-		// TODO(zaucy): Use different path for production
 		const path = `/assets/_devref/${repo}/index.xml`;
 
 		const doc = await new Promise<Document>((resolve, reject) => {
