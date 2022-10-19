@@ -9,6 +9,14 @@ ts_project(
 )
 
 ts_project(
+    name = "doxygen-parse",
+    srcs = ["doxygen-parse.ts"],
+    deps = [
+        ":doxygen-def-types",
+    ],
+)
+
+ts_project(
     name = "page-info-types",
     srcs = ["page-info-types.ts"],
 )
@@ -38,6 +46,7 @@ ng_ts_project(
     srcs = ["search.service.ts"],
     deps = [
         ":doxygen-def-types",
+        ":doxygen-parse",
         ":page-info-types",
         ":searchable-page-infos",
         "@npm//@angular/core",

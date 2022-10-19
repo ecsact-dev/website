@@ -2,6 +2,7 @@ export interface DoxygenBase {
 	name: string;
 	refid: string;
 	kind: string;
+	internal: boolean;
 }
 
 export interface DoxygenMember extends DoxygenBase {}
@@ -17,6 +18,7 @@ export interface DoxygenCompound extends DoxygenBase {
 export interface DoxygenBaseDef {
 	id: string;
 	kind: string;
+	internal: boolean;
 }
 
 export interface DoxygenCompoundDefInclude {

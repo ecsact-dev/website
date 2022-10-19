@@ -19,7 +19,12 @@ ng_ts_project(
         ":repo_component_style",
     ],
     deps = [
+        "//src/components/doxygen-refid-link",
+        "//src/search:doxygen-def-types",
+        "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",
+        "@npm//@angular/forms",
+        "@npm//@angular/router",
     ],
 )
