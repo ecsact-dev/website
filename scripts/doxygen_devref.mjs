@@ -243,22 +243,13 @@ async function main() {
 		}
 	}
 
-	const repos = [
-		{
-			name: 'ecsact_runtime',
-			sha256:
-				'f7b5f5cc5b70620934be48090048e9092dbc86ba4e027959d65fd1dd46c36a77',
-			stripPrefix: 'ecsact_runtime-475cae75c657b2570b1041264670c026de412814',
-			url: 'https://github.com/ecsact-dev/ecsact_runtime/archive/475cae75c657b2570b1041264670c026de412814.zip',
-		},
-		{
-			name: 'ecsact_interpret',
-			sha256:
-				'ac3fb03b584ec226bb2d240621e7a539339fbfd6dc2131580109c35f3b11f461',
-			stripPrefix: 'ecsact_interpret-d014d7aa30ee2a1ac5086773a6c3477451671acd',
-			url: 'https://github.com/ecsact-dev/ecsact_interpret/archive/d014d7aa30ee2a1ac5086773a6c3477451671acd.zip',
-		},
-	];
+	const devRefReposJsonPath = path.resolve(
+		workspaceDir,
+		'scripts/devref_repos.json',
+	);
+	const repos = JSON.parse(
+		await readFile(devRefReposJsonPath, {encoding: 'utf8'}),
+	);
 
 	const tasks = new Listr(
 		repos.map(repo => {
