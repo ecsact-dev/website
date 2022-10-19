@@ -90,7 +90,6 @@ async function downloadRepoArchive(repo, task) {
 
 	if (!repo.sha256) {
 		task.title += ` (sha256: ${sha256})`;
-	} else {
 		repo.sha256 = sha256;
 		await updateReposJson();
 	}

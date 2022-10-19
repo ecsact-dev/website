@@ -43,13 +43,13 @@
 	},
 	{
 		"name": "ecsact_lang_cpp",
-		"sha256": "",
+		"sha256": "2f9982186cb817bf44b938c26dd07cdfd136601d0578549a251de58e43c429bc",
 		"stripPrefix": "ecsact_lang_cpp-389390edc5a2f2468ee866c7e4aea18642f9c186",
 		"url": "https://github.com/ecsact-dev/ecsact_lang_cpp/archive/389390edc5a2f2468ee866c7e4aea18642f9c186.zip"
 	},
 	{
 		"name": "ecsact_lang_csharp",
-		"sha256": "",
+		"sha256": "75e584f77b7c29916ce5d24dea4d2242963c61901730c36a4e52eacb13057c3e",
 		"stripPrefix": "ecsact_lang_csharp-996166d67fe6b819a10d3c840606b0ac5d2fc1fa",
 		"url": "https://github.com/ecsact-dev/ecsact_lang_csharp/archive/996166d67fe6b819a10d3c840606b0ac5d2fc1fa.zip"
 	},
