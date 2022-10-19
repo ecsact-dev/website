@@ -19,6 +19,7 @@ import * as crypto from 'crypto';
 
 const workspaceDir = process.env['BUILD_WORKSPACE_DIRECTORY'];
 const devRefDir = path.resolve(workspaceDir, 'src/assets/_devref');
+let updateReposJson;
 
 async function getSha256(filePath) {
 	const hash = crypto.createHash('sha256');
@@ -88,7 +89,10 @@ async function downloadRepoArchive(repo, task) {
 	task.title = `Downloaded ${repo.url}`;
 
 	if (!repo.sha256) {
-		task.title += ` sha256=${sha256}`;
+		task.title += ` (sha256: ${sha256})`;
+	} else {
+		repo.sha256 = sha256;
+		await updateReposJson();
 	}
 }
 
@@ -250,6 +254,38 @@ async function main() {
 	const repos = JSON.parse(
 		await readFile(devRefReposJsonPath, {encoding: 'utf8'}),
 	);
+
+	updateReposJson = async () => {
+		await writeFile(
+			devRefReposJsonPath,
+			JSON.stringify(repos, undefined, '\t') + '\n',
+		);
+	};
+
+	let madeChanges = false;
+	for (const repo of repos) {
+		if (repo.commit) {
+			madeChanges = true;
+
+			if (!repo.sha256) {
+				repo.sha256 = '';
+			}
+
+			if (!repo.stripPrefix) {
+				repo.stripPrefix = `${repo.name}-${repo.commit}`;
+			}
+
+			if (!repo.url) {
+				repo.url = `https://github.com/ecsact-dev/${repo.name}/archive/${repo.commit}.zip`;
+			}
+
+			delete repo.commit;
+		}
+	}
+
+	if (madeChanges) {
+		await updateReposJson();
+	}
 
 	const tasks = new Listr(
 		repos.map(repo => {
