@@ -4,9 +4,9 @@ import {DoxygenParentBlockModule} from '../doxygen-parent-block/doxygen-parent-b
 import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxygen-name.module';
 import {DoxygenDescriptionModule} from '../doxygen-member-components/doxygen-description/doxygen-description.module';
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
-
 import {DoxygenDirDefComponent} from './doxygen-dir-def.component';
 import {RouterModule} from '@angular/router';
+import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.module';
 
 @NgModule({
 	declarations: [DoxygenDirDefComponent],
@@ -17,6 +17,7 @@ import {RouterModule} from '@angular/router';
 		DoxygenLocationModule,
 		DoxygenNameModule,
 		RouterModule,
+		DoxygenRefidLinkModule,
 	],
 	exports: [DoxygenDirDefComponent],
 })

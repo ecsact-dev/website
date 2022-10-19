@@ -636,12 +636,10 @@ export class Search {
 	}
 
 	search(text: string): SearchResultItem[] {
-		return (
-			this._fuseInstance
-				.search(text)
-				// .slice(0, 20)
-				.map(item => item.item)
-		);
+		return this._fuseInstance
+			.search(text)
+			.slice(0, 20)
+			.map(item => item.item);
 	}
 
 	private async _getCompoundDef(repo: string, refid: string) {
@@ -654,7 +652,12 @@ export class Search {
 			xhr.send();
 		});
 
-		return compountDefDoc.documentElement.querySelector('compounddef');
+		const compoundDef =
+			compountDefDoc.documentElement.querySelector('compounddef');
+		if (!compoundDef) {
+			throw new Error(`No compound def with refid ${refid}`);
+		}
+		return compoundDef;
 	}
 
 	async getDef(
@@ -676,9 +679,11 @@ export class Search {
 
 		if (isMemberWithOwner(item.item)) {
 			const ownerDef = await this._getCompoundDef(repo, item.item.owner.refid);
-			return parseDoxygenMemberDef(
-				ownerDef.querySelector(`memberdef#${item.item.refid}`),
-			);
+			const memberDef = ownerDef.querySelector(`memberdef#${item.item.refid}`);
+			if (!memberDef) {
+				throw new Error(`No member def with refid ${item.item.refid}`);
+			}
+			return parseDoxygenMemberDef(memberDef);
 		} else {
 			const el = await this._getCompoundDef(repo, item.item.refid);
 			return parseDoxygenCompoundDef(el);

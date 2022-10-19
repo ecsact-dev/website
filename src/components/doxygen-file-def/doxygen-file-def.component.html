@@ -6,7 +6,7 @@
 		<h2 id="defines">Defines</h2>
 		<ul *ngFor="let define of def.defines">
 			<li>
-				<a [routerLink]="'/reference/ecsact/' + define.id">{{ define.name }}</a>
+				<a [doxygenRefidLink]="define.id">{{ define.name }}</a>
 			</li>
 		</ul>
 	</div>
@@ -15,7 +15,7 @@
 		<h2 id="enums">Enums</h2>
 		<ul *ngFor="let enum of def.enums">
 			<li>
-				<a [routerLink]="'/reference/ecsact/' + enum.id">{{ enum.name }}</a>
+				<a [doxygenRefidLink]="enum.id">{{ enum.name }}</a>
 			</li>
 		</ul>
 	</div>
@@ -24,7 +24,7 @@
 		<h2 id="types">Types</h2>
 		<ul *ngFor="let type of def.typedefs">
 			<li>
-				<a [routerLink]="'/reference/ecsact/' + type.id">{{ type.name }}</a>
+				<a [doxygenRefidLink]="type.id">{{ type.name }}</a>
 			</li>
 		</ul>
 	</div>
@@ -33,7 +33,7 @@
 		<h2 id="functions">Functions</h2>
 		<ul *ngFor="let func of def.functions">
 			<li>
-				<a [routerLink]="'/reference/ecsact/' + func.id">{{ func.name }}</a>
+				<a [doxygenRefidLink]="func.id">{{ func.name }}</a>
 			</li>
 		</ul>
 	</div>
@@ -41,18 +41,14 @@
 	<h2 *ngIf="def.innerNamespaces.length > 0" id="namespaces">Namespaces</h2>
 	<ul *ngFor="let namespace of def.innerNamespaces">
 		<li>
-			<a [routerLink]="'/reference/ecsact/' + namespace.id">{{
-				namespace.name
-			}}</a>
+			<a [doxygenRefidLink]="namespace.id">{{ namespace.name }}</a>
 		</li>
 	</ul>
 
 	<h2 *ngIf="def.innerClasses.length > 0" id="classes">Classes</h2>
 	<ul *ngFor="let innerClass of def.innerClasses">
 		<li>
-			<a [routerLink]="'/reference/ecsact/' + innerClass.id">{{
-				innerClass.name
-			}}</a>
+			<a [doxygenRefidLink]="innerClass.id">{{ innerClass.name }}</a>
 		</li>
 	</ul>
 </doxygen-parent-block>

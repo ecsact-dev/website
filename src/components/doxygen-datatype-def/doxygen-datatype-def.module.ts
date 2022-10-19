@@ -11,6 +11,7 @@ import {DoxygenChildBlockModule} from '../doxygen-child-block/doxygen-child-bloc
 import {RouterModule} from '@angular/router';
 
 import {DoxygenDataTypeDefComponent} from './doxygen-datatype-def.component';
+import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.module';
 
 @NgModule({
 	declarations: [DoxygenDataTypeDefComponent],
@@ -25,6 +26,7 @@ import {DoxygenDataTypeDefComponent} from './doxygen-datatype-def.component';
 		DoxygenVariableDefModule,
 		DoxygenLocationModule,
 		RouterModule,
+		DoxygenRefidLinkModule,
 	],
 	exports: [DoxygenDataTypeDefComponent],
 })
