@@ -1,7 +1,22 @@
 workspace(name = "ecsact_website")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+http_archive(
+    name = "ecsact_sdk",
+    sha256 = "f1deec50f8d54af837b22787929b3596add7be161a504826e016e7d484ca6acd",
+    strip_prefix = "ecsact_sdk-674b1a2a590f3551ccd5f33629bb41f9585a47c3",
+    url = "https://github.com/ecsact-dev/ecsact_sdk/archive/674b1a2a590f3551ccd5f33629bb41f9585a47c3.zip",
+)
+
+load("@ecsact_sdk//:index.bzl", "ecsact_dev_repositories")
+
+[http_archive(
+    name = repo.name,
+    sha256 = repo.sha256,
+    strip_prefix = repo.strip_prefix,
+    url = repo.url,
+) for repo in ecsact_dev_repositories]
 
 http_archive(
     name = "bazel_skylib",
