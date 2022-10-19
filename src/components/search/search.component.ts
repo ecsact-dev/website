@@ -43,6 +43,7 @@ export class SearchComponent implements OnInit {
 	defaultSearchResultItems: SearchResultItem[];
 	searchResultItems: SearchResultItem[] = [];
 	pendingInput: boolean = false;
+	showInternalItems: boolean = false;
 	readonly searchItemTrackBy: TrackByFunction<SearchResultItem>;
 	readonly searchReady$: Observable<boolean>;
 	readonly searchFocusKey = '/';
@@ -219,11 +220,22 @@ export class SearchComponent implements OnInit {
 			this._inputTimeout = setTimeout(() => {
 				this.searchResultItems = this.search.search(searchValue);
 				this.pendingInput = false;
+				this.showInternalItems = false;
 				this.cdr.markForCheck();
 			}, 100);
 		} else {
 			this.searchResultItems = this.defaultSearchResultItems;
 		}
+	}
+
+	setShowInternalItems() {
+		this.showInternalItems = true;
+		this.cdr.markForCheck();
+	}
+
+	countInternalItems(items: SearchResultItem[]) {
+		return items.filter(item => item.type === 'reference' && item.item.internal)
+			.length;
 	}
 
 	private _onSearchReadyChange(ready: boolean) {

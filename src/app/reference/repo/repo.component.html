@@ -1,1 +1,49 @@
-<p>TODO(zaucy): Add repository overview</p>
+<ng-template #loadingTpl> Loading... </ng-template>
+
+<ng-template #compoundsListTpl let-compounds>
+	<p *ngIf="compounds.length === 0">(none)</p>
+	<ul>
+		<li
+			*ngFor="
+				let compound of sortByName(filterInternal(compounds));
+				trackBy: trackyByRefid
+			"
+			class="compound-list-item">
+			<a [doxygenRefidLink]="compound.refid" [title]="compound.name"
+				><code>{{ compound.name }}</code></a
+			>
+			<span>{{ compound.kind }}</span>
+			<span *ngIf="compound.internal">INTERNAL API</span>
+		</li>
+	</ul>
+</ng-template>
+
+<article *ngIf="compoundsPromise | async as compounds; else loadingTpl">
+	<select [(ngModel)]="view">
+		<option [value]="RepoCompoundsView.ByKind">By Kind</option>
+		<option [value]="RepoCompoundsView.List">List</option>
+	</select>
+
+	<ng-container [ngSwitch]="view">
+		<ng-container *ngSwitchCase="RepoCompoundsView.List">
+			<ng-container
+				*ngTemplateOutlet="
+					compoundsListTpl;
+					context: {$implicit: compounds}
+				"></ng-container>
+		</ng-container>
+
+		<ng-container *ngSwitchCase="RepoCompoundsView.ByKind">
+			<div class="compounds-view-by-kind-container">
+				<div *ngFor="let block of byKindBlocks">
+					<h2>{{ block.title }}</h2>
+					<ng-container
+						*ngTemplateOutlet="
+							compoundsListTpl;
+							context: {$implicit: filterByKind(compounds, block.kinds)}
+						"></ng-container>
+				</div>
+			</div>
+		</ng-container>
+	</ng-container>
+</article>

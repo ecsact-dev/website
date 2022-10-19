@@ -27,7 +27,10 @@
 					trackBy: searchItemTrackBy
 				">
 				<a
-					*ngIf="searchItem.type === 'reference'"
+					*ngIf="
+						searchItem.type === 'reference' &&
+						(!searchItem.item.internal || showInternalItems)
+					"
 					tabindex="0"
 					class="search-results-item"
 					[routerLink]="
@@ -64,6 +67,20 @@
 					</div>
 				</a>
 			</ng-container>
+
+			<a
+				tabindex="0"
+				*ngIf="
+					!showInternalItems &&
+					countInternalItems(searchResultItems) as internalItemsCount
+				"
+				class="search-results-item"
+				(click)="setShowInternalItems()">
+				<div class="search-results-item-title">
+					<span class="i24">info</span>
+					<span> Not showing {{ internalItemsCount }} item(s) </span>
+				</div>
+			</a>
 
 			<p
 				*ngIf="searchResultItems.length === 0 && !pendingInput"
