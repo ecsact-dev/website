@@ -54,6 +54,9 @@ nav.top-nav {
 
 	ecsact-search {
 		width: 240px;
+		@media (max-width: 799px) {
+			width: 44px;
+		}
 	}
 
 	&.search-focused {

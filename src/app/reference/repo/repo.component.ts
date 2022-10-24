@@ -32,6 +32,10 @@ export class RepoComponent {
 			kinds: ['class', 'struct', 'enum', 'union'],
 		},
 		{
+			title: 'Functions',
+			kinds: ['function'],
+		},
+		{
 			title: 'Namespaces',
 			kinds: ['namespace'],
 		},

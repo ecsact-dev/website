@@ -22,7 +22,7 @@
 					[inline]="function.inline"
 					[virtual]="function.virtual"
 					[explicit]="function.explicit"
-					><a [routerLink]="'/reference/ecsact/' + function.id"
+					><a [doxygenRefidLink]="function.id"
 						><h3>{{ function.name }}</h3></a
 					></doxygen-name
 				>
@@ -42,7 +42,7 @@
 					[inline]="function.inline"
 					[virtual]="function.virtual"
 					[explicit]="function.explicit"
-					><a [routerLink]="'/reference/ecsact/' + function.id"
+					><a [doxygenRefidLink]="function.id"
 						><h3>{{ function.name }}</h3></a
 					></doxygen-name
 				>
@@ -59,7 +59,7 @@
 					[name]="type.name"
 					[static]="type.static"
 					[access]="type.access"
-					><a [routerLink]="'/reference/ecsact/' + type.id"
+					><a [doxygenRefidLink]="type.id"
 						><h3>{{ type.name }}</h3></a
 					></doxygen-name
 				>
@@ -76,7 +76,7 @@
 					[name]="type.name"
 					[static]="type.static"
 					[access]="type.access"
-					><a [routerLink]="'/reference/ecsact/' + type.id"
+					><a [doxygenRefidLink]="type.id"
 						><h3>{{ type.name }}</h3></a
 					></doxygen-name
 				>
@@ -93,7 +93,7 @@
 					[access]="variable.access"
 					[mutable]="variable.mutable"
 					[static]="variable.static"
-					><a [routerLink]="'/reference/ecsact/' + variable.id"
+					><a [doxygenRefidLink]="variable.id"
 						><h3>{{ variable.name }}</h3></a
 					></doxygen-name
 				>
@@ -111,7 +111,7 @@
 					[access]="variable.access"
 					[mutable]="variable.mutable"
 					[static]="variable.static"
-					><a [routerLink]="'/reference/ecsact/' + variable.id"
+					><a [doxygenRefidLink]="variable.id"
 						><h3>{{ variable.name }}</h3></a
 					></doxygen-name
 				><doxygen-variable-def [def]="variable"></doxygen-variable-def
