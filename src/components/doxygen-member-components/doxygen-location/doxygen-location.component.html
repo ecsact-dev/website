@@ -1,7 +1,7 @@
-<div>
-	<h3>Location</h3>
-	<doxygen-container
-		>File: {{ location.file }} Column: {{ location.column }} Line:
-		{{ location.line }}
-	</doxygen-container>
-</div>
+<pre class="doxygen-location-content">
+	<div class="repo-tag">
+		<span class="i24">source</span>
+		<span>{{ repo }}</span>
+	</div>
+	<a [href]="href" target="_blank">{{ displayFilePath }}</a>
+</pre>
