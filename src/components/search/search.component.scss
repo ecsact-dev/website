@@ -155,6 +155,12 @@
 			line-height: $key-size;
 		}
 	}
+
+	.search-icon {
+		position: relative;
+		z-index: 10;
+		background-color: var(--color-content-bg);
+	}
 }
 
 a {

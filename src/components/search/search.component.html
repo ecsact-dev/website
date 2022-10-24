@@ -1,6 +1,9 @@
-<div class="search-box" [class.has-input]="!!searchInput.value">
+<div
+	class="search-box"
+	[class.has-input]="!!searchInput.value"
+	[class.search-focused]="isFocused()">
 	<label class="search-input-container">
-		<span class="i24">search</span>
+		<span class="i24 search-icon">search</span>
 
 		<input
 			#searchInput
