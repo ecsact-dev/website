@@ -16,7 +16,7 @@ import {detectOS} from 'detect-browser';
 export class HomeComponent implements OnInit, OnDestroy {
 	os = detectOS(navigator.userAgent);
 	latestRelease = fetch(
-		'https://api.github.com/repos/seaube/ecsact-sdk/releases/latest',
+		'https://api.github.com/repos/ecsact-dev/ecsact_sdk/releases/latest',
 	).then(res => res.json());
 
 	private mediaQuery: MediaQueryList;

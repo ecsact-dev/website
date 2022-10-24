@@ -27,5 +27,6 @@ ng_ts_project(
         "@npm//@angular/core",
         "@npm//@angular/forms",
         "@npm//@angular/router",
+        "@npm//rxjs",
     ],
 )

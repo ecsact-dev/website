@@ -25,3 +25,16 @@ li.compound-list-item {
 		}
 	}
 }
+
+.repo-directories {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 16px;
+	margin: 16px;
+
+	.repo-dir {
+		border-radius: 6px;
+		padding: 8px;
+		background-color: #392f5a;
+	}
+}

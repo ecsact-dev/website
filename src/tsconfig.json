@@ -6,10 +6,7 @@
 		// Allow uses of these JS APIs
 		"lib": [
 			"dom",
-			"es5",
-			"es2015.collection",
-			"es2015.iterable",
-			"es2015.promise"
+			"es2016"
 		],
 		// Permit decorator syntax
 		"experimentalDecorators": true,

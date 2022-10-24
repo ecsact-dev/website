@@ -18,11 +18,11 @@
 	</ul>
 </ng-template>
 
-<article *ngIf="mainPagePromise | async as mainPage">
+<article *ngIf="mainPage$ | async as mainPage">
 	<doxygen-page-def [page]="mainPage"></doxygen-page-def>
 </article>
 
-<article *ngIf="compoundsPromise | async as compounds">
+<article>
 	<h1 id="ref-index">Repository Reference Index</h1>
 	<div style="display: flex; flex-direction: row; gap: 8px">
 		<select [(ngModel)]="view">
@@ -37,21 +37,42 @@
 
 	<ng-container [ngSwitch]="view">
 		<ng-container *ngSwitchCase="RepoCompoundsView.List">
-			<ng-container
+			<!-- <ng-container
 				*ngTemplateOutlet="
 					compoundsListTpl;
 					context: {$implicit: compounds}
-				"></ng-container>
+				"></ng-container> -->
 		</ng-container>
 
 		<ng-container *ngSwitchCase="RepoCompoundsView.ByKind">
+			<div class="repo-directories" *ngIf="dirs$ | async as dirs">
+				<div
+					*ngFor="
+						let dir of sortByName(showInternals ? dirs : filterInternal(dirs));
+						trackBy: trackyByRefid
+					"
+					class="repo-dir">
+					<span class="i24">folder</span>&nbsp;
+					<a [doxygenRefidLink]="dir.refid">{{ dir.name }}</a>
+				</div>
+			</div>
+
 			<div class="compounds-view-by-kind-container">
-				<div *ngFor="let block of byKindBlocks">
-					<h2 id="{{ block.title.toLowerCase() }}">{{ block.title }}</h2>
+				<div *ngIf="funcs$ | async as funcs">
+					<h2 id="funcs">Functions</h2>
 					<ng-container
 						*ngTemplateOutlet="
 							compoundsListTpl;
-							context: {$implicit: filterByKind(compounds, block.kinds)}
+							context: {$implicit: funcs}
+						"></ng-container>
+				</div>
+
+				<div *ngIf="types$ | async as types">
+					<h2 id="types">Types</h2>
+					<ng-container
+						*ngTemplateOutlet="
+							compoundsListTpl;
+							context: {$implicit: types}
 						"></ng-container>
 				</div>
 			</div>
