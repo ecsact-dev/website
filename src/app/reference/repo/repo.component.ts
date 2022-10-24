@@ -6,8 +6,10 @@ import {
 	TrackByFunction,
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {from, map, Observable, shareReplay, switchMap} from 'rxjs';
 import {
 	DoxygenCompound,
+	DoxygenMember,
 	DoxygenPageDef,
 } from '../../../search/doxygen-def-types';
 import {Search} from '../../../search/search.service';
@@ -49,8 +51,11 @@ export class RepoComponent {
 		},
 	];
 
-	mainPagePromise: Promise<DoxygenPageDef>;
-	compoundsPromise: Promise<DoxygenCompound[]>;
+	readonly mainPage$: Observable<DoxygenPageDef>;
+	readonly types$: Observable<DoxygenCompound[]>;
+	readonly dirs$: Observable<DoxygenCompound[]>;
+	readonly funcs$: Observable<DoxygenMember[]>;
+
 	view = RepoCompoundsView.ByKind;
 	showInternals = false;
 
@@ -73,13 +78,40 @@ export class RepoComponent {
 		return compound.refid;
 	};
 
-	constructor(search: Search, route: ActivatedRoute, cdr: ChangeDetectorRef) {
-		this.compoundsPromise = new Promise<DoxygenCompound[]>(() => {});
-		this.mainPagePromise = new Promise<DoxygenPageDef>(() => {});
-		route.params.subscribe(params => {
-			this.compoundsPromise = search.getCompounds(params.repo);
-			this.mainPagePromise = search.getDef(params.repo, 'indexpage');
-			cdr.markForCheck();
-		});
+	constructor(search: Search, route: ActivatedRoute) {
+		this.mainPage$ = route.params.pipe(
+			switchMap(params => from(search.getDef(params.repo, 'indexpage'))),
+		);
+
+		const compounds$ = route.params.pipe(
+			switchMap(params => from(search.getCompounds(params.repo))),
+			shareReplay(),
+		);
+
+		this.types$ = compounds$.pipe(
+			map(compounds =>
+				compounds.filter(c =>
+					['class', 'struct', 'enum', 'union'].includes(c.kind),
+				),
+			),
+		);
+
+		this.dirs$ = compounds$.pipe(
+			map(compounds => compounds.filter(c => c.kind === 'dir')),
+		);
+
+		this.funcs$ = compounds$.pipe(
+			map(compounds =>
+				compounds
+					.filter(c => c.kind === 'file')
+					.reduce(
+						(members, c) => [
+							...members,
+							...c.members.filter(m => m.kind === 'function'),
+						],
+						[] as DoxygenMember[],
+					),
+			),
+		);
 	}
 }
