@@ -1,9 +1,22 @@
 {
+  "$schema": "./node_modules/firebase-tools/schema/firebase-config.json",
   "hosting": {
-    "public": "bazel-bin/src/pwa-config",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*"
+    ],
+    "redirects": [
+      {
+        "source": "/ecsact_sdk_0.4.0_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk_0.4.0_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk.appinstaller",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk.appinstaller",
+        "type": 302
+      }
     ],
     "rewrites": [
       {
