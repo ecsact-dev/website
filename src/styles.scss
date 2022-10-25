@@ -10,12 +10,38 @@ $whiteColor: #d4d4d4;
 	--color-bg: #{$blackColor};
 	--color-content-bg: #{darken($blackColor, 2%)};
 	--color-text: #{$whiteColor};
+
+	.brand.unity {
+		background-image: url(assets/brand/unity-white.png);
+	}
+	.brand.unreal {
+		background-image: url(assets/brand/unreal-white.png);
+	}
+	.brand.unreal-stacked {
+		background-image: url(assets/brand/unreal-stacked-white.png);
+	}
+	.brand.godot {
+		background-image: url(assets/brand/godot-dark.png);
+	}
 }
 
 @mixin light-color-scheme {
 	--color-bg: #{$whiteColor};
 	--color-content-bg: #{lighten($whiteColor, 10%)};
 	--color-text: #{$blackColor};
+
+	.brand.unity {
+		background-image: url(assets/brand/unity-black.png);
+	}
+	.brand.unreal {
+		background-image: url(assets/brand/unreal-black.png);
+	}
+	.brand.unreal-stacked {
+		background-image: url(assets/brand/unreal-stacked-black.png);
+	}
+	.brand.godot {
+		background-image: url(assets/brand/godot-light.png);
+	}
 }
 
 :root {
@@ -365,4 +391,10 @@ a {
 			text-decoration: underline;
 		}
 	}
+}
+
+.brand {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
