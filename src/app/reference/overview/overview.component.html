@@ -1,0 +1,94 @@
+<article>
+	<h1 id="reference-documentation">Reference Documentation</h1>
+	<p>
+		Generated documentation from the various repositories in the
+		<a href="https://github.com/ecsact-dev" target="_blank"
+			>Ecsact org on GitHub</a
+		>. If you're looking for tutorials, guides, or other learning resources then
+		take a look at the <a routerLink="/docs">documentation overview</a>.
+	</p>
+
+	<h2 id="repos-rundown">Repositories Rundown</h2>
+	<p>
+		Ecsact is split into several repositories responsible for different parts of
+		the language, runtime, and tooling.
+	</p>
+
+	<h3 id="fundamentals">Fundamentals</h3>
+	<p>
+		Fundamental repositories responsible for defining the Ecsact language
+		parsing, interpretation, and the low level runtime API.
+	</p>
+	<ul>
+		<li>
+			<a routerLink="/reference/ecsact_runtime">ecsact_runtime</a> — C headers
+			for the low level runtime API.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_parse">ecsact_parse</a> — API for parsing
+			Ecsact language statements.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_interpret">ecsact_interpret</a> — API for
+			interpretting Ecsact language statements as runtime calls.
+		</li>
+	</ul>
+
+	<h3 id="language-and-integration">Language & Integration</h3>
+	<p>
+		Repositories named <code>ecsact_lang_{{ '{' }}LANG{{ '}' }}</code> are
+		"language support" repositories. Integration repositories do not have a
+		strict naming convention, but must contain the engine/framework/software
+		name in the repository (such as <code>ecsact_unity</code> for the Unity game
+		engine integration.)
+	</p>
+	<ul>
+		<li>
+			<a routerLink="/reference/ecsact_unity">ecsact_unity</a> — Unity
+			integration source code.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_lang_cpp">ecsact_lang_cpp</a> — C++
+			related code generator plugins and C++ support libraries.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_lang_csharp">ecsact_lang_csharp</a> — C#
+			related code generator plugins and C# support libraries.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_lang_json">ecsact_lang_json</a> — JSON
+			related code generator plugins.
+		</li>
+	</ul>
+
+	<h3 id="implementation">Implementation</h3>
+	<p>
+		Repositories starting with <code>ecsact_rt_</code> are full or partial
+		implementations of the Ecsact Runtime. Repositories starting with
+		<code>ecsact_si_</code> are APIs for integrating different formats as system
+		implementations.
+	</p>
+	<ul>
+		<li>
+			<a routerLink="/reference/ecsact_rt_entt">ecsact_rt_entt</a> — Ecsact
+			Runtime implemented with EnTT.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_si_wasm">ecsact_si_wasm</a> — API to use
+			WebAssembly as system implementations.
+		</li>
+	</ul>
+
+	<h3 id="utility">Utility</h3>
+	<ul>
+		<li>
+			<a routerLink="/reference/ecsact_sdk">ecsact_sdk</a> — Source code for
+			distributing the various binaries and the Ecsact CLI.
+		</li>
+		<li>
+			<a routerLink="/reference/ecsact_rtb">ecsact_rtb</a> — Ecsact Runtime
+			Builder utility command line to compile runtimes based on your Ecsact
+			files. Mainly used in integrations.
+		</li>
+	</ul>
+</article>
