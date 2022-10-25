@@ -1,0 +1,25 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src/app/reference:__subpackages__"])
+
+sass_binary(
+    name = "overview_component_style",
+    src = "overview.component.scss",
+)
+
+ng_ts_project(
+    name = "overview",
+    srcs = [
+        "overview.component.ts",
+        "overview.module.ts",
+    ],
+    angular_assets = [
+        "overview.component.html",
+        ":overview_component_style",
+    ],
+    deps = [
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

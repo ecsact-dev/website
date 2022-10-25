@@ -1,4 +1,12 @@
 <ecsact-sidenav>
+	<ecsact-sidenav-section>
+		<a
+			routerLink="/reference"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{exact: true}"
+			>Overview</a
+		>
+	</ecsact-sidenav-section>
 	<ecsact-sidenav-section title="Repositories">
 		<a
 			*ngFor="let repo of repos"
