@@ -2,6 +2,7 @@
 /node_modules
 /user.bazelrc
 /profile.json
+/.firebase
 
 # Generated reference XML used during development
 /src/assets/_devref
