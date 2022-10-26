@@ -74,9 +74,9 @@ blender_repository(name = "blender")
 
 http_archive(
     name = "rules_imagemagick",
-    sha256 = "20ce414b1243c28e388d7f56aaedebb2a0d5cf510fcd91bb5ceae77005b478fa",
-    strip_prefix = "rules_imagemagick-35903509e561bde7b9081e5682a732d2f4d91f85",
-    urls = ["https://github.com/zaucy/rules_imagemagick/archive/35903509e561bde7b9081e5682a732d2f4d91f85.zip"],
+    sha256 = "1876ca75775042a38382a18a1fe6b61f0193cacd9370d08552f7188e82800b83",
+    strip_prefix = "rules_imagemagick-035de87c648269fc56c3368ec5891521189f29df",
+    urls = ["https://github.com/zaucy/rules_imagemagick/archive/035de87c648269fc56c3368ec5891521189f29df.zip"],
 )
 
 load("@rules_imagemagick//:index.bzl", "imagemagick_repository")
