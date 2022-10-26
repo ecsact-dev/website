@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {EcsactExampleDiagramModule} from '../../components/ecsact-example-diagram/ecsact-example-diagram.module';
 import {EcsactLangSyntaxModule} from '../../components/ecsact-lang-syntax/ecsact-lang-syntax.module';
+import {ContentModule} from '../../components/layout/content/content.module';
 
 import {HomeComponent} from './home.component';
 
@@ -13,6 +14,7 @@ import {HomeComponent} from './home.component';
 		CommonModule,
 		EcsactLangSyntaxModule,
 		EcsactExampleDiagramModule,
+		ContentModule,
 	],
 	exports: [HomeComponent],
 	bootstrap: [],

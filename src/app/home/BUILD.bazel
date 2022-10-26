@@ -18,6 +18,7 @@ ng_ts_project(
     deps = [
         "//src/components/ecsact-example-diagram",
         "//src/components/ecsact-lang-syntax",
+        "//src/components/layout/content",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

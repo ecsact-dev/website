@@ -17,7 +17,7 @@ const routes: Routes = [
 			import('./docs/docs-routing.module').then(m => m.DocsRoutingModule),
 	},
 	{
-		path: 'getstarted',
+		path: 'start',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./getstarted/getstarted-routing.module').then(
