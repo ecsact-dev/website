@@ -16,6 +16,9 @@ ng_ts_project(
         ":getstarted_component_style",
     ],
     deps = [
+        "//src/components/layout/content",
+        "//src/components/layout/sidenav",
+        "//src/components/layout/sidenav-section",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

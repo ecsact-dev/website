@@ -32,3 +32,47 @@
 	padding-left: 15px;
 	padding-right: 15px;
 }
+
+article section {
+	padding: 64px 8px;
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.integration-links-container {
+	display: grid;
+	grid-auto-columns: auto;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 16px;
+}
+
+.integration-link {
+	padding: 16px;
+	border-radius: 6px;
+	background-color: rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: row;
+	min-height: 80px;
+	gap: 16px;
+	align-items: center;
+
+	.i48 {
+		display: inline-block;
+		transition: 100ms ease transform;
+		transform: translateX(0px);
+	}
+
+	&:hover {
+		.i48 {
+			transform: translateX(10px);
+		}
+	}
+}
+
+.brand {
+	flex: 1;
+	align-self: stretch;
+}

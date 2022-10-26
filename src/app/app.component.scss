@@ -17,6 +17,12 @@ nav.top-nav {
 	box-sizing: border-box;
 	background-color: var(--color-primary);
 
+	.home-nav-item.brand.ecsact {
+		min-width: 30px;
+		background-image: url(assets/brand/ecsact-all-color.png);
+		background-color: rgb(0 160 177 / 20%);
+	}
+
 	a {
 		display: flex;
 		flex-direction: row;
