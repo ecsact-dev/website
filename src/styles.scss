@@ -11,6 +11,9 @@ $whiteColor: #d4d4d4;
 	--color-content-bg: #{darken($blackColor, 2%)};
 	--color-text: #{$whiteColor};
 
+	.brand.ecsact {
+		background-image: url(assets/brand/ecsact-white.png);
+	}
 	.brand.unity {
 		background-image: url(assets/brand/unity-white.png);
 	}
@@ -30,6 +33,9 @@ $whiteColor: #d4d4d4;
 	--color-content-bg: #{lighten($whiteColor, 10%)};
 	--color-text: #{$blackColor};
 
+	.brand.ecsact {
+		background-image: url(assets/brand/ecsact-black.png);
+	}
 	.brand.unity {
 		background-image: url(assets/brand/unity-black.png);
 	}
