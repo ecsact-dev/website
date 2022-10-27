@@ -82,3 +82,9 @@ http_archive(
 load("@rules_imagemagick//:index.bzl", "imagemagick_repository")
 
 imagemagick_repository()
+
+load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
+
+esbuild_repositories(
+    npm_repository = "npm",
+)
