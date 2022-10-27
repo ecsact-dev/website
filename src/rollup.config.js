@@ -6,7 +6,7 @@ export default {
 		nodeResolve({
 			mainFields: ['browser', 'es2015', 'module', 'jsnext:main', 'main'],
 		}),
-		commonjs(),
+		commonjs({sourceMap: false}),
 	],
 	onwarn: warning => {
 		// Angulars AOT triggers this warning
