@@ -7,9 +7,10 @@ load("@npm//@bazel/typescript:index.bzl", "ts_config")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm//@bazel/esbuild:index.bzl", "esbuild")
+load("@npm//tailwindcss:index.bzl", "tailwindcss")
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
 load("//tools:ngsw_config.bzl", "ngsw_config")
-load("@npm//tailwindcss:index.bzl", "tailwindcss")
+load("//tools:file_collector.bzl", "file_collector")
 
 package(default_visibility = ["//:__subpackages__"])
 
@@ -96,6 +97,13 @@ babel(
     output_dir = True,
 )
 
+file_collector(
+    name = "tailwind_content",
+    # out = "tailwind_content.json",
+    extension = "html",
+    deps = [":src"],
+)
+
 tailwindcss(
     name = "tailwindcss",
     outs = ["tailwind.css"],
@@ -106,14 +114,13 @@ tailwindcss(
         "$(execpath :styles.tailwind.css)",
         "--output",
         "$@",
-        "--content",
-        "$(execpath :bundle-dev.js)",
+        "--",
+        "$(execpaths :tailwind_content)",
     ],
     data = [
-        ":bundle-dev",
-        ":bundle-dev.js",
         ":styles.tailwind.css",
         ":tailwind.config.js",
+        ":tailwind_content",
     ],
 )
 
@@ -127,13 +134,14 @@ tailwindcss(
         "$(execpath :styles.tailwind.css)",
         "--output",
         "$@",
-        "--content",
-        "$(execpath :bundle-es2015)/**/*.js",
+        "--minify",
+        "--",
+        "$(execpaths :tailwind_content)",
     ],
     data = [
-        ":bundle-es2015",
         ":styles.tailwind.css",
         ":tailwind.config.js",
+        ":tailwind_content",
     ],
 )
 
