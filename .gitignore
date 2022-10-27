@@ -1,3 +1,4 @@
+/.angular/cache
 /bazel-*
 /node_modules
 /user.bazelrc
