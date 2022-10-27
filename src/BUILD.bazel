@@ -8,6 +8,7 @@ load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
 load("//tools:ngsw_config.bzl", "ngsw_config")
+load("@npm//tailwindcss:index.bzl", "tailwindcss")
 
 package(default_visibility = ["//:__subpackages__"])
 
@@ -88,6 +89,36 @@ babel(
     output_dir = True,
 )
 
+tailwindcss(
+    name = "tailwindcss",
+    outs = ["tailwind.css"],
+    args = [
+        "--config",
+        "$(execpath :tailwind.config.js)",
+        "--output",
+        "$@",
+    ],
+    data = [
+        ":bundle-es5",
+        ":tailwind.config.js",
+    ],
+)
+
+tailwindcss(
+    name = "tailwindcss_minify",
+    outs = ["tailwind.min.css"],
+    args = [
+        "--config",
+        "$(execpath :tailwind.config.js)",
+        "--output",
+        "$@",
+    ],
+    data = [
+        ":bundle-es5",
+        ":tailwind.config.js",
+    ],
+)
+
 html_insert_assets(
     name = "inject_scripts_for_dev",
     outs = ["_devapp/index.html"],
@@ -95,6 +126,7 @@ html_insert_assets(
         "--html=$(execpath :main.html)",
         "--out=$@",
         "--roots=. $(RULEDIR)",
+        "--assets $(execpath :tailwind.css)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
         "--scripts --module $(execpath :bundle-es2015)/index.dev.js",
@@ -103,6 +135,7 @@ html_insert_assets(
     data = [
         ":main.html",
         ":bundle-es2015",
+        ":tailwind.css",
     ] + _ASSETS,
 )
 
@@ -110,6 +143,7 @@ pkg_web(
     name = "devapp",
     srcs = _ASSETS + [
         ":bundle-es2015",
+        ":tailwind.css",
         ":inject_scripts_for_dev",
         "//src/assets",
         # Include polyfills that will be requested by old browsers
@@ -158,11 +192,13 @@ html_insert_assets(
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
         "--scripts --module $(execpath :bundle-es2015.min)/index.prod.js",
         "--scripts --nomodule $(execpath :bundle-es5.min)/index.prod.js",
+        "--assets $(execpath :tailwind.min.css)",
     ],
     data = [
         ":main.html",
         ":bundle-es2015.min",
         ":bundle-es5.min",
+        ":tailwind.min.css",
     ] + _ASSETS,
 )
 
@@ -171,6 +207,7 @@ pkg_web(
     srcs = _ASSETS + [
         ":bundle-es2015.min",
         ":bundle-es5.min",
+        ":tailwind.min.css",
         # each injected index file should be listed here
         ":inject_scripts_for_prod",
         "//src/assets",

@@ -2,6 +2,7 @@
 	"recommendations": [
 		"Angular.ng-template",
 		"esbenp.prettier-vscode",
-		"BazelBuild.vscode-bazel"
+		"BazelBuild.vscode-bazel",
+		"bradlc.vscode-tailwindcss"
 	]
 }
