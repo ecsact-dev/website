@@ -4,6 +4,18 @@
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"angular.forceStrictTemplates": true,
+	"files.associations": {
+		"*.tailwind.css": "tailwindcss"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[tailwindcss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnType": true
