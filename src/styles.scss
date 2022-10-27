@@ -212,7 +212,7 @@ table {
 			cursor: pointer;
 			padding: 4px 8px;
 			border-radius: 3px;
-			background-color: var(--color-b);
+			background-color: var(--color-bg);
 			position: sticky;
 			left: 8px;
 		}
@@ -403,4 +403,34 @@ a {
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+button,
+a.btn {
+	display: inline-block;
+	border: 1px solid var(--color-text);
+	color: var(--color-text);
+	cursor: pointer;
+	padding: 6px 12px;
+	border-radius: 4px;
+	background-color: var(--color-bg);
+
+	@media (hover: hover) {
+		transition: 100ms ease box-shadow, 100ms ease transform, 100ms ease opacity;
+		transform: translateY(2px);
+		opacity: 1;
+		box-shadow: 0px 0px 0px var(--color-text);
+
+		&:hover {
+			text-decoration: none;
+			transform: translateY(0px);
+			box-shadow: 0px 3px 0px var(--color-text);
+		}
+
+		&:active {
+			box-shadow: 0px 0px 0px var(--color-text);
+			transform: translateY(2px);
+			opacity: 0.8;
+		}
+	}
 }
