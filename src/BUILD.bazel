@@ -95,11 +95,14 @@ tailwindcss(
     args = [
         "--config",
         "$(execpath :tailwind.config.js)",
+        "--input",
+        "$(execpath :styles.tailwind.css)",
         "--output",
         "$@",
     ],
     data = [
         ":bundle-es5",
+        ":styles.tailwind.css",
         ":tailwind.config.js",
     ],
 )
@@ -110,11 +113,14 @@ tailwindcss(
     args = [
         "--config",
         "$(execpath :tailwind.config.js)",
+        "--input",
+        "$(execpath :styles.tailwind.css)",
         "--output",
         "$@",
     ],
     data = [
         ":bundle-es5",
+        ":styles.tailwind.css",
         ":tailwind.config.js",
     ],
 )

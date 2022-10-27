@@ -1,6 +1,6 @@
 <ng-template #compoundsListTpl let-compounds>
 	<p *ngIf="compounds.length === 0">(none)</p>
-	<ul>
+	<ul class="list-disc list-inside">
 		<li
 			*ngFor="
 				let compound of sortByName(
