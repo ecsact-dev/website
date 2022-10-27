@@ -408,27 +408,26 @@ a {
 button,
 a.btn {
 	display: inline-block;
-	border: 1px solid var(--color-text);
-	color: var(--color-text);
+	color: inherit;
+	border: 1px solid currentColor;
 	cursor: pointer;
 	padding: 6px 12px;
 	border-radius: 4px;
-	background-color: var(--color-bg);
 
 	@media (hover: hover) {
 		transition: 100ms ease box-shadow, 100ms ease transform, 100ms ease opacity;
 		transform: translateY(2px);
 		opacity: 1;
-		box-shadow: 0px 0px 0px var(--color-text);
+		box-shadow: 0px 0px 0px currentColor;
 
 		&:hover {
 			text-decoration: none;
 			transform: translateY(0px);
-			box-shadow: 0px 3px 0px var(--color-text);
+			box-shadow: 0px 3px 0px currentColor;
 		}
 
 		&:active {
-			box-shadow: 0px 0px 0px var(--color-text);
+			box-shadow: 0px 0px 0px currentColor;
 			transform: translateY(2px);
 			opacity: 0.8;
 		}
