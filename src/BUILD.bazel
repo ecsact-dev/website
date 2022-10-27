@@ -6,6 +6,7 @@ load("@npm//@bazel/terser:index.bzl", "terser_minified")
 load("@npm//@bazel/typescript:index.bzl", "ts_config")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
+load("@npm//@bazel/esbuild:index.bzl", "esbuild")
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
 load("//tools:ngsw_config.bzl", "ngsw_config")
 load("@npm//tailwindcss:index.bzl", "tailwindcss")
@@ -71,6 +72,12 @@ rollup_bundle(
     ],
 )
 
+esbuild(
+    name = "bundle-dev",
+    entry_point = ":main.dev.ts",
+    deps = [":src"],
+)
+
 babel(
     name = "bundle-es5",
     args = [
@@ -100,10 +107,11 @@ tailwindcss(
         "--output",
         "$@",
         "--content",
-        "$(execpath :bundle-es2015)/**/*.js",
+        "$(execpath :bundle-dev.js)",
     ],
     data = [
-        ":bundle-es2015",
+        ":bundle-dev",
+        ":bundle-dev.js",
         ":styles.tailwind.css",
         ":tailwind.config.js",
     ],
@@ -139,12 +147,13 @@ html_insert_assets(
         "--assets $(execpath :tailwind.css)",
         "--assets",
     ] + ["$(execpath %s)" % s for s in _ASSETS] + [
-        "--scripts --module $(execpath :bundle-es2015)/index.dev.js",
+        "--scripts --module $(execpath :bundle-dev.js)",
         "--scripts --async http://localhost:35729/livereload.js",  # This script is available when running with ibazel. https://github.com/bazelbuild/bazel-watcher/pull/78
     ],
     data = [
         ":main.html",
-        ":bundle-es2015",
+        ":bundle-dev",
+        ":bundle-dev.js",
         ":tailwind.css",
     ] + _ASSETS,
 )
@@ -152,8 +161,8 @@ html_insert_assets(
 pkg_web(
     name = "devapp",
     srcs = _ASSETS + [
-        ":bundle-es2015",
         ":tailwind.css",
+        ":bundle-dev",
         ":inject_scripts_for_dev",
         "//src/assets",
         # Include polyfills that will be requested by old browsers
