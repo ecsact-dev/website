@@ -22,5 +22,7 @@ ng_ts_project(
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
+        "@npm//@types/node",
+        "@npm//detect-browser",
     ],
 )

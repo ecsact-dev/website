@@ -1,3 +1,4 @@
+import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {ContentModule} from '../../components/layout/content/content.module';
@@ -8,7 +9,13 @@ import {GetStartedComponent} from './getstarted.component';
 
 @NgModule({
 	declarations: [GetStartedComponent],
-	imports: [RouterModule, ContentModule, SidenavModule, SidenavSectionModule],
+	imports: [
+		CommonModule,
+		RouterModule,
+		ContentModule,
+		SidenavModule,
+		SidenavSectionModule,
+	],
 	exports: [GetStartedComponent],
 	bootstrap: [],
 })
