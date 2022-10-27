@@ -48,14 +48,10 @@ yarn_install(
 
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = "4e60e706447cdc30dfd350191911b47a2aa3b62a199c94569cc4af473270343b",
-    strip_prefix = "rules_sass-4f21d78581b7cfe94b28f5cb8ef6d313e8879a1c",
-    urls = ["https://github.com/bazelbuild/rules_sass/archive/4f21d78581b7cfe94b28f5cb8ef6d313e8879a1c.zip"],
+    sha256 = "0cde2dd9ff34994f27ba4d5c74d34cca3c727bf41bc6024cf66ad298a1f5e5c2",
+    strip_prefix = "rules_sass-f6ceac7f5e11424880ae41f9c1a5cfd02968376c",
+    urls = ["https://github.com/bazelbuild/rules_sass/archive/f6ceac7f5e11424880ae41f9c1a5cfd02968376c.zip"],
 )
-
-load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
-
-rules_sass_dependencies()
 
 load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 
