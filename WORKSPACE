@@ -63,9 +63,9 @@ sass_repositories()
 
 http_archive(
     name = "rules_blender",
-    sha256 = "bb6c65d756fe1c24c63c8a893703a1005948854cd89c4e72ac42c2dfa169caf5",
-    strip_prefix = "rules_blender-7cb1c679864619801cc5a78054bb620926a29c3d",
-    urls = ["https://github.com/zaucy/rules_blender/archive/7cb1c679864619801cc5a78054bb620926a29c3d.zip"],
+    sha256 = "016b7621172ef5cf729b938b036c1c64731a54d97c3c7ea92c1c4d69e98e3a8d",
+    strip_prefix = "rules_blender-05924db888ca2e1f2025980b9ce41fe83facf664",
+    urls = ["https://github.com/zaucy/rules_blender/archive/05924db888ca2e1f2025980b9ce41fe83facf664.zip"],
 )
 
 load("@rules_blender//:repo.bzl", "blender_repository")
@@ -73,15 +73,11 @@ load("@rules_blender//:repo.bzl", "blender_repository")
 blender_repository(name = "blender")
 
 http_archive(
-    name = "rules_imagemagick",
-    sha256 = "20ce414b1243c28e388d7f56aaedebb2a0d5cf510fcd91bb5ceae77005b478fa",
-    strip_prefix = "rules_imagemagick-35903509e561bde7b9081e5682a732d2f4d91f85",
-    urls = ["https://github.com/zaucy/rules_imagemagick/archive/35903509e561bde7b9081e5682a732d2f4d91f85.zip"],
+    name = "ecsact_logo",
+    sha256 = "fa649ff512d8b465f9100680d2bcdd92f8e647c4ba9aa80d3036edfaa8061a1f",
+    strip_prefix = "logo-4ab02c5a04120b192a12f399b8ab02a79f0171dc",
+    urls = ["https://github.com/ecsact-dev/logo/archive/4ab02c5a04120b192a12f399b8ab02a79f0171dc.zip"],
 )
-
-load("@rules_imagemagick//:index.bzl", "imagemagick_repository")
-
-imagemagick_repository()
 
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
 
