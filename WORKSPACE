@@ -4,10 +4,10 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "bazel_skylib",
-    sha256 = "c6966ec828da198c5d9adbaa94c05e3a1c7f21bd012a0b29ba8ddbccb2c93b0d",
+    sha256 = "74d544d96f4a5bb630d465ca8bbcfe231e3594e5aae57e1edbf17a6eb3ca2506",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz",
-        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.1.1/bazel-skylib-1.1.1.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.3.0/bazel-skylib-1.3.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.3.0/bazel-skylib-1.3.0.tar.gz",
     ],
 )
 
@@ -63,9 +63,9 @@ sass_repositories()
 
 http_archive(
     name = "rules_blender",
-    sha256 = "ac8dd6fb84f058beb774529baad8d27249415ee99ff9c7b3dda004722f055dcb",
-    strip_prefix = "rules_blender-580815c406f5dac682b2816314b5a2f7bbdb2ce3",
-    urls = ["https://github.com/zaucy/rules_blender/archive/580815c406f5dac682b2816314b5a2f7bbdb2ce3.zip"],
+    sha256 = "b58bba0a2db9c03df8d9b3568465c8d90903f7cda45c33cbadb2de48bdbbfcf3",
+    strip_prefix = "rules_blender-4bb0efc5a329ad9d03c8c27485689baf1338ccad",
+    urls = ["https://github.com/zaucy/rules_blender/archive/4bb0efc5a329ad9d03c8c27485689baf1338ccad.zip"],
 )
 
 load("@rules_blender//:repo.bzl", "blender_repository")
@@ -74,9 +74,9 @@ blender_repository(name = "blender")
 
 http_archive(
     name = "ecsact_logo",
-    sha256 = "fa649ff512d8b465f9100680d2bcdd92f8e647c4ba9aa80d3036edfaa8061a1f",
-    strip_prefix = "logo-4ab02c5a04120b192a12f399b8ab02a79f0171dc",
-    urls = ["https://github.com/ecsact-dev/logo/archive/4ab02c5a04120b192a12f399b8ab02a79f0171dc.zip"],
+    sha256 = "0ecba63837824cb9588ca350e8a9bd1263eb809be8e699aaefd0d7134fd533fe",
+    strip_prefix = "logo-ad8a285861d4744460d9d2a6458a4010a4ccf3e4",
+    urls = ["https://github.com/ecsact-dev/logo/archive/ad8a285861d4744460d9d2a6458a4010a4ccf3e4.zip"],
 )
 
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
