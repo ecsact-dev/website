@@ -1,21 +1,19 @@
-<nav class="top-nav always-light" [class.search-focused]="search.isFocused()">
+<nav class="top-nav bg-primary" [class.search-focused]="search.isFocused()">
 	<div class="before-search">
 		<a
-			class="always-light home-nav-item brand ecsact"
-			routerLink="/"
-			routerLinkActive="active"
-			[routerLinkActiveOptions]="{exact: true}">
+			class="bg-logoBlack bg-contain bg-center bg-no-repeat w-16"
+			routerLink="/">
 		</a>
-		<a routerLink="/start" routerLinkActive="active">
+		<a routerLink="/start" routerLinkActive="active" class="text-black">
 			<span>Start</span>
 		</a>
-		<a routerLink="/docs" routerLinkActive="active">
+		<a routerLink="/docs" routerLinkActive="active" class="text-black">
 			<span>Documentation</span>
 		</a>
-		<a routerLink="/reference" routerLinkActive="active">
+		<a routerLink="/reference" routerLinkActive="active" class="text-black">
 			<span>Reference</span>
 		</a>
-		<a routerLink="/tutorials" routerLinkActive="active">
+		<a routerLink="/tutorials" routerLinkActive="active" class="text-black">
 			<span>Tutorials</span>
 		</a>
 	</div>

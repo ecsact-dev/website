@@ -4,6 +4,7 @@
 	"files.eol": "\n",
 	"editor.insertSpaces": false,
 	"angular.forceStrictTemplates": true,
+	"prettier.prettierPath": "./node_modules/prettier",
 	"files.associations": {
 		"*.tailwind.css": "tailwindcss"
 	},
@@ -18,7 +19,8 @@
 	},
 	"[html]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnType": true
+		"editor.formatOnType": true,
+		"editor.wordWrap": "bounded"
 	},
 	"[typescript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

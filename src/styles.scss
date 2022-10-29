@@ -14,6 +14,9 @@ $whiteColor: #d4d4d4;
 	.brand.ecsact {
 		background-image: url(external/ecsact_logo/ecsact-white.png);
 	}
+	.brand.ecsact-color {
+		background-image: url(external/ecsact_logo/ecsact-color.png);
+	}
 	.brand.unity {
 		background-image: url(assets/brand/unity-white.png);
 	}
@@ -36,6 +39,9 @@ $whiteColor: #d4d4d4;
 	.brand.ecsact {
 		background-image: url(external/ecsact_logo/ecsact-black.png);
 	}
+	.brand.ecsact-color {
+		background-image: url(external/ecsact_logo/ecsact-color.png);
+	}
 	.brand.unity {
 		background-image: url(assets/brand/unity-black.png);
 	}
@@ -51,7 +57,6 @@ $whiteColor: #d4d4d4;
 }
 
 :root {
-	--color-primary: #9dd9d2;
 	--color-secondary: #ff8811;
 	--color-error: rgb(221 100 70);
 	--color-success: rgb(86 213 108);
@@ -396,7 +401,6 @@ a {
 button,
 a.btn {
 	display: inline-block;
-	color: inherit;
 	border: 1px solid currentColor;
 	cursor: pointer;
 	padding: 6px 12px;

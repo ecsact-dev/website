@@ -1,9 +1,29 @@
-<div class="flex flex-row gap-2 my-8 mx-auto justify-center items-center">
-	<div class="w-16 h-16 brand ecsact"></div>
-	<div>
-		<div class="text-2xl text-secondary">Create with Ecsact</div>
-		<div class="text-sm">A language to describe your ECS</div>
+<div class="overflow-hidden pb-8 bg-primary text-black relative">
+	<div
+		class="flex flex-col lg:flex-row gap-4 my-8 mx-auto justify-center items-center relative z-30">
+		<div
+			class="w-64 h-64 bg-logoBlack bg-center bg-no-repeat opacity-80 bg-contain"></div>
+		<div class="px-4">
+			<p class="text-4xl bold text-black">Create with Ecsact</p>
+			<p class="text-xl">A language to describe your ECS</p>
+			<p class="font-bold">
+				<a class="btn text-secondary/50 bg-secondary" routerLink="/start">
+					<span class="flex flex-row items-center text-black">
+						<span class="i48 text-2xl mr-2">rocket_launch</span>
+						Get Started
+					</span>
+				</a>
+			</p>
+		</div>
 	</div>
+
+	<div
+		class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary z-20"></div>
+
+	<div
+		class="absolute top-0 bottom-0 left-0 right-0 z-10 bg-subtle-texture bg-repeat bg-center opacity-40"></div>
+	<div
+		class="absolute bottom-0 left-0 right-0 h-32 opacity-25 bg-gradient-to-t from-secondary z-20 border-b-4 border-secondary border-solid"></div>
 </div>
 
 <ecsact-example-diagram
@@ -49,38 +69,54 @@
 </ecsact-example-diagram>
 
 <article>
-	<section class="my-8 max-w-md center mx-auto px-2">
-		<p class="text-center">
-			Ready to give Ecsact a try? Head on over to our getting started page to
-			install the Ecsact SDK, integrate with your favourite engine, and learn
-			more about Ecsact.
-		</p>
-		<p class="text-center text-success text-lg font-bold">
-			<a class="btn" routerLink="/start">
-				<span class="i48">rocket_launch</span>
-				Get Started
-			</a>
-		</p>
+	<section
+		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">
+		<div class="flex-1">
+			<h2>ECS <em>enforced</em>.</h2>
+			<p>
+				Prevent mistakes by having a language that forces the
+				<em>best</em> use of ECS.
+			</p>
+			<p class="font-bold">
+				<a class="btn text-primary/50 bg-primary" routerLink="/start">
+					<span class="text-black">
+						<span class="i48">school</span>
+						Learn More
+					</span>
+				</a>
+			</p>
+		</div>
+
+		<div class="brand ecsact flex-1 self-stretch"></div>
 	</section>
 
-	<section class="my-8 max-w-md center mx-auto px-2">
-		<p class="text-center">[BRIEF DESCRIPTION OF FEATURE A]</p>
-		<p class="text-center">
-			<a routerLink="/start" class="btn">
-				<span class="i48">school</span>
-				Learn More
-			</a>
-		</p>
-	</section>
-
-	<section class="my-8 max-w-md center mx-auto px-2">
-		<p style="text-align: center" t>[BRIEF DESCRIPTION OF FEATURE B]</p>
-		<p class="text-center">
-			<a routerLink="/start" class="btn">
-				<span class="i48">school</span>
-				Learn More
-			</a>
-		</p>
+	<section
+		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
+		<div class="brand ecsact flex-[2] self-stretch"></div>
+		<div class="flex-[3]">
+			<h2>Commit to Ecsact without committing to an engine.</h2>
+			<p>
+				Ecsact is designed to not rely on any particular engine, affording you
+				the flexibility to make the best decision for your product.
+			</p>
+			<p class="text-sm">
+				<a>Unity integration</a> is <strong>available now</strong> with
+				<a>Unreal</a> and <a>Godot</a> support planned for the near future.
+				<a>Custom</a> integration is also possible for in-house or other engines
+				that are not officially planned for.
+			</p>
+			<p class="font-bold">
+				<a
+					class="btn text-primary/50 bg-primary"
+					routerLink="/start"
+					fragment="integrations">
+					<span class="text-black">
+						<span class="i48">school</span>
+						Learn More
+					</span>
+				</a>
+			</p>
+		</div>
 	</section>
 
 	<section class="my-8 max-w-md center mx-auto px-2">
@@ -93,12 +129,14 @@
 		</p>
 	</section>
 
-	<section class="my-8 max-w-md center mx-auto px-2">
+	<section class="my-8 max-w-md center mx-auto px-4 py-16">
 		<p class="text-center">What are you waiting for?</p>
-		<p class="text-center text-success text-lg font-bold">
-			<a class="btn" routerLink="/start">
-				<span class="i24">rocket_launch</span>
-				Get Started
+		<p class="text-center text-lg font-bold">
+			<a class="btn text-success/50 bg-success" routerLink="/start">
+				<span class="text-black">
+					<span class="i48">rocket_launch</span>
+					Get Started
+				</span>
 			</a>
 		</p>
 	</section>
