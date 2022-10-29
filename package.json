@@ -44,7 +44,7 @@
     "@babel/preset-env": "7.17.12",
     "@bazel/esbuild": "5.5.0",
     "@bazel/rollup": "5.5.0",
-    "@bazel/terser": "5.5.0",
+    "@bazel/terser": "5.7.1",
     "@bazel/typescript": "5.5.0",
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-node-resolve": "13.3.0",

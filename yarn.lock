@@ -1081,10 +1081,10 @@
   dependencies:
     "@bazel/worker" "5.5.0"
 
-"@bazel/terser@5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-5.5.0.tgz#3b2b582a417d99d59ae99b50d74576ca0719c03a"
-  integrity sha512-aBjNmJ7TbcD7cKAdFErYQYXn4OqTvrmqrtN6Z6Wnv82d+23kbEsF427ixgdCO3GTQJDw7+x7K9TP2CGogaGtcg==
+"@bazel/terser@5.7.1":
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-5.7.1.tgz#2f247472d65fd53350f1366009b8c5245e23f705"
+  integrity sha512-WAy2LG7lU6M4CLHBe7UWAFpILCb0k4KpLnBp8uiQFCovSYgmhB7kThWGNwkx/dgmr8mI+aSZ8tBcv0CQc+C0ZQ==
 
 "@bazel/typescript@5.5.0":
   version "5.5.0"
