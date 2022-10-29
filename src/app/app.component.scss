@@ -28,11 +28,6 @@ nav.top-nav {
 		white-space: nowrap;
 		opacity: 1;
 		transition: 300ms ease-out opacity;
-
-		&.active {
-			font-weight: bold;
-			border-bottom-color: var(--color-secondary);
-		}
 	}
 
 	.search-flex {

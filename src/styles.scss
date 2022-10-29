@@ -57,9 +57,6 @@ $whiteColor: #d4d4d4;
 }
 
 :root {
-	--color-secondary: #ff8811;
-	--color-error: rgb(221 100 70);
-	--color-success: rgb(86 213 108);
 	--top-nav-height: 50px;
 	--side-nav-width: 300px;
 
@@ -289,13 +286,6 @@ table.sticky {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 	vertical-align: top;
 	color: inherit;
-
-	&.primary {
-		color: var(--color-primary);
-	}
-	&.secondary {
-		color: var(--color-secondary);
-	}
 }
 
 .i24 {
@@ -304,13 +294,6 @@ table.sticky {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 	vertical-align: top;
 	color: inherit;
-
-	&.primary {
-		color: var(--color-primary);
-	}
-	&.secondary {
-		color: var(--color-secondary);
-	}
 }
 
 @mixin thin-scroll($color, $bgColor) {
@@ -382,7 +365,6 @@ main article {
 }
 
 a {
-	color: var(--color-secondary);
 	text-decoration: none;
 
 	@media (hover: hover) {

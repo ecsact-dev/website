@@ -16,6 +16,14 @@
 	p {
 		@apply my-2;
 	}
+
+	a {
+		@apply text-secondary;
+	}
+
+	nav.top-nav a.active {
+		@apply border-b border-solid border-b-secondary font-bold;
+	}
 }
 
 @tailwind components;
