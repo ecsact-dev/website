@@ -19,8 +19,8 @@ module.exports = {
 			mono: ["'Noto Sans Mono'", 'ui-monospace', 'SFMono-Regular', 'monospace'],
 		},
 		colors: {
-			primary: '#9dd9d2',
-			secondary: '#ff8811',
+			primary: '#1e90ff',
+			secondary: '#9dd9d2',
 			error: 'rgb(221 100 70)',
 			success: 'rgb(86 213 108)',
 			white: '#d4d4d4',
