@@ -18,11 +18,11 @@
 	}
 
 	a {
-		@apply text-secondary;
+		@apply text-primary;
 	}
 
 	nav.top-nav a.active {
-		@apply border-b border-solid border-b-secondary font-bold;
+		@apply border-b border-solid border-b-primary font-bold;
 	}
 }
 
