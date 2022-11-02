@@ -1,0 +1,552 @@
+<article>
+	<h1>Example Using Unity</h1>
+
+	<section>
+		<h2 id="intoduction">Introduction</h2>
+		<p>
+			This tutorial will take a look at how Ecsact, the Unity API, and Unity
+			Sync can be used create a simple game. We'll be using the scene
+			<code>EcsactExample</code> in the repository
+			<a href="https://github.com/ecsact-dev/unity-example">here</a>. You can
+			either use the scene provided, or make your own and build it however you
+			like as you go
+		</p>
+		<h3>Prerequisites</h3>
+		<ol>
+			<li>Ecsact SDK</li>
+			<li>Ecsact Integration</li>
+			<li>Unity Input System</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2>Setup</h2>
+		<p>
+			ADD ASSEMBLY STUFF AND ECSACT FILE. Set it in settings and enable unity
+			sync
+		</p>
+	</section>
+
+	<section>
+		<h2 id="gameobject">Adding a GameObject with Unity Sync</h2>
+		<p>
+			We're going to start by using a Unity Sync script to add a GameObject to
+			the scene. But first we'll need to create some components to filter our
+			entities. We will always use <code>example</code> as our ecsact file name.
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				// A position to instantiate a GameObject from
+				component Position {{'{'}}
+					f32 x;
+					f32 y;
+					f32 prev_x;
+					f32 prev_y;
+				{{'}'}}
+
+				// A tag component to specify the entity will have a block gameobject
+				component Block{{'{'}}{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			Now that we have our components, we can create a Sync Script that we'll
+			call <code>AddBlock.cs</code>. We need something to instantiate in our
+			Rescources folder. For our example we're going to use a basic square in
+			<code>Sprite Renderer</code>
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+
+				public class AddBlock
+					: MonoBehaviour
+					, Ecsact.UnitySync.IRequired<{{'example.Position'}}>
+					, Ecsact.UnitySync.IRequired<{{'example.Block'}}>
+					, Ecsact.UnitySync.IOnInitComponent<{{'example.Position'}}>
+				{{'{'}}
+					GameObject blockObj;
+
+					void Awake() {{'{'}}
+						blockObj = Resources.Load("Block") as GameObject;
+					{{'}'}}
+
+					// Get the position of the entity to Instantiate
+					public void OnInitComponent(in example.Position component) {{'{'}}
+						Instantiate(
+							blockObj,
+							gameObject.transform.position,
+							Quaternion.identity,
+							gameObject.transform
+						);
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			Note: <code>Resources.Load</code> needs to happen on <code>Awake</code> to
+			be available in <code>OnInitComponent</code> because of how everything is
+			initialized
+		</p>
+
+		<p>
+			Let's see if our script is working! Let's have an initial entity spawn by
+			using <code>Dynamic Entity</code>. If everything worked correctly, when
+			you enter playmode a gameObject should spawn at the position you inputted
+			for the entity.
+		</p>
+		<p>
+			IMAGE HERE MAYBE? SHOULD WE HAVE ANOTHER SECTION FOR DYNAMIC ENTITY OR
+			JUST EXPLAIN IT HERE?
+		</p>
+	</section>
+
+	<section>
+		<h2 id="blocks">Generating Blocks</h2>
+		<p>
+			What if we took this one step further? We've managed to use Unity Sync
+			with our Dynamic Entity, but Unity Sync will adapt to changes in entities
+			during runtime. Let's go into our <code>.ecsact</code> file
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				component BlockGenerator;
+
+				component QueueBlock {{'{'}}
+					i32 pos_x;
+					i32 pos_y;
+				{{'}'}}
+
+				// An action that will happen on an Input
+				action PerformGenerateBlock {{'{'}}
+					i32 pos_x;
+					i32 pos_y;
+					include BlockGenerator;
+					adds QueueBlock;
+				{{'}'}}
+
+				// A system that will trigger from the component added in the action above
+				system GenerateBlock {{'{'}}
+					include BlockGenerator;
+					readwrite QueueBlock;
+					generates {{'{'}}
+						required Block;
+						required Position;
+					{{'}'}}
+				{{'}'}}
+
+				// Clean up the QueueBlock to assure it only happens once per action
+				system RemoveQueueBlock {{'{'}}
+					removes QueueBlock;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			Now we have the code in place to make a block spawn from an action. Any
+			newly generated entities will be pooled for Unity Sync. This means the
+			Sync script that adds the Block GameObject will be automatically added to
+			our new entities. Let's make a way to perform our action.
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+				using UnityEngine.InputSystem;
+
+				public class GenerateBlock : MonoBehaviour {{'{'}}
+					int entityId;
+
+					public InputAction mouseAction;
+					example.PerformGenerateBlock generateBlockAction;
+
+					void Start() {{'{'}}
+						mouseAction.Enable();
+						mouseAction.performed += OnMouseClick;
+
+						// Create an entity that will manage the generation of new entities
+						entityId = Ecsact.Defaults.Registry.CreateEntity();
+
+						Ecsact.Defaults.Registry.AddComponent<{{'example.BlockGenerator'}}>(
+							entityId,
+							new example.BlockGenerator {{'{'}}{{'}'}}
+						);
+					{{'}'}}
+
+					public void OnMouseClick
+						( InputAction.CallbackContext context
+						)
+					{{'{'}}
+						Vector3 mousePos = Mouse.current.position.ReadValue();
+						Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+						generateBlockAction.pos_x = (int)worldPos.x;
+						generateBlockAction.pos_y = (int)worldPos.y;
+
+						Ecsact.Defaults.Runner.executionOptions.PushAction(
+							generateBlockAction
+						);
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			The action is now set to be pushed whenever the InputAction is called in
+			<code>GenerateBlock.cs</code>. This will need to in the scene on a
+			GameObject to be present during the runtime. With Ecsact and pushing the
+			action accounted for, all that's left to do is implement the systems
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+
+				public class GenerateBlockSystem : MonoBehaviour {{'{'}}
+
+					[Ecsact.DefaultSystemImpl(typeof(example.PerformGenerateBlock))]
+					public static void PerformGenerateBlock
+						( EcsactRuntime.SystemExecutionContext context
+						)
+					{{'{'}}
+						var action = context.Action<{{'example.PerformGenerateBlock'}}>();
+
+						// Add QueueBlock to trigger GenerateBlock system
+						context.Add<{{'example.QueueBlock'}}>(new example.QueueBlock {{'{'}}
+							pos_x = action.pos_x,
+							pos_y = action.pos_y
+						});
+					{{'}'}}
+
+					[Ecsact.DefaultSystemImpl(typeof(example.GenerateBlock))]
+					public static void GenerateBlock
+						( EcsactRuntime.SystemExecutionContext context
+						)
+					{{'{'}}
+						var builder = context.Generate();
+						var block = context.Get<{{'example.QueueBlock'}}>();
+
+						builder
+							.AddComponent<{{'example.Block'}}>(
+								new example.Block{{'{'}}{{'}'}}
+							)
+							.AddComponent<{{'example.Position'}}>(
+								new example.Position{{'{'}}x = block.pos_x, y = block.pos_y{{'}'}}
+							)
+							.Finish();
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			When the InputAction is pressed, a new entity will be generated with a
+			block the same way our <code>Dynamic Entity</code> does. But there's a
+			small difference. When an entity is spawned at runtime, the Position of
+			the entity won't be applied to the gameobject itself. We can use Unity
+			Sync to solve that problem
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+
+				public class SyncMove
+					: MonoBehaviour
+					, Ecsact.UnitySync.IRequired<{{'example.Position'}}>
+					, Ecsact.UnitySync.IRequired<{{'example.Block'}}>
+					, Ecsact.UnitySync.IOnInitComponent<{{'example.Position'}}>
+					, Ecsact.UnitySync.IOnUpdateComponent<{{'example.Position'}}>
+				{{'{'}}
+					public void OnInitComponent(in example.Position position) {{'{'}}
+						gameObject.transform.position = new Vector3(position.x, position.y, 0);
+					{{'}'}}
+
+					public void OnUpdateComponent(in example.Position position) {{'{'}}
+						gameObject.transform.position = new Vector3(position.x, position.y, 0);
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			A listener for <code>OnUpdate</code> was added too. This will be used a
+			bit later for Movement
+		</p>
+	</section>
+
+	<section>
+		<h2 id="movement">Movement</h2>
+		<p>
+			So we can generate entities at will during runtime and manipulate their
+			data. The only problem now is we can't interact with them. Let's add
+			movement to all the entity blocks that we spawn. We'll add velocity, a
+			move action, and a system to apply changes
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+
+				// A flag that the entity should be able to move
+				component CanMove;
+
+				component Velocity {{'{'}}
+					f32 x_value;
+					f32 y_value;
+				{{'}'}}
+
+				action Move {{'{'}}
+					f32 dir_x;
+					f32 dir_y;
+					include CanMove;
+					readwrite Velocity;
+				{{'}'}}
+
+				system ApplyVelocity {{'{'}}
+					readwrite Position;
+					readwrite Velocity;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			Only entities that have <code>CanMove</code> will be affected by the
+			<code>Move</code> action. This lets other entities be affected by velocity
+			without movement. Remember, you'll need to update your generates in
+			<code>Ecsact</code>, any Dynamic Entities and
+			<code>GenerateBlockSystem</code> to see the effects
+		</p>
+		<p>
+			Let's move to Unity. In our example, we'll add a script to the same
+			GameObject that holds our <code>Dynamic Entity</code> called
+			<code>MoveControls</code>. This will hold input logic and push Actions to
+			Ecsact's <code>Runner</code>
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+				using UnityEngine.InputSystem;
+
+				public class MoveControls : MonoBehaviour {{'{'}}
+					public InputAction moveInput;
+
+					// Action type that will be updated and pushed for every OnMove
+					example.Move moveAction;
+
+					private Vector2 currentDirection = Vector2.zero;
+
+					void Start() {{'{'}}
+						moveInput.Enable();
+
+						moveInput.performed += OnMove;
+						moveInput.started += OnMove;
+						moveInput.canceled += OnMove;
+
+						moveAction = new example.Move{{'{'}}{{'}'}};
+					{{'}'}}
+
+					void OnDisable() {{'{'}}
+						moveInput.Disable();
+
+						moveInput.started -= OnMove;
+						moveInput.performed -= OnMove;
+						moveInput.canceled -= OnMove;
+					{{'}'}}
+
+					public void OnMove
+						( InputAction.CallbackContext context
+						)
+					{{'{'}}
+						var direction = context.ReadValue<{{'Vector2'}}>();
+
+						if(direction != currentDirection) {{'{'}}
+							currentDirection = direction;
+							moveAction.dir_x = direction.x;
+							moveAction.dir_y = direction.y;
+							// Push to executionOptions, which executes the Action Move on the next tick
+							Ecsact.Defaults.Runner.executionOptions.PushAction(
+								moveAction
+							);
+						{{'}'}}
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			We've done our Ecsact declarations and added the ability to push our
+			<code>Action</code>. Now like before we implement our systems. This might
+			start to feel familiar, the workflow of getting to and from Ecsact doesn't
+			change very much. We'll make another script we'll drop into our systems
+			folder called <code>MoveSystems</code>
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+				public class MoveSystems : MonoBehaviour {{'{'}}
+
+					[Ecsact.DefaultSystemImpl(typeof(example.Move))]
+					public static void Move
+						( EcsactRuntime.SystemExecutionContext context
+						)
+					{{'{'}}
+						var velocity = context.Get<{{'example.Velocity'}}>();
+						var move = context.Action<{{'example.Move'}}>();
+
+						velocity.x_value = move.dir_x;
+						velocity.y_value = move.dir_y;
+
+						context.Update<{{'example.Velocity'}}>(velocity);
+					{{'}'}}
+
+					[Ecsact.DefaultSystemImpl(typeof(example.ApplyVelocity))]
+					public static void ApplyVelocity
+						( EcsactRuntime.SystemExecutionContext context
+						)
+					{{'{'}}
+						var position = context.Get<{{'example.Position'}}>();
+						var velocity = context.Get<{{'example.Velocity'}}>();
+
+						position.prev_x = position.x;
+						position.prev_y = position.y;
+
+						position.x += velocity.x_value;
+						position.y += velocity.y_value;
+
+						context.Update<{{'example.Position'}}>(position);
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			Since we already added <code>SyncMove</code> earlier, the gameobject
+			should be updated whenever the position of the entity is
+		</p>
+	</section>
+	<section>
+		<h2 id="collision">Basic Collision</h2>
+		<p>
+			We have movement, great! We can finally interact with our game in some
+			way. The big problem now is we can go off the screen, and there's no way
+			to
+			<code>interact</code> with the other entities in our scene. We're going to
+			cover one of the ways in which you could compare entities and create
+			interactions with <code>Nested Systems</code>.
+		</p>
+		<p>If it isn't obvious at this point, we're going to start with Ecsact!</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				component Collider {{'{'}}
+					i32 x_radius;
+					i32 y_radius;
+				{{'}'}}
+
+				system CollisionComparer {{'{'}}
+					readonly Position;
+					readonly Collider;
+					system CheckCollision {{'{'}}
+						readwrite Position;
+						readwrite Velocity;
+						readwrite Collider;
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			A <code>Nested System</code> takes each entity that qualifies for
+			<code>CollisionComparer</code>, and compares each one against all of the
+			qualified entities in <code>CheckCollision</code>. You can view it as a
+			nested for loop. You can read more about it
+			<a href="http://localhost:8080/docs/lang#nested-systems">here</a>
+		</p>
+		<p>
+			Note: You need to add the <code>Collider</code> component to any entities
+			that you want to be considered
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+
+				public class CollisionSystem : MonoBehaviour {{'{'}}
+
+					[Ecsact.DefaultSystemImpl(typeof(example.CollisionComparer.CheckCollision))]
+					public static void CheckCollision
+						( EcsactRuntime.SystemExecutionContext context
+						)
+					{{'{'}}
+						if(context.Same(context.Parent())) return;
+
+						var position = context.Get<{{'example.Position'}}>();
+						var velocity = context.Get<{{'example.Velocity'}}>();
+
+						var otherPos = context.Parent().Get<{{'example.Position'}}>();
+						var other_collider = context.Parent().Get<{{'example.Collider'}}>();
+
+						var xDiff = System.Math.Abs(position.x - otherPos.x);
+						var yDiff = System.Math.Abs(position.y - otherPos.y);
+
+						if(xDiff <= other_collider.x_radius && yDiff <= other_collider.y_radius) {{'{'}}
+							position.x = position.prev_x;
+							position.y = position.prev_y;
+
+							if(position.x < otherPos.x) {{'{'}}
+								velocity.x_value = -0.5f;
+							{{'}'}} else {{'{'}}
+								velocity.x_value = 0.5f;
+							{{'}'}}
+
+							if(position.y < otherPos.y) {{'{'}}
+								velocity.y_value = -0.5f;
+							{{'}'}} else {{'{'}}
+								velocity.y_value = 0.5f;
+							{{'}'}}
+
+							context.Update<{{'example.Velocity'}}>(velocity);
+							context.Update<{{'example.Position'}}>(position);
+						{{'}'}}
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			There's only 1 system implementation. If there's nothing for a
+			<code>system</code> to consider then the system is considered trivial.
+			(TODO: Link to Trivial System docs)
+		</p>
+		<p>
+			To add Colliders to our static objects in a scene, we'll create a script
+			called <code>StaticCollider</code>. The radius of the collider in Ecsact
+			will be determined by the size of the gameobject
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using UnityEngine;
+
+				public class StaticCollider : MonoBehaviour {{'{'}}
+					int entityId;
+
+					void Start() {{'{'}}
+						entityId = Ecsact.Defaults.Registry.CreateEntity();
+
+						var xScale = System.Convert.ToInt32(gameObject.transform.localScale.x);
+						var yScale = System.Convert.ToInt32(gameObject.transform.localScale.y);
+
+						var xPos = (int)gameObject.transform.position.x;
+						var yPos = (int)gameObject.transform.position.y;
+
+						Ecsact.Defaults.Registry.AddComponent<{{'example.Collider'}}>(
+							entityId,
+							new example.Collider {{'{'}}
+								x_radius = xScale,
+								y_radius = yScale
+							{{'}'}}
+						);
+
+						Ecsact.Defaults.Registry.AddComponent<{{'example.Position'}}>(
+							entityId,
+							new example.Position {{'{'}}
+								x = xPos,
+								y = yPos
+							{{'}'}}
+						);
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p></p>
+	</section>
+</article>

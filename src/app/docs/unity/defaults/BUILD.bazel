@@ -1,0 +1,23 @@
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//:__subpackages__"])
+
+sass_binary(
+    name = "defaults_component_style",
+    src = "defaults.component.scss",
+)
+
+ng_ts_project(
+    name = "defaults",
+    srcs = glob(["*.ts"]),
+    angular_assets = [
+        "defaults.component.html",
+        ":defaults_component_style",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

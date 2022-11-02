@@ -17,6 +17,9 @@ ng_ts_project(
     ],
     deps = [
         "//src/app/tutorials/sys-impl/emsdk-cpp",
+        "//src/app/tutorials/unity/basic-example",
+        "//src/app/tutorials/unity/moving-block",
+        "//src/app/tutorials/unity/unity-sync",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",

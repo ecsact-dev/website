@@ -67,6 +67,20 @@ const routes: Routes = [
 						m => m.SetupRoutingModule,
 					),
 			},
+			{
+				path: 'defaults',
+				loadChildren: () =>
+					import('./unity/defaults/defaults-routing.module').then(
+						m => m.DefaultsRoutingModule,
+					),
+			},
+			{
+				path: 'unity-sync',
+				loadChildren: () =>
+					import('./unity/unity-sync/unity-sync-routing.module').then(
+						m => m.UnitySyncRoutingModule,
+					),
+			},
 		],
 	},
 ];

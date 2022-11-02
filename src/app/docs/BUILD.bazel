@@ -26,6 +26,8 @@ ng_ts_project(
         "//src/app/docs/system-execution",
         "//src/app/docs/system-impl",
         "//src/app/docs/system-impl-wasm",
+        "//src/app/docs/unity/defaults",
+        "//src/app/docs/unity/unity-sync",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
