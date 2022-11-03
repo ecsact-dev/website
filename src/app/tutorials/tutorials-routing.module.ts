@@ -32,13 +32,6 @@ import {TutorialsModule} from './tutorials.module';
 								m => m.MovingBlockRoutingModule,
 							),
 					},
-					{
-						path: 'unity/unity-sync',
-						loadChildren: () =>
-							import('./unity/unity-sync/unity-sync-routing.module').then(
-								m => m.UnitySyncRoutingModule,
-							),
-					},
 				],
 			},
 		]),

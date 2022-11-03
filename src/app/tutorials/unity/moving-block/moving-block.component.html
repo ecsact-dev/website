@@ -1,37 +1,42 @@
 <article>
-	<h1>Example Using Unity</h1>
+	<h1>Example Using Unity Sync</h1>
 
 	<section>
-		<h2 id="intoduction">Introduction</h2>
+		<h2 id="introduction">Introduction</h2>
 		<p>
 			This tutorial will take a look at how Ecsact, the Unity API, and Unity
 			Sync can be used create a simple game. We'll be using the scene
-			<code>EcsactExample</code> in the repository
-			<a href="https://github.com/ecsact-dev/unity-example">here</a>. You can
-			either use the scene provided, or make your own and build it however you
-			like as you go
+			<code>EcsactExample</code> in the
+			<a href="https://github.com/ecsact-dev/unity-example" target="_blank"
+				>unity-example</a
+			>
+			repository. You can either use the scene provided, or make your own and
+			build it however you like.
 		</p>
 		<h3>Prerequisites</h3>
 		<ol>
+			<li>Supported version of Unity</li>
 			<li>Ecsact SDK</li>
 			<li>Ecsact Integration</li>
-			<li>Unity Input System</li>
+			<li>Unity Sync</li>
 		</ol>
 	</section>
 
 	<section>
 		<h2>Setup</h2>
 		<p>
-			ADD ASSEMBLY STUFF AND ECSACT FILE. Set it in settings and enable unity
-			sync
+			You'll want to <a routerLink="/docs/unity/setup">setup</a> your Assembly
+			file, get the Ecsact Integration and enable Unity Sync. You can read about
+			how to do that
 		</p>
 	</section>
 
 	<section>
 		<h2 id="gameobject">Adding a GameObject with Unity Sync</h2>
 		<p>
-			We're going to start by using a Unity Sync script to add a GameObject to
-			the scene. But first we'll need to create some components to filter our
+			We're going to start by using a
+			<a href="docs/unity/unity-sync">Unity Sync</a> script to add a GameObject
+			to the scene. But first we'll need to create some components to filter our
 			entities. We will always use <code>example</code> as our ecsact file name.
 		</p>
 		<code-block-variation>
@@ -91,13 +96,9 @@
 
 		<p>
 			Let's see if our script is working! Let's have an initial entity spawn by
-			using <code>Dynamic Entity</code>. If everything worked correctly, when
-			you enter playmode a gameObject should spawn at the position you inputted
-			for the entity.
-		</p>
-		<p>
-			IMAGE HERE MAYBE? SHOULD WE HAVE ANOTHER SECTION FOR DYNAMIC ENTITY OR
-			JUST EXPLAIN IT HERE?
+			using <a routerLink="/docs/unity/entities">Dynamic Entity</a>. If
+			everything worked correctly, when you enter playmode a gameObject should
+			spawn at the position you inputted for the entity.
 		</p>
 	</section>
 
@@ -447,11 +448,11 @@
 			</code></pre>
 		</code-block-variation>
 		<p>
-			A <code>Nested System</code> takes each entity that qualifies for
-			<code>CollisionComparer</code>, and compares each one against all of the
-			qualified entities in <code>CheckCollision</code>. You can view it as a
-			nested for loop. You can read more about it
-			<a href="http://localhost:8080/docs/lang#nested-systems">here</a>
+			A
+			<a routerLink="/docs/lang" fragment="#nested-systems">Nested System</a>
+			takes each entity that qualifies for <code>CollisionComparer</code>, and
+			compares each one against all of the qualified entities in
+			<code>CheckCollision</code>. You can view it as a nested for loop.
 		</p>
 		<p>
 			Note: You need to add the <code>Collider</code> component to any entities
@@ -547,6 +548,19 @@
 				{{'}'}}
 			</code></pre>
 		</code-block-variation>
-		<p></p>
+		<img src="/assets/MovingBlockScene.png" height="800" width="600" />
+		<p>
+			If you've opened up the project you will see this. There are gameObjects
+			called <code>boundaries</code> in the project that will create a little
+			game area. You can just as easily make your own in any way you like. The
+			last thing left to do is add our new <code>StaticCollider</code> script to
+			these gameObjects. Now, we can move, spawn new blocks that can also move,
+			and run into game boundaries!
+		</p>
 	</section>
+	<h2 id="conclusion">Conclusion</h2>
+	<p>
+		Hopefully this has helped you become comfortable with Unity enough with
+		Ecsact in Unity to try things out for yourself.
+	</p>
 </article>

@@ -4,45 +4,37 @@
 	<section>
 		<h2>Introduction</h2>
 		<p>
-			This tutorial covers the implmentation of Ecsact with Unity. We will
-			create entities, add components and implement systems using C#. The Unity
-			project including everything covered can be found
-			<a href="https://github.com/ecsact-dev/unity-example">here</a>
+			This will cover the basics of using Ecsact with Unity. We will create
+			entities, add components and implement systems using C#. The scene
+			<code>Basic Example</code> in
+			<a href="https://github.com/ecsact-dev/unity-example">unity-example</a>
+			has all the contents of this tutorial.
 		</p>
 
 		<h3>Prerequisites</h3>
 		<ol>
-			<li>Using a supported version of Unity</li>
-			<li>
-				The
-				<a href="https://github.com/ecsact-dev/ecsact_unity">
-					Ecsact Integration
-				</a>
-				package
-			</li>
+			<li>Supported version of Unity</li>
+			<li><a routerLink="/docs/unity/setup">Ecsact Integration</a></li>
 		</ol>
 	</section>
 
 	<section>
-		<h2>Installing the Ecsact Integration Package in Unity</h2>
+		<h2>Setup</h2>
 		<p>
-			To use Unity in Ecsact we'll install the Ecsact Integration from the
-			Package Manager. If you're only using the Integration, installing from the
-			<a href="https://github.com/ecsact-dev/ecsact_unity.git">git URL</a> is
-			the easiest.
+			Make sure to <a routerLink="/docs/unity/setup">setup</a> Ecsact
+			Integration and your Assembly file
 		</p>
 	</section>
 
 	<section>
-		<h2>Step 1: Writing the Ecsact File</h2>
-		<p>
-			Note: If you are unfamiliar with the Ecsact language, you should read
-			about it <a routerLink="/docs/lang" routerLinkActive="active">here</a>
-		</p>
+		<h2 id="ecsact">
+			Writing the
+			<a routerLink="/docs/lang" routerLinkActive="active">Ecsact</a> File
+		</h2>
 		<p>
 			First, let's look at what we'll need in our
-			<code>example.ecsact</code> file. We'll need a component with data, a tag
-			component to remove it, and a system to handle runtime logic
+			<code>example.ecsact</code> file. We'll create a component with data, a
+			tag component to remove it, and a system to handle runtime logic
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -63,72 +55,70 @@
 	</section>
 
 	<section>
-		<h2>Creating an Entity</h2>
+		<h2 id="create-entity">Creating an Entity</h2>
 
 		<p>
-			Now let's create a C# script in Unity, in this tutorial it will be called
-			<code>BasicExample.cs</code>
-			Then we'll get an instance of the from the
-			<code>Ecsact.Defaults</code> static class in <code>Start()</code>. This
-			class includes most of the API that you will use in Ecsact. Let's start by
-			creating an entity
+			Great! We have a simple <code>.Ecsact</code> file we can build on. Now we
+			can make a C# script in Unity, for our use it will be called
+			<code>BasicExample.cs</code>. Now, we can
+			<a href="/docs/unity/entities">create an entity</a>
 		</p>
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
+				// The Registry is a convenient way to access the Core api.
 				int entityId = Ecsact.Defaults.Registry.CreateEntity();
 			</code></pre>
 		</code-block-variation>
-
+	</section>
+	<section>
+		<h2 id="listeners">Runtime Listeners</h2>
 		<p>
-			The Registry is a convenient way to access the Core api found in the
-			Runtime. Next, we'll look at the Runtime itself.
+			The <a href="docs/unity/defaults">Runtime</a> gives you access to
+			everything used during Unity's runtime. In this case, we can add listeners
+			for changes to component state
 		</p>
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-				var runtime = Ecsact.Defaults.Runtime;
+				// Added on the class to cleanup event listeners
+				List<{{'System.Action'}}> cleanUpFns = new();
+
+				cleanUpFns.AddRange(new[] {{'{'}}
+					// Callback that's invoked on the removal of a component
+					Ecsact.Defaults.Runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
+						Debug.Log("Example component removed");
+					{{'}'}}),
+					// Callback that's invoked on the removal of a component
+					Ecsact.Defaults.Runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
+						Debug.Log(component.example_value);
+					{{'}'}})
+				{{'}'}});
 			</code></pre>
 		</code-block-variation>
 
 		<p>
-			The Runtime gives you access to everything used in during runtime. Now we
-			can add a listener on some events.
+			Whenever a component is updated and removed, these callbacks will be
+			invoked. We'll go over how to update components later, but first we'll
+			declare the components to add to our newly created entity
 		</p>
+	</section>
 
-		<code-block-variation>
-			<pre codeBlockVariationOption><code prism language="csharp">
-        // Callback that's invoked on component update
-        runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
-          Debug.Log("Example Updated:" + component.example_value);
-        {{'}'}});
-
-        // Callback that's invoked on the removal of the component
-        action = runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
-          Debug.Log("Example component Removed");
-        {{'}'}});
-			</code></pre>
-		</code-block-variation>
-
-		<P
-			>Whenever a component is updated and removed, these callbacks will be
-			invoked. We will go over the updating of components later, but first we'll
-			create the components to add to our newly created entity</P
-		>
-
+	<section>
+		<h2 id="components">Declaring and adding components</h2>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 				// Declare an Example component type
-        var exampleComponent = new example.Example {{'{'}}
-            example_value = 5,
-        {{'}'}};
+				var exampleComponent = new example.Example {{'{'}}
+					example_value = 5,
+				{{'}'}};
 
-        var removeComponent = new example.ToBeRemoved {{'{'}}{{'}'}};
+				var removeComponent = new example.ToBeRemoved {{'{'}}{{'}'}};
 			</code></pre>
 		</code-block-variation>
 
 		<p>
-			Components can be declared from the namespace that is declared from the
+			Components can be declared from the namespace that is dervied from the
 			name of your package in the <code>.ecsact</code> file. Now that we've
 			declared our components, we can add it to our entity with its id using the
 			registry
@@ -136,35 +126,46 @@
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-        // Add components to your entity
-        Ecsact.Defaults.Registry.AddComponent(
+				// Add components to your entity
+				Ecsact.Defaults.Registry.AddComponent(
 					entityId,
 					exampleComponent
-        );
+				);
 
-        Ecsact.Defaults.Registry.AddComponent(
+				Ecsact.Defaults.Registry.AddComponent(
 					entityId,
 					removeComponent
-        );
+				);
 			</code></pre>
+		</code-block-variation>
+	</section>
+	<section>
+		<p>Then, when the class is destroyed the listeners will be cleaned up</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+			void OnDestroy() {{'{'}}
+				foreach(var cleanUpFn in cleanUpFns) {{'{'}}
+					cleanUpFn();
+				{{'}'}}
+			{{'}'}}
+		</code></pre>
 		</code-block-variation>
 	</section>
 
 	<section>
-		<h2>Implementing a System</h2>
+		<h2 id="system-implement">Implementing a System</h2>
 		<p>
 			Now the entity has components, which will cause our system to trigger. Now
-			we need to implement the system for it to happen. Generally speaking, it's
-			best to have system implementations separate. It's also required that the
-			system the script is in is part of an Assembly. If the script is not part
-			of an assembly, it will not be found. We'll name our new system script
+			we need to implement the system for it to happen. If you haven't setup
+			your <a href="/docs/unity/setup">Assembly Definition</a> now is the time.
+			If the script is not part of an assembly, it will not be found. We'll name
+			our new system script
 			<code>BasicExampleSystem.cs</code>
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 				public class BasicExampleSystem : MonoBehaviour {{'{'}}
-					// The system implement of our AddToExample system
-					// Note: Systems need to be both public and static
+					// Note: Systems need to be public and static
 					[Ecsact.DefaultSystemImpl(typeof(example.AddToExample))]
 					public static void AddToExampleSystem
 						( EcsactRuntime.SystemExecutionContext context
@@ -173,7 +174,7 @@
 						// Get a component from the context
 						var value = context.Get<{{'example.Example'}}>();
 
-						//Modify and update its value
+						// Modify and update its value
 						value.example_value +=1;
 						context.Update<{{'example.Example'}}>(value);
 
@@ -191,6 +192,21 @@
 			example_value is increased by 1. Once it reaches a certain value, the
 			component <code>ToBeRemoved</code> is removed. After this the entity no
 			longer has the required components to continue being iterated over.
+		</p>
+
+		<img src="/assets/BasicExampleSuccess.png" height="300" width="400" />
+		<p>
+			Assuming things worked, <code>example_value</code> will increase until it
+			reaches 100. Then on its conclusion you should see the
+			<code>OnRemoveComponent</code> callback
+		</p>
+	</section>
+	<section>
+		<h2>Next Steps</h2>
+		<p>
+			This taught you the basics of using Ecsact with Unity. If you want to
+			learn more about Unity Sync and Nested Systems, check out
+			<a href="/tutorials/unity/moving-block">Example Using Unity Sync</a>
 		</p>
 	</section>
 </article>

@@ -4,16 +4,16 @@ load("//tools:angular_ts_project.bzl", "ng_ts_project")
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
-    name = "unity-sync_component_style",
-    src = "unity-sync.component.scss",
+    name = "entities_component_style",
+    src = "entities.component.scss",
 )
 
 ng_ts_project(
-    name = "unity-sync",
+    name = "entities",
     srcs = glob(["*.ts"]),
     angular_assets = [
-        "unity-sync.component.html",
-        ":unity-sync_component_style",
+        "entities.component.html",
+        ":entities_component_style",
     ],
     deps = [
         "//src/components/code-block-variation",
