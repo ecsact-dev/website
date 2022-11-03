@@ -22,7 +22,11 @@ pre[class*='language-'] {
 	.token.function {
 		color: #61afef;
 	}
-	.token.builtin,
+
+	.token.builtin {
+		color: #c678dd;
+	}
+
 	.token.class-name {
 		color: #e5c07b;
 	}
