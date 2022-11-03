@@ -1,3 +1,5 @@
 <nav class="thin-scroll">
-	<ng-content selector="ecsact-sidenav-section"></ng-content>
+	<cdk-accordion [multi]="true" class="block">
+		<ng-content selector="ecsact-sidenav-section"></ng-content>
+	</cdk-accordion>
 </nav>

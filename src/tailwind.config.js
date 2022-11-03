@@ -12,6 +12,15 @@ module.exports = {
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
 				'connect-pattern': 'url(assets/bg/connect-pattern.png)',
 			},
+			keyframes: {
+				'slide-down': {
+					'0%': {transform: 'translateY(-100%)'},
+					'100%': {transform: 'translateY(0%)'},
+				},
+			},
+			animation: {
+				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+			},
 		},
 		fontFamily: {
 			sans: ['Raleway', 'ui-sans-serif', 'system-ui'],

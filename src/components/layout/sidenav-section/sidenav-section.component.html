@@ -1,2 +1,18 @@
-<div class="title">{{ title }}</div>
-<ng-content selector="a"></ng-content>
+<cdk-accordion-item #accordionItem="cdkAccordionItem" class="block relative">
+	<div (click)="accordionItem.toggle()" class="cursor-pointer" *ngIf="!!title">
+		<div class="text-lg">
+			<span class="i24 mr-1">{{
+				accordionItem.expanded ? 'expand_more' : 'chevron_right'
+			}}</span>
+			<span>{{ title }}</span>
+		</div>
+	</div>
+	<div class="relative overflow-hidden">
+		<div
+			class="ml-4"
+			[class.hidden]="!!title && !accordionItem.expanded"
+			[class.animate-slide-down]="!!title && accordionItem.expanded">
+			<ng-content selector="a"></ng-content>
+		</div>
+	</div>
+</cdk-accordion-item>
