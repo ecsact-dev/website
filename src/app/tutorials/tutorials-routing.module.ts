@@ -18,6 +18,20 @@ import {TutorialsModule} from './tutorials.module';
 								m => m.EmsdkCppRoutingModule,
 							),
 					},
+					{
+						path: 'unity/basic-example',
+						loadChildren: () =>
+							import('./unity/basic-example/basic-example-routing.module').then(
+								m => m.BasicExampleRoutingModule,
+							),
+					},
+					{
+						path: 'unity/moving-block',
+						loadChildren: () =>
+							import('./unity/moving-block/moving-block-routing.module').then(
+								m => m.MovingBlockRoutingModule,
+							),
+					},
 				],
 			},
 		]),
