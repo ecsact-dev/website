@@ -1,4 +1,15 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {CdkAccordionItem} from '@angular/cdk/accordion';
+import {
+	Component,
+	OnInit,
+	ChangeDetectionStrategy,
+	Input,
+	ElementRef,
+	ViewChild,
+	OnDestroy,
+} from '@angular/core';
+import {ActivationEnd, Router} from '@angular/router';
+import {delay, filter, Subscription} from 'rxjs';
 
 /**
  * Side navigation section. Should onyl be used inside ecsact-sidenav
@@ -9,11 +20,46 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 	styleUrls: ['./sidenav-section.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidenavSectionComponent implements OnInit {
+export class SidenavSectionComponent implements OnInit, OnDestroy {
+	// @HACK(zaucy): routerLinkActive not available right away
+	private readonly activeAnchorCheckDelay = 500;
+
+	@ViewChild('anchorsContainer', {static: true})
+	anchorsContainer?: ElementRef<HTMLDivElement>;
+
+	@ViewChild('accordionItem', {static: true})
+	accordionItem?: CdkAccordionItem;
+
 	@Input()
 	title: string;
 
-	constructor() {}
+	private _sub = new Subscription();
 
-	ngOnInit(): void {}
+	constructor(private router: Router) {}
+
+	ngOnInit(): void {
+		this._sub.add(
+			this.router.events
+				.pipe(
+					filter(ev => ev instanceof ActivationEnd),
+					delay(this.activeAnchorCheckDelay),
+				)
+				.subscribe(() => this.openIfActiveAnchor()),
+		);
+
+		setTimeout(() => this.openIfActiveAnchor(), this.activeAnchorCheckDelay);
+	}
+
+	ngOnDestroy(): void {
+		this._sub.unsubscribe();
+	}
+
+	openIfActiveAnchor() {
+		const activeAnchor =
+			this.anchorsContainer!.nativeElement.querySelector('a.active');
+
+		if (activeAnchor) {
+			this.accordionItem!.open();
+		}
+	}
 }
