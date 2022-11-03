@@ -1,0 +1,45 @@
+<article>
+	<h1>Setting Up Unity</h1>
+	<section>
+		<h2>Ecsact Integration</h2>
+		<p>
+			The Ecsact Integration is needed to get access to all of Ecsact's
+			features. You can install the Ecsact Integration in Unity's
+			<code>Package Manager</code>. The easiest way is using the git URL below.
+		</p>
+
+		<code>https://github.com/ecsact-dev/ecsact_unity.git</code>
+	</section>
+	<section>
+		<h2>Assembly</h2>
+		<p>
+			For systems to be registered into Ecsact, it needs to be part of an
+			Assembly. In addition, it will need the following dependencies:
+		</p>
+		<ol>
+			<li>Ecsact</li>
+			<li>EcsactCSharpSystemImplRuntime</li>
+		</ol>
+
+		<p>
+			After you've setup your assembly it needs to be set in
+			<code>Edit -> ProjectSettings -> Ecsact</code> under System
+			Implementations
+		</p>
+		<img src="assets/assembly_setup.png" width="800" height="200" />
+	</section>
+	<section>
+		<h2>Unity Sync</h2>
+		<p>
+			Enabling
+			<a routerLink="/docs/unity/unity-sync" routerLinkActive="active"
+				>Unity Sync</a
+			>
+			is very simple. All you have to do is go to
+			<code>Edit->ProjectSettings->Ecsact</code> and checkmark
+			<code>Enable Unity Sync</code>. When enabled, it will search for any Unity
+			Sync files automatically and add them to its pool which is listed below.
+		</p>
+		<img src="assets/UnitySyncEnable.png" width="800" height="300" />
+	</section>
+</article>

@@ -1,0 +1,30 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "moving-block.component.scss",
+)
+
+ng_ts_project(
+    name = "moving-block",
+    srcs = [
+        "moving-block.component.ts",
+        "moving-block.module.ts",
+        "moving-block-routing.module.ts",
+    ],
+    angular_assets = [
+        "moving-block.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

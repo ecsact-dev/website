@@ -1,0 +1,30 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "basic-example.component.scss",
+)
+
+ng_ts_project(
+    name = "basic-example",
+    srcs = [
+        "basic-example.component.ts",
+        "basic-example.module.ts",
+        "basic-example-routing.module.ts",
+    ],
+    angular_assets = [
+        "basic-example.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

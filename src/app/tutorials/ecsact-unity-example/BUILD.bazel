@@ -1,0 +1,30 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "ecsact-unity.component.scss",
+)
+
+ng_ts_project(
+    name = "ecsact-unity",
+    srcs = [
+        "ecsact-unity.component.ts",
+        "ecsact-unity.module.ts",
+        "ecsact-unity-routing.module.ts",
+    ],
+    angular_assets = [
+        "ecsact-unity.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

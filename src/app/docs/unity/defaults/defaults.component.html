@@ -1,0 +1,56 @@
+<article>
+	<h1>The Ecsact Defaults Class</h1>
+
+	<section>
+		<h2 id="runtime">Runtime</h2>
+		<p>
+			The Runtime contains all the C# bindings for the native Ecsact runtime. If
+			you want to make custom implementations of anything in Unity for Ecsact
+			you can do it here
+		</p>
+	</section>
+	<section>
+		<h2 id="registry">Registry</h2>
+		<p>
+			The Registry is an easy way to use core functionality from the Runtime. It
+			simplifies how they're called and needs less information from the user
+		</p>
+	</section>
+	<section>
+		<h2 id="runner">Runner</h2>
+		<p>
+			The Runner stores and executes actions and runs the Ecsact execution. You
+			can choose the following options:
+		</p>
+		<ol>
+			<li>Default: Executes per Update tick</li>
+			<li>Fixed Update: Executes per FixedUpate tick</li>
+			<li>None: implement your own Runner</li>
+		</ol>
+		<h3>ExecutionOptions</h3>
+		<p>Allows you to add actions to the execution to be performed</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				main package example;
+
+				action BasicAction {{'{'}}{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+// An action declared in Ecsact
+example.BasicAction basicAction;
+
+// Pushes the action to the executionOptions
+Ecsact.Defaults.Runner.executionOptions.PushAction(
+	basicAction
+);
+			</code></pre>
+		</code-block-variation>
+		<p></p>
+	</section>
+	<section>
+		<h2 id="pool">Pool</h2>
+		<p>The pool requires Unity Sync to be enabled</p>
+	</section>
+</article>

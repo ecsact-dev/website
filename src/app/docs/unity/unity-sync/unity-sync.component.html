@@ -1,0 +1,81 @@
+<article>
+	<h1>Using Unity Sync</h1>
+	<section>
+		<h2>Introduction</h2>
+		<p>
+			Unity Sync is an optional part of Ecsact for Unity. Monobehaviour scripts
+			can be added to entities automatically if the entity fulfills the
+			requirements of the script. There a few ways this can happen
+		</p>
+	</section>
+	<section>
+		<h2>IRequired</h2>
+		<p>
+			<code>Ecsact.UnitySync.IRequired<{{ 'package.componentType' }}></code>
+		</p>
+		<p>
+			Creates a requirement for the script to be added to a gameObject. If an
+			entity has all the required components, it will be added to the script
+		</p>
+	</section>
+	<section>
+		<h2>IOnInitComponent</h2>
+		<p>
+			<code>Ecsact.Unity.IOnInitComponent<{{ 'package.ComponentType' }}></code>
+		</p>
+		<p>
+			When a component is first initialized, the callback function will be
+			invoked. Needs to be implemented by a function with its component type as
+			a parameter
+		</p>
+	</section>
+	<section>
+		<h2>IOnUpdateComponent</h2>
+		<p>
+			<code
+				>Ecsact.Unity.IOnUpdateComponent<{{ 'package.ComponentType' }}></code
+			>
+		</p>
+		<p>
+			Whenever a component is updated, the callback function be invoked. Needs
+			to be implemented by a function with its component type as a parameter
+		</p>
+	</section>
+	<section>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				main package example;
+
+				component ComponentA{{'{'}}{{'}'}};
+				component ComponentB {{'{'}}
+					i32 value;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+public class SyncMove
+	: MonoBehaviour
+	, Ecsact.UnitySync.IRequired<{{'example.ComponentA'}}>
+	, Ecsact.UnitySync.IRequired<{{'example.ComponentB'}}>
+	, Ecsact.UnitySync.IOnInitComponent<{{'example.ComponentB'}}>
+	, Ecsact.UnitySync.IOnUpdateComponent<{{'example.ComponentB'}}>
+{{'{'}}
+	public void OnInitComponent(in example.ComponentB component) {{'{'}}
+			// In both Init and Update you have access to the component's value
+	{{'}'}}
+	public OnUpdateComponent(in example.ComponentB component) {{'{'}}
+
+	{{'}'}}
+{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			Important note: <code>IOnInitComponent</code> and
+			<code>IOnUpdateComponent</code> do not implicitly cause an
+			<code>IRequired</code> effect. If <code>IRequired</code> is not used, then
+			the script will be added to any entity that that can use any of its
+			implementations
+		</p>
+	</section>
+</article>

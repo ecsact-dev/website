@@ -1,0 +1,196 @@
+<article>
+	<h1>Using Ecsact with Unity and C#</h1>
+
+	<section>
+		<h2>Introduction</h2>
+		<p>
+			This tutorial covers the implmentation of Ecsact with Unity. We will
+			create entities, add components and implement systems using C#. The Unity
+			project including everything covered can be found
+			<a href="https://github.com/ecsact-dev/unity-example">here</a>
+		</p>
+
+		<h3>Prerequisites</h3>
+		<ol>
+			<li>Using a supported version of Unity</li>
+			<li>
+				The
+				<a href="https://github.com/ecsact-dev/ecsact_unity">
+					Ecsact Integration
+				</a>
+				package
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2>Installing the Ecsact Integration Package in Unity</h2>
+		<p>
+			To use Unity in Ecsact we'll install the Ecsact Integration from the
+			Package Manager. If you're only using the Integration, installing from the
+			<a href="https://github.com/ecsact-dev/ecsact_unity.git">git URL</a> is
+			the easiest.
+		</p>
+	</section>
+
+	<section>
+		<h2>Step 1: Writing the Ecsact File</h2>
+		<p>
+			Note: If you are unfamiliar with the Ecsact language, you should read
+			about it <a routerLink="/docs/lang" routerLinkActive="active">here</a>
+		</p>
+		<p>
+			First, let's look at what we'll need in our
+			<code>example.ecsact</code> file. We'll need a component with data, a tag
+			component to remove it, and a system to handle runtime logic
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				component Example {{'{'}}
+					i32 example_value;
+				{{'}'}}
+
+				component ToBeRemoved;
+
+				system AddToExample {{'{'}}
+					// A we will read and write to update and check a condition
+					readwrite Example;
+					// A tag component, removed when a condition is met
+					removes ToBeRemoved;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2>Creating an Entity</h2>
+
+		<p>
+			Now let's create a C# script in Unity, in this tutorial it will be called
+			<code>BasicExample.cs</code>
+			Then we'll get an instance of the from the
+			<code>Ecsact.Defaults</code> static class in <code>Start()</code>. This
+			class includes most of the API that you will use in Ecsact. Let's start by
+			creating an entity
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				int entityId = Ecsact.Defaults.Registry.CreateEntity();
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			The Registry is a convenient way to access the Core api found in the
+			Runtime. Next, we'll look at the Runtime itself.
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				var runtime = Ecsact.Defaults.Runtime;
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			The Runtime gives you access to everything used in during runtime. Now we
+			can add a listener on some events.
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+        // Callback that's invoked on component update
+        runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
+            Debug.Log("Example Updated:" + component.example_value);
+        {{'}'}});
+
+        // Callback that's invoked on the removal of the component
+        action = runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
+            Debug.Log("Example component Removed");
+        {{'}'}});
+			</code></pre>
+		</code-block-variation>
+
+		<P
+			>Whenever a component is updated and removed, these callbacks will be
+			invoked. We will go over the updating of components later, but first we'll
+			create the components to add to our newly created entity</P
+		>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				// Declare an Example component type
+        var exampleComponent = new example.Example {{'{'}}
+            example_value = 5,
+        {{'}'}};
+
+        var removeComponent = new example.ToBeRemoved {{'{'}}{{'}'}};
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			Components can be declared from the namespace that is declared from the
+			name of your package in the <code>.ecsact</code> file. Now that we've
+			declared our components, we can add it to our entity with its id using the
+			registry
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+        // Add components to your entity
+        Ecsact.Defaults.Registry.AddComponent(
+            entityId,
+            exampleComponent
+        );
+
+        Ecsact.Defaults.Registry.AddComponent(
+            entityId,
+            removeComponent
+        );
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2>Implementing a System</h2>
+		<p>
+			Now the entity has components, which will cause our system to trigger. Now
+			we need to implement the system for it to happen. Generally speaking, it's
+			best to have system implementations separate. It's also required that the
+			system the script is in is part of an Assembly. If the script is not part
+			of an assembly, it will not be found. We'll name our new system script
+			<code>BasicExampleSystem.cs</code>
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				public class BasicExampleSystem : MonoBehaviour {{'{'}}
+					// The system implement of our AddToExample system
+					// Note: Systems need to be both public and static
+					[Ecsact.DefaultSystemImpl(typeof(example.AddToExample))]
+					public static void AddToExampleSystem
+							( EcsactRuntime.SystemExecutionContext context
+							)
+					{{'{'}}
+							// Get a component from the context
+							var value = context.Get<{{'example.Example'}}>();
+
+							//Modify and update its value
+							value.example_value +=1;
+							context.Update<{{'example.Example'}}>(value);
+
+							if(value.example_value >= 100) {{'{'}}
+									// Remove the component from the context
+									context.Remove<{{'example.ToBeRemoved'}}>();
+							{{'}'}}
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+
+		<p>
+			Every tick, which in this example occurs on <code>fixed update</code> the
+			example_value is increased by 1. Once it reaches a certain value, the
+			component <code>ToBeRemoved</code> is removed. After this the entity no
+			longer has the required components to continue being iterated over.
+		</p>
+	</section>
+</article>
