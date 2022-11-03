@@ -20,6 +20,7 @@ ng_ts_project(
     ],
     deps = [
         "//src/search:doxygen-def-types",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
