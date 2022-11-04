@@ -2,19 +2,27 @@
 
 @layer base {
 	h1 {
-		@apply text-3xl my-2 font-bold;
+		@apply text-3xl mt-2 mb-4 font-bold;
 	}
 	h2 {
-		@apply text-2xl my-2 font-bold;
+		@apply text-2xl mt-2 mb-4 font-bold;
 	}
 	h3 {
-		@apply text-xl my-2 font-bold;
+		@apply text-xl mt-2 mb-4 font-bold;
 	}
 	h4 {
-		@apply text-lg my-2 font-bold;
+		@apply text-lg mt-2 mb-4 font-bold;
 	}
 	p {
-		@apply my-2;
+		@apply mt-2 mb-4;
+	}
+
+	ul {
+		@apply list-disc list-outside ml-6 my-4;
+	}
+
+	ol {
+		@apply list-decimal list-outside ml-6 my-4;
 	}
 
 	a {
