@@ -71,6 +71,10 @@ export class ContentComponent implements OnInit, OnDestroy {
 	mainContent?: ElementRef<HTMLElement>;
 
 	readonly trackBy: TrackByFunction<ContentPageAnchor>;
+	readonly canShare = (window as any).navigator.canShare
+		? (window as any).navigator.canShare({url: window.location.href})
+		: false;
+	sharing = false;
 
 	constructor(private cdr: ChangeDetectorRef, route: ActivatedRoute) {
 		this.trackBy = (index, item) => {
@@ -81,6 +85,20 @@ export class ContentComponent implements OnInit, OnDestroy {
 			this.wantsScrollTo = fragment;
 			this.consumeScrollToIfNeeded();
 		});
+	}
+
+	async share() {
+		if (!this.canShare) {
+			return;
+		}
+		this.sharing = true;
+		this.cdr.markForCheck();
+		try {
+			await navigator.share({url: window.location.href});
+		} finally {
+			this.sharing = false;
+			this.cdr.markForCheck();
+		}
 	}
 
 	private onIntersect(entries: IntersectionObserverEntry[]) {
