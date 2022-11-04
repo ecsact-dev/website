@@ -41,6 +41,14 @@
 @tailwind components;
 
 @layer components {
+	ecsact-sidenav-section {
+		@apply block px-2 my-4;
+	}
+
+	ecsact-sidenav-section ecsact-sidenav-section {
+		@apply px-0 my-2;
+	}
+
 	ecsact-sidenav-section a {
 		@apply relative block border-l border-primary border-opacity-20 pl-4 hover:no-underline hover:border-l-4 hover:rounded-l-[4px] hover:right-[3px];
 	}
