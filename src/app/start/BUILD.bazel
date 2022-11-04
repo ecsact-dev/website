@@ -4,16 +4,16 @@ load("//tools:angular_ts_project.bzl", "ng_ts_project")
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
-    name = "getstarted_component_style",
-    src = "getstarted.component.scss",
+    name = "start_component_style",
+    src = "start.component.scss",
 )
 
 ng_ts_project(
-    name = "getstarted",
+    name = "start",
     srcs = glob(["*.ts"]),
     angular_assets = [
-        "getstarted.component.html",
-        ":getstarted_component_style",
+        "start.component.html",
+        ":start_component_style",
     ],
     deps = [
         "//src/components/layout/content",
