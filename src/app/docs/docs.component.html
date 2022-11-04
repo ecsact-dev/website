@@ -49,5 +49,64 @@
 </ecsact-sidenav>
 
 <ecsact-content>
+	<section class="my-8 mx-auto px-2">
+		<div class="grid grid-cols-2 gap-4">
+			<div class="flex flex-col border-x">
+				<h3 class="px-4">The Basics</h3>
+				<div>
+					<img
+						class="h-48 w-full px-2 py-2 rounded-xl"
+						src="assets/EcsactCode.png" />
+				</div>
+				<div>
+					<p>Learn more about what drives Ecsact</p>
+				</div>
+
+				<div
+					class="grid grid-cols-3 gap-4 py-4 grow justify-evenly items-stretch">
+					<div
+						style="text-align: center"
+						class="px-4 bg-gradient-to-r from-primary to-white">
+						What is ECS?
+					</div>
+					<div
+						style="text-align: center"
+						class="bg-gradient-to-r from-primary to-white">
+						Language
+					</div>
+					<div
+						style="text-align: center"
+						class="bg-gradient-to-r from-primary to-white">
+						Setup
+					</div>
+				</div>
+			</div>
+			<div class="border-r">
+				<h3>Systems</h3>
+				<p>Learn about how systems are applied in Ecsact</p>
+				<div class="grid grid-cols-2 gap-4">
+					<div class="py-4">System Implementations</div>
+					<div class="py-4">System Execution</div>
+					<div class="py-4">Wasm Systems Overview</div>
+					<div class="py-4">C++ Wasm Systems</div>
+				</div>
+			</div>
+
+			<div>
+				<h3>Unity</h3>
+				<p>Learn about the Ecsact Unity Integration</p>
+				<div class="grid grid-cols-3">
+					<div class="py-4">Defaults Class</div>
+					<div class="py-4">Creating Entities</div>
+					<div class="py-4">Unity Sync</div>
+				</div>
+				<div class="flex flex-row">
+					<div class="px-4 py-4 grow">Basic Example</div>
+					<div class="px-4 py-4 grow">Example Using Unity Sync</div>
+				</div>
+			</div>
+			<div>Runtime? Might not be added</div>
+		</div>
+	</section>
 	<router-outlet></router-outlet>
 </ecsact-content>
