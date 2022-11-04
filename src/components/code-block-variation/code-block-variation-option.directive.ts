@@ -33,7 +33,10 @@ export class CodeBlockVariationOptionDirective
 	) {}
 
 	setActive(active: boolean): void {
-		this.hostEl.nativeElement.classList.toggle('active', active);
+		this.hostEl.nativeElement.classList.toggle(
+			'code-block-variation-option-active',
+			active,
+		);
 	}
 
 	getTextContent() {

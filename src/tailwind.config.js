@@ -17,9 +17,18 @@ module.exports = {
 					'0%': {transform: 'translateY(-100%)'},
 					'100%': {transform: 'translateY(0%)'},
 				},
+				'error-shake': {
+					'0%': {transform: 'translate(8px)'},
+					'20%': {transform: 'translate(-8px)'},
+					'40%': {transform: 'translate(4px)'},
+					'60%': {transform: 'translate(-4px)'},
+					'80%': {transform: 'translate(2px)'},
+					'100%': {transform: 'translate(0px)'},
+				},
 			},
 			animation: {
 				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'error-shake': 'error-shake 300ms 1 linear',
 			},
 		},
 		fontFamily: {
@@ -32,6 +41,7 @@ module.exports = {
 				DEFAULT: '#AA8F00',
 				bright: '#dab700',
 			},
+			transparent: 'transparent',
 			secondary: '#9dd9d2',
 			error: 'rgb(221 100 70)',
 			success: 'rgb(86 213 108)',

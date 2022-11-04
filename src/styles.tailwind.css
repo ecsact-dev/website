@@ -21,6 +21,10 @@
 		@apply text-primary;
 	}
 
+	select {
+		@apply bg-transparent;
+	}
+
 	nav.top-nav a.active {
 		@apply border-b border-solid border-b-primary font-bold;
 	}

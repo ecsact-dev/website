@@ -73,27 +73,6 @@ $whiteColor: #d4d4d4;
 	}
 }
 
-@keyframes error-shake {
-	0% {
-		transform: translate(8px);
-	}
-	20% {
-		transform: translate(-8px);
-	}
-	40% {
-		transform: translate(4px);
-	}
-	60% {
-		transform: translate(-4px);
-	}
-	80% {
-		transform: translate(2px);
-	}
-	100% {
-		transform: translate(0px);
-	}
-}
-
 html,
 body {
 	color: var(--color-text);
@@ -320,15 +299,6 @@ table.sticky {
 	@include thin-scroll(#{var(--color-text)}, #{var(--color-content-bg)});
 }
 
-code-block-variation > .code-block-container > pre {
-	display: none;
-	margin: 0;
-	margin-top: 16px;
-	&.active {
-		display: block;
-	}
-}
-
 main article {
 	$preBgColor: #182122;
 
@@ -381,7 +351,7 @@ a {
 }
 
 button,
-a.btn {
+.btn {
 	display: inline-block;
 	border: 1px solid currentColor;
 	cursor: pointer;
@@ -411,5 +381,13 @@ a.btn {
 			transform: translateY(2px);
 			opacity: 0.8;
 		}
+	}
+}
+
+// Internal styles for <code-block-variation>
+code-block-variation > .group > .code-block-container > pre {
+	display: none;
+	&.code-block-variation-option-active {
+		display: block;
 	}
 }
