@@ -35,9 +35,13 @@
 						>GitHub releases page</a
 					>.
 				</p>
-				<p class="text-success">
-					<a class="btn" href="https://ecsact.dev/ecsact_sdk.appinstaller"
-						><span class="i24">download</span> ecsact_sdk.appinstaller</a
+				<p>
+					<a
+						class="btn text-primary bg-primary-bright text-lg"
+						href="https://ecsact.dev/ecsact_sdk.appinstaller">
+						<span class="text-black font-bold"
+							><span class="i24">download</span> ecsact_sdk.appinstaller</span
+						></a
 					>
 				</p>
 			</ng-container>
@@ -69,25 +73,32 @@
 				>.
 			</p>
 		</ng-container>
-		<p style="font-size: 90%">
-			Did we detect the wrong operating system or make a mistake? Looking for a
-			different download options? Check out the
+		<p class="text-xs max-w-lg bg-secondary/20 rounded-md p-4">
+			<span class="i24">info</span>
+			Did we detect the wrong operating system, make a mistake, or are you
+			looking for a different download option? Check out the
 			<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
 				>latest release on GitHub</a
 			>.
 		</p>
 		<h2 id="integrations">Integrations</h2>
-		<div class="integration-links-container">
-			<a class="integration-link" routerLink="/start/unity">
-				<div class="brand unity"></div>
+		<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+			<a
+				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+				routerLink="/start/unity">
+				<div class="brand unity w-full h-full"></div>
 			</a>
 
-			<a class="integration-link" routerLink="/start/unreal">
-				<div class="brand unreal-stacked"></div>
+			<a
+				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+				routerLink="/start/unreal">
+				<div class="brand unreal-stacked w-full h-full"></div>
 			</a>
 
-			<a class="integration-link" routerLink="/start/godot">
-				<div class="brand godot"></div>
+			<a
+				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+				routerLink="/start/godot">
+				<div class="brand godot w-full h-full"></div>
 			</a>
 		</div>
 		<p>
