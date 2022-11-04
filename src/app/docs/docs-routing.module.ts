@@ -82,13 +82,6 @@ const routes: Routes = [
 					),
 			},
 			{
-				path: 'unity/setup',
-				loadChildren: () =>
-					import('./unity/setup/setup-routing.module').then(
-						m => m.SetupRoutingModule,
-					),
-			},
-			{
 				path: 'unity/entities',
 				loadChildren: () =>
 					import('./unity/entities/entities-routing.module').then(

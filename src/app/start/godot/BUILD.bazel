@@ -1,0 +1,16 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//:__subpackages__"])
+
+ng_ts_project(
+    name = "godot",
+    srcs = glob(["*.ts"]),
+    angular_assets = [
+        "start-godot.component.html",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

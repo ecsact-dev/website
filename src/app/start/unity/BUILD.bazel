@@ -4,20 +4,19 @@ load("//tools:angular_ts_project.bzl", "ng_ts_project")
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
-    name = "setup_component_style",
-    src = "setup.component.scss",
+    name = "start-unity_component_style",
+    src = "start-unity.component.scss",
 )
 
 ng_ts_project(
-    name = "setup",
+    name = "unity",
     srcs = glob(["*.ts"]),
     angular_assets = [
-        "setup.component.html",
-        ":setup_component_style",
+        "start-unity.component.html",
+        ":start-unity_component_style",
     ],
     deps = [
         "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
         "//src/components/prism",
         "@npm//@angular/common",
         "@npm//@angular/core",

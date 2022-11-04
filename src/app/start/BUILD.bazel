@@ -1,21 +1,18 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
 
 package(default_visibility = ["//:__subpackages__"])
-
-sass_binary(
-    name = "start_component_style",
-    src = "start.component.scss",
-)
 
 ng_ts_project(
     name = "start",
     srcs = glob(["*.ts"]),
     angular_assets = [
         "start.component.html",
-        ":start_component_style",
+        "start-overview.component.html",
     ],
     deps = [
+        "//src/app/start/godot",
+        "//src/app/start/unity",
+        "//src/app/start/unreal",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
