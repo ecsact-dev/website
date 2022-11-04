@@ -20,9 +20,7 @@ const routes: Routes = [
 		path: 'start',
 		pathMatch: 'prefix',
 		loadChildren: () =>
-			import('./getstarted/getstarted-routing.module').then(
-				m => m.GetStartedRoutingModule,
-			),
+			import('./start/start-routing.module').then(m => m.StartRoutingModule),
 	},
 	{
 		path: 'install',

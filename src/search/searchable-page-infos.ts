@@ -12,29 +12,11 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		keywords: ['home'],
 		title: 'Ecsact',
 	},
-	'/getstarted': {
+	'/start': {
 		category: PageCategory.Page,
-		description: 'Learn about Ecsact and why it could be the right fit for your project',
+		description: 'Install the Ecsact SDK and get started using Ecsact',
 		keywords: [],
 		title: 'Getting Started',
-	},
-	'/install': {
-		category: PageCategory.Page,
-		description: '',
-		keywords: ['install'],
-		title: 'Install Overview',
-	},
-	'/tutorials': {
-		category: PageCategory.Page,
-		description: '',
-		keywords: ['tutorial'],
-		title: 'Tutorials Overview',
-	},
-	'/integrations/unity/install': {
-		category: PageCategory.Page,
-		description: 'Install ecsact integration as a Unity package',
-		keywords: ['unity'],
-		title: 'Install Ecsact Unity Package',
 	},
 	'/docs': {
 		category: PageCategory.Page,
@@ -52,13 +34,13 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		category: PageCategory.Documentation,
 		description: 'Ecsact Language Reference Guide',
 		keywords: ['define', 'component'],
-		title: 'Defining Components'
+		title: 'Defining Components',
 	},
 	'/docs/lang#field-types': {
 		category: PageCategory.Documentation,
 		description: 'Ecsact Language Reference Guide',
 		keywords: ['field', 'types', 'component', 'action'],
-		title: 'Field Types'
+		title: 'Field Types',
 	},
 	'/docs/runtime': {
 		category: PageCategory.Documentation,

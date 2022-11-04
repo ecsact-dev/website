@@ -5,10 +5,10 @@ import {ContentModule} from '../../components/layout/content/content.module';
 import {SidenavSectionModule} from '../../components/layout/sidenav-section/sidenav-section.module';
 import {SidenavModule} from '../../components/layout/sidenav/sidenav.module';
 
-import {GetStartedComponent} from './getstarted.component';
+import {StartComponent} from './start.component';
 
 @NgModule({
-	declarations: [GetStartedComponent],
+	declarations: [StartComponent],
 	imports: [
 		CommonModule,
 		RouterModule,
@@ -16,7 +16,7 @@ import {GetStartedComponent} from './getstarted.component';
 		SidenavModule,
 		SidenavSectionModule,
 	],
-	exports: [GetStartedComponent],
+	exports: [StartComponent],
 	bootstrap: [],
 })
-export class GetStartedModule {}
+export class StartModule {}
