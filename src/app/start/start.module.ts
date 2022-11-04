@@ -4,11 +4,12 @@ import {RouterModule} from '@angular/router';
 import {ContentModule} from '../../components/layout/content/content.module';
 import {SidenavSectionModule} from '../../components/layout/sidenav-section/sidenav-section.module';
 import {SidenavModule} from '../../components/layout/sidenav/sidenav.module';
+import {StartOverviewComponent} from './start-overview.component';
 
 import {StartComponent} from './start.component';
 
 @NgModule({
-	declarations: [StartComponent],
+	declarations: [StartComponent, StartOverviewComponent],
 	imports: [
 		CommonModule,
 		RouterModule,
@@ -16,7 +17,7 @@ import {StartComponent} from './start.component';
 		SidenavModule,
 		SidenavSectionModule,
 	],
-	exports: [StartComponent],
+	exports: [StartComponent, StartOverviewComponent],
 	bootstrap: [],
 })
 export class StartModule {}

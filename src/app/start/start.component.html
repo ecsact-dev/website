@@ -8,9 +8,7 @@
 		>
 	</ecsact-sidenav-section>
 	<ecsact-sidenav-section title="Unity">
-		<a routerLink="/start/unity/install" routerLinkActive="active"
-			>Ecsact Unity Overview</a
-		>
+		<a routerLink="/start/unity" routerLinkActive="active">Setup</a>
 		<ecsact-sidenav-section title="Tutorials">
 			<a routerLink="/tutorials/unity/basic-example" routerLinkActive="active"
 				>Basics</a
@@ -21,105 +19,17 @@
 		</ecsact-sidenav-section>
 	</ecsact-sidenav-section>
 	<ecsact-sidenav-section title="Unreal Engine">
-		<a routerLink="/start/unreal/install" routerLinkActive="active"
+		<a routerLink="/start/unreal" routerLinkActive="active"
 			>Ecsact Unreal Overview</a
 		>
 	</ecsact-sidenav-section>
 	<ecsact-sidenav-section title="Godot">
-		<a routerLink="/start/godot/install" routerLinkActive="active"
+		<a routerLink="/start/godot" routerLinkActive="active"
 			>Ecsact Godot Overview</a
 		>
 	</ecsact-sidenav-section>
 </ecsact-sidenav>
 
 <ecsact-content>
-	<article>
-		<h1 id="install">Install</h1>
-		<p>
-			The Ecsact SDK contains all the necessary tools for developing with
-			Ecsact. <strong>All</strong> integrations requires the Ecsact SDK.
-		</p>
-
-		<h2 id="ecsact-sdk">Ecsact SDK</h2>
-		<ng-container [ngSwitch]="os">
-			<ng-container *ngSwitchCase="'Windows 10'">
-				<p>
-					Ecsact SDK on Windows 10+ is distributed as an
-					<em>app installer</em> and is the recommended way to install the
-					Ecsact SDK. Other download options are available on our
-					<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
-						>GitHub releases page</a
-					>.
-				</p>
-				<p>
-					<a
-						class="btn text-primary bg-primary-bright text-lg"
-						href="https://ecsact.dev/ecsact_sdk.appinstaller">
-						<span class="text-black font-bold"
-							><span class="i24">download</span> ecsact_sdk.appinstaller</span
-						></a
-					>
-				</p>
-			</ng-container>
-
-			<ng-container *ngSwitchCase="'Linux'">
-				<p>
-					An archive (tar.gz) of the latest Ecsact SDK release can be found on
-					our
-					<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
-						>GitHub releases page</a
-					>
-					for Linux.
-				</p>
-			</ng-container>
-
-			<ng-container *ngSwitchCase="'Mac OS'">
-				<p>
-					<span class="i24">info</span> Ecsact SDK is not available on macOS
-					(yet.) To keep up to date or provide feedback please follow the
-					<a href="https://github.com/ecsact-dev/ecsact_sdk/issues/169"
-						>macOS release tracking issue on GitHub</a
-					>.
-				</p>
-			</ng-container>
-
-			<p *ngSwitchDefault>
-				<span class="i24">info</span>
-				Ecsact SDK is not available for <strong>{{ os }}</strong
-				>.
-			</p>
-		</ng-container>
-		<p class="text-xs max-w-lg bg-secondary/20 rounded-md p-4">
-			<span class="i24">info</span>
-			Did we detect the wrong operating system, make a mistake, or are you
-			looking for a different download option? Check out the
-			<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
-				>latest release on GitHub</a
-			>.
-		</p>
-		<h2 id="integrations">Integrations</h2>
-		<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-			<a
-				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/unity">
-				<div class="brand unity w-full h-full"></div>
-			</a>
-
-			<a
-				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/unreal">
-				<div class="brand unreal-stacked w-full h-full"></div>
-			</a>
-
-			<a
-				class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/godot">
-				<div class="brand godot w-full h-full"></div>
-			</a>
-		</div>
-		<p>
-			Looking for other integrations? Make a <a>request</a> or
-			<a>build your own</a>!
-		</p>
-	</article>
+	<router-outlet></router-outlet>
 </ecsact-content>
