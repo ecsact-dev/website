@@ -124,6 +124,10 @@ export class ContentComponent implements OnInit, OnDestroy {
 		this.refreshPageAnchors();
 	}
 
+	scrollToTop() {
+		window.scrollTo({top: 0, behavior: 'smooth'});
+	}
+
 	private scrollToPageAnchor(pageAnchor: ContentPageAnchor) {
 		const topPadding = 8;
 		const topHeight = parseInt(
@@ -145,7 +149,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 
 		for (const pageAnchor of this.pageAnchors) {
 			if (pageAnchor.id === this.wantsScrollTo) {
-				this.scrollToPageAnchor(pageAnchor);
+				setTimeout(() => this.scrollToPageAnchor(pageAnchor), 0);
 				this.wantsScrollTo = '';
 				break;
 			}
