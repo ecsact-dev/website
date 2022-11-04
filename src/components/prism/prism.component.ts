@@ -13,6 +13,7 @@ import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-wasm';
 import 'prismjs/components/prism-powershell';
+import 'prismjs/components/prism-uri';
 
 function getPrefixWhitespace(str: string): string {
 	const firstNonWhitespaceIndex = str.search(/\S/);
