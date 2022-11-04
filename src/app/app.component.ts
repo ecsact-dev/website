@@ -22,7 +22,7 @@ export class AppComponent {
 			if (routerEvent instanceof NavigationEnd) {
 				searchMeta.useSearchablePageInfo();
 				if (!location.hash) {
-					window.scrollTo({top: 0, behavior: 'auto'});
+					window.scrollTo(0, 0);
 				}
 			}
 		});

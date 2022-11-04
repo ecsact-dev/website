@@ -4,7 +4,21 @@
 		<ng-content></ng-content>
 	</main>
 	<div class="main-content-scroll-buffer">
-		<div style="flex: auto"></div>
+		<div class="flex-auto"></div>
+		<div
+			class="mb-6 mt-32 mx-auto sticky bottom-8 group cursor-pointer hover:drop-shadow-lg rounded-t-md rounded-b-2xl bg-white dark:bg-black p-4"
+			(click)="scrollToTop()">
+			<div class="w-16 h-16 text-center text-6xl m-auto">
+				<span class="i48 relative block group-hover:animate-bounce"
+					>keyboard_double_arrow_up</span
+				>
+			</div>
+			<div
+				class="text-center text-sm opacity-0 transition-opacity select-none group-hover:opacity-100"
+				aria-hidden="true">
+				Scroll to top
+			</div>
+		</div>
 		<div>end ~ 👈(ﾟヮﾟ👈)</div>
 	</div>
 </div>

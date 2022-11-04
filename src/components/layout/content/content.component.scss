@@ -10,7 +10,7 @@
 .main-content-scroll-buffer {
 	// This extra buffer is for usability sake when clicking or linking anchors.
 	// Scrolling to an anchor will properly scroll without issue.
-	height: 100vh;
+	height: 90vh;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
