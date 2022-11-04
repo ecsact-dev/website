@@ -1,33 +1,41 @@
-<div style="display: flex; flex-direction: row">
-	<select
-		#optionSelect
-		(change)="onSelectChange()"
-		[class.no-options]="options.length === 1">
-		<option *ngFor="let option of options; let i = index" [value]="i">
-			{{ option.optionTitle }}
-		</option>
-	</select>
-	<div style="flex: auto"></div>
-	<button
-		class="copy-btn"
-		[class.copy-done]="clipboardStatus === 'Copied'"
-		[class.copy-failed]="clipboardStatus === 'CopyFailed'"
-		(click)="copyActiveTextContent()"
-		[ngSwitch]="clipboardStatus">
-		<span class="i24 success-icon" aria-hidden="true">check</span>
-		<span class="i24 default-icon" aria-hidden="true">content_copy</span>
-
-		<ng-container *ngSwitchCase="'Copying'"> Copying... </ng-container>
-		<ng-container *ngSwitchCase="'Copied'"> Copied </ng-container>
-		<ng-container *ngSwitchCase="'CopyFailed'">
-			<span class="i24" aria-hidden="true">error</span> Cannot Copy
-		</ng-container>
-		<ng-container *ngSwitchDefault> Copy </ng-container>
-	</button>
-</div>
-<div
-	class="code-block-container"
-	#codeBlocksContainer
-	(cdkObserveContent)="onContentChange()">
-	<ng-content select="[codeBlockVariationOption]"></ng-content>
+<div class="group">
+	<div class="flex flex-row mb-4 select-none">
+		<select
+			#optionSelect
+			(change)="onSelectChange()"
+			[class.no-options]="options.length === 1"
+			class="btn text-xs">
+			<option
+				*ngFor="let option of options; let i = index"
+				[value]="i"
+				class="bg-black text-white">
+				{{ option.optionTitle }}
+			</option>
+		</select>
+		<div style="flex: auto"></div>
+		<button
+			class="text-xs opacity-80 group-hover:opacity-100"
+			[class.text-success]="clipboardStatus === 'Copied'"
+			[class.text-error]="clipboardStatus === 'CopyFailed'"
+			[class.animate-error-shake]="clipboardStatus === 'CopyFailed'"
+			(click)="copyActiveTextContent()"
+			[ngSwitch]="clipboardStatus">
+			<ng-container *ngSwitchCase="'Copying'"> Copying... </ng-container>
+			<ng-container *ngSwitchCase="'Copied'">
+				<span class="i24" aria-hidden="true">check</span> Copied
+			</ng-container>
+			<ng-container *ngSwitchCase="'CopyFailed'">
+				<span class="i24" aria-hidden="true">error</span> Cannot Copy
+			</ng-container>
+			<ng-container *ngSwitchDefault>
+				<span class="i24" aria-hidden="true">content_copy</span> Copy
+			</ng-container>
+		</button>
+	</div>
+	<div
+		class="code-block-container"
+		#codeBlocksContainer
+		(cdkObserveContent)="onContentChange()">
+		<ng-content select="[codeBlockVariationOption]"></ng-content>
+	</div>
 </div>
