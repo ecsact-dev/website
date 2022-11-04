@@ -34,6 +34,14 @@ const routes: Routes = [
 				m => m.StartUnrealRoutingRoutingModule,
 			),
 	},
+	{
+		path: 'custom',
+		pathMatch: 'prefix',
+		loadChildren: () =>
+			import('./custom/start-custom-routing-routing.module').then(
+				m => m.StartCustomRoutingRoutingModule,
+			),
+	},
 ];
 
 @NgModule({

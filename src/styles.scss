@@ -264,7 +264,6 @@ table.sticky {
 	font-family: 'Material Symbols Outlined';
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
 	vertical-align: top;
-	color: inherit;
 }
 
 .i24 {
@@ -272,7 +271,6 @@ table.sticky {
 	font-family: 'Material Symbols Outlined';
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 	vertical-align: top;
-	color: inherit;
 }
 
 @mixin thin-scroll($color, $bgColor) {
