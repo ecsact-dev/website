@@ -10,6 +10,7 @@ ng_ts_project(
         "start-overview.component.html",
     ],
     deps = [
+        "//src/app/start/custom",
         "//src/app/start/godot",
         "//src/app/start/unity",
         "//src/app/start/unreal",

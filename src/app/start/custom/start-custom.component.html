@@ -1,0 +1,150 @@
+<article>
+	<h1>Custom Integration</h1>
+	<p>
+		This article serves as a guide to create and undertand Ecsact integrations
+		with a framework or game engine. It is a perfect place to start if you are
+		interested in:
+	</p>
+	<ul class="list-none list-inside ml-2 space-y-4 sm:space-y-0">
+		<li class="flex flex-row items-center">
+			<span class="i24 mr-4 text-lg">school</span>Learning more details about
+			Ecsact integrations
+		</li>
+		<li class="flex flex-row items-center">
+			<span class="i24 mr-4 text-lg">forum</span>
+			<div>Contributing to an existing Ecsact integration</div>
+		</li>
+		<li class="flex flex-row items-center">
+			<span class="i24 mr-4 text-lg">build</span>
+			<div>
+				Building a&nbsp;
+				<span class="i24 text-sm text-primary-bright">magic_button</span> new
+				<span class="i24 text-sm text-primary-bright">magic_button</span>
+				&nbsp;integration for an existing or internal framework/engine
+			</div>
+		</li>
+	</ul>
+
+	<h2 id="elements">Integration Elements</h2>
+	<p></p>
+	<h3 id="ecsact-runtime-api-access">Ecsact Runtime API Access</h3>
+	<p>
+		The heart and soul of an integration is the access to the
+		<a routerLink="/docs/runtime">Ecsact Runtime API</a>. All implemented
+		methods in the runtime <strong>must</strong> be available. However, an
+		integration may <em>disable</em> methods if a
+		<a [routerLink]="[]" fragment="runtime-abstractions"
+			>higher level abstraction</a
+		>
+		is able to be opt-in or gives equivalent functionality of said method. This
+		gives the flexibility to control when and how runtime methods are called
+		without removing runtime capabilities.
+	</p>
+	<p>
+		If an integration provides
+		<a [routerLink]="[]" fragment="runtime-builder">runtime builder support</a>,
+		runtime access should be of the one produced by the runtime builder.
+		Otherwise a <a>generic runtime</a> may be used.
+	</p>
+	<h4 id="runtime-abstractions">Runtime Abstractions</h4>
+	<p>
+		Abstractions of the Ecsact Runtime API are encouraged to fit the practices
+		and expectations of the framework/engine the integration is built for. While
+		these abstractions should be tailored to the framework/engine at hand, here
+		are some recommended abstractions:
+	</p>
+	<ul class="space-y-4 md:space-y-2">
+		<li>
+			<h5 id="automatic-system-execution" class="font-bold inline text-base">
+				Automatic System Execution
+			</h5>
+			— Executing systems for most applications should happen as often as
+			possible. Frameworks/engines usually have a <em>tick</em> or some kind of
+			<em>event loop</em> that is perfectly suitable for executing systems.
+			Simply taking the burdern off the developer and doing that for them is
+			desirable. Occasionally an application requires very specific execution
+			timing, but it's not common. For that reason we recommend this feature to
+			be <em>opt-out</em>.
+		</li>
+		<li>
+			<h5 id="relevant-codegen" class="font-bold inline text-base">
+				Built-in relevant language codegen
+			</h5>
+			— Most frameworks/engines are built with a specific programming language
+			in mind. Code generation for the relevant language(s) for the
+			framework/engine should occur for all Ecsact files in the project. An
+			<a>Ecsact codegen plugin</a> may need to be created along side your
+			integration if your language(s) are not available already.
+		</li>
+		<li>
+			<h5 id="automatic-system-execution" class="font-bold inline text-base">
+				Execution Events
+			</h5>
+			— <code>ecsact_execution_events_collector</code> is a C struct that
+			contains callbacks for receiving various Ecsact component events. The
+			callbacks require low level free functions which can be error-prone to set
+			correctly and there may only be one per event. Appropriate wrapper
+			functions for registring event multiple listeners are recommended for an
+			integration implementation. Using generated types from the
+			<a [routerLink]="[]" fragment="relevant-codegen"
+				>built-in relevant language code generators</a
+			>
+			is also recommended to be used in said wrappers.
+		</li>
+		<li>
+			<h5 id="execution-options-queue" class="font-bold inline text-base">
+				Execution Options Queue
+			</h5>
+			— <code>ecsact_execution_options</code> is a C struct that contains
+			instructions for manipulating components and entities before execution and
+			adding actions for execution. The struct requirements are error-prone and
+			may require careful memory allocation. Appropriate wrapper functions for
+			adding component details, entity details, and append actions are
+			recommended for an integration implementation. Using generated types from
+			the
+			<a [routerLink]="[]" fragment="relevant-codegen"
+				>built-in relevant language code generators</a
+			>
+			is also recommended to be used in said wrappers.
+		</li>
+		<li>
+			<h5 id="editor-gui-create-entity" class="font-bold inline text-base">
+				Editor GUI to create starting entities
+			</h5>
+			— Often developers have several entities that are not generated by
+			systems. It can be painful to ask a developer to create a script to create
+			these entities. Integrating some GUI so that an entity may be placed in a
+			scene/map/level is often more <em>ergonomic</em>.
+		</li>
+		<li>
+			<h5 id="entity-sync" class="font-bold inline text-base">
+				Entity Synchronization
+			</h5>
+			— Engines/frameworks commonly have an <em>object</em> or similar that
+			represents <em>something</em> in the application. Syncronizing an entity
+			to that <em>something</em> to make it a 1:1 relationship can be useful to
+			combine the tools available in the engine/framework with Ecsact component
+			data and component events. While this is a powerful concept, it comes at a
+			cost. If the developer is working with thousands (or even millions) of
+			entities the engine/framework may not work well at that scale. For that
+			reason entity synchronization is recommended as an
+			<em>opt-in</em> abstraction. Furthermore, it is encouraged that entity
+			synchronization (if enabled) also work on a subset of entities instead of
+			all entities.
+		</li>
+	</ul>
+	<h3 id="runtime-builder">Runtime Builder</h3>
+	<p>
+		It is highly recommended that an integration provide a convenient way to
+		build an Ecsact Runtime shared library.
+	</p>
+	<p>
+		The
+		<a routerLink="/docs/runtime-builder">Ecsact Runtime Builder (RTB)</a> is an
+		open source command line utility that makes it easy to build an Ecsact
+		Runtime shared library. Integrations are encouraged to use the Ecsact RTB
+		CLI to simplify runtime build support. Conveniently the Ecsact RTB CLI
+		outputs it's progress and prompts in JSON which should be easily parsable in
+		any language, engine, or framework.
+	</p>
+</article>
