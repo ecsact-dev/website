@@ -42,11 +42,11 @@
 
 @layer components {
 	ecsact-sidenav-section a {
-		@apply relative block border-l pl-4 hover:no-underline hover:border-l-4 hover:right-[3px];
+		@apply relative block border-l border-primary border-opacity-20 pl-4 hover:no-underline hover:border-l-4 hover:rounded-l-[4px] hover:right-[3px];
 	}
 
 	ecsact-sidenav-section a.active {
-		@apply border-l-4 right-[3px];
+		@apply border-l-4 rounded-l-[4px] rounded-r-[4px] border-opacity-100 right-[3px] bg-black bg-opacity-5;
 	}
 }
 
