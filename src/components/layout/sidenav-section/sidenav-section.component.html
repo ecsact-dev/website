@@ -1,12 +1,15 @@
 <cdk-accordion-item #accordionItem="cdkAccordionItem" class="block relative">
-	<div (click)="accordionItem.toggle()" class="cursor-pointer" *ngIf="!!title">
+	<button
+		(click)="accordionItem.toggle()"
+		class="cursor-pointer pr-2"
+		*ngIf="!!title">
 		<div class="text-lg">
 			<span class="i24 mr-1">{{
 				accordionItem.expanded ? 'expand_more' : 'chevron_right'
 			}}</span>
 			<span>{{ title }}</span>
 		</div>
-	</div>
+	</button>
 	<div class="relative overflow-hidden">
 		<div
 			#anchorsContainer
