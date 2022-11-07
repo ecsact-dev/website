@@ -2,12 +2,12 @@
 <div class="main-container">
 	<main #mainContent (cdkObserveContent)="onContentChange($event)">
 		<div class="float-right" *ngIf="canShare">
-			<div
+			<button
 				class="p-2 m-2 text-lg cursor-pointer"
 				[class.animate-pulse]="sharing"
 				(click)="share()">
 				<span class="i48">share</span>
-			</div>
+			</button>
 		</div>
 		<ng-content></ng-content>
 	</main>
