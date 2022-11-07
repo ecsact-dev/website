@@ -39,82 +39,125 @@
 		<code>removes</code>, and <code>generate</code>.
 	</p>
 
-	<h3 id="lanes-and-steps">Execution Lanes & Steps</h3>
-	<p>
-		Parallel execution is split into lanes and steps. For every lane there are 1
-		or more steps and for every step there are or 1 or more systems & actions.
-		Every system in a step can be executed in parallel and every lane can
-		execute in parallel.
-	</p>
-	<pre><code ecsactLangSyntax>
-		package example;
+	<h3 id="learn-by-example">Learn by example</h3>
+	<code-block-variation class="flex-1 lg:-mr-8">
+		<pre codeBlockVariationOption><code ecsactLangSyntax>
+				package example;
 
-		component Health {{ '{' }} f32 value; {{ '}' }}
-		component Position {{ '{' }} f32 x; f32 y; {{ '}' }}
-		component Velocity {{ '{' }} f32 vel_x; f32 vel_y; {{ '}' }}
-		component Poisoned {{ '{' }} f32 potency; {{ '}' }}
-		component Flying;
-		component Player;
-		component PoisonGeyser;
+				component Health {{ '{' }} f32 value; {{ '}' }}
+				component Position {{ '{' }} f32 x; f32 y; {{ '}' }}
+				component Velocity {{ '{' }} f32 vel_x; f32 vel_y; {{ '}' }}
+				component Poisoned {{ '{' }} f32 potency; {{ '}' }}
+				component Flying;
+				component Player;
+				component PoisonGeyser;
 
-		action Fly {{'{'}}
-			include Player;
-			adds Flying;
-		{{'}'}}
+				action Fly {{'{'}}
+					include Player;
+					adds Flying;
+				{{'}'}}
 
-		system Gravity {{ '{' }}
-			readwrite Velocity;
-			exclude Flying;
-		{{ '}' }}
+				system Gravity {{ '{' }}
+					readwrite Velocity;
+					exclude Flying;
+				{{ '}' }}
 
-		action Move {{'{'}}
-			f32 dir_x;
-			f32 dir_y;
-			readwrite Velocity;
-		{{'}'}}
+				action Move {{'{'}}
+					f32 dir_x;
+					f32 dir_y;
+					readwrite Velocity;
+				{{'}'}}
 
-		system {{ '{' }}
-			readonly Position;
-			include PoisonGeyser;
-			system PoisonNearby {{ '{' }}
-				readonly Position;
-				adds Poisoned;
-			{{ '}'}}
-		{{ '}' }}
+				system {{ '{' }}
+					readonly Position;
+					include PoisonGeyser;
+					system PoisonNearby {{ '{' }}
+						readonly Position;
+						adds Poisoned;
+					{{ '}'}}
+				{{ '}' }}
 
-		system ApplyPoisonDamage {{ '{' }}
-			readwrite Health;
-			readonly Poisoned;
-		{{ '}' }}
-		
-		transient PoisonExpired;
-		system PoisonDecay {{ '{' }}
-			readwrite Poisoned;
-			adds PoisonExpired;
-		{{ '}' }}
+				system ApplyPoisonDamage {{ '{' }}
+					readwrite Health;
+					readonly Poisoned;
+				{{ '}' }}
+				
+				transient PoisonExpired;
+				system PoisonDecay {{ '{' }}
+					readwrite Poisoned;
+					adds PoisonExpired;
+				{{ '}' }}
 
-		system {{ '{' }}
-			include PoisonExpired;
-			removes Poisoned;
-		{{ '}' }}
+				system {{ '{' }}
+					include PoisonExpired;
+					removes Poisoned;
+				{{ '}' }}
 
-		system ApplyVelocity {{ '{' }}
-			readonly Velocity;
-			readwrite Position;
-		{{ '}' }}
-	</code></pre>
-	<p>
-		In the above example there is a single lane with 5 steps, 2 of which have
-		parallel execution.
-	</p>
-	<div style="display: flex; flex-direction: row">
-		<ecsact-exec-lane-vis
-			[steps]="[
-				{systems: ['Fly']},
-				{systems: ['Gravity']},
-				{systems: ['Move', 'PoisonNearby']},
-				{systems: ['ApplyPoisonDamage']},
-				{systems: ['PoisonDecay', 'ApplyVelocity']}
-			]"></ecsact-exec-lane-vis>
+				system ApplyVelocity {{ '{' }}
+					readonly Velocity;
+					readwrite Position;
+				{{ '}' }}
+			</code></pre>
+	</code-block-variation>
+	<div class="flex flex-col md:flex-row gap-8 my-8">
+		<div class="flex flex-row">
+			<ecsact-exec-lane-vis
+				class="flex flex-col"
+				[steps]="[
+					{systems: ['1']},
+					{systems: ['2']},
+					{systems: ['3']},
+					{systems: ['4']},
+					{systems: ['5']},
+					{systems: ['6']}
+				]"></ecsact-exec-lane-vis>
+
+			<ecsact-exec-lane-vis
+				class="flex flex-col flex-1"
+				[steps]="[
+					{systems: ['Fly']},
+					{systems: ['Gravity']},
+					{systems: ['Move', 'PoisonNearby']},
+					{systems: ['ApplyPoisonDamage']},
+					{systems: ['PoisonDecay']},
+					{systems: ['Anonymous System', 'ApplyVelocity']}
+				]"></ecsact-exec-lane-vis>
+		</div>
+		<ol class="space-y-4">
+			<li>
+				<code>Fly</code>
+				<strong>cannot</strong> execute in parallel because <code>Fly</code>
+				<code>adds</code> the <code>Flying</code> component while
+				<code>Gravity</code> <code>excludes</code> the
+				<code>Flying</code> component. Adding <code>Flying</code> increases the
+				amount of entities that <code>Gravity</code> would have to consider
+				making them dependent on each other.
+			</li>
+			<li>
+				<code>Gravity</code> <strong>cannot</strong> execute in parallel with
+				<code>Move</code> because both can write to <code>Velocity</code>.
+			</li>
+			<li>
+				<code>Move</code> and <code>PoisonNearby</code>
+				<strong>can</strong> execute in parallel because neither have components
+				related to each other.
+			</li>
+			<li>
+				<code>ApplyPoisonDamage</code> <strong>cannot</strong> execute in
+				parallel because <code>Poisoned</code> write access conflicts with
+				<code>PoisonNearby</code> and <code>PoisonDecay</code>.
+			</li>
+			<li>
+				<code>PoisonDecay</code> <strong>cannot</strong> execute in parallel
+				because the <em>Anonymous System</em> below removes
+				<code>Poisoned</code> which may shrink the storage
+				<code>PoisonDecay</code> executes on.
+			</li>
+			<li>
+				<em>Anonymous System</em> and <code>ApplyVelocity</code>
+				<strong>can</strong> execute in parallel because because neither have
+				components related to each other.
+			</li>
+		</ol>
 	</div>
 </article>

@@ -1,7 +1,5 @@
-<div>
-	<div *ngFor="let step of steps" class="step">
-		<div *ngFor="let sys of step.systems" [attr.title]="sys" class="sys">
-			{{ sys }}
-		</div>
+<div *ngFor="let step of steps" class="step">
+	<div *ngFor="let sys of step.systems" [attr.title]="sys" class="sys">
+		<div>{{ sys }}</div>
 	</div>
 </div>

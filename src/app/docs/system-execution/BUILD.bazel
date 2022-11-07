@@ -19,6 +19,7 @@ ng_ts_project(
         ":styles",
     ],
     deps = [
+        "//src/components/code-block-variation",
         "//src/components/ecsact-lang-syntax",
         "//src/components/exec-lane-vis",
         "@npm//@angular/common",
