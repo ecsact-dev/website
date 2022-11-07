@@ -10,7 +10,6 @@ module.exports = {
 				logoBlack: 'url(external/ecsact_logo/ecsact-black.png)',
 				logoColor: 'url(external/ecsact_logo/ecsact-color.png)',
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
-				'connect-pattern': 'url(assets/bg/connect-pattern.png)',
 			},
 			keyframes: {
 				'slide-down': {
