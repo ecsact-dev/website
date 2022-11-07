@@ -27,10 +27,10 @@ languages.ecsact = {
 		lookbehind: true,
 	},
 	'ecsact-type-name': {
-		pattern: /((component|system|action|enum)\s+)[A-Za-z0-9]+/,
+		pattern: /((component|system|action|enum|transient)\s+)[A-Za-z0-9]*\s*{?/,
 		inside: {
 			keyword: {
-				pattern: /component|system|action|enum/,
+				pattern: /component|system|action|enum|transient/,
 			},
 			'class-name': {
 				pattern: /[A-Za-z0-9]+/,
