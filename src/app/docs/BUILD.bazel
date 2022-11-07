@@ -30,6 +30,7 @@ ng_ts_project(
         "//src/app/docs/unity/entities",
         "//src/app/docs/unity/unity-sync",
         "//src/components/layout/content",
+        "//src/components/layout/showcase",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
         "@npm//@angular/common",

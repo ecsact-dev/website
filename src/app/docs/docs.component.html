@@ -50,62 +50,147 @@
 
 <ecsact-content>
 	<section class="my-8 mx-auto px-2">
-		<div class="grid grid-cols-2 gap-4">
-			<div class="flex flex-col border-x">
-				<h3 class="px-4">The Basics</h3>
-				<div>
-					<img
-						class="h-48 w-full px-2 py-2 rounded-xl"
-						src="assets/EcsactCode.png" />
-				</div>
-				<div>
-					<p>Learn more about what drives Ecsact</p>
-				</div>
-
-				<div
-					class="grid grid-cols-3 gap-4 py-4 grow justify-evenly items-stretch">
-					<div
-						style="text-align: center"
-						class="px-4 bg-gradient-to-r from-primary to-white">
+		<div class="grid grid-cols-2 gap-x-10 gap-y-8">
+			<ecsact-showcase
+				[title]="'The Basics'"
+				[description]="'Learn more about what drives Ecsact'"
+				[img]="'assets/EcsactCode.png'">
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/ecs">
+					<span class="text-black">
+						<span class="i48">school</span>
 						What is ECS?
-					</div>
-					<div
-						style="text-align: center"
-						class="bg-gradient-to-r from-primary to-white">
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/lang">
+					<span class="text-black">
+						<span class="i48">psychology</span>
 						Language
-					</div>
-					<div
-						style="text-align: center"
-						class="bg-gradient-to-r from-primary to-white">
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/setup">
+					<span class="text-black">
+						<span class="i48">memory</span>
 						Setup
-					</div>
-				</div>
-			</div>
-			<div class="border-r">
-				<h3>Systems</h3>
-				<p>Learn about how systems are applied in Ecsact</p>
-				<div class="grid grid-cols-2 gap-4">
-					<div class="py-4">System Implementations</div>
-					<div class="py-4">System Execution</div>
-					<div class="py-4">Wasm Systems Overview</div>
-					<div class="py-4">C++ Wasm Systems</div>
-				</div>
-			</div>
-
-			<div>
-				<h3>Unity</h3>
-				<p>Learn about the Ecsact Unity Integration</p>
-				<div class="grid grid-cols-3">
-					<div class="py-4">Defaults Class</div>
-					<div class="py-4">Creating Entities</div>
-					<div class="py-4">Unity Sync</div>
-				</div>
-				<div class="flex flex-row">
-					<div class="px-4 py-4 grow">Basic Example</div>
-					<div class="px-4 py-4 grow">Example Using Unity Sync</div>
-				</div>
-			</div>
-			<div>Runtime? Might not be added</div>
+					</span>
+				</a>
+			</ecsact-showcase>
+			<ecsact-showcase
+				[title]="'Systems'"
+				[description]="'Read about how systems are applied'"
+				[img]="'assets/EcsactCode.png'">
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/system-impl">
+					<span class="text-black">
+						<span class="i48">school</span>
+						System Implementations
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/system-execution">
+					<span class="text-black">
+						<span class="i48">psychology</span>
+						System Execution
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/system-impl-wasm">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Wasm Systems Overview
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/cpp-system-impl-wasm">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						C++ Wasm Systems
+					</span>
+				</a>
+			</ecsact-showcase>
+			<ecsact-showcase
+				[title]="'Unity Integration'"
+				[description]="'Check out the official support for Ecsact with Unity'"
+				[img]="'assets/EcsactCode.png'">
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/defaults">
+					<span class="text-black">
+						<span class="i48">school</span>
+						Defaults Class
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/entities">
+					<span class="text-black">
+						<span class="i48">psychology</span>
+						Creating Entities
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/unity-sync">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Unity Sync
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/tutorials/basic-example">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Basic Examples
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/tutorials/moving-block">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Example Using Unity Sync
+					</span>
+				</a>
+			</ecsact-showcase>
+			<ecsact-showcase
+				[title]="'Runtime'"
+				[description]="'Find out how the Runtime works'"
+				[img]="'assets/EcsactCode.png'">
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/runtime">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Runtime
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/runtime-builder">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Runtime Builder
+					</span>
+				</a>
+				<a
+					class="btn text-secondary/50 bg-primary-bright"
+					routerLink="/docs/runtime-implementations">
+					<span class="text-black">
+						<span class="i48">memory</span>
+						Implementations
+					</span>
+				</a> </ecsact-showcase
+			>>
 		</div>
 	</section>
 	<router-outlet></router-outlet>
