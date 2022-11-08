@@ -1,0 +1,21 @@
+load("@rules_blender//:index.bzl", "blender_render")
+load("@bzlws//:index.bzl", "bzlws_copy")
+
+package(default_visibility = ["//visibility:public"])
+
+blender_render(
+    name = "ecsact-action-anim",
+    blend_file = "ecsact-action-anim.blend",
+    frame_end = 103,
+    frame_start = 0,
+    render_format = "WEBM",
+)
+
+bzlws_copy(
+    name = "copy_renders",
+    srcs = [
+        ":ecsact-action-anim",
+    ],
+    out = "src/assets/renders/{FILENAME}",
+    force = True,
+)
