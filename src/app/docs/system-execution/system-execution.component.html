@@ -22,7 +22,7 @@
 
 	<h2 id="parallel-execution">Parallel Execution</h2>
 	<p>
-		Systems and actions that do not have conflciting component capabilities are
+		Systems and actions that do not have conflicting component capabilities are
 		able to execute in parallel. This is not guaranteed for every runtime
 		implementation and is more of an implementation detail. However, it is
 		valuable to know in order to design performant Ecsact files.
@@ -81,7 +81,7 @@
 					readwrite Health;
 					readonly Poisoned;
 				{{ '}' }}
-				
+
 				transient PoisonExpired;
 				system PoisonDecay {{ '{' }}
 					readwrite Poisoned;
