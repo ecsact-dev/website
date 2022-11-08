@@ -9,3 +9,6 @@
 
 # previous inputs saved
 /scripts/*.inputs
+
+# blender temp files
+*.blend?
