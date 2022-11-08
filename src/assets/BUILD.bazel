@@ -2,5 +2,8 @@ package(default_visibility = ["//:__subpackages__"])
 
 filegroup(
     name = "assets",
-    srcs = glob(["**/*"]),
+    srcs = glob(["**/*"]) + [
+        # renders are in the bazelignore so they must be manually specified here
+        "renders/ecsact-action-anim.webm",
+    ],
 )

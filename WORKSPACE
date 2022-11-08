@@ -63,9 +63,9 @@ sass_repositories()
 
 http_archive(
     name = "rules_blender",
-    sha256 = "b58bba0a2db9c03df8d9b3568465c8d90903f7cda45c33cbadb2de48bdbbfcf3",
-    strip_prefix = "rules_blender-4bb0efc5a329ad9d03c8c27485689baf1338ccad",
-    urls = ["https://github.com/zaucy/rules_blender/archive/4bb0efc5a329ad9d03c8c27485689baf1338ccad.zip"],
+    sha256 = "",
+    strip_prefix = "rules_blender-e0513aede99e98558f95ff2d6ba9b9f576b3a61f",
+    urls = ["https://github.com/zaucy/rules_blender/archive/e0513aede99e98558f95ff2d6ba9b9f576b3a61f.zip"],
 )
 
 load("@rules_blender//:repo.bzl", "blender_repository")
@@ -84,3 +84,14 @@ load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "
 esbuild_repositories(
     npm_repository = "npm",
 )
+
+http_archive(
+    name = "bzlws",
+    sha256 = "93e6cec29581070fe4455a2ad6c81d4b7ee8ca1b76c2c340883100ef2686c8c7",
+    strip_prefix = "bzlws-b12ad162a63fc368785a217cd62c7afb0c9107f8",
+    url = "https://github.com/zaucy/bzlws/archive/b12ad162a63fc368785a217cd62c7afb0c9107f8.zip",
+)
+
+load("@bzlws//:repo.bzl", "bzlws_deps")
+
+bzlws_deps()
