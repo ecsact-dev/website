@@ -121,15 +121,39 @@
 		main package example;
 	</code></pre>
 
-	<h2 id="define-components">Defining Components</h2>
+	<h2 id="components">Components</h2>
+	<p>
+		Components are structured data that can be assigned to an entity and queried
+		by systems. Components data is defined by
+		<a [routerLink]="" fragment="fields">fields</a>.
+	</p>
 	<pre><code ecsactLangSyntax>
-		component Position {{'{'}}
-			i32 x;
-			i32 y;
-		{{'}'}}
+		component Position {{'{'}} i32 x; i32 y; {{'}'}}
 	</code></pre>
 
-	<h2 id="define-systems">Defining Systems</h2>
+	<h3 id="transients">Transients</h3>
+	<p>
+		Transients are temporary components that only exist during execution. They
+		are automatically removed at the end of system execution. They are defined
+		the same way as a regular component but use the keyword
+		<code>transient</code>.
+	</p>
+	<pre><code ecsactLangSyntax>
+		transient Grounded;
+	</code></pre>
+
+	<h2 id="systems">Systems</h2>
+	<p>
+		Systems are a way to describe <em>function</em> of your simulation. This is
+		done by
+		<a [routerLink]="[]" fragment="system-capabilities">system capabilities</a>
+		which give access to component data, assign new component data, and filter
+		against existing or non-existant component data. Later, a
+		<a routerLink="/docs/system-impl" class="whitespace-nowrap"
+			><span class="i24">article</span> system implementation</a
+		>
+		may be designatd to the system declared in an Ecsact file.
+	</p>
 	<pre><code ecsactLangSyntax>
 		// Apply poison damage to entity health over time
 		system PoisonDamage {{'{'}}
@@ -138,7 +162,68 @@
 		{{'}'}}
 	</code></pre>
 
-	<h2 id="define-actions">Defining Actions</h2>
+	<h3 id="system-capabilities">System Capabilities</h3>
+	<p>
+		One system capability is allowed per component of a system. They are
+		introduced with a capability keyword and the component name.
+	</p>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td><code>readonly</code></td>
+			<td>Access</td>
+			<td>
+				System may <em>only</em> read component data from the specified
+				component. Implies <code>include</code>.
+			</td>
+		</tr>
+		<tr>
+			<td><code>readwrite</code></td>
+			<td>Access</td>
+			<td>
+				System may read <em>or</em> write component data from the specified
+				component. Implies <code>include</code>.
+			</td>
+		</tr>
+		<tr>
+			<td><code>adds</code></td>
+			<td>Assignment</td>
+			<td>
+				System may add the specified component to the entity. Implies
+				<code>exclude</code>.
+			</td>
+		</tr>
+		<tr>
+			<td><code>removes</code></td>
+			<td>Assignment</td>
+			<td>
+				System may remove the specified component from the entity. Implies
+				<code>include</code>.
+			</td>
+		</tr>
+		<tr>
+			<td><code>include</code></td>
+			<td>Filter</td>
+			<td>
+				Filters entities the system selects for to <em>include</em> the
+				specified component.
+			</td>
+		</tr>
+		<tr>
+			<td><code>exclude</code></td>
+			<td>Filter</td>
+			<td>
+				Filters entities the system selects for to <em>exclude</em> the
+				specified component.
+			</td>
+		</tr>
+	</table>
+
+	<h3 id="actions">Actions</h3>
 	<p>
 		Defining <em>only</em> systems and components can get you a simulation that
 		works well, but that simulation will be fully deterministic without
@@ -147,13 +232,35 @@
 		when asked to be. This makes actions a perfect candidate for player input.
 	</p>
 	<pre><code ecsactLangSyntax>
-		// Entities controlled by player `player_id` starts attacking
-		action Attack {{'{'}}
-			i32 player_id;
-			readonly PlayerControlled;
-			adds Attacking;
+		action Jump {{'{'}}
+			i32 how_high;
+			include Player;
+			readwrite Velocity;
 		{{'}'}}
 	</code></pre>
+
+	<h3 id="anonymous-systems">Anonymous Systems</h3>
+	<p>
+		Systems that have a
+		<a
+			routerLink="/docs/system-impl"
+			fragment="trivial-implementations"
+			class="whitespace-nowrap"
+			><span class="i24">article</span> trivial implementation</a
+		>
+		are allowed to be <em>anonymous</em> (i.e. nameless).
+	</p>
+	<pre><code ecsactLangSyntax>
+		// Always removes the 'Flying' component when an entity is 'Grounded'
+		system {{'{'}}
+			include Grounded;
+			removes Flying;
+		{{'}'}}
+	</code></pre>
+	<p>
+		NOTE: Trivial actions must always be named since they are referred to
+		directly during system execution.
+	</p>
 
 	<h2 id="fields">Fields</h2>
 	<p>Both components and actions may contain any number of fields</p>
@@ -221,7 +328,7 @@
 	</table>
 
 	<h2 id="interact-multiple-entity">Interacting with multiple entities</h2>
-	<p>It is often required that entities</p>
+
 	<h3 id="nested-systems">Nested Systems</h3>
 	<p>
 		The simplest way to interact with multiple entities is with nested systems.
