@@ -1,11 +1,15 @@
 <doxygen-parent-block>
-	<doxygen-name
-		[page_id]="'class-name'"
-		name
-		[name]="def.name"
-		[access]="def.access"
-		><h2>{{ def.name }}</h2></doxygen-name
-	>
+	<div class="flex flex-row justify-between">
+		<doxygen-name
+			[page_id]="'class-name'"
+			name
+			[name]="def.name"
+			[access]="def.access"
+			><h2>{{ def.name }}</h2></doxygen-name
+		>
+		<doxygen-location [location]="def.location"></doxygen-location>
+	</div>
+
 	<div *ngIf="def.detailedDescription.length > 0">
 		<doxygen-description
 			[description]="def.detailedDescription"></doxygen-description>
@@ -118,6 +122,4 @@
 			></doxygen-child-block>
 		</div>
 	</div>
-
-	<doxygen-location [location]="def.location"></doxygen-location>
 </doxygen-parent-block>

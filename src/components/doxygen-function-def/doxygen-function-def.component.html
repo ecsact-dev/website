@@ -2,16 +2,14 @@
 	<doxygen-description
 		[description]="def.detailedDescription"></doxygen-description>
 </div>
-<doxygen-definition
-	[definition]="def.definition"
-	[argsstring]="def.argsstring"></doxygen-definition>
 <h3>Parameters</h3>
 <div *ngFor="let parameter of def.parameters">
 	<div *ngIf="parameter.name != ''">
 		<doxygen-parameters
 			[name]="parameter.name"
 			[description]="parameter.detailedDescription"
-			[type]="parameter.type"></doxygen-parameters>
+			[type]="parameter.type"
+			[typeRef]="parameter.typeRefid"></doxygen-parameters>
 	</div>
 </div>
 <div *ngIf="def.return.type != ''">
