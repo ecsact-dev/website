@@ -293,4 +293,33 @@
 			</tr>
 		</table>
 	</div>
+
+	<h2 id="trivial-implementations">Trivial Implementations</h2>
+	<p>
+		If a system or action can only be implemented in one way it is considered
+		<em>trivial</em>. A trival implementation is one that fulfills the
+		requirements of a trivial system or actions capabilities.
+	</p>
+	<p>
+		For instance, if a system can only remove components there is no feasible
+		way to write a system implementation different than simple removing the
+		components.
+	</p>
+	<pre><code ecsactLangSyntax>
+		// Trivial system. Only 1 possible implementation.
+		system ExampleTrivial {{ '{' }}
+			removes ExampleComponent;
+		{{ '}' }}
+	</code></pre>
+	<p>
+		In contrary, if the system could <em>also</em> read component data of
+		another component it could be implemented in many different ways.
+	</p>
+	<pre><code ecsactLangSyntax>
+		// Non-trivial system. Many possible implementations.
+		system ExampleNonTrivial {{ '{' }}
+			readonly SomeNonTagComponent
+			removes ExampleComponent;
+		{{ '}' }}
+	</code></pre>
 </article>
