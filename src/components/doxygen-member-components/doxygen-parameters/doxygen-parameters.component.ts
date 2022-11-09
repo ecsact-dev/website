@@ -18,6 +18,12 @@ export class DoxygenParametersComponent {
 	description: DoxygenParagraph[];
 
 	@Input()
+	type: string;
+
+	@Input()
+	typeRef?: string;
+
+	@Input()
 	access: 'public' | 'protected' | 'private';
 
 	@Input()

@@ -183,6 +183,7 @@ const doxygenMemberDefParseFns = {
 		};
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
+		console.log('function: ', el);
 		const parameters: DoxygenFunctionParameter[] = [];
 		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -248,10 +249,17 @@ const doxygenMemberDefParseFns = {
 						const paramName = paramItemNameEl.textContent.trim();
 						const param = paramByName[paramName];
 						if (param && paramItemDescriptionEl) {
-							param.detailedDescription = getDetailedDescription(
-								paramItemDescriptionEl,
-							);
-							param.brief = paramItemDescriptionEl.textContent.trim();
+							const detailedDescription: DoxygenParagraph[] = [];
+
+							for (const para of Array.from(paramItemDescriptionEl.children)) {
+								const doxygenParagraph = getDoxygenParagraph(para);
+
+								if (doxygenParagraph.length > 0) {
+									detailedDescription.push(doxygenParagraph);
+								}
+							}
+
+							param.detailedDescription = detailedDescription;
 						}
 					}
 				}

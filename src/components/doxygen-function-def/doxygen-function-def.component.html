@@ -10,7 +10,8 @@
 	<div *ngIf="parameter.name != ''">
 		<doxygen-parameters
 			[name]="parameter.name"
-			[description]="parameter.detailedDescription"></doxygen-parameters>
+			[description]="parameter.detailedDescription"
+			[type]="parameter.type"></doxygen-parameters>
 	</div>
 </div>
 <div *ngIf="def.return.type != ''">

@@ -20,6 +20,7 @@ ng_ts_project(
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-container",
+        "//src/components/doxygen-refid-link",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",
