@@ -1,16 +1,16 @@
 <div>
 	<doxygen-container>
 		<div *ngIf="!typeRef; else elseBlock">
-			<code>{{ type }}</code> {{ name }}
+			<code><ng-content select="[type"></ng-content></code>
+			<ng-content select="[name]"></ng-content>
 		</div>
 		<ng-template #elseBlock>
 			<code
-				><a [doxygenRefidLink]="typeRef">{{ type }}</a></code
-			>
-			{{ name }}
+				><a [doxygenRefidLink]="typeRef"
+					><ng-content select="[type"></ng-content></a
+			></code>
+			<ng-content select="[name]"></ng-content>
 		</ng-template>
-		<div class="description">
-			{{ description }}
-		</div></doxygen-container
-	>
+		<ng-content select="[description]"></ng-content>
+	</doxygen-container>
 </div>

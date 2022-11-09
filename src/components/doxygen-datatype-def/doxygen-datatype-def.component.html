@@ -1,10 +1,11 @@
 <doxygen-parent-block>
-	<div class="flex flex-row justify-between">
+	<div class="flex flex-col sm:flex-row sm:justify-between">
 		<doxygen-name
 			[page_id]="'class-name'"
 			name
 			[name]="def.name"
 			[access]="def.access"
+			[makeRow]="false"
 			><h2>{{ def.name }}</h2></doxygen-name
 		>
 		<doxygen-location [location]="def.location"></doxygen-location>
@@ -97,6 +98,7 @@
 					[access]="variable.access"
 					[mutable]="variable.mutable"
 					[static]="variable.static"
+					[makeRow]="true"
 					><a [doxygenRefidLink]="variable.id"
 						><h3>{{ variable.name }}</h3></a
 					></doxygen-name

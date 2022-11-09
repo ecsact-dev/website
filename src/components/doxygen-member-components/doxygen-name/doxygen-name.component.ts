@@ -39,6 +39,9 @@ export class DoxygenNameComponent {
 	@Input()
 	link: string;
 
+	@Input()
+	makeRow: boolean = false;
+
 	isVirtual() {
 		return this.virtual != 'non-virtual';
 	}

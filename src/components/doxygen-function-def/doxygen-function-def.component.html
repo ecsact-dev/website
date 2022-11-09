@@ -3,15 +3,20 @@
 		[description]="def.detailedDescription"></doxygen-description>
 </div>
 <h3>Parameters</h3>
-<div *ngFor="let parameter of def.parameters">
-	<div *ngIf="parameter.name != ''">
-		<doxygen-parameters
-			[name]="parameter.name"
-			[description]="parameter.detailedDescription"
-			[type]="parameter.type"
-			[typeRef]="parameter.typeRefid"></doxygen-parameters>
+<table>
+	<div *ngFor="let parameter of def.parameters">
+		<doxygen-parameters>
+			<tr>
+				<td>
+					<div type>{{ parameter.type }}</div>
+				</td>
+				<td>
+					<div name>{{ parameter.name }}</div>
+				</td>
+			</tr>
+		</doxygen-parameters>
 	</div>
-</div>
+</table>
 <div *ngIf="def.return.type != ''">
 	<doxygen-return [return]="def.return"></doxygen-return>
 </div>
