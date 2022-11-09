@@ -20,6 +20,7 @@ ng_ts_project(
         "//src/app/docs/ecs",
         "//src/app/docs/implementations",
         "//src/app/docs/lang",
+        "//src/app/docs/overview",
         "//src/app/docs/runtime",
         "//src/app/docs/runtime-builder",
         "//src/app/docs/setup",

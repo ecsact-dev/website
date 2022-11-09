@@ -1,0 +1,27 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "showcase.component.scss",
+)
+
+ng_ts_project(
+    name = "showcase",
+    srcs = [
+        "showcase.component.ts",
+        "showcase.module.ts",
+    ],
+    angular_assets = [
+        "showcase.component.html",
+        ":styles",
+    ],
+    deps = [
+        "@npm//@angular/cdk",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
