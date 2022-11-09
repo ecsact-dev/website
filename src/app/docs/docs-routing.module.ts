@@ -5,6 +5,7 @@ import {DocsComponent} from './docs.component';
 import {DocsModule} from './docs.module';
 import {LangComponent} from './lang/lang.component';
 import {LangModule} from './lang/lang.module';
+import {OverviewComponent} from './overview/overview.component';
 import {SystemExecutionComponent} from './system-execution/system-execution.component';
 import {SystemImplWasmComponent} from './system-impl-wasm/system-impl-wasm.component';
 import {SystemImplComponent} from './system-impl/system-impl.component';
@@ -14,6 +15,10 @@ const routes: Routes = [
 		path: '',
 		component: DocsComponent,
 		children: [
+			{
+				path: 'overview',
+				component: OverviewComponent,
+			},
 			{
 				path: 'lang',
 				component: LangComponent,
