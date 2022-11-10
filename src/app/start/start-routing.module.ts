@@ -42,6 +42,20 @@ const routes: Routes = [
 				m => m.StartCustomRoutingRoutingModule,
 			),
 	},
+	{
+		path: 'tutorials/unity/moving-block',
+		loadChildren: () =>
+			import(
+				'../tutorials/unity/moving-block/moving-block-routing.module'
+			).then(m => m.MovingBlockRoutingModule),
+	},
+	{
+		path: 'tutorials/unity/basic-example',
+		loadChildren: () =>
+			import(
+				'../tutorials/unity/basic-example/basic-example-routing.module'
+			).then(m => m.BasicExampleRoutingModule),
+	},
 ];
 
 @NgModule({

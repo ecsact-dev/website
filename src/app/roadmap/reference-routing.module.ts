@@ -1,20 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {SetupModule} from './setup.module';
-
-import {SetupComponent} from './setup.component';
+import {RoadmapComponent} from './roadmap.component';
+import {RoadmapModule} from './roadmap.module';
 
 @NgModule({
 	imports: [
-		SetupModule,
+		RoadmapModule,
 		RouterModule.forChild([
 			{
 				path: '',
 				pathMatch: 'full',
-				component: SetupComponent,
+				component: RoadmapComponent,
 			},
 		]),
 	],
 	exports: [],
 })
-export class SetupRoutingModule {}
+export class RoadmapRoutingModule {}

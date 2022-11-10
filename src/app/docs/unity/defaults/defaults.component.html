@@ -33,8 +33,7 @@
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
 				main package example;
 
-				action BasicAction {{'{'}}{{'}'}}
-			</code></pre>
+				action BasicAction {{'{'}}{{'}'}}</code></pre>
 		</code-block-variation>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -44,8 +43,7 @@ example.BasicAction basicAction;
 // Pushes the action to the executionOptions
 Ecsact.Defaults.Runner.executionOptions.PushAction(
 	basicAction
-);
-			</code></pre>
+);</code></pre>
 		</code-block-variation>
 		<p></p>
 	</section>
