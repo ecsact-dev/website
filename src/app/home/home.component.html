@@ -26,47 +26,6 @@
 		class="absolute bottom-0 left-0 right-0 h-32 opacity-25 bg-gradient-to-t from-primary z-20 border-b-4 border-primary border-solid"></div>
 </div>
 
-<ecsact-example-diagram
-	style="margin: 32px auto; max-width: 1200px; padding: 0px 16px"
-	[verticalLayout]="smallWidth()">
-	<pre
-		diagramStart
-		class="h-full flex items-center justify-center"
-		style="font-size: 80%"><code ecsactLangSyntax>
-		package example;
-		component Health {{'{'}} f32 value; {{'}'}}
-		component Poisoned {{'{'}} i32 potency; {{'}'}}
-		component Invincible;
-		system PoisonDamage {{'{'}}
-			readonly Poisoned;
-			readwrite Health;
-			exclude Invincible;
-		{{'}'}}
-	</code></pre>
-
-	<div diagramMid1 class="h-full flex items-center justify-center text-center">
-		Codegen
-	</div>
-
-	<div diagramMid2 class="h-full flex items-center justify-center text-center">
-		PoisonDamage
-		<br />
-		Implementation
-	</div>
-
-	<div diagramMid3 class="h-full flex items-center justify-center text-center">
-		Runtime
-	</div>
-
-	<div diagramMid4 class="h-full flex items-center justify-center text-center">
-		Component<br />Events
-	</div>
-
-	<div diagramEnd style="margin: 16px">
-		<p>(TODO animate character dying)</p>
-	</div>
-</ecsact-example-diagram>
-
 <article>
 	<section
 		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">

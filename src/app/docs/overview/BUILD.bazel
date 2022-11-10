@@ -16,6 +16,8 @@ ng_ts_project(
         ":overview_component_style",
     ],
     deps = [
+        "//src/components/ecsact-example-diagram",
+        "//src/components/ecsact-lang-syntax",
         "//src/components/layout/showcase",
         "@npm//@angular/common",
         "@npm//@angular/core",
