@@ -36,7 +36,7 @@
 				<em>best</em> use of ECS.
 			</p>
 			<p class="font-bold">
-				<a class="btn text-secondary/50 bg-secondary" routerLink="/start">
+				<a class="btn text-secondary/50 bg-secondary" routerLink="/docs/lang">
 					<span class="text-black">
 						<span class="i48">school</span>
 						Learn More
@@ -45,31 +45,50 @@
 			</p>
 		</div>
 
-		<video
-			class="shrink max-w-xs rounded-lg shadow-lg"
-			autoplay
-			loop
-			muted
-			src="assets/renders/ecsact-action-anim.webm"></video>
+		<div class="brand ecsact flex-[2] self-stretch"></div>
 	</section>
+	<div class="bg-black/5 dark:bg-white/5">
+		<section
+			class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
+			<div class="brand ecsact flex-[2] self-stretch"></div>
+			<div class="flex-[3]">
+				<h2>Commit to Ecsact without committing to an engine.</h2>
+				<p>
+					Ecsact is designed to not rely on any particular engine, affording you
+					the flexibility to make the best decision for your product.
+				</p>
+				<p class="text-sm">
+					<a routerLink="/start/unity">Unity integration</a> is
+					<strong>available now</strong> with
+					<a routerLink="/start/unreal">Unreal</a> and
+					<a routerLink="/start/godot">Godot</a> support planned for the near
+					future. <a routerLink="/start/custom">Custom</a> integration is also
+					possible for in-house or other engines that are not officially planned
+					for.
+				</p>
+				<p class="font-bold">
+					<a
+						class="btn text-secondary/50 bg-secondary"
+						routerLink="/start"
+						fragment="integrations">
+						<span class="text-black">
+							<span class="i48">school</span>
+							Learn More
+						</span>
+					</a>
+				</p>
+			</div>
+		</section>
+	</div>
 
 	<section
 		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
-		<div class="brand ecsact flex-[2] self-stretch"></div>
-		<div class="flex-[3]">
-			<h2>Commit to Ecsact without committing to an engine.</h2>
+		<div>
+			<h2>Interrupt your simulation with Actions</h2>
 			<p>
-				Ecsact is designed to not rely on any particular engine, affording you
-				the flexibility to make the best decision for your product.
-			</p>
-			<p class="text-sm">
-				<a routerLink="/start/unity">Unity integration</a> is
-				<strong>available now</strong> with
-				<a routerLink="/start/unreal">Unreal</a> and
-				<a routerLink="/start/godot">Godot</a> support planned for the near
-				future. <a routerLink="/start/custom">Custom</a> integration is also
-				possible for in-house or other engines that are not officially planned
-				for.
+				Ecsact introduces <em>actions</em> to your ECS. Actions are a
+				specialized system used to break-up the simulation. Perfectly suitable
+				for user or bot input.
 			</p>
 			<p class="font-bold">
 				<a
@@ -83,42 +102,44 @@
 				</a>
 			</p>
 		</div>
+		<video
+			class="shrink max-w-xs rounded-lg shadow-lg"
+			autoplay
+			loop
+			muted
+			src="assets/renders/ecsact-action-anim.webm"></video>
 	</section>
 
-	<section class="my-8 max-w-md center mx-auto px-2">
-		<h2 style="text-align: center">Interrupt the simulation using Actions</h2>
-		<div class="flex flex-row">
-			<div class="brand ecsact w-64 h-64"></div>
-			<p style="text-align: center" t>
-				Change the Ecsact runtime on the fly with Action systems
-			</p>
-		</div>
-		<p class="text-center">
-			<a routerLink="/start" class="btn">
-				<span class="i48">school</span>
-				Learn More
-			</a>
-		</p>
-	</section>
-
-	<section class="my-8 max-w-md center mx-auto px-2">
-		<h2 style="text-align: center">ECS for everyone</h2>
-		<div class="flex flex-col items-center">
-			<img
-				src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/WebAssembly_Logo.svg/2048px-WebAssembly_Logo.svg.png"
-				class="brand ecsact w-64 h-64" />
-			<p style="text-align: center" t>
-				Wasm support is coming, bringing hot reloading and support for dozens of
-				programming languages like C++, Python, Rust and more.
-			</p>
-		</div>
-		<p class="text-center">
-			<a routerLink="/start" class="btn">
-				<span class="i48">school</span>
-				Learn More
-			</a>
-		</p>
-	</section>
+	<div class="bg-black/5 dark:bg-white/5">
+		<section
+			class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
+			<div
+				class="bg-wasmLogo bg-contain bg-no-repeat bg-center m-4 flex-[2] self-stretch"></div>
+			<div class="flex-[3]">
+				<h2>Build your systems with your choice of programming language.</h2>
+				<p>
+					Ecsact does not discriminate between programming languages. The choice
+					is yours. Systems may be implemented in any language that can be
+					exported to WebAssembly.
+				</p>
+				<p class="text-sm">
+					System implemenations may also be in different formats or even set
+					dynamically at runtime!
+				</p>
+				<p class="font-bold">
+					<a
+						class="btn text-secondary/50 bg-secondary"
+						routerLink="/docs/system-impl"
+						fragment="integrations">
+						<span class="text-black">
+							<span class="i48">school</span>
+							Learn More
+						</span>
+					</a>
+				</p>
+			</div>
+		</section>
+	</div>
 
 	<section class="my-8 max-w-md center mx-auto px-4 py-16">
 		<p class="text-center">What are you waiting for?</p>
