@@ -1,31 +1,66 @@
 <article>
-	<h1>Implementing Systems in Unity</h1>
+	<h1 id="title">Implementing Systems in Unity</h1>
 	<p>
-		The Ecsact Unity Integration allows implementations of your declared
-		systems.
+		The Ecsact Unity integration provides a convenient way to implement your
+		systems in C# or WebAssembly.
 	</p>
+
 	<section>
-		<h2>System Declaration</h2>
+		<h2 id="csharp-system-impl">C# System Implementation</h2>
 		<p>
-			Systems have a <code>C# Attribute</code> in its implementation. The type
-			name of the system is put here to get the correct <code>context</code>.
-			The context holds the logic of the system. This includes getting
-			components, generating entities and retrieving data on actions.
+			To enable C# system implementations open your Unity project and go to
+			<strong
+				>Project Settings <span class="i24">arrow_right</span> Ecsact
+				<span class="i24">arrow_right</span> System Implementations
+			</strong>
+			and change <strong>Source</strong> to <strong>C#</strong>. In addition to
+			setting the source to C# you must also give a C# Assembly. The specified
+			C# Assembly must contain your C# system implementation functions. If
+			you're not familiar with C# Assemblies and Unity, see Unity's
+			<a
+				target="_blank"
+				href="https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html"
+				><span class="i24">open_in_new</span> Assembly Definitions
+				documentation</a
+			>.
 		</p>
+		<p></p>
+		<p>
+			C# System implementations must be a <code>public</code>
+			<code>static</code> function that returns <code>void</code> with 1
+			parameter of type <code>EcsactRuntime.SystemExecutionContext</code>. Be
+			very conscientious of which methods in context are called.
+			<a routerLink="/docs/system-impl"
+				>Read more about system implementations to know what can and cannot be
+				called.</a
+			>
+		</p>
+		<h3>Example</h3>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-[Ecsact.DefaultSystemImpl(typeof(example.ExampleSystem))]
-public static void AddToExampleSystem(EcsactRuntime.SystemExecutionContext context) {{'{'}}
-	// Get component from the context
-	var value = context.Get<{{'example.Example'}}>();
-{{'}'}}
+				[Ecsact.DefaultSystemImpl(typeof(example.ExampleSystem))]
+				public static void AddToExampleSystem(EcsactRuntime.SystemExecutionContext context) {{'{'}}
+					// Get component from the context
+					var myExampleComponent = context.Get<{{'example.Example'}}>();
+				{{'}'}}
 			</code></pre>
 		</code-block-variation>
+	</section>
 
+	<section>
+		<h2 id="wasm-system-impl">Wasm System Implementations</h2>
 		<p>
-			It's essential that the system is both public and static. In addition, it
-			needs to be part of the assembly that can be generated alongside your
-			.Ecsact file in <code>edit -> Project Settings -> Ecsact</code>
+			To enable Wasm system implementations open your Unity project and go to
+			<strong
+				>Project Settings <span class="i24">arrow_right</span> Ecsact
+				<span class="i24">arrow_right</span> System Implementations
+			</strong>
+			and change <strong>Source</strong> to <strong>WebAssembly</strong>. A
+			<code>.wasm</code> file may be specified in these settings for each
+			system. Learn more about Wasm system implementations in the
+			<a routerLink="/docs/system-impl-wasm"
+				>Wasm Systems Overview documentation</a
+			>.
 		</p>
 	</section>
 </article>
