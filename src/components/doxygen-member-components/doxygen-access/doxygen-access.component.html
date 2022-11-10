@@ -1,0 +1,21 @@
+<!-- <div *ngIf="!makeRow; else isRow">
+	<div *ngIf="link; else hasLink">
+		<a [routerLink]="link"
+			><div *ngIf="page_id; else hasNoID">
+				<ng-content id="page_id"></ng-content>
+			</div>
+			<ng-template #hasNoID> <ng-content></ng-content> </ng-template
+		></a>
+	</div>
+	<ng-template #hasLink><ng-content></ng-content> </ng-template> -->
+<div class="full-name">
+	<code>
+		<span *ngIf="const">const</span>
+		<span>{{ access }}</span>
+		<span *ngIf="static">static</span>
+		<span *ngIf="mutable">mutable</span>
+		<span *ngIf="explicit">explicit</span>
+		<span *ngIf="inline">inline</span>
+		<span *ngIf="isVirtual()">{{ virtual }}</span>
+	</code>
+</div>

@@ -1,5 +1,5 @@
 <doxygen-parent-block>
-	<doxygen-name name [name]="def.name" [access]="def.access"
+	<doxygen-name [access]="def.access"
 		><h1>{{ def.name }}</h1></doxygen-name
 	>
 	<div *ngIf="def.detailedDescription.length > 0">
@@ -12,10 +12,9 @@
 		<doxygen-child-block>
 			<doxygen-name
 				[access]="variable.access"
-				[name]="variable.name"
 				[mutable]="variable.mutable"
-				[static]="variable.static"
-				><a [doxygenRefidLink]="variable.id"
+				[static]="variable.static">
+				<a [doxygenRefidLink]="variable.id"
 					><h2>{{ variable.name }}</h2></a
 				></doxygen-name
 			>

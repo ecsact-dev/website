@@ -1,5 +1,8 @@
 <doxygen-block>
 	<article>
+		<h3 *ngIf="typeHeader">
+			<code>{{ typeHeader }}</code>
+		</h3>
 		<ng-container name>
 			<ng-content select="[name]"></ng-content>
 		</ng-container>
