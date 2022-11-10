@@ -8,19 +8,25 @@
 			ID of the entity created
 		</p>
 		<code-block-variation>
-			<pre codeBlockVariationOption><code prism language="csharp">
-int entityId = Ecsact.Defaults.Registry.CreateEntity();
-			</code></pre>
+			<pre
+				codeBlockVariationOption><code prism language="csharp">int entityId = Ecsact.Defaults.Registry.CreateEntity();</code></pre>
 		</code-block-variation>
 	</section>
 	<section>
-		<h2>Dynamic Entity</h2>
+		<h2 id="dynamic_entity">Dynamic Entity</h2>
 		<p>
 			A convenient Monobehaviour that allows you to create an entity and add
 			components to it through the Unity UI
 		</p>
 		<img src="assets/DynamicEntityExample.png" width="300" height="300" />
 	</section>
+	<p>
+		Note: The dynamic entity uses
+		<a routerLink="/docs/unity/defaults" fragment="pool"
+			>SetPreferredEntityGameObject</a
+		>
+		when Unity Sync is enabled.
+	</p>
 	<section>
 		<h2>Generating Entities</h2>
 		<p>
@@ -29,8 +35,8 @@ int entityId = Ecsact.Defaults.Registry.CreateEntity();
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
-				component Component A{{'{'}}{{'}'}};
-				component Component B{{'{'}}{{'}'}};
+				component ComponentA;
+				component ComponentB;
 
 				system GenerateEntity {{'{'}}
 					generates {{'{'}}

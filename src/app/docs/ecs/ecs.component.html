@@ -1,47 +1,68 @@
 <article>
 	<h1 id="ecs">What is ECS?</h1>
 	<p>
-		ECS stands for Entity Component System. It's an architecture that uses data
-		assocation over traditional methods like inheritance. Up to this point it's
-		been most commonly used for designing video games (Although it can and has
-		been used elsewhere)
+		Entity Component System (ECS) is an architecture that uses data assocation
+		over traditional methods like inheritance. It's been most commonly used in
+		video game development. We'll give a brief overview in relation to Ecsact,
+		but you can read more about ECS on
+		<a
+			href="https://en.wikipedia.org/wiki/Entity_component_system"
+			target="_blank"
+			><span class="i24">open_in_new</span>Wikipedia</a
+		>.
 	</p>
 
 	<h2 id="entities">Entities</h2>
 	<p>
-		An entitiy is a unique identifer that can hold zero or more components.
-		Components can be added or removed from the entity dynamically
+		An entitiy is a unique identifer that can be associated with zero or more
+		unique components. Components can be added or removed from the entity
+		dynamically.
 	</p>
 
 	<h2 id="components">Components</h2>
 	<p>
-		A component is a datatype that can be attached to an entity. Components
-		don't hold any behaviours and provides ways to be iterated over in systems
+		A component holds data and associates with an entity. Components don't
+		define behaviour, they provide state for systems.
 	</p>
 
 	<pre><code ecsactLangSyntax>
 		// Creates a component in Ecsact called Health
 		component Health {{'{'}}
-			int32 value;
+			// Maintains the state of how much "health" an entity has
+			i32 value;
 		{{'}'}}
+
+		// A tag to associate an entity with being "dead"
+		component Dead;
 	</code></pre>
 
 	<h2 id="systems">Systems</h2>
 	<p>
-		A system iterates over entities with the request components. They can add,
-		remove, and manipulate the data on components. This changes the behaviour of
-		an entity and alters its state through associated components
+		A system is a defined function that matches with entities meeting its
+		capabilities. They can add, remove, and manipulate the data on components.
+		This changes the behaviour of an entity and alters state through its
+		associated components.
 	</p>
 	<pre><code ecsactLangSyntax>
-		// This system iterates over every entity that has a Health Component
-		system UpdateHealth {{'{'}}
-			required Health;
+		// This system is run for every "alive" entity that has a Health Component
+		system CheckDead {{'{'}}
+			readonly Health;
+			// If the value of health is 0, the entity will be considered dead
+			adds Dead;
 		{{'}'}}
 	</code></pre>
 
 	<h2>Benefits to using ECS</h2>
-	<p>
-		ECS has high reusability and prevents creating constrictive design. With the
-		right components, an entity can be anything
-	</p>
+	<ul>
+		<h3>Performance</h3>
+		<p>Add performance benefits here</p>
+		<div>
+			<h3>Composition over inheritance</h3>
+			<p>
+				-- Separate data and behaviour, allowing you to mix and match easily and
+				quickly.
+			</p>
+			<h3>Try to add more</h3>
+		</div>
+	</ul>
 </article>

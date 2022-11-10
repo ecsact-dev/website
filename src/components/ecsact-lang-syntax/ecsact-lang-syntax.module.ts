@@ -1,18 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { EcsactLangSyntaxComponent } from './ecsact-lang-syntax.component';
-
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {EcsactLangSyntaxComponent} from './ecsact-lang-syntax.component';
 
 @NgModule({
-  declarations: [
-    EcsactLangSyntaxComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    EcsactLangSyntaxComponent
-  ]
+	declarations: [EcsactLangSyntaxComponent],
+	imports: [CommonModule],
+	exports: [EcsactLangSyntaxComponent],
 })
-export class EcsactLangSyntaxModule { }
+export class EcsactLangSyntaxModule {}

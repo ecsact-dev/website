@@ -3,7 +3,7 @@
 		<h2>Setting up Ecsact</h2>
 		<p>
 			Learn about integrations, custom use, and various ways that Ecsact can be
-			implemented
+			implemented.
 		</p>
 
 		<h3 id="unity-integration">Unity Integration</h3>
@@ -42,11 +42,11 @@
 		main package example;
 
 		component Example {{'{'}}
-			int32 example_value;
+			i32 example_value;
 		{{'}'}}
 
 		system UseExample {{'{'}}
-			required Example;
+			readwrite Example;
 		{{'}'}}
 		</code></pre>
 
@@ -54,7 +54,7 @@
 			<span class="i48">info</span>
 			Check out the
 			<a routerLink="/docs/lang" routerLinkActive="active">Language</a> section
-			to learn more about Ecsact syntax
+			to learn more about Ecsact syntax.
 		</p>
 		<p>
 			<b>NOTE:</b> You may get errors about missing components that you will
@@ -73,7 +73,7 @@
 		</p>
 
 		<h4 id="ecsact-code-output">Ecsact code output</h4>
-		<p>When the code is generated in C# and any other language being used</p>
+		<p>When the code is generated in C# and any other language being used:</p>
 		<ul class="list-disc list-inside">
 			<li>Packages are namespaces</li>
 			<li>Components are structs</li>
@@ -98,14 +98,14 @@
 		<pre><code prism language="csharp" class="language-csharp">ecsactRuntimeInstance.core.CreateRegistry()</code></pre>
 		<p>
 			Or you can use the default registry in the settings with the default
-			runner. If you're interested, read the next section
+			runner. If you're interested, read the next section.
 		</p>
 		<p>IMAGE HERE</p>
 
 		<h4 id="default runner">Default Runner</h4>
 		<p>
 			If you want to avoid creating and destroying instances of registries, you
-			can set up the default runner in the Ecsact settings
+			can set up the default runner in the Ecsact settings.
 		</p>
 		<ol>
 			<li>
@@ -155,7 +155,7 @@
 		</p>
 		<p>
 			First, we'll create an entity using the runtime instance we declared
-			earlier. This returns a unique integer we can use to identify it
+			earlier. This returns a unique integer we can use to identify it.
 		</p>
 		<pre><code prism language="csharp">entityId = runtime.core.CreateEntity(runner.registryId);</code></pre>
 
@@ -178,7 +178,7 @@
 		<p>
 			Because we are using the FixedUpdate runner, we'll want to declare the
 			<code>FixedUpdate()</code> function in Unity.From there, we'll retrieve
-			the component from the entity we created
+			the component from the entity we created.
 		</p>
 
 		<pre><code  prism language="csharp" class="language-csharp">
@@ -192,7 +192,7 @@
 		<p>
 			Now that we have an instance of the component, we can modify its
 			underlying data. In this case we only have "example_value", we'll increase
-			its value by 1 per FixedUpdate
+			its value by 1 per FixedUpdate.
 		</p>
 
 		<pre><code  prism language="csharp" class="language-csharp">
@@ -202,7 +202,7 @@
 
 		<p>
 			With the value increasing by 1, we want a simple way to see the result of
-			our changes. Let's log it out in the console
+			our changes. Let's log it out in the console.
 		</p>
 
 		<pre><code  prism language="csharp" class="language-csharp">
@@ -212,7 +212,7 @@
 		<p>
 			So the value has increased by 1, but how do we make sure the values inside
 			of the component is changed the next time it's retrieved? We'll call a
-			function to update the component so the changes you make are permanent
+			function to update the component so the changes you make are permanent.
 		</p>
 		<pre><code  prism language="csharp" class="language-csharp">
 				// Update the component value on each FixedUpdate
@@ -238,7 +238,7 @@
 		<h5>Next steps</h5>
 		<p>
 			If you enjoyed using Ecsact, and see the potential it can offer then check
-			out how systems can be used. SOME LINK TO systems tutorial
+			out how systems can be used. SOME LINK TO systems tutorial.
 		</p>
 		<div>Next Steps Filler</div>
 		<div>Next Steps Filler</div>
