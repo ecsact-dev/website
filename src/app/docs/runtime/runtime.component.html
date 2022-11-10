@@ -104,4 +104,14 @@
 		dynamic module makes a runtime generic because components, systems, and
 		actions from any project can use this runtime.
 	</p>
+
+	<h3 id="runtime-config-tooling">Tooling Runtime</h3>
+	Implements enough of the
+	<a [routerLink]="[]" fragment="dynamic-module">dynamic module</a> to create
+	types and enough of the
+	<a [routerLink]="[]" fragement="meta-module">meta module</a> to get all the
+	information relating to those types. The configuration is called 'tooling'
+	because it's used for Ecsact development tooling such as autocomplete, code
+	generation, semantic highlighting, and doesn't have the functionality to be
+	useful in a simulation.
 </article>
