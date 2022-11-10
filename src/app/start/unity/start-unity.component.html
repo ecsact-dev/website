@@ -36,6 +36,15 @@
 				</code-block-variation>
 			</li>
 		</ol>
+		<b>NOTE:</b> You may get errors about missing components that you will need
+		to install. Ecsact uses
+		<a href="https://github.com/microsoft/vswhere" target="_blank">vswhere</a>
+		to output these errors, and you can search the
+		<a
+			href="https://docs.microsoft.com/en-us/visualstudio/install/workload-component-id-vs-build-tools?view=vs-2022"
+			target="_blank">
+			outputs for entries</a
+		>
 	</section>
 	<section>
 		<h2>Assembly</h2>
@@ -50,8 +59,11 @@
 
 		<p>
 			After you've setup your assembly it needs to be set in
-			<code>Edit -> ProjectSettings -> Ecsact</code> under System
-			Implementations
+			<code
+				>Edit <span class="i24">arrow_right</span> ProjectSettings
+				<span class="i24">arrow_right</span> Ecsact</code
+			>
+			under System Implementations
 		</p>
 		<img src="assets/assembly_setup.png" width="800" height="200" />
 	</section>
@@ -63,10 +75,21 @@
 				>Unity Sync</a
 			>
 			is very simple. All you have to do is go to
-			<code>Edit->ProjectSettings->Ecsact</code> and checkmark
-			<code>Enable Unity Sync</code>. When enabled, it will search for any Unity
-			Sync files automatically and add them to its pool which is listed below.
+			<code
+				>Edit <span class="i24">arrow_right</span> ProjectSettings
+				<span class="i24">arrow_right</span> Ecsact</code
+			>
+			and checkmark <code>Enable Unity Sync</code>. When enabled, it will search
+			for any Unity Sync files automatically and add them to its pool which is
+			listed below.
 		</p>
 		<img src="assets/UnitySyncEnable.png" width="800" height="300" />
+
+		<h2>Learning about the Unity Integration</h2>
+		<p>
+			If you want to learn about the Ecsact Integration for Unity, you can
+			follow our <a href="start/tutorials/unity/basic-example">tutorial</a> that
+			goes over the basics.
+		</p>
 	</section>
 </article>

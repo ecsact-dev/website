@@ -37,8 +37,22 @@
 			>
 		</p>
 		<p>
-			Whenever a component is updated, the callback function be invoked. Needs
-			to be implemented by a function with its component type as a parameter
+			Whenever a component is updated, the callback function will be invoked.
+			Needs to be implemented by a function with its component type as a
+			parameter
+		</p>
+	</section>
+	<section>
+		<h2>IOnRemoveComponent</h2>
+		<p>
+			<code
+				>Ecsact.Unity.IOnRemoveComponent<{{ 'package.ComponentType' }}></code
+			>
+		</p>
+		<p>
+			Whenever a component is updated, the callback function will be invoked.
+			The Remove callback has <code>readonly</code> access to the component from
+			when it was removed
 		</p>
 	</section>
 	<section>
@@ -62,7 +76,7 @@ public class SyncMove
 	, Ecsact.UnitySync.IOnUpdateComponent<{{'example.ComponentB'}}>
 {{'{'}}
 	public void OnInitComponent(in example.ComponentB component) {{'{'}}
-			// In both Init and Update you have access to the component's value
+			// In both Init and Update you have access to the component's data
 	{{'}'}}
 	public OnUpdateComponent(in example.ComponentB component) {{'{'}}
 

@@ -66,13 +66,6 @@ const routes: Routes = [
 					import('./ecs/ecs-routing.module').then(m => m.EcsRoutingModule),
 			},
 			{
-				path: 'setup',
-				loadChildren: () =>
-					import('./setup/setup-routing.module').then(
-						m => m.SetupRoutingModule,
-					),
-			},
-			{
 				path: 'unity/defaults',
 				loadChildren: () =>
 					import('./unity/defaults/defaults-routing.module').then(

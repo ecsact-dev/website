@@ -1,26 +1,24 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
-    name = "setup_component_style",
-    src = "setup.component.scss",
+    name = "styles",
+    src = "roadmap.component.scss",
 )
 
 ng_ts_project(
-    name = "setup",
+    name = "roadmap",
     srcs = glob(["*.ts"]),
     angular_assets = [
-        "setup.component.html",
-        ":setup_component_style",
+        "roadmap.component.html",
+        ":styles",
     ],
     deps = [
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
+        "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
-        "@npm//prismjs",
     ],
 )
