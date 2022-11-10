@@ -7,19 +7,15 @@
 	<section>
 		<h2>System Declaration</h2>
 		<p>
-			Systems have a <code>Unity Attribute</code> in its implementation. The
-			type name of the system is put here to get the correct
-			<code>context</code>. The context holds the logic of the system. This
-			includes getting components, generating entities and retrieving data on
-			actions.
+			Systems have a <code>C# Attribute</code> in its implementation. The type
+			name of the system is put here to get the correct <code>context</code>.
+			The context holds the logic of the system. This includes getting
+			components, generating entities and retrieving data on actions.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 [Ecsact.DefaultSystemImpl(typeof(example.ExampleSystem))]
-public static void AddToExampleSystem
-	( EcsactRuntime.SystemExecutionContext context
-	)
-{{'{'}}
+public static void AddToExampleSystem(EcsactRuntime.SystemExecutionContext context) {{'{'}}
 	// Get component from the context
 	var value = context.Get<{{'example.Example'}}>();
 {{'}'}}

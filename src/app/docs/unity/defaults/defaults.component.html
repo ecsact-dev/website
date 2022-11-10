@@ -51,6 +51,25 @@ Ecsact.Defaults.Runner.executionOptions.PushAction(
 	</section>
 	<section>
 		<h2 id="pool">Pool</h2>
-		<p>The pool requires Unity Sync to be enabled</p>
+		<p>
+			The pool is made for Unity Sync, and only available when it's enabled in
+			your <code>settings</code>.
+		</p>
+		<h3>Target Scene</h3>
+		<p>
+			You can ensure that an entity only spawns in a scene using
+			<code>Pool.targetScene</code>
+		</p>
+		<h3>Root Game Object</h3>
+		<p>
+			You can make your entity a child a singular GameObject using
+			<code>Pool.rootGameObject</code>
+		</p>
+		<h3>Set Preferred Entity Game Object</h3>
+		<p>
+			Instead of creating a new GameObject by default for each entity, you can
+			set your own preffered GameObject using
+			<code>Pool.SetPreferredEntityGameObject</code>
+		</p>
 	</section>
 </article>
