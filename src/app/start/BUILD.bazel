@@ -14,6 +14,8 @@ ng_ts_project(
         "//src/app/start/godot",
         "//src/app/start/unity",
         "//src/app/start/unreal",
+        "//src/app/tutorials/unity/basic-example",
+        "//src/app/tutorials/unity/moving-block",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",

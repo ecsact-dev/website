@@ -39,14 +39,6 @@ const routes: Routes = [
 			),
 	},
 	{
-		path: 'tutorials',
-		pathMatch: 'prefix',
-		loadChildren: () =>
-			import('./tutorials/tutorials-routing.module').then(
-				m => m.TutorialsRoutingModule,
-			),
-	},
-	{
 		path: 'integrations/unity/install',
 		loadChildren: () =>
 			import('./integrations/unity/install/install-routing.module').then(
@@ -66,16 +58,12 @@ const routes: Routes = [
 			import('./docs/ecs/ecs-routing.module').then(m => m.EcsRoutingModule),
 	},
 	{
-		path: 'docs/setup',
+		path: 'roadmap',
 		loadChildren: () =>
-			import('./docs/setup/setup-routing.module').then(
-				m => m.SetupRoutingModule,
+			import('./roadmap/reference-routing.module').then(
+				m => m.RoadmapRoutingModule,
 			),
 	},
-	// {
-	// 	path: '**',
-	// 	redirectTo: '/',
-	// },
 ];
 
 @NgModule({
