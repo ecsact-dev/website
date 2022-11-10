@@ -6,4 +6,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 	styleUrls: ['./doxygen-parent-block.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DoxygenParentBlockComponent {}
+export class DoxygenParentBlockComponent {
+	@Input()
+	typeHeader: string;
+}

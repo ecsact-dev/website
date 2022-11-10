@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {DoxygenNameModule} from '../doxygen-member-components/doxygen-name/doxygen-name.module';
+import {DoxygenAccessModule} from '../doxygen-member-components/doxygen-access/doxygen-access.module';
 import {DoxygenParametersModule} from '../doxygen-member-components/doxygen-parameters/doxygen-parameters.module';
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 import {DoxygenDescriptionModule} from '../doxygen-member-components/doxygen-description/doxygen-description.module';
@@ -12,7 +12,7 @@ import {DoxygenEnumDefComponent} from './doxygen-enum-def.component';
 	declarations: [DoxygenEnumDefComponent],
 	imports: [
 		CommonModule,
-		DoxygenNameModule,
+		DoxygenAccessModule,
 		DoxygenParametersModule,
 		DoxygenLocationModule,
 		DoxygenDescriptionModule,

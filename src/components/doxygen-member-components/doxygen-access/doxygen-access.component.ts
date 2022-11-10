@@ -2,13 +2,13 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
 
 @Component({
-	selector: 'doxygen-name',
+	selector: 'doxygen-access',
 	preserveWhitespaces: true,
-	templateUrl: './doxygen-name.component.html',
-	styleUrls: ['./doxygen-name.component.scss'],
+	templateUrl: './doxygen-access.component.html',
+	styleUrls: ['./doxygen-access.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DoxygenNameComponent {
+export class DoxygenAccessComponent {
 	@Input()
 	virtual: string;
 
