@@ -11,12 +11,9 @@
 				[def]="def"></doxygen-datatype-def>
 		</ng-container>
 		<ng-container *ngSwitchCase="'define'">
-			<doxygen-parent-block>
+			<doxygen-parent-block [typeHeader]="def.kind">
 				<ng-container *ngIf="def.kind === 'define'">
-					<doxygen-name
-						[name]="def.name"
-						[access]="def.access"
-						[static]="def.static"
+					<doxygen-name [access]="def.access" [static]="def.static"
 						><h1>{{ def.name }}</h1></doxygen-name
 					>
 				</ng-container>
@@ -32,7 +29,7 @@
 		</ng-container>
 
 		<ng-container *ngSwitchCase="'enum'">
-			<doxygen-parent-block>
+			<doxygen-parent-block [typeHeader]="def.kind">
 				<doxygen-enum-def
 					*ngIf="def.kind === 'enum'"
 					[def]="def"></doxygen-enum-def>
@@ -41,9 +38,8 @@
 
 		<ng-container *ngSwitchCase="'function'">
 			<ng-container *ngIf="def.kind === 'function'">
-				<doxygen-parent-block>
+				<doxygen-parent-block [typeHeader]="def.kind">
 					<doxygen-name
-						[name]="def.name"
 						[access]="def.access"
 						[const]="def.const"
 						[inline]="def.inline"
@@ -64,11 +60,8 @@
 
 		<ng-container *ngSwitchCase="'typedef'">
 			<ng-container *ngIf="def.kind === 'typedef'">
-				<doxygen-parent-block>
-					<doxygen-name
-						[name]="def.name"
-						[static]="def.static"
-						[access]="def.access"
+				<doxygen-parent-block [typeHeader]="def.kind">
+					<doxygen-name [static]="def.static" [access]="def.access"
 						><h1>{{ def.name }}</h1></doxygen-name
 					>
 					<doxygen-typedef-def [def]="def"></doxygen-typedef-def>
@@ -78,9 +71,8 @@
 
 		<ng-container *ngSwitchCase="'variable'">
 			<ng-container *ngIf="def.kind === 'variable'">
-				<doxygen-parent-block>
+				<doxygen-parent-block [typeHeader]="def.kind">
 					<doxygen-name
-						[name]="def.name"
 						[access]="def.access"
 						[mutable]="def.mutable"
 						[static]="def.static"

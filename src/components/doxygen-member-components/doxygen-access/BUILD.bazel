@@ -5,21 +5,21 @@ package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-name.component.scss",
+    src = "doxygen-access.component.scss",
 )
 
 ng_ts_project(
-    name = "doxygen-name",
+    name = "doxygen-access",
     srcs = [
-        "doxygen-name.component.ts",
-        "doxygen-name.module.ts",
+        "doxygen-access.component.ts",
+        "doxygen-access.module.ts",
     ],
     angular_assets = [
-        "doxygen-name.component.html",
+        "doxygen-access.component.html",
         ":styles",
     ],
     deps = [
-        "//src/components/doxygen-member-components/doxygen-access",
+        "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

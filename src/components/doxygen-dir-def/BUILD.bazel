@@ -21,7 +21,6 @@ ng_ts_project(
     deps = [
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
-        "//src/components/doxygen-member-components/doxygen-name",
         "//src/components/doxygen-parent-block",
         "//src/components/doxygen-refid-link",
         "//src/search:doxygen-def-types",

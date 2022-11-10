@@ -412,6 +412,10 @@ const doxygenCompoundDefParseFns = {
 		console.log('struct', el);
 		return doxygenConstructDataType(def, el, 'struct');
 	},
+	union: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
+		console.log('union', el);
+		return doxygenConstructDataType(def, el, 'union');
+	},
 	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
 		const innerFiles = el.querySelectorAll('innerfile');
 		let innerFilesList: DoxygenInnerFileDef[] = [];
@@ -705,6 +709,7 @@ function doxygenConstructDataType(
 	return {
 		...def,
 		kind: 'datatype',
+		datatypeKind: kind as any,
 		access: el.getAttribute('prot') as any,
 		brief: el.querySelector('briefdescription').textContent.trim(),
 		detailedDescription: detailedDescription,

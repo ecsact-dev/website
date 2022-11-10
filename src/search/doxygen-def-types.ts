@@ -28,6 +28,7 @@ export interface DoxygenCompoundDefInclude {
 
 export interface DoxygenDataTypeDef extends DoxygenBaseDef {
 	kind: 'datatype';
+	datatypeKind: 'class' | 'struct' | 'union';
 	name: string;
 	access: 'public' | 'protected' | 'private';
 	brief: string;

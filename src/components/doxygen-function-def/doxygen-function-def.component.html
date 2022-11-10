@@ -2,21 +2,30 @@
 	<doxygen-description
 		[description]="def.detailedDescription"></doxygen-description>
 </div>
-<h3>Parameters</h3>
-<table>
-	<div *ngFor="let parameter of def.parameters">
-		<doxygen-parameters>
-			<tr>
-				<td>
-					<div type>{{ parameter.type }}</div>
-				</td>
-				<td>
-					<div name>{{ parameter.name }}</div>
-				</td>
-			</tr>
-		</doxygen-parameters>
-	</div>
-</table>
+<div *ngIf="def.parameters.length > 0">
+	<h3>Parameters</h3>
+	<table class="table-auto border-collapse w-4/6">
+		<tr>
+			<th class="px-2">Return</th>
+			<th class="px-2">Name</th>
+		</tr>
+		<tr *ngFor="let parameter of def.parameters">
+			<td class="py-2">
+				<div *ngIf="parameter.typeRefid; else noID" class="py-4 px-2">
+					<a [doxygenRefidLink]="parameter.typeRefid">{{ parameter.type }}</a>
+				</div>
+				<ng-template #noID
+					><div class="py-4 px-2">{{ parameter.type }}</div></ng-template
+				>
+			</td>
+			<td>
+				<div class="py-4 px-2">
+					{{ parameter.name }}
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
 <div *ngIf="def.return.type != ''">
 	<doxygen-return [return]="def.return"></doxygen-return>
 </div>
