@@ -3,5 +3,5 @@
 		<span class="i24">source</span>
 		<span>{{ repo }}</span>
 	</div>
-	<a [href]="href" target="_blank">{{ displayFilePath }}</a>
+	<a [href]="getHref(hrefBase$ | async)" target="_blank">{{ displayFilePath }}</a>
 </pre>

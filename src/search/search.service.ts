@@ -57,6 +57,14 @@ export interface SearchResultPageItem {
 	item: PageInfo;
 }
 
+export interface IRepoInfo {
+	name: string;
+	commit: string;
+	sha256: string;
+	url: string;
+	stripPrefix: string;
+}
+
 export type SearchResultItem = SearchResultReferenceItem | SearchResultPageItem;
 
 const mainKeyMap = {
@@ -82,6 +90,7 @@ export class Search {
 	private _readySubj = new BehaviorSubject<boolean>(false);
 	private _searchItems: SearchResultItem[];
 	private _compounds: {[repo: string]: DoxygenCompound[]} = {};
+	private _repoInfos: {[repo: string]: Promise<IRepoInfo> | IRepoInfo} = {};
 	private _fuseInstance: Fuse<SearchResultItem>;
 	private _refidMap: {[refid: string]: number} = {};
 
@@ -132,7 +141,6 @@ export class Search {
 				},
 			],
 		});
-		this.refresh();
 	}
 
 	search(text: string): SearchResultItem[] {
@@ -160,6 +168,17 @@ export class Search {
 	async getCompounds(repo: string): Promise<DoxygenCompound[]> {
 		await this._refreshPromise;
 		return this._compounds[repo] || [];
+	}
+
+	async getRepoInfo(repo: string): Promise<IRepoInfo> {
+		if (!this._repoInfos[repo]) {
+			const path = `/assets/_devref/${repo}/repo.json`;
+			this._repoInfos[repo] = fetch(path)
+				.then(res => res.json())
+				.then(info => (this._repoInfos[repo] = info as IRepoInfo));
+		}
+
+		return this._repoInfos[repo];
 	}
 
 	getDef(
@@ -213,6 +232,12 @@ export class Search {
 	 */
 	defaultSearchItems(): SearchResultItem[] {
 		return this.allPageSearchItems();
+	}
+
+	async fetchIfNeeded() {
+		if (!this._readySubj.getValue() && !this._refreshPromise) {
+			await this.refresh();
+		}
 	}
 
 	async refresh() {
