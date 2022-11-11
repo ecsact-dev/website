@@ -168,11 +168,11 @@ const doxygenMemberDefParseFns = {
 		const detailedDescription = getDetailedDescription(el);
 		const location = getLocation(el);
 
-		const returnDetails: DoxygenTypeDefReturn = {};
-
-		return {
+		const typeDef: DoxygenTypedefMemberDef = {
 			...def,
 			kind: 'typedef',
+			type: '',
+			typeRefid: '',
 			name: el.querySelector('name').textContent,
 			definition: el.querySelector('definition').textContent.trim(),
 			static: el.getAttribute('static') === 'yes',
@@ -181,9 +181,12 @@ const doxygenMemberDefParseFns = {
 			detailedDescription,
 			location,
 		};
+
+		getTypeElCommonInfo(el, typeDef);
+
+		return typeDef;
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
-		console.log('function: ', el);
 		const parameters: DoxygenFunctionParameter[] = [];
 		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -291,11 +294,11 @@ const doxygenMemberDefParseFns = {
 		const location = getLocation(el);
 		const detailedDescription = getDetailedDescription(el);
 
-		const returnDetails: DoxygenVariableReturn = {};
-
-		return {
+		const variableDef: DoxygenVariableMemberDef = {
 			...def,
 			kind: 'variable',
+			type: '',
+			typeRefid: '',
 			name: el.querySelector('name').textContent,
 			definition: el.querySelector('definition').textContent.trim(),
 			argsstring: el.querySelector('argsstring').textContent.trim(),
@@ -304,9 +307,12 @@ const doxygenMemberDefParseFns = {
 			mutable: el.getAttribute('mutable') === 'yes',
 			brief: el.querySelector('briefdescription').textContent.trim(),
 			detailedDescription,
-			return: returnDetails,
 			location,
 		};
+
+		getTypeElCommonInfo(el, variableDef);
+
+		return variableDef;
 	},
 	enumValue: (def: DoxygenBaseDef, el: Element): DoxygenEnumValueMemberDef => {
 		console.log('enumValue: ', el);

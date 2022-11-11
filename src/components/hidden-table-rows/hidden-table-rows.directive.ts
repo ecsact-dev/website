@@ -44,7 +44,11 @@ export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 		const btn = document.createElement('button');
 		btn.addEventListener('click', ev => this.onToggleClick(ev));
 		btnContainer.appendChild(btn);
-		this._placeholderRow.firstChild.appendChild(btnContainer);
+		if (this._placeholderRow.firstElementChild) {
+			this._placeholderRow.firstElementChild.appendChild(btnContainer);
+		} else {
+			console.error(`Placholder row has no elements`, this._placeholderRow);
+		}
 	}
 
 	private onToggleClick(ev: MouseEvent) {

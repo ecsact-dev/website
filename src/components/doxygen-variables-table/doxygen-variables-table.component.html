@@ -1,0 +1,58 @@
+<table hasHiddenRows>
+	<tr *ngIf="def.publicVariables && def.publicVariables.length > 0">
+		<th class="h-7 relative">
+			<h2
+				id="public-vars"
+				class="absolute text-base font-bold m-0 left-2 top-1 bottom-0 whitespace-nowrap">
+				Public Variables
+			</h2>
+		</th>
+		<th class="w-full"></th>
+	</tr>
+	<tr
+		*ngFor="let variable of def.publicVariables"
+		class="odd:bg-black/5 dark:odd:bg-white/5">
+		<td class="align-top text-right whitespace-nowrap py-2">
+			<doxygen-type-name [def]="variable"></doxygen-type-name>
+		</td>
+		<td class="align-top py-2">
+			<h3
+				[id]="'public-var--' + variable.name.toLowerCase()"
+				class="block m-0 text-base font-normal">
+				<a class="whitespace-nowrap" [doxygenRefidLink]="variable.id"
+					><code>{{ variable.name }}</code></a
+				>
+			</h3>
+			<doxygen-description
+				class="block mt-2"
+				[description]="variable.detailedDescription"></doxygen-description>
+		</td>
+	</tr>
+
+	<tr
+		*ngIf="def.privateVariables && def.privateVariables.length > 0"
+		class="odd:bg-black/5 dark:odd:bg-white/5">
+		<th class="h-7 relative">
+			<span class="absolute left-2 top-1 bottom-0 whitespace-nowrap"
+				>Private Variables</span
+			>
+		</th>
+		<th class="w-full"></th>
+	</tr>
+	<tr
+		*ngFor="let variable of def.privateVariables"
+		hiddenRow
+		class="odd:bg-black/5 dark:odd:bg-white/5">
+		<td class="align-top text-right whitespace-nowrap py-2">
+			<doxygen-type-name [def]="variable"></doxygen-type-name>
+		</td>
+		<td class="align-top py-2">
+			<a class="block whitespace-nowrap" [doxygenRefidLink]="variable.id"
+				><code>{{ variable.name }}</code></a
+			>
+			<doxygen-description
+				class="block mt-2"
+				[description]="variable.detailedDescription"></doxygen-description>
+		</td>
+	</tr>
+</table>
