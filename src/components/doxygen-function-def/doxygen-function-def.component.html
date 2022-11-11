@@ -1,9 +1,8 @@
-<div *ngIf="def.detailedDescription.length > 0">
-	<doxygen-description
-		[description]="def.detailedDescription"></doxygen-description>
-</div>
-<table *ngIf="def.parameters.length > 0">
-	<tr>
+<doxygen-description
+	[description]="def.detailedDescription"></doxygen-description>
+
+<table class="my-4">
+	<tr *ngIf="def.parameters.length > 0">
 		<th><h2 id="parameters" class="text-base font-bold m-0">Parameters</h2></th>
 		<th class="w-full"></th>
 	</tr>
@@ -28,7 +27,7 @@
 
 	<tr>
 		<th><h2 id="returns" class="text-base font-bold m-0">Returns</h2></th>
-		<th></th>
+		<th class="w-full"></th>
 	</tr>
 	<tr>
 		<td class="text-right whitespace-nowrap align-top py-2">

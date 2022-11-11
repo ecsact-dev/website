@@ -1,0 +1,25 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+ng_ts_project(
+    name = "doxygen-variables-table",
+    srcs = [
+        "doxygen-variables-table.component.ts",
+        "doxygen-variables-table.module.ts",
+    ],
+    angular_assets = [
+        "doxygen-variables-table.component.html",
+    ],
+    deps = [
+        "//src/components/doxygen-member-components/doxygen-description",
+        "//src/components/doxygen-paragraph",
+        "//src/components/doxygen-refid-link",
+        "//src/components/doxygen-type-name",
+        "//src/components/hidden-table-rows",
+        "//src/search:doxygen-def-types",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

@@ -1,3 +1,9 @@
-<p *ngFor="let paragraph of description">
-	<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
+<p *ngIf="description.length === 0; else hasDescription" class="my-0">
+	<em *ngIf="!brief; else hasBrief">(no description)</em>
+	<ng-template #hasBrief>{{ brief }}</ng-template>
 </p>
+<ng-template #hasDescription>
+	<p *ngFor="let paragraph of description" class="last:mb-0 first:mt-0">
+		<doxygen-paragraph [paragraph]="paragraph"></doxygen-paragraph>
+	</p>
+</ng-template>

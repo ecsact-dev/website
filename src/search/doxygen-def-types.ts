@@ -149,6 +149,8 @@ export interface DoxygenTypeDefReturn {}
 export interface DoxygenTypedefMemberDef extends DoxygenBaseDef {
 	kind: 'typedef';
 	name: string;
+	type: string;
+	typeRefid: string;
 	definition: string;
 	static: boolean;
 	access: 'public' | 'protected' | 'private';
@@ -164,6 +166,8 @@ export interface DoxygenVariableReturn {}
 export interface DoxygenVariableMemberDef extends DoxygenBaseDef {
 	kind: 'variable';
 	name: string;
+	type: string;
+	typeRefid: string;
 	definition: string;
 	argsstring: string;
 	static: boolean;
@@ -171,7 +175,6 @@ export interface DoxygenVariableMemberDef extends DoxygenBaseDef {
 	mutable: boolean;
 	brief: string;
 	detailedDescription: DoxygenParagraph[];
-	return: DoxygenVariableReturn;
 	location: DoxygenDefLocation;
 }
 

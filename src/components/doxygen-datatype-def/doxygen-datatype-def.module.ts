@@ -12,6 +12,10 @@ import {RouterModule} from '@angular/router';
 
 import {DoxygenDataTypeDefComponent} from './doxygen-datatype-def.component';
 import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.module';
+import {DoxygenTypeNameModule} from '../doxygen-type-name/doxygen-type-name.module';
+import {DoxygenVariablesTableModule} from '../doxygen-variables-table/doxygen-variables-table.module';
+import {DoxygenFunctionsTableModule} from '../doxygen-functions-table/doxygen-functions-table.module';
+import {DoxygenTypesTableModule} from '../doxygen-types-table/doxygen-types-table.module';
 
 @NgModule({
 	declarations: [DoxygenDataTypeDefComponent],
@@ -27,6 +31,10 @@ import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.m
 		DoxygenLocationModule,
 		RouterModule,
 		DoxygenRefidLinkModule,
+		DoxygenTypeNameModule,
+		DoxygenVariablesTableModule,
+		DoxygenFunctionsTableModule,
+		DoxygenTypesTableModule,
 	],
 	exports: [DoxygenDataTypeDefComponent],
 })

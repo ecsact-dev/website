@@ -1,5 +1,5 @@
-<code *ngIf="def.typeRefid; else noRefId"
-	><a [doxygenRefidLink]="def.typeRefid">{{ def.type }}</a></code
+<code *ngIf="def.typeRefid as typeRefid; else noRefId"
+	><a [doxygenRefidLink]="typeRefid">{{ def.type }}</a></code
 >
 <ng-template #noRefId>
 	<code>{{ def.type }}</code>

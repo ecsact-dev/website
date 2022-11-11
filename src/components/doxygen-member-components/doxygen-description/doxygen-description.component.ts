@@ -10,7 +10,9 @@ import {DoxygenParagraph} from '../../../search/doxygen-def-types';
 export class DoxygenDescriptionComponent {
 	@Input()
 	description: DoxygenParagraph[];
-	brief: string;
+
+	@Input()
+	brief?: string;
 
 	constructor() {}
 }
