@@ -5,7 +5,7 @@
 		<p>
 			Unity Sync is an optional part of Ecsact for Unity. Monobehaviour scripts
 			can be added to entities automatically if the entity fulfills the
-			requirements of the script. There a few ways this can happen
+			requirements of the script. There a few ways this can happen:
 		</p>
 	</section>
 	<section>
@@ -15,7 +15,7 @@
 		</p>
 		<p>
 			Creates a requirement for the script to be added to a gameObject. If an
-			entity has all the required components, it will be added to the script
+			entity has all the required components, it will be added to the script.
 		</p>
 	</section>
 	<section>
@@ -26,7 +26,11 @@
 		<p>
 			When a component is first initialized, the callback function will be
 			invoked. Needs to be implemented by a function with its component type as
-			a parameter
+			a parameter.
+		</p>
+		<p>
+			<span class="i48"> info </span>Implements
+			<code>Ecsact.Defaults.Runtime.OnInitComponent</code>
 		</p>
 	</section>
 	<section>
@@ -39,7 +43,11 @@
 		<p>
 			Whenever a component is updated, the callback function will be invoked.
 			Needs to be implemented by a function with its component type as a
-			parameter
+			parameter.
+		</p>
+		<p>
+			<span class="i48"> info </span>Implements
+			<code>Ecsact.Defaults.Runtime.OnUpdateComponent</code>
 		</p>
 	</section>
 	<section>
@@ -52,7 +60,11 @@
 		<p>
 			Whenever a component is updated, the callback function will be invoked.
 			The Remove callback has <code>readonly</code> access to the component from
-			when it was removed
+			when it was removed.
+		</p>
+		<p>
+			<span class="i48"> info </span>Implements
+			<code>Ecsact.Defaults.Runtime.OnRemoveComponent</code>
 		</p>
 	</section>
 	<section>
@@ -89,7 +101,7 @@ public class SyncMove
 			<code>IOnUpdateComponent</code> do not implicitly cause an
 			<code>IRequired</code> effect. If <code>IRequired</code> is not used, then
 			the script will be added to any entity that that can use any of its
-			implementations
+			implementations.
 		</p>
 	</section>
 </article>
