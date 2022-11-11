@@ -21,6 +21,7 @@ ng_ts_project(
     deps = [
         "//src/components/doxygen-member-components/doxygen-container",
         "//src/search:doxygen-def-types",
+        "//src/search:service",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
