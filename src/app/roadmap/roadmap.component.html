@@ -1,4 +1,35 @@
-<article>
+<ng-template #projectTpl let-project>
+	<section
+		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-8 px-4 pt-2">
+		<h2>{{ project.title }}</h2>
+		<p>{{ project.shortDescription }}</p>
+		<div class="flex flex-row relative items-center px-1">
+			<div
+				class="rounded-full w-8 h-8 bg-success ring-2 shadow-lg ring-black dark:ring-white"></div>
+			<div class="flex-1 border-b-2 border-white border-solid"></div>
+			<div
+				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white overflow-hidden">
+				<div
+					class="rounded-full group-hover:animate-pulse w-full h-full bg-primary blur-lg"></div>
+			</div>
+			<div class="flex-1 border-b-2 border-white border-dashed"></div>
+			<div
+				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white overflow-hidden"></div>
+		</div>
+	</section>
+</ng-template>
+
+<article class="max-w-3xl mx-auto my-8 p-8">
+	<ng-container *ngIf="projects$ | async as projects">
+		<ng-container *ngFor="let project of projects">
+			<ng-container
+				*ngTemplateOutlet="
+					projectTpl;
+					context: {$implicit: project}
+				"></ng-container>
+		</ng-container>
+	</ng-container>
+
 	<h1>Roadmap Notes</h1>
 	<ul>
 		<li>Async API</li>
