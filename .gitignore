@@ -1,8 +1,9 @@
 /bazel-*
-/node_modules
+**/node_modules
 /user.bazelrc
 /profile.json
 /.firebase
+**-debug.log
 
 # Generated reference XML used during development
 /src/assets/_devref

@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/firebase-tools/schema/firebase-config.json",
+  "functions": {
+    "runtime": "nodejs16"
+  },
   "hosting": {
     "site": "ecsact-dev",
     "public": "public",
