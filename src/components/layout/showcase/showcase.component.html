@@ -1,16 +1,16 @@
-<div class="flex flex-col bg-white rounded-xl">
+<div class="flex flex-col bg-secondary/20 rounded-xl">
 	<div>
-		<img class="h-80 max-h-80 w-full" src="{{ img }}" />
+		<img class="h-64 max-h-64 sm:h-80 sm:max-h-80 w-full" src="{{ img }}" />
 	</div>
 	<div>
-		<h2 class="px-4 text-black mb-2">{{ title }}</h2>
-		<p class="text-black px-4 font-semibold text-lg">
+		<h2 class="px-4 light:text-black dark:text-white mb-2">{{ title }}</h2>
+		<p class="light: text-black dark:text-white px-4 font-semibold text-lg">
 			{{ description }}
 		</p>
 	</div>
 
 	<div
-		class="grid grid-flow-row grid-cols-3 overflow-auto max-w-max gap-4 pb-4 px-4 grow justify-evenly items-stretch">
+		class="grid grid-flow-col sm:grid-flow-row grid-rows-2 sm:grid-rows-1 grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 pb-2 px-2 grow justify-evenly auto-cols-max w-full">
 		<ng-content></ng-content>
 	</div>
 </div>
