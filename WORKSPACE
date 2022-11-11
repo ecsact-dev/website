@@ -70,9 +70,9 @@ blender_repository(name = "blender")
 
 http_archive(
     name = "ecsact_logo",
-    sha256 = "0ecba63837824cb9588ca350e8a9bd1263eb809be8e699aaefd0d7134fd533fe",
-    strip_prefix = "logo-ad8a285861d4744460d9d2a6458a4010a4ccf3e4",
-    urls = ["https://github.com/ecsact-dev/logo/archive/ad8a285861d4744460d9d2a6458a4010a4ccf3e4.zip"],
+    sha256 = "233ed78c333768af17497d0a0862760b94c4cb3aa14fa9aa75e21903a934f982",
+    strip_prefix = "logo-ba8394277efc210328ff7b743fbccce52b40110d",
+    urls = ["https://github.com/ecsact-dev/logo/archive/ba8394277efc210328ff7b743fbccce52b40110d.zip"],
 )
 
 load("@build_bazel_rules_nodejs//toolchains/esbuild:esbuild_repositories.bzl", "esbuild_repositories")
