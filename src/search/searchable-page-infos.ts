@@ -60,4 +60,42 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		keywords: [],
 		title: 'Ecsact Runtime Implementations',
 	},
+	'/docs/unity/defaults': {
+		category: PageCategory.Documentation,
+		description: 'Information about the Ecsact Defaults class in Unity',
+		keywords: ['defaults', 'pool', 'registry', 'runner'],
+		title: 'Unity Defaults Class',
+	},
+	'/docs/unity/entities': {
+		category: PageCategory.Documentation,
+		description: 'How to create entities in Ecsact Unity',
+		keywords: ['entities', 'entity', 'generates', 'dynamic', 'createentity'],
+		title: 'Creating Entities',
+	},
+	'/docs/unity/unity-sync': {
+		category: PageCategory.Documentation,
+		description: 'Documentation for how Unity Sync works with Ecasct Unity',
+		keywords: ['unity-sync', 'irequired', 'ioninit', 'inonupdate', 'ionremove'],
+		title: 'Unity Sync',
+	},
+	'./docs/unity/system-impl': {
+		category: PageCategory.Documentation,
+		description: 'How to implement systems in Ecsact Unity',
+		keywords: ['system implementation', 'defaultsystemimpl'],
+		title: 'Implementing Systems',
+	},
+	'/start/tutorials/unity/basic-example': {
+		category: PageCategory.Tutorial,
+		description:
+			'Learn about how Ecsact works with Unity with this basic example',
+		keywords: ['tutorial', 'basic example', 'learn Unity'],
+		title: 'Basic Unity Example',
+	},
+	'/start/tutorials/unity/moving-block': {
+		category: PageCategory.Tutorial,
+		description:
+			'Learn more about Unity Sync and nested systems in this Unity tutorial',
+		keywords: ['tutorial', 'unity sync', 'learn unity', 'moving block'],
+		title: 'Unity Moving Block Example',
+	},
 };
