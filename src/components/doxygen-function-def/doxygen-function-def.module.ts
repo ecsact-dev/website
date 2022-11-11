@@ -8,11 +8,13 @@ import {DoxygenReturnModule} from '../doxygen-member-components/doxygen-return/d
 import {DoxygenLocationModule} from '../doxygen-member-components/doxygen-location/doxygen-location.module';
 import {DoxygenDefinitionModule} from '../doxygen-member-components/doxygen-definition/doxygen-definition.module';
 import {DoxygenRefidLinkModule} from '../doxygen-refid-link/doxygen-refid-link.module';
+import {DoxygenTypeNameModule} from '../doxygen-type-name/doxygen-type-name.module';
 
 @NgModule({
 	declarations: [DoxygenFunctionDefComponent],
 	imports: [
 		CommonModule,
+		DoxygenTypeNameModule,
 		DoxygenParagraphModule,
 		DoxygenDescriptionModule,
 		DoxygenParametersModule,
