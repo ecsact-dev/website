@@ -2,7 +2,8 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 import {BehaviorSubject, from, Observable} from 'rxjs';
 
 export interface IRoadmapProject {
-	title: string;
+	id: number;
+	title: string | null;
 	shortDescription: string;
 	readme: string;
 }
@@ -20,6 +21,7 @@ export class RoadmapComponent {
 		// TODO(zaucy): Fetch from GitHub
 		this.projects$ = new BehaviorSubject([
 			{
+				id: 4,
 				title: 'Async API',
 				shortDescription: 'TODO: Fetch description from GitHub',
 				readme: '',

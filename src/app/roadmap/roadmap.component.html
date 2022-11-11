@@ -1,6 +1,6 @@
 <ng-template #projectTpl let-project>
 	<section
-		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-8 px-4 pt-2">
+		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-2 px-4">
 		<h2>{{ project.title }}</h2>
 		<p>{{ project.shortDescription }}</p>
 		<div class="flex flex-row relative items-center px-1">
@@ -16,6 +16,13 @@
 			<div
 				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white overflow-hidden"></div>
 		</div>
+		<p class="flex flex-row justify-end text-sm mb-0 mt-4">
+			<a
+				target="_blank"
+				[href]="'https://github.com/orgs/ecsact-dev/projects/' + project.id"
+				><span class="i24">open_in_new</span> View GitHub Project</a
+			>
+		</p>
 	</section>
 </ng-template>
 
