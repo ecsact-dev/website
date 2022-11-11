@@ -26,6 +26,7 @@ ng_ts_project(
         "//src/components/doxygen-member-components/doxygen-return",
         "//src/components/doxygen-paragraph",
         "//src/components/doxygen-refid-link",
+        "//src/components/doxygen-type-name",
         "//src/search:doxygen-def-types",
         "@npm//@angular/common",
         "@npm//@angular/core",
