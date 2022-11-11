@@ -16,6 +16,7 @@ import {createWriteStream, existsSync, createReadStream} from 'fs';
 import {promisify} from 'util';
 import {execa} from 'execa';
 import * as crypto from 'crypto';
+import {spawnSync} from 'child_process';
 
 const workspaceDir = process.env['BUILD_WORKSPACE_DIRECTORY'];
 const devRefDir = path.resolve(workspaceDir, 'src/assets/_devref');
@@ -238,6 +239,7 @@ async function writeRepoJson(repo, task) {
 
 function isRepoSame(a, b) {
 	return (
+		a.commit === b.commit &&
 		a.name === b.name &&
 		a.url === b.url &&
 		a.sha256 === b.sha256 &&
@@ -247,9 +249,12 @@ function isRepoSame(a, b) {
 
 async function main() {
 	let force = false;
+	let update = false;
 	for (const arg of process.argv) {
 		if (arg === '--force') {
 			force = true;
+		} else if (arg === '--update') {
+			update = true;
 		}
 	}
 
@@ -269,23 +274,65 @@ async function main() {
 	};
 
 	let madeChanges = false;
-	for (const repo of repos) {
-		if (repo.commit) {
-			madeChanges = true;
 
+	let ghAuthToken = '';
+	if (update) {
+		try {
+			ghAuthToken = spawnSync('gh', ['auth', 'token']).stdout.toString();
+		} catch (err) {
+			console.error(
+				'gh auth token failed. Please make sure you have the GitHub CLI installed and you are authenticated',
+			);
+			process.exit(1);
+		}
+	}
+
+	for (const repo of repos) {
+		if (update) {
+			const {default_branch} = await (
+				await fetch(`https://api.github.com/repos/ecsact-dev/${repo.name}`, {
+					headers: {
+						Authorization: `token ${ghAuthToken}`,
+					},
+				})
+			).json();
+
+			const commitSha = await (
+				await fetch(
+					`https://api.github.com/repos/ecsact-dev/${repo.name}/commits/${default_branch}`,
+					{
+						headers: {
+							Authorization: `token ${ghAuthToken}`,
+							Accept: 'application/vnd.github.VERSION.sha',
+						},
+					},
+				)
+			).text();
+
+			if (repo.commit !== commitSha) {
+				madeChanges = true;
+				repo.commit = commitSha;
+				delete repo.sha256;
+				delete repo.url;
+				delete repo.stripPrefix;
+			}
+		}
+
+		if (repo.commit) {
 			if (!repo.sha256) {
+				madeChanges = true;
 				repo.sha256 = '';
 			}
 
 			if (!repo.stripPrefix) {
+				madeChanges = true;
 				repo.stripPrefix = `${repo.name}-${repo.commit}`;
 			}
 
 			if (!repo.url) {
+				madeChanges = true;
 				repo.url = `https://github.com/ecsact-dev/${repo.name}/archive/${repo.commit}.zip`;
 			}
-
-			delete repo.commit;
 		}
 	}
 
