@@ -127,7 +127,7 @@ const doxygenMemberDefParseFns = {
 			let param: DoxygenEnumParameter = {
 				name: paramEl.querySelector('name').textContent.trim(),
 				initializer: paramEl.querySelector('initializer').textContent.trim(),
-				access: paramEl.querySelector('prot') as any,
+				access: paramEl.getAttribute('prot') as any,
 				brief: paramEl.querySelector('briefdescription').textContent.trim(),
 				detailedDescription: detailedDescription,
 			};
