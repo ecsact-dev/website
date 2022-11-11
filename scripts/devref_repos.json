@@ -71,9 +71,9 @@
 	},
 	{
 		"name": "ecsact_unity",
-		"commit": "5c6e1db31ddacb2aba816b4bb165cd18bd433685",
-		"sha256": "ff92010442bc60c67de4cc9dac2cc99bc226c75a2185643eda8c35ebb359f5d8",
-		"stripPrefix": "ecsact_unity-5c6e1db31ddacb2aba816b4bb165cd18bd433685",
-		"url": "https://github.com/ecsact-dev/ecsact_unity/archive/5c6e1db31ddacb2aba816b4bb165cd18bd433685.zip"
+		"commit": "9a38f2120f5308bf222b4b658a3cd99e2765422a",
+		"sha256": "c818bb4ecdf97ad84402ee2910bc1bbd581899a48eb35fbae1ae3681261e5498",
+		"stripPrefix": "ecsact_unity-9a38f2120f5308bf222b4b658a3cd99e2765422a",
+		"url": "https://github.com/ecsact-dev/ecsact_unity/archive/9a38f2120f5308bf222b4b658a3cd99e2765422a.zip"
 	}
 ]
