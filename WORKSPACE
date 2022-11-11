@@ -17,8 +17,8 @@ bazel_skylib_workspace()
 
 http_archive(
     name = "build_bazel_rules_nodejs",
-    sha256 = "0fad45a9bda7dc1990c47b002fd64f55041ea751fafc00cd34efb96107675778",
-    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.0/rules_nodejs-5.5.0.tar.gz"],
+    sha256 = "5aae76dced38f784b58d9776e4ab12278bc156a9ed2b1d9fcd3e39921dc88fda",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.7.1/rules_nodejs-5.7.1.tar.gz"],
 )
 
 load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
@@ -29,7 +29,7 @@ load("@rules_nodejs//nodejs:repositories.bzl", "nodejs_register_toolchains")
 
 nodejs_register_toolchains(
     name = "nodejs",
-    node_version = "16.13.2",
+    node_version = "18.12.0",
 )
 
 load("@rules_nodejs//nodejs:yarn_repositories.bzl", "yarn_repositories")
@@ -48,14 +48,10 @@ yarn_install(
 
 http_archive(
     name = "io_bazel_rules_sass",
-    sha256 = "4e60e706447cdc30dfd350191911b47a2aa3b62a199c94569cc4af473270343b",
-    strip_prefix = "rules_sass-4f21d78581b7cfe94b28f5cb8ef6d313e8879a1c",
-    urls = ["https://github.com/bazelbuild/rules_sass/archive/4f21d78581b7cfe94b28f5cb8ef6d313e8879a1c.zip"],
+    sha256 = "618f0b7aae019c149ac2ff4142a66c110de116fb5c173dbeccedbaee06fc5f6d",
+    strip_prefix = "rules_sass-a2fce75bcf103750f7accbf7f966ad48bcbca2d4",
+    urls = ["https://github.com/bazelbuild/rules_sass/archive/a2fce75bcf103750f7accbf7f966ad48bcbca2d4.zip"],
 )
-
-load("@io_bazel_rules_sass//:package.bzl", "rules_sass_dependencies")
-
-rules_sass_dependencies()
 
 load("@io_bazel_rules_sass//:defs.bzl", "sass_repositories")
 

@@ -89,6 +89,7 @@ export class SearchComponent implements OnInit {
 	}
 
 	onFocus() {
+		this.search.fetchIfNeeded();
 		this.cdr.markForCheck();
 	}
 
