@@ -11,6 +11,7 @@ module.exports = {
 				logoColor: 'url(external/ecsact_logo/ecsact-color.png)',
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
 				wasmLogo: 'url(assets/brand/wasm.svg)',
+				branch: 'url(assets/renders/branch.png)',
 			},
 			keyframes: {
 				'slide-down': {

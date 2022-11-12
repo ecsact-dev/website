@@ -5,5 +5,6 @@ filegroup(
     srcs = glob(["**/*"]) + [
         # renders are in the bazelignore so they must be manually specified here
         "renders/ecsact-action-anim.webm",
+        "renders/branch.png",
     ],
 )

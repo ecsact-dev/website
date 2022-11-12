@@ -51,10 +51,13 @@
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
 			<ecsact-showcase
 				[title]="'The Basics'"
-				[description]="'Learn more about what drives Ecsact'"
-				[img]="'assets/EcsactCode.png'">
+				[description]="'Learn more about what drives Ecsact'">
+				<div
+					showcaseImage
+					class="w-full h-full bg-branch bg-no-repeat bg-center bg-contain"></div>
+
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/ecs">
 					<span class="text-black">
 						<span class="i48">school</span>
@@ -62,7 +65,7 @@
 					</span>
 				</a>
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/lang">
 					<span class="text-black">
 						<span class="i48">psychology</span>
@@ -70,12 +73,13 @@
 					</span>
 				</a>
 			</ecsact-showcase>
+
 			<ecsact-showcase
 				[title]="'Systems'"
 				[description]="'Read up on how systems are applied'"
 				[img]="'assets/EcsactCode.png'">
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/system-impl">
 					<span class="text-black">
 						<span class="i48">Settings</span>
@@ -83,7 +87,7 @@
 					</span>
 				</a>
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/system-execution">
 					<span class="text-black">
 						<span class="i48">Engineering</span>
@@ -91,12 +95,13 @@
 					</span>
 				</a>
 			</ecsact-showcase>
+
 			<ecsact-showcase
 				[title]="'Unity Integration'"
 				[description]="'Check out the official support for Ecsact with Unity'"
 				[img]="'assets/EcsactCode.png'">
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/defaults">
 					<span class="text-black">
 						<span class="i48">library_books</span>
@@ -104,7 +109,7 @@
 					</span>
 				</a>
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/entities">
 					<span class="text-black">
 						<span class="i48">add_circle</span>
@@ -112,12 +117,13 @@
 					</span>
 				</a>
 			</ecsact-showcase>
+
 			<ecsact-showcase
 				[title]="'Runtime'"
 				[description]="'Find out how the Runtime works'"
 				[img]="'assets/EcsactCode.png'">
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/runtime">
 					<span class="text-black">
 						<span class="i48">memory</span>
@@ -125,7 +131,7 @@
 					</span>
 				</a>
 				<a
-					class="btn text-secondary/50 bg-primary-bright"
+					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/runtime-implementations">
 					<span class="text-black">
 						<span class="i48">memory</span>

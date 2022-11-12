@@ -11,9 +11,16 @@ blender_render(
     render_format = "WEBM",
 )
 
+blender_render(
+    name = "branch",
+    blend_file = "branch.blend",
+    render_format = "PNG",
+)
+
 bzlws_copy(
     name = "copy_renders",
     srcs = [
+        ":branch",
         ":ecsact-action-anim",
     ],
     out = "src/assets/renders/{FILENAME}",

@@ -59,7 +59,7 @@ sass_repositories()
 
 http_archive(
     name = "rules_blender",
-    sha256 = "",
+    sha256 = "3fa3c8de4172164563c5e8a98972d6b00e8e299a7266bc7a9ee2516546e71673",
     strip_prefix = "rules_blender-e0513aede99e98558f95ff2d6ba9b9f576b3a61f",
     urls = ["https://github.com/zaucy/rules_blender/archive/e0513aede99e98558f95ff2d6ba9b9f576b3a61f.zip"],
 )
