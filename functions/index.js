@@ -7,7 +7,7 @@ const fetchQuery = `query {
   organization(login:"ecsact-dev") {
     projectsV2(orderBy: {field:TITLE, direction:ASC}, first:10, query:"is:open") {
       nodes {
-        id
+        number
         title
         shortDescription
         readme
@@ -19,6 +19,13 @@ const fetchQuery = `query {
 exports.fetchProjects = functions
 	.runWith({secrets: [SEAUBOT_GITHUB_TOKEN]})
 	.https.onRequest((req, res) => {
+		res.set('Access-Control-Allow-Origin', '*');
+		res.set('Access-Control-Allow-Methods', 'GET');
+		if (req.method === 'OPTIONS') {
+			res.status(204).end('');
+			return;
+		}
+
 		const ghReq = https.request({
 			host: 'api.github.com',
 			path: '/graphql',
@@ -34,21 +41,24 @@ exports.fetchProjects = functions
 			let msg = '';
 			ghRes.setEncoding('utf8');
 			ghRes.on('error', () => {
-				res.status(500).send(`Error GitHub Response: ${err.message}`);
+				res.status(500).end(`Error GitHub Response: ${err.message}`);
 			});
 
 			ghRes.on('data', chunk => {
 				msg += chunk;
 			});
 			ghRes.on('end', () => {
-				console.log(ghRes.statusCode);
 				res.status(ghRes.statusCode);
-				res.send(msg);
+				res.set('Content-Type', 'application/json');
+				if (ghRes.statusCode === 200) {
+					res.set('Cache-Control', 'public, max-age=86400');
+				}
+				res.end(msg);
 			});
 		});
 
 		ghReq.on('error', err => {
-			res.status(500).send(`Error GitHub Request: ${err.message}`);
+			res.status(500).end(`Error GitHub Request: ${err.message}`);
 		});
 
 		ghReq.end(JSON.stringify({query: fetchQuery}));

@@ -1,8 +1,9 @@
 <ng-template #projectTpl let-project>
 	<section
-		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-2 px-4">
+		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-2 px-4 my-4">
 		<h2>{{ project.title }}</h2>
 		<p>{{ project.shortDescription }}</p>
+		<div [outerHTML]="project.readmeHtml"></div>
 		<div class="flex flex-row relative items-center px-1">
 			<div
 				class="rounded-full w-8 h-8 bg-success ring-2 shadow-lg ring-black dark:ring-white"></div>
@@ -19,35 +20,69 @@
 		<p class="flex flex-row justify-end text-sm mb-0 mt-4">
 			<a
 				target="_blank"
-				[href]="'https://github.com/orgs/ecsact-dev/projects/' + project.id"
+				[href]="'https://github.com/orgs/ecsact-dev/projects/' + project.number"
 				><span class="i24">open_in_new</span> View GitHub Project</a
 			>
 		</p>
 	</section>
 </ng-template>
 
+<ng-template #loadingProjects>
+	<section
+		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-2 px-4 my-4">
+		<h2
+			class="text-white/0 animate-pulse rounded-lg inline-block bg-secondary/50">
+			LOADING
+		</h2>
+		<p
+			class="text-white/0 animate-pulse rounded-lg inline-block bg-black dark:bg-white">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel massa
+			tincidunt, feugiat magna vel, accumsan ante. Aliquam nec accumsan neque.
+			Phasellus vestibulum finibus justo.
+		</p>
+		<div class="flex flex-row relative items-center px-1 animate-pulse">
+			<div
+				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white"></div>
+			<div
+				class="flex-1 border-b-2 border-black dark:border-white border-dashed"></div>
+			<div
+				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white"></div>
+			<div
+				class="flex-1 border-b-2 border-black dark:border-white border-dashed"></div>
+			<div
+				class="rounded-full w-8 h-8 bg-transparent ring-2 shadow-lg ring-black dark:ring-white overflow-hidden"></div>
+		</div>
+		<p class="flex flex-row justify-end text-sm mb-0 mt-4">
+			<a
+				class="text-white/0 animate-pulse rounded-lg inline-block bg-black dark:bg-white"
+				><span class="i24">open_in_new</span> View GitHub Project</a
+			>
+		</p>
+	</section>
+</ng-template>
+
+<ng-template #errorLoadingProjects>
+	<p class="text-center">
+		<span class="i24">error</span> Whoops! Failed to load roadmap projects.
+		Thankfully they're also available on Github.
+	</p>
+	<p>
+		<a class="btn" href="https://github.com/orgs/ecsact-dev/projects"
+			>View GitHub Projects</a
+		>
+	</p>
+</ng-template>
+
 <article class="max-w-3xl mx-auto my-8 p-8">
-	<ng-container *ngIf="projects$ | async as projects">
-		<ng-container *ngFor="let project of projects">
-			<ng-container
-				*ngTemplateOutlet="
-					projectTpl;
-					context: {$implicit: project}
-				"></ng-container>
+	<ng-container *ngIf="projects$ | async as projects; else loadingProjects">
+		<ng-container *ngIf="projects; else errorLoadingProjects">
+			<ng-container *ngFor="let project of projects">
+				<ng-container
+					*ngTemplateOutlet="
+						projectTpl;
+						context: {$implicit: project}
+					"></ng-container>
+			</ng-container>
 		</ng-container>
 	</ng-container>
-
-	<h1>Roadmap Notes</h1>
-	<ul>
-		<li>Async API</li>
-		<li>Performance</li>
-		<li>GPU acceleration</li>
-		<li>Hot reloading (Wasm)</li>
-		<li>Rust codegen</li>
-		<li>AssemblyScript</li>
-		<li>IDE support (Language server)</li>
-		<li>Debugger</li>
-		<li>Unity & Godot Integration</li>
-		<li>Work on web (Export from Unity, Unreal and Godot)</li>
-	</ul>
 </article>
