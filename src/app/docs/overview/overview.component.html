@@ -1,5 +1,7 @@
 <article>
-	<h1 id="title">Documentation Overview</h1>
+	<h1 id="diagram" aria-hidden class="opacity-0 select-none h-0 m-0">
+		Ecsact Diagram
+	</h1>
 	<ecsact-example-diagram [verticalLayout]="smallWidth()">
 		<pre
 			diagramStart
@@ -25,9 +27,11 @@
 		<div
 			diagramMid2
 			class="h-full flex items-center justify-center text-center">
-			PoisonDamage
-			<br />
-			Implementation
+			<a routerLink="/docs/system-impl">
+				PoisonDamage
+				<br />
+				Implementation
+			</a>
 		</div>
 
 		<div
@@ -47,6 +51,7 @@
 		</div>
 	</ecsact-example-diagram>
 
+	<h2>Start Reading</h2>
 	<section class="my-8 mx-auto px-2">
 		<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
 			<ecsact-showcase
