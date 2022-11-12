@@ -1,11 +1,19 @@
 import {Component, ChangeDetectionStrategy} from '@angular/core';
-import {BehaviorSubject, from, Observable} from 'rxjs';
+import {from, Observable, shareReplay, switchMap} from 'rxjs';
+import {marked} from 'marked';
 
-export interface IRoadmapProject {
-	id: number;
+interface IRoadmapProjectRaw {
+	number: number;
 	title: string | null;
 	shortDescription: string;
 	readme: string;
+}
+
+export interface IRoadmapProject {
+	number: number;
+	title: string | null;
+	shortDescription: string;
+	readmeHtml: string;
 }
 
 @Component({
@@ -15,17 +23,32 @@ export interface IRoadmapProject {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapComponent {
-	readonly projects$: Observable<IRoadmapProject[]>;
+	readonly projects$: Observable<IRoadmapProject[] | null>;
 
 	constructor() {
-		// TODO(zaucy): Fetch from GitHub
-		this.projects$ = new BehaviorSubject([
-			{
-				id: 4,
-				title: 'Async API',
-				shortDescription: 'TODO: Fetch description from GitHub',
-				readme: '',
-			},
-		]);
+		this.projects$ = from(
+			fetch('https://us-central1-ecsact-dev.cloudfunctions.net/fetchProjects'),
+		).pipe(
+			shareReplay(),
+			switchMap(res =>
+				from(
+					res
+						.json()
+						.then(
+							result =>
+								result.data.organization.projectsV2
+									.nodes as IRoadmapProjectRaw[],
+						)
+						.then(items =>
+							items.map(item => ({
+								...item,
+								readme: undefined,
+								readmeHtml: marked(item.readme),
+							})),
+						)
+						.catch(err => (console.error(err) as any) || null),
+				),
+			),
+		);
 	}
 }
