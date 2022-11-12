@@ -43,7 +43,9 @@ export class RoadmapComponent {
 							items.map(item => ({
 								...item,
 								readme: undefined,
-								readmeHtml: marked(item.readme),
+								readmeHtml: item.readme
+									? marked(item.readme)
+									: '<em>(no readme)</em>',
 							})),
 						)
 						.catch(err => (console.error(err) as any) || null),
