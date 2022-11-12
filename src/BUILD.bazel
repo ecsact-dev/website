@@ -41,6 +41,7 @@ ng_ts_project(
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
+        "@npm//firebase",
     ],
 )
 
