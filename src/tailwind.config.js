@@ -5,6 +5,12 @@ module.exports = {
 	content,
 	theme: {
 		extend: {
+			height: {
+				'top-nav-height': 'var(--top-nav-height)',
+			},
+			inset: {
+				'top-nav-height': 'var(--top-nav-height)',
+			},
 			backgroundImage: {
 				logoWhite: 'url(external/ecsact_logo/ecsact-white.png)',
 				logoBlack: 'url(external/ecsact_logo/ecsact-black.png)',
@@ -18,6 +24,10 @@ module.exports = {
 					'0%': {transform: 'translateY(-100%)'},
 					'100%': {transform: 'translateY(0%)'},
 				},
+				'slide-right': {
+					'0%': {transform: 'translateX(-100%)'},
+					'100%': {transform: 'translateX(0%)'},
+				},
 				'error-shake': {
 					'0%': {transform: 'translate(8px)'},
 					'20%': {transform: 'translate(-8px)'},
@@ -29,6 +39,7 @@ module.exports = {
 			},
 			animation: {
 				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'slide-right': 'slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'error-shake': 'error-shake 300ms 1 linear',
 			},
 		},

@@ -34,7 +34,7 @@
 	}
 
 	nav.top-nav a.active {
-		@apply border-b border-solid border-b-primary font-bold;
+		@apply bg-primary/20 font-bold;
 	}
 }
 

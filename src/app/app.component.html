@@ -1,19 +1,43 @@
-<nav class="top-nav bg-secondary" [class.search-focused]="search.isFocused()">
-	<div class="before-search">
+<nav
+	class="top-nav relative bg-secondary"
+	[class.search-focused]="search.isFocused()">
+	<span
+		class="i48 md:hidden absolute top-2 left-2 bg-secondary block select-none pointer-events-none text-2xl text-black"
+		>menu</span
+	>
+	<input
+		#mobileMenuToggle
+		type="checkbox"
+		class="peer ml-2 h-top-nav-height w-6 opacity-0 cursor-pointer md:hidden" />
+	<div
+		class="before-search flex-col hidden peer-checked:flex md:flex peer-checked:fixed md:peer-checked:static peer-checked:top-top-nav-height peer-checked:bottom-0 peer-checked:left-0 peer-checked:bg-secondary peer-checked:shadow-lg md:peer-checked:shadow-none md:flex-row md:overflow-hidden gap-2 peer-checked:animate-slide-right">
 		<a
 			class="bg-logoBlack bg-contain bg-center bg-no-repeat w-16"
 			routerLink="/">
 		</a>
-		<a routerLink="/start" routerLinkActive="active" class="text-black">
+		<a
+			routerLink="/"
+			routerLinkActive="active"
+			[routerLinkActiveOptions]="{exact: true}"
+			class="text-black flex md:hidden">
+			<span>Home</span>
+		</a>
+		<a routerLink="/start" routerLinkActive="active" class="text-black flex">
 			<span>Start</span>
 		</a>
-		<a routerLink="/docs/overview" routerLinkActive="active" class="text-black">
+		<a
+			routerLink="/docs/overview"
+			routerLinkActive="active"
+			class="text-black flex">
 			<span>Documentation</span>
 		</a>
-		<a routerLink="/reference" routerLinkActive="active" class="text-black">
+		<a
+			routerLink="/reference"
+			routerLinkActive="active"
+			class="text-black flex">
 			<span>Reference</span>
 		</a>
-		<a routerLink="/roadmap" routerLinkActive="active" class="text-black">
+		<a routerLink="/roadmap" routerLinkActive="active" class="text-black flex">
 			<span>Roadmap</span>
 		</a>
 	</div>

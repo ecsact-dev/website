@@ -1,4 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	ElementRef,
+	ViewChild,
+} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {SearchMeta} from '../search/search-meta.service';
 
@@ -11,6 +16,9 @@ import {ServiceWorkerService} from './service-worker.service';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+	@ViewChild('mobileMenuToggle', {static: true})
+	mobileMenuToggle?: ElementRef<HTMLInputElement>;
+
 	constructor(
 		private swService: ServiceWorkerService,
 		searchMeta: SearchMeta,
@@ -20,6 +28,9 @@ export class AppComponent {
 
 		router.events.subscribe(routerEvent => {
 			if (routerEvent instanceof NavigationEnd) {
+				if (this.mobileMenuToggle) {
+					this.mobileMenuToggle.nativeElement.checked = false;
+				}
 				searchMeta.useSearchablePageInfo();
 				if (!location.hash) {
 					window.scrollTo(0, 0);
