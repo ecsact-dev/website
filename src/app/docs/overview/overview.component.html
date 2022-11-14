@@ -59,8 +59,7 @@
 				[description]="'Learn more about what drives Ecsact'">
 				<div
 					showcaseImage
-					class="w-full h-full bg-branch bg-no-repeat bg-center bg-contain"></div>
-
+					class="w-full h-full bg-branch bg-no-repeat bg-center bg-contain dark:invert"></div>
 				<a
 					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/ecs">
@@ -102,9 +101,11 @@
 			</ecsact-showcase>
 
 			<ecsact-showcase
-				[title]="'Unity Integration'"
-				[description]="'Check out the official support for Ecsact with Unity'"
-				[img]="'assets/EcsactCode.png'">
+				title="Unity Integration"
+				description="Explore the Ecsact Unity integration APIs">
+				<div showcaseImage class="w-full h-full p-8">
+					<div class="brand unity w-full h-full"></div>
+				</div>
 				<a
 					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/defaults">
