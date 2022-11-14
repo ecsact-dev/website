@@ -52,17 +52,37 @@
 		{{'}'}}
 	</code></pre>
 
-	<h2>Benefits to using ECS</h2>
-	<ul>
-		<h3>Performance</h3>
-		<p>Add performance benefits here</p>
-		<div>
-			<h3>Composition over inheritance</h3>
-			<p>
-				-- Separate data and behaviour, allowing you to mix and match easily and
-				quickly.
-			</p>
-			<h3>Try to add more</h3>
-		</div>
+	<h2 id="benefits">Benefits to using ECS</h2>
+	<ul class="space-y-4">
+		<li>
+			<h3 class="inline text-base font-bold">Flexible and Reusable</h3>
+			— ECS uses composition instead of inheritance. Meaning instead of a
+			hierarchy you create components representing different parts that can be
+			mixed and matched together. Mixing and matching components allow you to
+			change behaviour simply by adding or removing a component from an entity.
+		</li>
+		<li>
+			<h3 class="inline text-base font-bold">Maintainable</h3>
+			— Code bases can get bloated. Decoupling behaviour in systems prevent you
+			from getting lost in classes or subclasses. All systems operate
+			independent from each other, allowing the developer to focus on one
+			section of code at a time.
+		</li>
+		<li>
+			<h3 class="inline text-base font-bold">Performance</h3>
+			— Todays processors work concurrently on multiple cores and threads. Even
+			your average smart phone has a high performance multi-core processor. In
+			ECS, entities are stored as simple integers and components are organized
+			by their type as separate cache-friendly lists. Both of which allow for
+			<em>blazingly fast</em> iteration.
+		</li>
+		<li>
+			<h3 class="inline text-base font-bold">More</h3>
+			— We only covered a few points here. Sanders Mertens published
+			<a target="_blank" href="https://github.com/SanderMertens/ecs-faq"
+				><span class="i24">open_in_new</span> Entity Component System FAQ</a
+			>
+			which goes over tons of benefits.
+		</li>
 	</ul>
 </article>
