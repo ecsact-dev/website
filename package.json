@@ -1,7 +1,6 @@
 {
-  "name": "@seaube/ecsact-dev-website",
   "version": "0.1.0",
-  "description": "Source code for ecsact.dev",
+  "description": "Source code for https://ecsact.dev",
   "repository": "https://github.com/seaube/ecsact-dev-website",
   "license": "UNLICENSED",
   "private": true,
