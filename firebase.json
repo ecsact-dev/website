@@ -5,12 +5,18 @@
   },
   "hosting": {
     "site": "ecsact-dev",
-    "public": "public",
+    "public": "bazel-bin/src/prodapp",
+    "predeploy": "bazel build //src:prodapp",
     "ignore": [
       "firebase.json",
       "**/.*"
     ],
     "redirects": [
+      {
+        "source": "/ecsact_sdk_0.4.1_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_windows_x64.msix",
+        "type": 302
+      },
       {
         "source": "/ecsact_sdk_0.4.0_windows_x64.msix",
         "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk_0.4.0_windows_x64.msix",
