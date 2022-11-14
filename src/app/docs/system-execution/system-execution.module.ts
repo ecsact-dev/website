@@ -4,6 +4,7 @@ import {SystemExecutionComponent} from './system-execution.component';
 import {EcsactLangSyntaxModule} from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.module';
 import {ExecLaneVisModule} from '../../../components/exec-lane-vis/exec-lane-vis.module';
 import {CodeBlockVariationModule} from '../../../components/code-block-variation/code-block-variation.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
 	declarations: [SystemExecutionComponent],
@@ -12,6 +13,7 @@ import {CodeBlockVariationModule} from '../../../components/code-block-variation
 		EcsactLangSyntaxModule,
 		ExecLaneVisModule,
 		CodeBlockVariationModule,
+		RouterModule,
 	],
 	exports: [SystemExecutionComponent],
 })

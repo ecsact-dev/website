@@ -29,7 +29,7 @@
 		<p>
 			You'll want to <a routerLink="/start/unity">setup</a> your Assembly file,
 			get the Ecsact Integration and enable Unity Sync. You can read about how
-			to do that
+			to do that.
 		</p>
 	</section>
 
@@ -58,8 +58,8 @@
 		<p>
 			Now that we have our components, we can create a Sync Script that we'll
 			call <code>AddBlock.cs</code>. We need something to instantiate in our
-			Rescources folder. For our example we're going to use a basic square in
-			<code>Sprite Renderer</code>
+			<code>Rescources</code> folder. For our example we're going to use a basic
+			square in <code>Sprite Renderer</code>.
 		</p>
 
 		<code-block-variation>
@@ -93,14 +93,16 @@
 		<p>
 			Note: <code>Resources.Load</code> needs to happen on <code>Awake</code> to
 			be available in <code>OnInitComponent</code> because of how everything is
-			initialized
+			initialized.
 		</p>
 
 		<p>
 			Let's see if our script is working! Let's have an initial entity spawn by
-			using <a routerLink="/docs/unity/entities">Dynamic Entity</a>. If
-			everything worked correctly, when you enter playmode a gameObject should
-			spawn at the position you inputted for the entity.
+			using
+			<a routerLink="/docs/unity/entities" fragment="dynamic-entity"
+				>Dynamic Entity</a
+			>. If everything worked correctly, when you enter playmode a gameObject
+			should spawn at the position you inputted for the entity.
 		</p>
 	</section>
 
@@ -109,7 +111,7 @@
 		<p>
 			What if we took this one step further? We've managed to use Unity Sync
 			with our Dynamic Entity, but Unity Sync will adapt to changes in entities
-			during runtime. Let's go into our <code>.ecsact</code> file
+			during runtime. Let's go into our <code>.ecsact</code> file.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -196,7 +198,7 @@
 			The action is now set to be pushed whenever the InputAction is called in
 			<code>GenerateBlock.cs</code>. This will need to in the scene on a
 			GameObject to be present during the runtime. With Ecsact and pushing the
-			action accounted for, all that's left to do is implement the systems
+			action accounted for, all that's left to do is implement the systems.
 		</p>
 
 		<code-block-variation>
@@ -241,11 +243,12 @@
 		</code-block-variation>
 
 		<p>
-			When the InputAction is pressed, a new entity will be generated with a
-			block the same way our <code>Dynamic Entity</code> does. But there's a
-			small difference. When an entity is spawned at runtime, the Position of
-			the entity won't be applied to the gameobject itself. We can use Unity
-			Sync to solve that problem
+			When the <code>InputAction</code> is pressed, a new entity will be
+			generated with a block the same way our <code>Dynamic Entity</code> does.
+			But there's a small difference. When an entity is spawned at runtime, the
+			Position of the entity won't be applied to the gameobject itself. We can
+			use <a routerLink="/docs/unity/unity-sync">Unity Sync</a> to solve that
+			problem.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -270,7 +273,7 @@
 		</code-block-variation>
 		<p>
 			A listener for <code>OnUpdate</code> was added too. This will be used a
-			bit later for Movement
+			bit later for Movement.
 		</p>
 	</section>
 
@@ -279,8 +282,9 @@
 		<p>
 			So we can generate entities at will during runtime and manipulate their
 			data. The only problem now is we can't interact with them. Let's add
-			movement to all the entity blocks that we spawn. We'll add velocity, a
-			move action, and a system to apply changes
+			movement to all the entity blocks that we spawn. We'll add
+			<code>Velocity</code>, a move action, and a corresponding system to apply
+			changes.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -312,13 +316,13 @@
 			<code>Move</code> action. This lets other entities be affected by velocity
 			without movement. Remember, you'll need to update your generates in
 			<code>Ecsact</code>, any Dynamic Entities and
-			<code>GenerateBlockSystem</code> to see the effects
+			<code>GenerateBlockSystem</code> to see the effects.
 		</p>
 		<p>
 			Let's move to Unity. In our example, we'll add a script to the same
 			GameObject that holds our <code>Dynamic Entity</code> called
 			<code>MoveControls</code>. This will hold input logic and push Actions to
-			Ecsact's <code>Runner</code>
+			Ecsact's <code>Runner</code>.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -375,7 +379,7 @@
 			<code>Action</code>. Now like before we implement our systems. This might
 			start to feel familiar, the workflow of getting to and from Ecsact doesn't
 			change very much. We'll make another script we'll drop into our systems
-			folder called <code>MoveSystems</code>
+			folder called <code>MoveSystems</code>.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -417,7 +421,7 @@
 		</code-block-variation>
 		<p>
 			Since we already added <code>SyncMove</code> earlier, the gameobject
-			should be updated whenever the position of the entity is
+			should be updated whenever the position of the entity is.
 		</p>
 	</section>
 	<section>
@@ -427,7 +431,7 @@
 			way. The big problem now is we can go off the screen, and there's no way
 			to
 			<code>interact</code> with the other entities in our scene. We're going to
-			cover one of the ways in which you could compare entities and create
+			cover one of the ways in which you can compare entities and create
 			interactions with <code>Nested Systems</code>.
 		</p>
 		<p>If it isn't obvious at this point, we're going to start with Ecsact!</p>
@@ -451,14 +455,14 @@
 		</code-block-variation>
 		<p>
 			A
-			<a routerLink="/docs/lang" fragment="#nested-systems">Nested System</a>
+			<a routerLink="/docs/lang" fragment="nested-systems">Nested System</a>
 			takes each entity that qualifies for <code>CollisionComparer</code>, and
 			compares each one against all of the qualified entities in
 			<code>CheckCollision</code>. You can view it as a nested for loop.
 		</p>
 		<p>
 			Note: You need to add the <code>Collider</code> component to any entities
-			that you want to be considered
+			that you want to be considered.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -508,14 +512,14 @@
 		<p>
 			There's only 1 system implementation. If there's nothing for a
 			<code>system</code> to consider then the system is considered
-			<a routerLink="/docs/system-impl" fragment="#trivial-implementations"
+			<a routerLink="/docs/system-impl" fragment="trivial-implementations"
 				>trivial</a
 			>.
 		</p>
 		<p>
 			To add Colliders to our static objects in a scene, we'll create a script
 			called <code>StaticCollider</code>. The radius of the collider in Ecsact
-			will be determined by the size of the gameobject
+			will be determined by the size of the gameobject.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
