@@ -24,7 +24,7 @@
       },
       {
         "source": "/ecsact_sdk.appinstaller",
-        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk.appinstaller",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk.appinstaller",
         "type": 302
       }
     ],
