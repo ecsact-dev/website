@@ -45,7 +45,18 @@
 			</p>
 		</div>
 
-		<div class="brand ecsact flex-[2] self-stretch"></div>
+		<div
+			class="flex flex-[2] self-stretch rounded-lg shadow-lg items-center justify-center">
+			<pre><code ecsactLangSyntax>
+				package my.project;
+				component Health {{'{'}} f32 value; {{'}'}}
+				component Poisoned {{ '{' }} i32 potency; {{'}'}}
+				system PoisonDamage {{ '{' }}
+					readonly Poisoned;
+					readwrite Health;
+				{{ '}' }}
+			</code></pre>
+		</div>
 	</section>
 	<div class="bg-black/5 dark:bg-white/5">
 		<section

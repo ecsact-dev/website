@@ -28,7 +28,10 @@ pre[class*='language-'] {
 	}
 
 	.token.class-name {
-		color: #e5c07b;
+		color: #9b6a0f;
+		@media (prefers-color-scheme: dark) {
+			color: #e5c07b;
+		}
 	}
 
 	.token.variable {
