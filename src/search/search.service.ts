@@ -279,9 +279,10 @@ export class Search {
 		this._compounds[repo] = compounds;
 
 		const referenceSearchItems = compounds.reduce((items, compound) => {
-			items.push({type: 'reference', repo, item: compound});
-			// TODO: Add enum value edge case issue #25
 			if (compound.kind !== 'namespace') {
+				if (!['dir'].includes(compound.kind)) {
+					items.push({type: 'reference', repo, item: compound});
+				}
 				items.push(
 					...compound.members.map(mem => ({
 						type: 'reference' as 'reference',
