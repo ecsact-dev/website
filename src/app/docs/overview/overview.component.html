@@ -79,9 +79,11 @@
 			</ecsact-showcase>
 
 			<ecsact-showcase
-				[title]="'Systems'"
-				[description]="'Read up on how systems are applied'"
-				[img]="'assets/EcsactCode.png'">
+				title="Systems"
+				description="Read up on how systems are applied">
+				<div
+					showcaseImage
+					class="w-full h-full bg-systems bg-no-repeat bg-center bg-contain dark:invert"></div>
 				<a
 					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/system-impl">
@@ -125,9 +127,11 @@
 			</ecsact-showcase>
 
 			<ecsact-showcase
-				[title]="'Runtime'"
-				[description]="'Find out how the Runtime works'"
-				[img]="'assets/EcsactCode.png'">
+				title="Runtime"
+				description="Find out how the Runtime works">
+				<div
+					showcaseImage
+					class="w-full h-full bg-runtime bg-no-repeat bg-cover bg-center dark:invert"></div>
 				<a
 					class="btn text-primary/50 bg-primary-bright whitespace-nowrap text-ellipsis overflow-hidden"
 					routerLink="/docs/runtime">

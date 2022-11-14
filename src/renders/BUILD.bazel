@@ -17,11 +17,25 @@ blender_render(
     render_format = "PNG",
 )
 
+blender_render(
+    name = "runtime",
+    blend_file = "runtime.blend",
+    render_format = "PNG",
+)
+
+blender_render(
+    name = "systems",
+    blend_file = "systems.blend",
+    render_format = "PNG",
+)
+
 bzlws_copy(
     name = "copy_renders",
     srcs = [
         ":branch",
         ":ecsact-action-anim",
+        ":runtime",
+        ":systems",
     ],
     out = "src/assets/renders/{FILENAME}",
     force = True,

@@ -18,6 +18,8 @@ module.exports = {
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
 				wasmLogo: 'url(assets/brand/wasm.svg)',
 				branch: 'url(assets/renders/branch.png)',
+				systems: 'url(assets/renders/systems.png)',
+				runtime: 'url(assets/renders/runtime.png)',
 			},
 			keyframes: {
 				'slide-down': {
