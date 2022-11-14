@@ -46,7 +46,7 @@
 		</div>
 
 		<div
-			class="flex flex-[2] self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg">
+			class="flex flex-[2] max-w-md self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg px-6 py-4 mx-auto">
 			<pre><code ecsactLangSyntax>
 				package my.project;
 				component Health {{'{'}} f32 value; {{'}'}}
@@ -61,7 +61,10 @@
 	<div class="bg-black/5 dark:bg-white/5">
 		<section
 			class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
-			<div class="brand ecsact flex-[2] self-stretch"></div>
+			<div
+				class="flex-[2] self-stretch flex items-center justify-center text-9xl">
+				<span class="i48">alt_route</span>
+			</div>
 			<div class="flex-[3]">
 				<h2>Commit to Ecsact without committing to an engine.</h2>
 				<p>
@@ -93,7 +96,7 @@
 	</div>
 
 	<section
-		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
+		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">
 		<div>
 			<h2>Interrupt your simulation with Actions</h2>
 			<p>
@@ -125,7 +128,7 @@
 		<section
 			class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">
 			<div
-				class="bg-wasmLogo bg-contain bg-no-repeat bg-center m-4 flex-[2] self-stretch"></div>
+				class="bg-wasmLogo min-h-[160px] lg:min-h-0 bg-contain bg-no-repeat bg-center m-4 flex-[2] self-stretch"></div>
 			<div class="flex-[3]">
 				<h2>Build your systems with your choice of programming language.</h2>
 				<p>
