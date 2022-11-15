@@ -2,7 +2,7 @@
 	<div
 		class="flex flex-col lg:flex-row gap-4 my-8 mx-auto justify-center items-center relative z-30">
 		<div
-			class="w-64 h-64 bg-logoBlack bg-center bg-no-repeat opacity-80 bg-contain"></div>
+			class="w-full lg:w-64 h-64 bg-logoBlack bg-center bg-no-repeat opacity-80 bg-contain"></div>
 		<div class="px-4">
 			<p class="text-4xl bold text-black">Create with Ecsact</p>
 			<p class="text-xl">A language to describe your ECS</p>
@@ -46,8 +46,9 @@
 		</div>
 
 		<div
-			class="flex flex-[2] max-w-md self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg px-6 py-4 mx-auto">
-			<pre><code ecsactLangSyntax>
+			class="flex flex-[2] max-w-full overflow-hidden box-content md:max-w-md self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg mx-auto">
+			<pre
+				class="text-sm sm:text-base overflow-hidden px-6 py-4"><code ecsactLangSyntax>
 				package my.project;
 				component Health {{'{'}} f32 value; {{'}'}}
 				component Poisoned {{ '{' }} i32 potency; {{'}'}}
@@ -117,7 +118,7 @@
 			</p>
 		</div>
 		<video
-			class="shrink max-w-xs rounded-lg shadow-lg bg-content-bg"
+			class="shrink max-w-full mx-auto md:max-w-xs rounded-lg shadow-lg bg-content-bg"
 			autoplay
 			loop
 			muted
