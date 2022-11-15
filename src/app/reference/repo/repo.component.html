@@ -24,13 +24,13 @@
 
 <article>
 	<h1 id="ref-index">Repository Reference Index</h1>
-	<div style="display: flex; flex-direction: row; gap: 8px">
-		<select [(ngModel)]="view">
+	<div class="mx-4" style="display: flex; flex-direction: row; gap: 8px">
+		<!-- <select [(ngModel)]="view">
 			<option [value]="RepoCompoundsView.ByKind">By Kind</option>
 			<option [value]="RepoCompoundsView.List">List</option>
-		</select>
+		</select> -->
 		<label>
-			<input type="checkbox" [(ngModel)]="showInternals" />
+			<input type="checkbox" [(ngModel)]="showInternals" class="mr-2" />
 			<span>Show Internal APIs</span>
 		</label>
 	</div>

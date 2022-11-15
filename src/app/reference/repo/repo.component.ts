@@ -2,7 +2,6 @@ import {
 	Component,
 	OnInit,
 	ChangeDetectionStrategy,
-	ChangeDetectorRef,
 	TrackByFunction,
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
@@ -25,7 +24,7 @@ export enum RepoCompoundsView {
 	styleUrls: ['./repo.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RepoComponent {
+export class RepoComponent implements OnInit {
 	readonly RepoCompoundsView = RepoCompoundsView;
 
 	readonly byKindBlocks = [
@@ -78,7 +77,7 @@ export class RepoComponent {
 		return compound.refid;
 	};
 
-	constructor(search: Search, route: ActivatedRoute) {
+	constructor(private search: Search, route: ActivatedRoute) {
 		this.mainPage$ = route.params.pipe(
 			switchMap(params => from(search.getDef(params.repo, 'indexpage'))),
 		);
@@ -113,5 +112,9 @@ export class RepoComponent {
 					),
 			),
 		);
+	}
+
+	ngOnInit() {
+		this.search.fetchIfNeeded();
 	}
 }
