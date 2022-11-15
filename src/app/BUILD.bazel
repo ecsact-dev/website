@@ -25,6 +25,7 @@ ng_ts_project(
         "//src/app/install",
         "//src/app/integrations/unity/install",
         "//src/app/introduction",
+        "//src/app/not-found",
         "//src/app/reference",
         "//src/app/roadmap",
         "//src/app/start",

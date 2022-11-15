@@ -64,6 +64,18 @@ const routes: Routes = [
 				m => m.RoadmapRoutingModule,
 			),
 	},
+	{
+		path: 'not-found',
+		pathMatch: 'full',
+		loadChildren: () =>
+			import('./not-found/not-found-routing.module').then(
+				m => m.NotFoundRoutingModule,
+			),
+	},
+	{
+		path: '**',
+		redirectTo: '/not-found',
+	},
 ];
 
 @NgModule({
