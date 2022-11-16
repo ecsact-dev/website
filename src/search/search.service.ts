@@ -191,8 +191,7 @@ export class Search {
 		repo: string,
 		refid: string,
 	): Promise<DoxygenCompoundDef | DoxygenMemberDef> {
-		//Add another branch for enum value
-		await this._refreshPromise;
+		await this.fetchIfNeeded();
 
 		const index = this._refidMap[refid];
 		if (typeof index !== 'number') {
