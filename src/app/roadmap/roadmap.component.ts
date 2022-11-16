@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component, ChangeDetectionStrategy, ViewChild} from '@angular/core';
 import {from, Observable, shareReplay, switchMap} from 'rxjs';
 import {marked} from 'marked';
 
@@ -9,11 +9,37 @@ interface IRoadmapProjectRaw {
 	readme: string;
 }
 
+export enum RoadmapItemStatus {
+	Planning,
+	InProgress,
+	Done,
+}
+
+const roadmapItemStatusParseMap = {
+	['Done']: RoadmapItemStatus.Done,
+	['In-Progress']: RoadmapItemStatus.InProgress,
+	['Planning']: RoadmapItemStatus.Planning,
+};
+
 export interface IRoadmapProject {
 	number: number;
 	title: string | null;
 	shortDescription: string;
 	readmeHtml: string;
+	status: RoadmapItemStatus;
+}
+
+function parseRoadmapStatus(item: IRoadmapProjectRaw): RoadmapItemStatus {
+	if (item.readme) {
+		const matches = item.readme.match(/In-Progress|Planning|Done/g);
+		for (const match of matches) {
+			if (roadmapItemStatusParseMap[match]) {
+				return roadmapItemStatusParseMap[match];
+			}
+		}
+	}
+
+	return RoadmapItemStatus.Planning;
 }
 
 @Component({
@@ -23,7 +49,9 @@ export interface IRoadmapProject {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapComponent {
-	readonly projects$: Observable<IRoadmapProject[] | null>;
+	readonly RoadmapItemStatus = RoadmapItemStatus;
+
+	readonly projects$: Observable<Array<IRoadmapProject[]> | null>;
 
 	constructor() {
 		this.projects$ = from(
@@ -43,10 +71,24 @@ export class RoadmapComponent {
 							items.map(item => ({
 								...item,
 								readme: undefined,
+								status: parseRoadmapStatus(item),
 								readmeHtml: item.readme
 									? marked(item.readme)
 									: '<em>(no readme)</em>',
 							})),
+						)
+						.then(items =>
+							items.reduce(
+								(result, item) => {
+									result[item.status].push(item);
+									return result;
+								},
+								[
+									/*RoadmapItemStatus.InProgress*/ [],
+									/*RoadmapItemStatus.Planning*/ [],
+									/*RoadmapItemStatus.Done */ [],
+								] as Array<IRoadmapProject[]>,
+							),
 						)
 						.catch(err => (console.error(err) as any) || null),
 				),

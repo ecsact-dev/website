@@ -17,6 +17,7 @@ ng_ts_project(
     ],
     deps = [
         "//src/search:service",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
