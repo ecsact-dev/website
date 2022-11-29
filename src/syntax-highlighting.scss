@@ -1,41 +1,51 @@
+@use 'sass:color';
+
+@mixin syntax-color($color) {
+	color: $color;
+	&::selection {
+		color: color.scale($color, $lightness: 20%);
+	}
+}
+
 code[class*='language-'],
 pre[class*='language-'] {
 	.token.comment,
 	.token.prolog,
 	.token.doctype,
 	.token.cdata {
-		color: slategray;
+		@include syntax-color(slategray);
 	}
 
 	.token.punctuation {
-		color: #999;
+		@include syntax-color(#999);
 	}
 
 	.token.keyword {
-		color: #c678dd;
+		@include syntax-color(#c678dd);
 	}
 
 	.token.directive-hash {
-		color: #c678dd;
+		@include syntax-color(#c678dd);
 	}
 
 	.token.function {
-		color: #61afef;
+		@include syntax-color(#61afef);
 	}
 
 	.token.builtin {
-		color: #c678dd;
+		@include syntax-color(#c678dd);
 	}
 
 	.token.class-name {
-		color: #9b6a0f;
+		@include syntax-color(#9b6a0f);
+
 		@media (prefers-color-scheme: dark) {
-			color: #e5c07b;
+			@include syntax-color(#e5c07b);
 		}
 	}
 
 	.token.variable {
-		color: #e06c75;
+		@include syntax-color(#e06c75);
 	}
 
 	.token.important,
@@ -51,14 +61,14 @@ pre[class*='language-'] {
 	}
 
 	.token.number {
-		color: #d19a66;
+		@include syntax-color(#d19a66);
 	}
 
 	.token.operator {
-		color: #c678dd;
+		@include syntax-color(#c678dd);
 	}
 
 	.token.string {
-		color: #98c379;
+		@include syntax-color(#98c379);
 	}
 }
