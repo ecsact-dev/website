@@ -250,11 +250,16 @@ function isRepoSame(a, b) {
 async function main() {
 	let force = false;
 	let update = false;
+	let skipDocsGen = false;
 	for (const arg of process.argv) {
 		if (arg === '--force') {
 			force = true;
 		} else if (arg === '--update') {
 			update = true;
+		} else if (arg === '--only_update') {
+			force = true;
+			update = true;
+			skipDocsGen = true;
 		}
 	}
 
@@ -351,18 +356,21 @@ async function main() {
 				},
 				{
 					title: 'Extract Archive',
+					skip: () => skipDocsGen,
 					task: async (ctx, task) => {
 						await extractRepoArchive(repo, task);
 					},
 				},
 				{
 					title: 'Generate compile_commands.json',
+					skip: () => skipDocsGen,
 					task: async (ctx, task) => {
 						await generateCompileCommands(repo, task);
 					},
 				},
 				{
 					title: 'Run doxygen',
+					skip: () => skipDocsGen,
 					task: async (ctx, task) => {
 						await runDoxygen(repo, task);
 					},
