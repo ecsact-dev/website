@@ -1,0 +1,20 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+ng_ts_project(
+    name = "systems-in-cpp",
+    srcs = [
+        "systems-in-cpp.component.ts",
+        "systems-in-cpp.module.ts",
+        "systems-in-cpp-routing.module.ts",
+    ],
+    angular_assets = [
+        "systems-in-cpp.component.html",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

@@ -1,0 +1,20 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+ng_ts_project(
+    name = "cpp-to-wasm",
+    srcs = [
+        "cpp-to-wasm.component.ts",
+        "cpp-to-wasm.module.ts",
+        "cpp-to-wasm-routing.module.ts",
+    ],
+    angular_assets = [
+        "cpp-to-wasm.component.html",
+    ],
+    deps = [
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

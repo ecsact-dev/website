@@ -1,0 +1,17 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+ng_ts_project(
+    name = "tutorials",
+    srcs = ["tutorials-routing.module.ts"],
+    deps = [
+        "//src/app/start/tutorials/cpp-to-wasm",
+        "//src/app/start/tutorials/first-ecsact-file",
+        "//src/app/start/tutorials/systems-in-cpp",
+        "//src/app/start/tutorials/unity/basic-example",
+        "//src/app/start/tutorials/unity/moving-block",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)
