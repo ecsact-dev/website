@@ -7,3 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: bazel run //scripts:update_ecsact_sdk
+      - run: |
+        git add firebase.json &&
+        git commit -m "" &&
+        git push ||
+        echo no updates
