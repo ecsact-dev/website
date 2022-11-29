@@ -39,10 +39,10 @@
 			<pre
 				codeBlockVariationOption
 				optionTitle="PowerShell"><code prism language="powershell">
-				ecsact codegen tutorial.ecsact`
-					--plugin=cpp_header`
-					--plugin=systems_header`
-					--plugin=cpp_systems_header`
+				ecsact codegen tutorial.ecsact `
+					--plugin=cpp_header `
+					--plugin=systems_header `
+					--plugin=cpp_systems_header `
 					--plugin=cpp_systems_source
 			</code></pre>
 		</code-block-variation>
@@ -91,7 +91,7 @@
 			<pre
 				codeBlockVariationOption
 				optionTitle="C++"><code prism language="cpp">
-				#include "tutorial.systems.ecsact.hh"
+				#include "tutorial.ecsact.systems.hh"
 
 				void first::project::Gravity::impl(context& ctx) {{'{'}}
 					auto pos = ctx.get{{'<'}}Position{{'>'}}();

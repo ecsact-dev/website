@@ -1,1 +1,237 @@
-<p>cpp-to-wasm works!</p>
+<article>
+	<h1>Tutorial: C++ to Wasm</h1>
+
+	<section>
+		<h2 id="introduction">Introduction</h2>
+		<p>
+			If you're already familiar with the basics of Ecsact and want to start
+			creating system implementations then this is the tutorial for you. Here
+			you will learn what it takes to create a Wasm system implementation
+			written in C++ and compiled with Emscripten.
+		</p>
+		<p>
+			This tutorial builds off of the
+			<a routerLink="/start/tutorials/systems-in-cpp">Systems in C++</a>
+			tutorial.
+		</p>
+
+		<h3 id="prerequisites">Prerequisites</h3>
+		<p></p>
+		<ol>
+			<li>
+				<a routerLink="/install">Ecsact SDK</a> for the C++ code generators
+			</li>
+			<li>
+				<a href="https://emscripten.org/" target="_blank"
+					>Emscripten <span class="i24">open_in_new</span></a
+				>
+				for the <code>emcc</code> compiler
+			</li>
+		</ol>
+	</section>
+
+	<section>
+		<h2 id="compile-with-emsdk">Compile with Emscripten SDK</h2>
+		<p>
+			With our generated files and our system implementation written we're ready
+			to compile our Wasm file. Before we do that let's talk about what we
+			expect the wasm file to output.
+		</p>
+		<p>We're expecting the following to be available in the Wasm file.</p>
+		<ul>
+			<li>
+				Exported function <code>first__project__Gravity</code> because that's
+				the name of our C function implementation
+			</li>
+			<li>
+				Imported function
+				<code>ecsact_system_execution_context_get</code> because our system
+				implementation used <code>ctx.get</code>
+			</li>
+			<li>
+				Imported function
+				<code>ecsact_system_execution_context_update</code> becuse our system
+				implementation used <code>ctx.update</code>
+			</li>
+		</ul>
+		<p>
+			You can read more details in the
+			<a routerLink="/docs/system-impl-wasm">Wasm Systems Overview doc</a>. At
+			the end of this tutorial we'll supply you with a form to validate your
+			Wasm file right here in the tutorial.
+		</p>
+		<h3 id="using-emsdk">Compile with <code>emcc</code></h3>
+		<p>
+			If you haven't installed
+			<a
+				href="https://emscripten.org/docs/getting_started/downloads.html"
+				target="_blank"
+				>emsdk <span class="i24">open_in_new</span></a
+			>
+			yet you must do that now. Make sure you either have <code>emcc</code> in
+			your <code>PATH</code> or you're using a direct path to
+			<code>emcc</code> while following along.
+		</p>
+		<p>
+			This tutorial should work with all fairly recent versions of emsdk, but at
+			the time of wriring this tutorial <code>emcc -v</code> outputs the
+			following:
+		</p>
+		<pre><code prism language="shell">
+			emcc (Emscripten gcc/clang-like replacement + linker emulating GNU ld) 3.1.18 (d5ca9bba6513763d5bdddbd0efff759332bd85d7)
+			clang version 16.0.0 (https://github.com/llvm/llvm-project 48129cf0ed5053ed3fdf4f928180635e84892614)
+			Target: wasm32-unknown-emscripten
+			Thread model: posix
+			InstalledDir: C:\emsdk\upstream\bin
+		</code></pre>
+		<p>
+			Lets skip to the good part. Here's a snippet that you can run to compile a
+			Wasm file named <code>Gravity.wasm</code>.
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="powershell">
+				$EcsactInc = (ecsact config include_dir)
+				emcc -std=c++20 --no-entry -I"$EcsactInc" `
+				     -sEXPORTED_FUNCTIONS=_first__project__Gravity `
+				     -sERROR_ON_UNDEFINED_SYMBOLS=0 `
+				     -Wno-js-compiler `
+				     -o Gravity.wasm `
+				     Gravity.cc `
+				     tutorial.ecsact.systems.cc
+			</code></pre>
+			<pre codeBlockVariationOption><code prism language="bash">
+				EcsactInc=$(ecsact config include_dir)
+				emcc -std=c++20 --no-entry -I"$EcsactInc" \
+				     -sEXPORTED_FUNCTIONS=_first__project__Gravity \
+				     -sERROR_ON_UNDEFINED_SYMBOLS=0 \
+				     -Wno-js-compiler \
+				     -o Gravity.wasm \
+				     Gravity.cc \
+				     tutorial.ecsact.systems.cc
+			</code></pre>
+		</code-block-variation>
+		<p>I'll go over each command line option in order.</p>
+
+		<ul class="space-y-8">
+			<li>
+				<p><code>--std=c++20</code></p>
+				<p>
+					Tells the compiler to use the C++20 standard. All of ecsact is
+					expected to run in a C++20 compatible compiler.
+				</p>
+			</li>
+
+			<li>
+				<p><code>--no-entry</code></p>
+				<p>
+					Tells compiler to not use a main function. Wasm files built for ecsact
+					do not run on their own. They instead run specific exported functions.
+					An entry point is not required and shouldn't exist.
+				</p>
+			</li>
+			<li>
+				<p><code>-I</code></p>
+				<p>
+					Tells the compiler where to find include headers. The code generators
+					utilise headers from the Ecsat SDK that need to be found. The output
+					from
+					<code>ecsact --includedir</code> will show you where your ecsact
+					headers are installed.
+				</p>
+			</li>
+			<li>
+				<p><code>-sEXPORTED_FUNCTIONS=_first__project__Gravity</code></p>
+				<p>
+					Tells the compiler explicitly to export our C system implementation
+					function <code>_first__project__Gravity</code>.
+					<span class="i24">info</span> The leading underscore is only necessary
+					for Windows builds. <br /><br />
+					Read more about the <code>-sEXPORTED_FUNCTIONS</code> argument in the
+					<a
+						href="https://emscripten.org/docs/tools_reference/emcc.html?highlight=exported_functions#arguments"
+						>emcc docs <span class="i24">open_in_new</span></a
+					>
+				</p>
+			</li>
+
+			<li>
+				<p><code>-sERROR_ON_UNDEFINED_SYMBOLS=0</code></p>
+				<p>
+					Tells the compiler to ignore imports that don't have implementations
+					at compile time. Some functions the Wasm file will import are provided
+					by the ecsact runtime. Namely the
+					<code>ecsact_system_execution_context_*</code> functions. <br /><br />
+
+					Read more about the <code>-sERROR_ON_UNDEFINED_SYMBOLS</code> argument
+					in the
+					<a
+						href="https://emscripten.org/docs/tools_reference/emcc.html?highlight=exported_functions#arguments"
+						>emcc docs <span class="i24">open_in_new</span></a
+					>
+				</p>
+			</li>
+
+			<li>
+				<p><code>-Wno-js-compiler</code></p>
+				<p>Supresses a warning that is irrelevant to ecsact wasm files.</p>
+			</li>
+
+			<li>
+				<p><code>-o Gravity.wasm</code></p>
+				<p>
+					Specify the output path for our Wasm file. <code>emcc</code> supports
+					other file extension, but ecsact only works with
+					<code>.wasm</code> files.
+				</p>
+			</li>
+
+			<li>
+				<p><code>Gravity.cc</code></p>
+				<p>The source file we wrote our system implementation in.</p>
+			</li>
+
+			<li>
+				<p><code>tutorial.ecsact.systems.cc</code></p>
+				<p>
+					Generated source file responsible for implementation all the `ctx.*`
+					functions. The order here matters. This file must be <em>after </em>
+					<code>Gravity.cc</code>.
+				</p>
+			</li>
+		</ul>
+
+		<h3 id="validate">Validate your Wasm file</h3>
+		<p>
+			Lets check if we got the imports and exports we expected. Select your
+			<code>Gravity.wasm</code> file in the file select menu below.
+		</p>
+		<ecsact-wasm-system-impl-validator></ecsact-wasm-system-impl-validator>
+		<p>
+			If you see <strong>only </strong>
+			<code>ecsact_system_execution_context_*</code> methods in the imports and
+			<code>first__project__Gravity</code> in the exports with a
+			<span class="i24">check</span> next to it then you've created a valid Wasm
+			file suitable for use as a system implementation.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="next-steps">Next Steps</h2>
+		<p>
+			You've created a valid Wasm file to utilise in your project, but now it's
+			time to use it. Here are some more resources to continue learning:
+		</p>
+		<ul class="list-disc list-inside">
+			<li>
+				To keep learning about wasm system implementations, read the
+				<a routerLink="/docs/system-impl-wasm"
+					>Wasm Systems Overview documentation</a
+				>.
+			</li>
+			<li>
+				To start using your Wasm system implementation, read the
+				<a>using your systems in Unity</a> tutorial.
+			</li>
+		</ul>
+	</section>
+</article>

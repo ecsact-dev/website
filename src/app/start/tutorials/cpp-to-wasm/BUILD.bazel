@@ -13,6 +13,9 @@ ng_ts_project(
         "cpp-to-wasm.component.html",
     ],
     deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-wasm-system-impl-validator",
+        "//src/components/prism",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",
