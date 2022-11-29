@@ -1,1 +1,116 @@
-<p>systems-in-cpp works!</p>
+<article>
+	<h1>Tutorial: Systems in C++</h1>
+
+	<section>
+		<h2 id="introduction">Introduction</h2>
+		<p>
+			This tutorial assumes you've already followed along with the
+			<a routerLink="/start/tutorials/first-ecsact-file"
+				>your first Ecsact file</a
+			>
+			tutorial. We'll be implementing the systems in that tutorial in C++. Here
+			you will learn what a C++ system implementation looks like.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="codegen">Code Generation</h2>
+		<p>
+			Language support in Ecsact comes in the form of code generation. Headers
+			and source files are created based on your <code>.ecsact</code> files. The
+			<a routerLink="/start" fragment="install">Ecsact SDK</a> comes with the
+			Ecsact command line utility. Code generation is done through Ecsact
+			codegen plugins passed to the <code>codegen</code> subcommand.
+		</p>
+		<p>
+			Save your Ecsact file as <code>tutorial.ecsact</code> and run the
+			following command:
+		</p>
+		<code-block-variation>
+			<pre
+				codeBlockVariationOption
+				optionTitle="Bash"><code prism language="bash">
+				ecsact codegen tutorial.ecsact\
+					--plugin=cpp_header\
+					--plugin=systems_header\
+					--plugin=cpp_systems_header\
+					--plugin=cpp_systems_source
+			</code></pre>
+			<pre
+				codeBlockVariationOption
+				optionTitle="PowerShell"><code prism language="powershell">
+				ecsact codegen tutorial.ecsact`
+					--plugin=cpp_header`
+					--plugin=systems_header`
+					--plugin=cpp_systems_header`
+					--plugin=cpp_systems_source
+			</code></pre>
+		</code-block-variation>
+		<p>
+			The above command generates files for each plugin. The table below shows
+			which plugin causes which output file.
+		</p>
+		<table class="thin-scroll overflow-x-auto block">
+			<tr>
+				<th>Plugin</th>
+				<th>Output File</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td><code>cpp_header</code></td>
+				<td><code>tutorial.ecsact.hh</code></td>
+				<td>Contains component and action structs</td>
+			</tr>
+			<tr>
+				<td><code>systems_header</code></td>
+				<td><code>tutorial.systems.ecsact.h</code></td>
+				<td>C system implementation function declarations</td>
+			</tr>
+			<tr>
+				<td><code>cpp_systems_header</code></td>
+				<td><code>tutorial.systems.ecsact.hh</code></td>
+				<td>C++ system implementation function declarations</td>
+			</tr>
+			<tr>
+				<td><code>cpp_systems_source</code></td>
+				<td><code>tutorial.systems.ecsact.cc</code></td>
+				<td>
+					Source file containing implementations of the C system implementations
+					generated from <code>systems_header</code>. The implementations call
+					the C++ system implementations generated from
+					<code>cpp_sysutems_header</code>
+				</td>
+			</tr>
+		</table>
+		<p></p>
+	</section>
+
+	<section>
+		<h2 id="system-impl">System Implementation</h2>
+		<code-block-variation>
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
+				#include "tutorial.systems.ecsact.hh"
+
+				void first::project::Gravity::impl(context& ctx) {{'{'}}
+					auto pos = ctx.get{{'<'}}Position{{'>'}}();
+					pos.y -= 9.81f; // gravity on Earth m/s²
+					ctx.update(pos);
+				{{'}'}}
+
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2 id="next-steps">Next Steps</h2>
+		<ul>
+			<li>
+				<a routerLink="/start/tutorials/cpp-to-wasm"
+					>Compile C++ System Implementation to Wasm</a
+				>
+			</li>
+		</ul>
+	</section>
+</article>
