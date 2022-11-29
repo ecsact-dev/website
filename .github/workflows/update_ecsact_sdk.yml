@@ -9,6 +9,8 @@ jobs:
       - run: bazel run @yarn//:yarn
       - run: bazel run //scripts:update_ecsact_sdk
       - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add firebase.json &&
           git commit -m "" &&
           git push ||
