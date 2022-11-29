@@ -316,9 +316,30 @@ main article {
 		// Always using the dark theme in pre article tags
 		@include dark-color-scheme;
 		color: var(--color-text);
-		margin: 0px -32px;
+		margin: 0px 0px;
 		padding: 16px 32px;
 		background-color: $preBgColor;
+		border-radius: 16px;
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+		transition: 300ms ease box-shadow;
+		margin-bottom: 32px;
+
+		&:hover {
+			box-shadow: 0 12px 16px rgba(0, 0, 0, 0.16);
+		}
+		*::selection {
+			background: rgba(255, 255, 255, 0.16);
+		}
+	}
+
+	@media (max-width: 1600px) {
+		code-block-variation,
+		> section > pre,
+		> pre {
+			margin: 0px -32px;
+			border-radius: 0px;
+			box-shadow: none;
+		}
 	}
 
 	@media (max-width: 374px) {

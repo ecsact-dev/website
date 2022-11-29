@@ -1,0 +1,22 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+ng_ts_project(
+    name = "first-ecsact-file",
+    srcs = [
+        "first-ecsact-file.component.ts",
+        "first-ecsact-file.module.ts",
+        "first-ecsact-file-routing.module.ts",
+    ],
+    angular_assets = [
+        "first-ecsact-file.component.html",
+    ],
+    deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

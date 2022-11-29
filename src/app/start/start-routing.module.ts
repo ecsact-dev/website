@@ -43,18 +43,11 @@ const routes: Routes = [
 			),
 	},
 	{
-		path: 'tutorials/unity/moving-block',
+		path: 'tutorials',
 		loadChildren: () =>
-			import(
-				'../tutorials/unity/moving-block/moving-block-routing.module'
-			).then(m => m.MovingBlockRoutingModule),
-	},
-	{
-		path: 'tutorials/unity/basic-example',
-		loadChildren: () =>
-			import(
-				'../tutorials/unity/basic-example/basic-example-routing.module'
-			).then(m => m.BasicExampleRoutingModule),
+			import('./tutorials/tutorials-routing.module').then(
+				m => m.TutorialsRoutingModule,
+			),
 	},
 ];
 

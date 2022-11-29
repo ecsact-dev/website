@@ -90,6 +90,7 @@ const routes: Routes = [
 			// This is set to disabled because scroll position is controlled by the
 			// ContentComponent when a fragment exists and the AppComponent otherwise.
 			scrollPositionRestoration: 'disabled',
+			enableTracing: window.location.hostname === 'localhost',
 		}),
 	],
 	exports: [RouterModule],
