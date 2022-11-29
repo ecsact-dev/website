@@ -12,32 +12,44 @@
 	<div
 		class="before-search flex-col hidden peer-checked:flex md:flex peer-checked:fixed md:peer-checked:static peer-checked:top-top-nav-height peer-checked:bottom-0 peer-checked:left-0 peer-checked:bg-secondary peer-checked:shadow-lg md:peer-checked:shadow-none md:flex-row md:overflow-hidden gap-2 peer-checked:animate-slide-right">
 		<a
+			navItem
 			class="bg-logoBlack bg-contain bg-center bg-no-repeat w-16"
 			routerLink="/">
 		</a>
 		<a
+			navItem
 			routerLink="/"
 			routerLinkActive="active"
 			[routerLinkActiveOptions]="{exact: true}"
 			class="text-black flex md:hidden">
 			<span>Home</span>
 		</a>
-		<a routerLink="/start" routerLinkActive="active" class="text-black flex">
+		<a
+			navItem
+			routerLink="/start"
+			routerLinkActive="active"
+			class="text-black flex">
 			<span>Start</span>
 		</a>
 		<a
+			navItem
 			routerLink="/docs/overview"
 			routerLinkActive="active"
 			class="text-black flex">
 			<span>Documentation</span>
 		</a>
 		<a
+			navItem
 			routerLink="/reference"
 			routerLinkActive="active"
 			class="text-black flex">
 			<span>Reference</span>
 		</a>
-		<a routerLink="/roadmap" routerLinkActive="active" class="text-black flex">
+		<a
+			navItem
+			routerLink="/roadmap"
+			routerLinkActive="active"
+			class="text-black flex">
 			<span>Roadmap</span>
 		</a>
 	</div>
