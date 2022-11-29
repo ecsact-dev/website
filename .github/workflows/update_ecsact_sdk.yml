@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: bazel run @yarn//:yarn
       - run: bazel run //scripts:update_ecsact_sdk
       - run: |
           git add firebase.json &&
