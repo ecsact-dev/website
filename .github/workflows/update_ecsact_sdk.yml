@@ -1,1 +1,17 @@
 on: workflow_dispatch
+
+jobs:
+  update_ecsact_sdk:
+    name: 'Update Ecsact SDK'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: bazel run @yarn//:yarn
+      - run: bazel run //scripts:update_ecsact_sdk
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add firebase.json &&
+          git commit -m "updates Ecsact SDK redirects" &&
+          git push ||
+          echo no updates
