@@ -5,4 +5,5 @@ jobs:
     name: 'Update Ecsact SDK'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: bazel run //scripts:update_ecsact_sdk
