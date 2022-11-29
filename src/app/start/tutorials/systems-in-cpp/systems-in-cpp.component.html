@@ -87,6 +87,46 @@
 
 	<section>
 		<h2 id="system-impl">System Implementation</h2>
+		<p>
+			For every system in your Ecsact file a C function is generated for you.
+			More details about the C system implementation functions can be found in
+			the <a routerLink="/docs/system-impl">System Implementations doc</a>.
+		</p>
+		<p>
+			The C function for <code>Gravity</code> is in the
+			<code>tutorial.ecsact.systems.h</code> header and looks like this:
+		</p>
+
+		<pre><code prism language="c">
+			void first__project__Gravity(ecsact_system_execution_context*);
+		</code></pre>
+
+		<p>
+			Thankfully the C++ code generators we ran earlier implements this C
+			function for us. It does this by calling the C++ wrapper version of the
+			implementation.
+		</p>
+		<p>
+			The C++ function for <code>Gravity</code> is in the
+			<code>tutorial.ecsact.systems.hh</code> header and looks like this:
+		</p>
+
+		<pre><code prism language="cpp">
+			namespace first::project {{'{'}}
+				void Gravity::impl(context&);
+			{{'}'}}
+		</code></pre>
+
+		<h3 id="write-the-impl">Writing the implementation</h3>
+		<p>
+			Okay now that we've talked about the relevant generated C++ we can start
+			writing our implementation. The <code>context</code> parameter of the C++ implementation contains all the functionality the system is allows to access.
+		</p>
+
+		<p>
+			For our example system <code>Gravity</code> only <code>{{'ctx.get\<Position\>()'}}</code> and <code>{{'ctx.update\<Position\>()'}}</code> are available due to our <code>readwrite</code> capability of <code>Position</code>. Any other method you try to use in <code>context</code> will result in a compile-time error.
+		</p>
+
 		<code-block-variation>
 			<pre
 				codeBlockVariationOption
@@ -101,6 +141,10 @@
 
 			</code></pre>
 		</code-block-variation>
+
+		<p>
+			Our <code>Gravity</code> implementation is very simple and makes a lot of assumptions, but there's nothing stopping you from introducting third party libraries for more interesting implementations. That being said the only state you may manipulate is the state inside your systems <code>context</code>. System implementations should be <a target="_blank" href="https://en.wikipedia.org/wiki/Pure_function"><span class="i24">open_in_new</span> pure functions</a>.
+		</p>
 	</section>
 
 	<section>
