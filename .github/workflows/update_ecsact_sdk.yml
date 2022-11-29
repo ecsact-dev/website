@@ -1,1 +1,8 @@
 on: workflow_dispatch
+
+jobs:
+  update_ecsact_sdk:
+    name: 'Update Ecsact SDK'
+    runs-on: ubuntu-latest
+    steps:
+      - run: bazel run //scripts:update_ecsact_sdk
