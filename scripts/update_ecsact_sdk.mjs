@@ -28,11 +28,14 @@ async function main() {
 				type: 302,
 			});
 		} else {
-			console.log(
-				`Updating asset ${websiteSourcePath} destination: ${downloadUrl.toString()}`,
-			);
-			firebaseJson.hosting.redirects[index].destination =
-				downloadUrl.toString();
+			const existingRedirect = firebaseJson.hosting.redirects[index];
+
+			if (existingRedirect.destination !== downloadUrl.toString()) {
+				console.log(
+					`Updating asset ${websiteSourcePath} destination: ${downloadUrl.toString()}`,
+				);
+				existingRedirect.destination = downloadUrl.toString();
+			}
 		}
 	}
 
