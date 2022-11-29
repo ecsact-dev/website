@@ -257,7 +257,6 @@ async function main() {
 		} else if (arg === '--update') {
 			update = true;
 		} else if (arg === '--only_update') {
-			force = true;
 			update = true;
 			skipDocsGen = true;
 		}
@@ -282,13 +281,17 @@ async function main() {
 
 	let ghAuthToken = '';
 	if (update) {
-		try {
-			ghAuthToken = spawnSync('gh', ['auth', 'token']).stdout.toString();
-		} catch (err) {
-			console.error(
-				'gh auth token failed. Please make sure you have the GitHub CLI installed and you are authenticated',
-			);
-			process.exit(1);
+		if (process.env.GITHUB_TOKEN) {
+			ghAuthToken = process.env.GITHUB_TOKEN;
+		} else {
+			try {
+				ghAuthToken = spawnSync('gh', ['auth', 'token']).stdout.toString();
+			} catch (err) {
+				console.error(
+					'gh auth token failed. Please make sure you have the GitHub CLI installed and you are authenticated',
+				);
+				process.exit(1);
+			}
 		}
 	}
 
