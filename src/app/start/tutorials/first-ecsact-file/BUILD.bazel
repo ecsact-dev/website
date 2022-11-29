@@ -13,6 +13,8 @@ ng_ts_project(
         "first-ecsact-file.component.html",
     ],
     deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/router",

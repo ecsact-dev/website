@@ -3,6 +3,112 @@
 
 	<section>
 		<h2 id="introduction">Introduction</h2>
-		<p></p>
+		<p>
+			In this tutorial, you will create your first Ecsact file. Later in other
+			tutorials this Ecsact file will be the basis for learning how to write
+			systems implementations.
+		</p>
+		<p>
+			An Ecsact file can be considered a written contract for how your
+			simulation works. State is declared with components and execution is
+			declared with systems and their system capabilities.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="package-statement">The Package Statement</h2>
+		<p>Every Ecsact file starts with a <code>package</code> statement.</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				package first.project;
+			</code></pre>
+		</code-block-variation>
+		<p>
+			The package name is similar to a <em>namespace</em> in other languages
+			except it must be unique. Later on when you have multiple Ecsact files you
+			can also <a>import</a> packages with this name.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="first-component">First Component</h2>
+		<p>
+			Next up we declare the state for our simulation. This is done with
+			<em>components</em>. Let's start off with simple common component called
+			<code>Position</code>.
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				component Position {{'{'}}
+					f32 x;
+					f32 y;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			We'll use this <code>Position</code> component to represent our entities
+			coordinates in the world. Before adding more state let's move onto adding
+			a system that will use this component.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="first-system">First System</h2>
+		<p>
+			Now that we have some state in the form of our
+			<code>Position</code> component, lets do something with it! System
+			declarations specify <a>system capabilities</a> which states what
+			components a system is allowed to do with <em>which</em> components.
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				system Gravity {{'{'}}
+					readwrite Position;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+		<p>
+			There we go! We've specified that we want to <code>readwrite</code> the
+			component <code>Position</code>. Our system <code>Gravity</code> will run
+			on only entities that have the component <em>Position</em> and on no
+			others.
+		</p>
+		<p>
+			System declarations are only 1 part of functional system. The other part
+			is the <em>system implementation</em>. This tutorial doesn't go over
+			system implementations. In the
+			<a [routerLink]="[]" fragment="next-steps">next steps</a> you'll have the
+			option to learn about implementing systems in various languages.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="full-ecsact-file">Full Ecsact File</h2>
+		<p>This is the full Ecsact file from this tutorial for your convenience!</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code ecsactLangSyntax>
+				package first.project;
+
+				component Position {{'{'}}
+					f32 x;
+					f32 y;
+				{{'}'}}
+
+				system Gravity {{'{'}}
+					readwrite Position;
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2 id="next-steps">Next Steps</h2>
+		<ul>
+			<li>
+				<a routerLink="/start/systems-in-cpp"
+					>First System Implementation in C++</a
+				>
+			</li>
+		</ul>
 	</section>
 </article>
