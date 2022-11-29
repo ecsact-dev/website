@@ -10,3 +10,15 @@ nodejs_binary(
     ],
     entry_point = "doxygen_devref.mjs",
 )
+
+nodejs_binary(
+    name = "update_ecsact_sdk",
+    data = [
+        "@npm//download",
+        "@npm//execa",
+        "@npm//fs-extra",
+        "@npm//listr",
+        "@npm//yauzl",
+    ],
+    entry_point = "update_ecsact_sdk.mjs",
+)
