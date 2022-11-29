@@ -259,18 +259,26 @@ table.sticky {
 	@include dark-color-scheme;
 }
 
-.i48 {
+@mixin icon-style($size) {
+	min-width: 1em;
+	max-width: 1em;
+	display: inline-block;
+	overflow: hidden;
+	font-weight: normal;
+	font-style: normal;
 	user-select: none;
 	font-family: 'Material Symbols Outlined';
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' $size;
 	vertical-align: top;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
 }
 
+.i48 {
+	@include icon-style(48);
+}
 .i24 {
-	user-select: none;
-	font-family: 'Material Symbols Outlined';
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-	vertical-align: top;
+	@include icon-style(24);
 }
 
 @mixin thin-scroll($color, $bgColor) {

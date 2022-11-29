@@ -2,9 +2,9 @@
 	class="top-nav relative bg-secondary"
 	[class.search-focused]="search.isFocused()">
 	<span
-		class="i48 md:hidden absolute top-2 left-2 bg-secondary block select-none pointer-events-none text-2xl text-black"
-		>menu</span
-	>
+		class="md:hidden absolute top-2 left-2 bg-secondary block select-none pointer-events-none text-2xl">
+		<span class="i48 text-black">menu</span>
+	</span>
 	<input
 		#mobileMenuToggle
 		type="checkbox"
