@@ -12,6 +12,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add firebase.json &&
-          git commit -m "" &&
+          git commit -m "updates Ecsact SDK redirects" &&
           git push ||
           echo no updates
