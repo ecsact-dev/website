@@ -91,7 +91,6 @@ function getDoxygenParagraph(para: Element): DoxygenParagraph {
 
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
-		console.log('define', el);
 		const defineParams: DoxygenDefineParameter[] = [];
 
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -119,14 +118,13 @@ const doxygenMemberDefParseFns = {
 		};
 	},
 	enum: (def: DoxygenBaseDef, el: Element): DoxygenEnumMemberDef => {
-		console.log('TODO enum', el);
 		const enumValueParameters: DoxygenEnumParameter[] = [];
 		for (const paramEl of Array.from(el.querySelectorAll('enumvalue'))) {
 			const detailedDescription = getDetailedDescription(paramEl);
 
 			let param: DoxygenEnumParameter = {
 				name: paramEl.querySelector('name').textContent.trim(),
-				initializer: paramEl.querySelector('initializer').textContent.trim(),
+				initializer: paramEl.querySelector('initializer')?.textContent.trim() || '',
 				access: paramEl.getAttribute('prot') as any,
 				brief: paramEl.querySelector('briefdescription').textContent.trim(),
 				detailedDescription: detailedDescription,
@@ -325,7 +323,6 @@ const doxygenMemberDefParseFns = {
 
 const doxygenCompoundDefParseFns = {
 	page: (def: DoxygenBaseDef, el: Element): DoxygenPageDef => {
-		console.log('page def el', el);
 
 		return {
 			...def,
@@ -338,7 +335,6 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	file: (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
-		console.log('TODO file def', el);
 
 		const sections = {
 			define: [] as DoxygenDefineMemberDef[],
@@ -531,7 +527,7 @@ function doxygenInnerNamespace(el: Element): DoxygenInnerNamespaceDef {
 function getDetailedDescription(el: Element): DoxygenParagraph[] {
 	const detailedDescription: DoxygenParagraph[] = [];
 	const detailedDescEl = el.querySelector('detaileddescription');
-
+	
 	if (detailedDescEl) {
 		for (const para of Array.from(detailedDescEl.children)) {
 			const doxygenParagraph = getDoxygenParagraph(para);
