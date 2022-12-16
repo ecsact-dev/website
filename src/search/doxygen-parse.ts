@@ -323,7 +323,6 @@ const doxygenMemberDefParseFns = {
 
 const doxygenCompoundDefParseFns = {
 	page: (def: DoxygenBaseDef, el: Element): DoxygenPageDef => {
-		console.log('page def el', el);
 
 		return {
 			...def,
@@ -336,7 +335,6 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	file: (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
-		console.log('TODO file def', el);
 
 		const sections = {
 			define: [] as DoxygenDefineMemberDef[],
@@ -530,10 +528,8 @@ function getDetailedDescription(el: Element): DoxygenParagraph[] {
 	const detailedDescription: DoxygenParagraph[] = [];
 	const detailedDescEl = el.querySelector('detaileddescription');
 	
-	console.log('DETAILED DESCRIPTION:', detailedDescEl);
 	if (detailedDescEl) {
 		for (const para of Array.from(detailedDescEl.children)) {
-			console.log(para);
 			const doxygenParagraph = getDoxygenParagraph(para);
 
 			if (doxygenParagraph.length > 0) {
