@@ -91,7 +91,6 @@ function getDoxygenParagraph(para: Element): DoxygenParagraph {
 
 const doxygenMemberDefParseFns = {
 	define: (def: DoxygenBaseDef, el: Element): DoxygenDefineMemberDef => {
-		console.log('define', el);
 		const defineParams: DoxygenDefineParameter[] = [];
 
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
@@ -122,9 +121,6 @@ const doxygenMemberDefParseFns = {
 		const enumValueParameters: DoxygenEnumParameter[] = [];
 		for (const paramEl of Array.from(el.querySelectorAll('enumvalue'))) {
 			const detailedDescription = getDetailedDescription(paramEl);
-
-			console.log(paramEl);
-			console.log(detailedDescription);
 
 			let param: DoxygenEnumParameter = {
 				name: paramEl.querySelector('name').textContent.trim(),
