@@ -124,7 +124,8 @@ const doxygenMemberDefParseFns = {
 
 			let param: DoxygenEnumParameter = {
 				name: paramEl.querySelector('name').textContent.trim(),
-				initializer: paramEl.querySelector('initializer')?.textContent.trim() || '',
+				initializer:
+					paramEl.querySelector('initializer')?.textContent.trim() || '',
 				access: paramEl.getAttribute('prot') as any,
 				brief: paramEl.querySelector('briefdescription').textContent.trim(),
 				detailedDescription: detailedDescription,
@@ -323,7 +324,6 @@ const doxygenMemberDefParseFns = {
 
 const doxygenCompoundDefParseFns = {
 	page: (def: DoxygenBaseDef, el: Element): DoxygenPageDef => {
-
 		return {
 			...def,
 			kind: 'page',
@@ -335,7 +335,6 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	file: (def: DoxygenBaseDef, el: Element): DoxygenFileDef => {
-
 		const sections = {
 			define: [] as DoxygenDefineMemberDef[],
 			enum: [] as DoxygenEnumMemberDef[],
@@ -526,8 +525,11 @@ function doxygenInnerNamespace(el: Element): DoxygenInnerNamespaceDef {
 
 function getDetailedDescription(el: Element): DoxygenParagraph[] {
 	const detailedDescription: DoxygenParagraph[] = [];
-	const detailedDescEl = el.querySelector('detaileddescription');
-	
+	const detailedDescEl =
+		Array.from(el.children).find(
+			el => el.nodeName.toLowerCase() === 'detaileddescription',
+		) || el.querySelector('detaileddescription');
+
 	if (detailedDescEl) {
 		for (const para of Array.from(detailedDescEl.children)) {
 			const doxygenParagraph = getDoxygenParagraph(para);
