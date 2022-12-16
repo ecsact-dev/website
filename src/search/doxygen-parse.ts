@@ -119,14 +119,16 @@ const doxygenMemberDefParseFns = {
 		};
 	},
 	enum: (def: DoxygenBaseDef, el: Element): DoxygenEnumMemberDef => {
-		console.log('TODO enum', el);
 		const enumValueParameters: DoxygenEnumParameter[] = [];
 		for (const paramEl of Array.from(el.querySelectorAll('enumvalue'))) {
 			const detailedDescription = getDetailedDescription(paramEl);
 
+			console.log(paramEl);
+			console.log(detailedDescription);
+
 			let param: DoxygenEnumParameter = {
 				name: paramEl.querySelector('name').textContent.trim(),
-				initializer: paramEl.querySelector('initializer').textContent.trim(),
+				initializer: paramEl.querySelector('initializer')?.textContent.trim() || '',
 				access: paramEl.getAttribute('prot') as any,
 				brief: paramEl.querySelector('briefdescription').textContent.trim(),
 				detailedDescription: detailedDescription,
@@ -531,9 +533,11 @@ function doxygenInnerNamespace(el: Element): DoxygenInnerNamespaceDef {
 function getDetailedDescription(el: Element): DoxygenParagraph[] {
 	const detailedDescription: DoxygenParagraph[] = [];
 	const detailedDescEl = el.querySelector('detaileddescription');
-
+	
+	console.log('DETAILED DESCRIPTION:', detailedDescEl);
 	if (detailedDescEl) {
 		for (const para of Array.from(detailedDescEl.children)) {
+			console.log(para);
 			const doxygenParagraph = getDoxygenParagraph(para);
 
 			if (doxygenParagraph.length > 0) {

@@ -1,21 +1,20 @@
 <doxygen-name [access]="def.access" [static]="def.static"
 	><h1>{{ def.name }}</h1></doxygen-name
 >
-<h3>Parameters</h3>
 <div
 	*ngFor="let parameter of def.parameters"
-	class="odd:bg-black/5 dark:odd:bg-white/5">
+	class="bg-black/5 dark:bg-secondary/5 my-6 rounded shadow-md">
 	<div class="flex flex-row">
 		<div class="pl-2 py-4" id="{{ parameter.name }}">
 			<code>{{ parameter.name }}</code>
 		</div>
-		<div class="pl-2 py-4">
+		<div class="pl-2 py-4" *ngIf="parameter.initializer">
 			<code>{{ parameter.initializer }}</code>
 		</div>
 	</div>
 	<div class="pb-2 pl-2">
 		<doxygen-description
-			[description]="def.detailedDescription"></doxygen-description>
+			[description]="parameter.detailedDescription"></doxygen-description>
 	</div>
 </div>
 <doxygen-location [location]="def.location"></doxygen-location>
