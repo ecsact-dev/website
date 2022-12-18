@@ -29,6 +29,13 @@ $whiteColor: #d4d4d4;
 	.brand.godot {
 		background-image: url(assets/brand/godot-dark.png);
 	}
+	.brand.discord {
+		background-image: url(assets/brand/discord-mark-white.svg);
+	}
+	.brand.github {
+		background-image: url(assets/brand/github-mark.svg);
+		filter: invert(1);
+	}
 }
 
 @mixin light-color-scheme {
@@ -53,6 +60,13 @@ $whiteColor: #d4d4d4;
 	}
 	.brand.godot {
 		background-image: url(assets/brand/godot-light.png);
+	}
+	.brand.discord {
+		background-image: url(assets/brand/discord-mark-white.svg);
+		filter: invert(1);
+	}
+	.brand.github {
+		background-image: url(assets/brand/github-mark.svg);
 	}
 }
 
@@ -326,9 +340,6 @@ main article {
 
 		&:hover {
 			box-shadow: 0 12px 16px rgba(0, 0, 0, 0.16);
-		}
-		*::selection {
-			background: rgba(255, 255, 255, 0.16);
 		}
 	}
 
