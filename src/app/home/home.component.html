@@ -45,10 +45,47 @@
 			</a>
 		</div>
 	</section>
+
+	<div class="bg-black/5 dark:bg-white/5">
+		<section class="max-w-2xl my-8 center mx-auto px-4 py-16">
+			<div class="flex flex-col lg:flex-row gap-8 items-start">
+				<div>
+					<h2>What is ECS?</h2>
+					<p>
+						ECS (Entity Component System) is an architecture where state and
+						behaviour are separated into components and systems. Components
+						(state/data) are associated with an entity and systems
+						(behaviour/function) are executed to read and mutate components.
+					</p>
+				</div>
+
+				<div>
+					<h2>Why ECS?</h2>
+					<p>
+						Components can be mixed and matched together to affect the behaviour
+						of an entity. This composition based design allows for a greater
+						amount of flexibility than other design patterns such as
+						inheritance.
+					</p>
+				</div>
+			</div>
+			<div class="flex flex-row items-center justify-center">
+				<p class="font-bold">
+					<a class="btn text-secondary/50 bg-secondary" routerLink="/docs/ecs">
+						<span class="text-black">
+							<span class="i48">school</span>
+							Learn More
+						</span>
+					</a>
+				</p>
+			</div>
+		</section>
+	</div>
+
 	<section
 		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">
 		<div class="flex-1">
-			<h2>ECS <em>enforced</em>.</h2>
+			<h2>Ecsact is ECS <em>enforced</em>.</h2>
 			<p>
 				Prevent mistakes by having a language that forces the
 				<em>best</em> use of ECS.
