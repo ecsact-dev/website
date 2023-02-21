@@ -13,6 +13,21 @@
     ],
     "redirects": [
       {
+        "source": "/ecsact_sdk_0.4.5_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.5_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.5_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
         "source": "/ecsact_sdk_0.4.4_windows_x64.zip",
         "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_windows_x64.zip",
         "type": 302
@@ -79,7 +94,7 @@
       },
       {
         "source": "/ecsact_sdk.appinstaller",
-        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk.appinstaller",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk.appinstaller",
         "type": 302
       }
     ],
