@@ -2,14 +2,29 @@
 	<h1>Creating Entities in Unity</h1>
 	<p>There are multiple ways to create entities in Unity with Ecsact</p>
 	<section>
-		<h2 id="registry">Using the Registry</h2>
+		<h2 id="registry">Using executionOptions</h2>
 		<p>
-			The <code>Registry</code> can be used to create entities. It returns the
-			ID of the entity created
+			The <code>Runner</code> can be used to create entities through its
+			options. It has an optional callback with the new entity's ID
 		</p>
 		<code-block-variation>
 			<pre
-				codeBlockVariationOption><code prism language="csharp">int entityId = Ecsact.Defaults.Registry.CreateEntity();</code></pre>
+				codeBlockVariationOption><code prism language="csharp">Ecsact.Defaults.Runner.executionOptions.CreateEntity((entityId) ={{'>'}} {{'{'}}{{'}'}});</code></pre>
+		</code-block-variation>
+
+		<p>
+			<code>CreateEntity</code> also returns a builder that allows it to be
+			created with initial components
+		</p>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+					var fooComponent = new example.Foo {{'{'}}.someValue = 5{{'}'}};
+					var barComponent = new example.Bar {{'{'}}.someOtherValue = 10{{'}'}};
+
+					Ecsact.Defaults.Runner.executionOptions
+						.CreateEntity((entityId) ={{'>'}} {{'{'}}{{'}'}})
+						.AddComponent(fooComponent)
+						.AddComponent(barComponent);</code></pre>
 		</code-block-variation>
 	</section>
 	<section>

@@ -15,35 +15,76 @@
 			The Registry is an easy way to use core functionality from the Runtime. It
 			simplifies how they're called and needs less information from the user.
 		</p>
+		<p>
+			NOTE: If Async is enabled in the Ecsact settings the default Registry will
+			be NULL
+		</p>
 	</section>
 	<section>
 		<h2 id="runner">Runner</h2>
 		<p>
-			The Runner stores and executes actions and runs the Ecsact execution. You
-			can choose the following options:
+			The Runner stores and executes its options that are explained more below.
+			There are two types of runners. Both has synonymous functionality with a
+			few key differences:
+		</p>
+		<h3>Default Runner</h3>
+		<p>
+			Runs the Ecsact execution synchronously. You can choose the following
+			options:
 		</p>
 		<ol>
 			<li><code>Default</code>: Executes per Update tick</li>
 			<li><code>Fixed Update</code>: Executes per FixedUpate tick</li>
 			<li><code>None</code>: Implement your own Runner</li>
 		</ol>
+		<h3>Async Runner</h3>
+		<p>
+			Runs the Ecsact execution asynchronously. If you're interested in
+			developing multiplayer games this is the way to go. There are some
+			differences in how it's used.
+		</p>
+		<ul>
+			<li>
+				the Default Registry is NULL which comes at the cost of direct access to
+				its inner workings
+			</li>
+			<li>
+				Instead of choosing how the Ecsact execution functions, you instead
+				connect to the reference with a <code>delta speed</code>. This is the
+				time in milliseconds it takes for systems to be executed
+			</li>
+		</ul>
+
 		<h3>ExecutionOptions</h3>
-		<p>Allows you to add actions to the execution to be performed</p>
+		<p>
+			Allows the creation and destruction of entities, adding and removing
+			components and pushing actions
+		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
 				main package example;
 
-				action BasicAction {{'{'}}{{'}'}}</code></pre>
+				action BasicAction {{'{'}}{{'}'}}
+
+				component Foo;
+			</code></pre>
 		</code-block-variation>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 // An action declared in Ecsact
-example.BasicAction basicAction;
+var basicAction = ecsact.basicAction;
 
 // Pushes the action to the executionOptions
 Ecsact.Defaults.Runner.executionOptions.PushAction(
 	basicAction
-);</code></pre>
+);
+
+// Declare component type of Foo
+var fooComponent = example.Foo;
+
+// Add a component to an entity with its ID
+Ecsact.Defaults.Runner.executionOptions.AddComponent(entityId, fooComponent);
+</code></pre>
 		</code-block-variation>
 		<p></p>
 	</section>

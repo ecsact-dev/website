@@ -1,0 +1,68 @@
+<article>
+	<h1>Using the Async Runner</h1>
+	<p>
+		You might have already noticed if you're using the project from the repo,
+		but there's one more scene called <code>AsyncMenu</code>. The menu starts a
+		connection with the async reference.
+	</p>
+
+	<h2>Enable the Async Runner</h2>
+	<p>
+		To change to the Async <a href="docs/unity/defaults#runner">Runner</a>, all
+		you have to do is select it from the Runner dropdown in Ecsact's Project
+		Settings
+	</p>
+	<img src="/assets/EnableAsyncRunner.png" height="800" width="800" />
+
+	<h2>Async Menu</h2>
+	<code-block-variation>
+		<pre codeBlockVariationOption><code prism language="csharp">
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
+
+public class AsyncMenu : MonoBehaviour {{'{'}}
+
+    public Button? connectBtn;
+    public TMP_Dropdown? dropdown;
+
+    private List<{{'string'}}> options = new();
+
+    void OnEnable() {{'{'}}
+				// Add scenes to an options list
+        options.Add("BasicExample");
+        options.Add("MovingBlock");
+
+        dropdown.AddOptions(options);
+
+        connectBtn.onClick.AddListener(onButtonClick);
+		{{'}'}}
+
+    void onButtonClick() {{'{'}}
+        var sceneName = options[dropdown.value];
+        Debug.Log("Loading scene " + sceneName);
+
+			// Load selected scene
+        SceneManager.LoadScene(sceneName);
+
+        var millisecondTime = Time.fixedDeltaTime * 1000;
+
+        Debug.Log("Loading with time(ms): " + millisecondTime);
+
+			// Connect to the async reference
+        Ecsact.Defaults.Runtime.async.Connect("good?tick_rate="+millisecondTime);
+		{{'}'}}
+
+    void OnDisable() {{'{'}}
+        connectBtn.onClick.RemoveAllListeners();
+		{{'}'}}
+{{'}'}}
+		</code></pre>
+	</code-block-variation>
+	<p>
+		That's it! Load your scenes and try different delta speeds to try out how
+		async works.
+	</p>
+</article>

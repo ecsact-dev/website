@@ -11,6 +11,7 @@ ng_ts_project(
         "//src/app/start/tutorials/systems-in-cpp",
         "//src/app/start/tutorials/unity/basic-example",
         "//src/app/start/tutorials/unity/moving-block",
+        "//src/app/start/tutorials/unity/using-async",
         "@npm//@angular/core",
         "@npm//@angular/router",
     ],
