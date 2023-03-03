@@ -1,0 +1,30 @@
+load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+
+package(default_visibility = ["//src:__subpackages__"])
+
+sass_binary(
+    name = "styles",
+    src = "using-async.component.scss",
+)
+
+ng_ts_project(
+    name = "using-async",
+    srcs = [
+        "using-async.component.ts",
+        "using-async.module.ts",
+        "using-async-routing.module.ts",
+    ],
+    angular_assets = [
+        "using-async.component.html",
+        ":styles",
+    ],
+    deps = [
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
+        "@npm//@angular/common",
+        "@npm//@angular/core",
+        "@npm//@angular/router",
+    ],
+)

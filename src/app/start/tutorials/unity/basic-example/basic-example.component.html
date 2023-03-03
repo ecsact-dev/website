@@ -55,51 +55,9 @@
 			Great! We have a simple <code>.Ecsact</code> file we can build on. Now we
 			can make a C# script in Unity, for our use it will be called
 			<code>BasicExample.cs</code>. This script will allow us to
-			<a href="/docs/unity/entities">create an entity</a>
+			<a href="/docs/unity/entities">create an entity</a> with some components
 		</p>
-
-		<code-block-variation>
-			<pre codeBlockVariationOption><code prism language="csharp">
-				// The Registry is a convenient way to access the Core api.
-				int entityId = Ecsact.Defaults.Registry.CreateEntity();
-			</code></pre>
-		</code-block-variation>
-	</section>
-	<section>
-		<h2 id="listeners">Runtime Listeners</h2>
-		<p>
-			The <a href="docs/unity/defaults">Runtime</a> gives you access to
-			everything used during Unity's runtime. In this case, we can add listeners
-			for changes to component state
-		</p>
-
-		<code-block-variation>
-			<pre codeBlockVariationOption><code prism language="csharp">
-				// Added on the class to cleanup event listeners
-				List<{{'System.Action'}}> cleanUpFns = new();
-
-				cleanUpFns.AddRange(new[] {{'{'}}
-					// Callback that's invoked on the removal of a component
-					Ecsact.Defaults.Runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
-						Debug.Log("Example component removed");
-					{{'}'}}),
-					// Callback that's invoked on the removal of a component
-					Ecsact.Defaults.Runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
-						Debug.Log(component.example_value);
-					{{'}'}})
-				{{'}'}});
-			</code></pre>
-		</code-block-variation>
-
-		<p>
-			Whenever a component is updated and removed, these callbacks will be
-			invoked. We'll go over how to update components later, but first we'll
-			declare the components to add to our newly created entity
-		</p>
-	</section>
-
-	<section>
-		<h2 id="components">Declaring and adding components</h2>
+		<p>We'll start by declaring the components we'll be adding to our entity</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 				// Declare an Example component type
@@ -114,27 +72,58 @@
 		<p>
 			Components can be declared from the namespace that is dervied from the
 			name of your package in the <code>.ecsact</code> file. Now that we have
-			our components, we can add it to an entity with its id using the
-			<code>Registry</code>
+			our components, we can add them to a newly created entity using the
+			Runner's <code>executionOptions</code>
 		</p>
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-				// Add components to your entity
-				Ecsact.Defaults.Registry.AddComponent(
-					entityId,
-					exampleComponent
-				);
-
-				Ecsact.Defaults.Registry.AddComponent(
-					entityId,
-					removeComponent
-				);
+				Ecsact.Defaults.Runner.executionOptions
+					.CreateEntity()
+					.AddComponent(exampleComponent)
+					.AddComponent(removeComponent);
 			</code></pre>
 		</code-block-variation>
 	</section>
 	<section>
-		<p>Then, when the class is destroyed the listeners will be cleaned up</p>
+		<h2 id="listeners">Runtime Listeners</h2>
+		<p>
+			The <a href="docs/unity/defaults">Runtime</a> gives you access to
+			everything used during Unity's runtime. For example, listeners can be
+			added for changes to component state or when an entity is created or
+			destroyed.
+		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				// Added on the class to cleanup event listeners
+				List<{{'System.Action'}}> cleanUpFns = new();
+
+				cleanUpFns.AddRange(new[] {{'{'}}
+					// Callback invoked when Example component is added
+					Ecsact.Defaults.Runtime.OnInitComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
+						Debug.Log("Example component added");
+						Debug.Log(component.example_value);
+					{{'}'}}),
+					// Callback invoked when Example component is updated
+					Ecsact.Defaults.Runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
+						Debug.Log(component.example_value);
+					{{'}'}}),
+					// Callback invoked when Example component is removed
+					Ecsact.Defaults.Runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
+						Debug.Log("Example component removed");
+					{{'}'}}),
+					// Callback invoked on the creation of an entity
+					Ecsact.Defaults.Runtime.OnEntityCreated((entityId, placeholderId) => {{'{'}}
+						Debug.Log("Entity created");
+					{{'}'}})
+				{{'}'}});
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<p>When the class is destroyed the listeners will be cleaned up</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
 			void OnDestroy() {{'{'}}

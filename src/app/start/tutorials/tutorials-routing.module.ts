@@ -37,6 +37,13 @@ const routes: Routes = [
 				m => m.BasicExampleRoutingModule,
 			),
 	},
+	{
+		path: 'unity/using-async',
+		loadChildren: () =>
+			import('./unity/using-async/using-async-routing.module').then(
+				m => m.UsingAsyncRoutingModule,
+			),
+	},
 ];
 
 @NgModule({
