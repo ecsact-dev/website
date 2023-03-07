@@ -45,46 +45,74 @@
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using TMPro;
+			using System.Collections.Generic;
+			using UnityEngine;
+			using UnityEngine.UI;
+			using UnityEngine.SceneManagement;
+			using TMPro;
 
-public class AsyncMenu : MonoBehaviour {{'{'}}
+			public class AsyncMenu : MonoBehaviour {{'{'}}
 
-    public Button? connectBtn;
-    public TMP_Dropdown? dropdown;
+				public Button connectBtn;
+				public TMP_Dropdown dropdown;
+				public TMP_InputField connectionString;
 
-    private List<{{'string'}}> options = new();
+				private List<{{'string'}}> options = new();
 
-    void OnEnable() {{'{'}}
-        options.Add("BasicExample");
-        options.Add("MovingBlock");
+				void OnEnable() {{'{'}}
+					options.Add("BasicExample");
+					options.Add("MovingBlock");
 
-        dropdown.AddOptions(options);
+					dropdown.AddOptions(options);
 
-        connectBtn.onClick.AddListener(onButtonClick);
-		{{'}'}}
+					// This connection string will start a connection with 20ms delta time
+					// At 20ms, systems will execute 50 times/sec (1000ms / 20ms)
+					connectionString.text = "good?delta_time=20";
 
-    void onButtonClick() {{'{'}}
-        var sceneName = options[dropdown.value];
-        Debug.Log("Loading scene " + sceneName);
+					connectBtn.onClick.AddListener(onButtonClick);
 
-        SceneManager.LoadScene(sceneName);
+					// Callback invoked when the Defaults class is initialized
+					Ecsact.Defaults.WhenReady(() => {{'{'}}
+							Ecsact.Defaults.Runtime.async.OnAsyncError((err, requestIds) => {{'{'}}
+									Debug.Log("Error: " + err);
+							{{'}'}});
+					{{'}'}});
 
-        var millisecondTime = Time.fixedDeltaTime * 1000;
+					// Keeps the OnAsyncError listener alive when loading new scene
+					Object.DontDestroyOnLoad(this.gameObject);
+				{{'}'}}
 
-        Debug.Log("Loading with time(ms): " + millisecondTime);
+				void onButtonClick() {{'{'}}
+					var sceneName = options[dropdown.value];
+					Debug.Log("Loading scene " + sceneName);
+					SceneManager.LoadScene(sceneName);
 
-        Ecsact.Defaults.Runtime.async.Connect("good?delta_speed="+millisecondTime);
-		{{'}'}}
-{{'}'}}
+					Debug.Log("connecting with: " + connectionString.text);
+
+					Ecsact.Defaults.Runtime.async.Connect(connectionString.text);
+
+					this.gameObject.SetActive(false);
+				{{'}'}}
+			{{'}'}}
+
 		</code></pre>
 		</code-block-variation>
 		<p>
 			That's it! Load your scenes and try different delta speeds to try out how
-			async works.
+			async works. See what happens if you give it an invalid connection string
+			too.
 		</p>
 	</section>
+	<h2 id="conclusion">Conclusion</h2>
+	<p>
+		As long as you handle connecting and disconnecting, the default and async
+		runners function the same way and can be interchanged. Just remember that
+		the <a href="/docs/unity/defaults">Defaults Registry</a> is
+		<code>NULL</code>
+	</p>
+	<p>
+		If you haven't already, check out both the
+		<a href="start/tutorials/unity/basic-example">basic-example</a> and
+		<a href="start/tutorials/unity/moving-block">moving-block</a> tutorials.
+	</p>
 </article>
