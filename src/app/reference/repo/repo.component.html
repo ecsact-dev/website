@@ -1,6 +1,6 @@
 <ng-template #compoundsListTpl let-compounds>
 	<p *ngIf="compounds.length === 0">(none)</p>
-	<ul class="list-disc list-inside">
+	<ul class="list-disc list-inside compound-list">
 		<li
 			*ngFor="
 				let compound of sortByName(
@@ -12,8 +12,8 @@
 			<a [doxygenRefidLink]="compound.refid" [title]="compound.name"
 				><code>{{ compound.name }}</code></a
 			>
-			<span>{{ compound.kind }}</span>
-			<span *ngIf="compound.internal">INTERNAL API</span>
+			<span class="kind-tag bg-primary">{{ compound.kind }}</span>
+			<span class="kind-tag bg-error" *ngIf="compound.internal">INTERNAL API</span>
 		</li>
 	</ul>
 </ng-template>
@@ -47,6 +47,7 @@
 		<ng-container *ngSwitchCase="RepoCompoundsView.ByKind">
 			<div class="repo-directories" *ngIf="dirs$ | async as dirs">
 				<div
+					[attr.title]="dir.name"
 					*ngFor="
 						let dir of sortByName(showInternals ? dirs : filterInternal(dirs));
 						trackBy: trackyByRefid

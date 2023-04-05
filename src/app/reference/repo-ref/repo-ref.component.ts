@@ -19,6 +19,7 @@ import {
 })
 export class RepoRefComponent implements OnInit {
 	def?: DoxygenCompoundDef | DoxygenMemberDef;
+	loading = false;
 
 	constructor(
 		private search: Search,
@@ -31,8 +32,14 @@ export class RepoRefComponent implements OnInit {
 			const repo = paramMap.get('repo');
 			const refid = paramMap.get('refid');
 
-			this.def = await this.search.getDef(repo, refid);
-			this.cdr.markForCheck();
+			this.loading = true;
+			try {
+				this.def = await this.search.getDef(repo, refid);
+			} finally {
+				this.loading = false;
+				this.cdr.markForCheck();
+			}
+
 		});
 	}
 }

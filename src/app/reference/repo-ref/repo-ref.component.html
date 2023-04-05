@@ -1,8 +1,18 @@
 <ng-template #loadingTpl>
-	<div>Loading...</div>
+		<div class="max-w-sm m-auto">
+			<p class="text-center m-8">Loading...</p>
+		</div>
 </ng-template>
 
-<ng-container *ngIf="def; else loadingTpl">
+<ng-template #noDefTpl>
+	<ng-container *ngIf="!loading; else loadingTpl">
+		<div class="max-w-sm m-auto">
+			<p class="text-center m-8">Unable to find reference documentation.</p>
+		</div>
+	</ng-container>
+</ng-template>
+
+<ng-container *ngIf="def; else noDefTpl">
 	<!-- https://github.com/angular/angular/issues/20780 -->
 	<div [ngSwitch]="def.kind">
 		<ng-container *ngSwitchCase="'datatype'">

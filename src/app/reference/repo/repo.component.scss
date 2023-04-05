@@ -12,6 +12,7 @@
 }
 
 li.compound-list-item {
+	margin: 4px 0px;
 	font-family: 'Noto Sans Mono', monospace;
 
 	a {
@@ -30,11 +31,46 @@ li.compound-list-item {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 16px;
-	margin: 16px;
+	margin: 16px 0;
 
 	.repo-dir {
 		border-radius: 6px;
 		padding: 8px;
 		background-color: #392f5a;
+		display: flex;
+		flex-direction: row;
+		overflow: hidden;
+		a {
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+}
+
+.kind-tag {
+	font-size: 70%;
+	display: inline-block;
+	margin: 0 4px;
+	padding: 2px 4px;
+	border-radius: 4px;
+}
+
+@media(max-width: 1024px) {
+	.repo-directories {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media(max-width: 599px) {
+	.repo-directories {
+		grid-template-columns: 1fr;
+	}
+
+	.compound-list {
+		margin: 16px 0px;
+	}
+
+	li.compound-list-item {
+		list-style: none;
 	}
 }

@@ -34,7 +34,10 @@ function parseDoxygenMember(el: Element): DoxygenMember {
 function parseDoxygenCompound(el: Element): DoxygenCompound {
 	return {
 		...parseDoxygenBase(el),
-		members: Array.from(el.querySelectorAll('member')).map(parseDoxygenMember),
+		members:
+			Array.from(el.querySelectorAll('member'))
+				.map(parseDoxygenMember)
+				.filter(mem => mem.name.indexOf('__') === -1),
 	};
 }
 
@@ -195,7 +198,6 @@ export class Search {
 
 		const index = this._refidMap[refid];
 		if (typeof index !== 'number') {
-			console.log(this._refidMap);
 			throw new Error(`Unknown refid ${refid}`);
 		}
 
@@ -272,9 +274,9 @@ export class Search {
 			xhr.send();
 		});
 
-		const compounds = Array.from(doc.documentElement.children).map(
-			parseDoxygenCompound,
-		);
+		const compounds = Array.from(doc.documentElement.children)
+			.map(parseDoxygenCompound)
+			.filter(compound => compound.name.indexOf('__') === -1);
 
 		this._compounds[repo] = compounds;
 
