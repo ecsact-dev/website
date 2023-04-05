@@ -195,6 +195,7 @@ export class Search {
 
 		const index = this._refidMap[refid];
 		if (typeof index !== 'number') {
+			console.log(this._refidMap);
 			throw new Error(`Unknown refid ${refid}`);
 		}
 
@@ -278,18 +279,14 @@ export class Search {
 		this._compounds[repo] = compounds;
 
 		const referenceSearchItems = compounds.reduce((items, compound) => {
-			if (compound.kind !== 'namespace') {
-				if (!['dir'].includes(compound.kind)) {
-					items.push({type: 'reference', repo, item: compound});
-				}
-				items.push(
-					...compound.members.map(mem => ({
-						type: 'reference' as 'reference',
-						repo,
-						item: {...mem, owner: compound},
-					})),
-				);
-			}
+			items.push({type: 'reference', repo, item: compound});
+			items.push(
+				...compound.members.map(mem => ({
+					type: 'reference' as 'reference',
+					repo,
+					item: {...mem, owner: compound},
+				})),
+			);
 			return items;
 		}, [] as SearchResultReferenceItem[]);
 
