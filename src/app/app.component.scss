@@ -68,6 +68,7 @@ nav.top-nav {
 }
 
 .router-outline-container {
+	position: relative;
 	z-index: 1;
 	flex: 1;
 	display: flex;
@@ -87,4 +88,15 @@ footer {
 	align-items: center;
 	display: flex;
 	flex-direction: column;
+}
+
+.route-loading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.85;
+	background-color: var(--color-bg);
+	z-index: 9999;
 }

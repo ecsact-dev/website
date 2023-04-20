@@ -8,7 +8,15 @@ import {
 	ViewChild,
 	ViewChildren,
 } from '@angular/core';
-import {NavigationEnd, Router} from '@angular/router';
+import {
+	NavigationStart,
+	NavigationEnd,
+	NavigationError,
+	NavigationCancel,
+	Router,
+} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map, filter} from 'rxjs/operators';
 import {SearchMeta} from '../search/search-meta.service';
 
 import {ServiceWorkerService} from './service-worker.service';
@@ -31,6 +39,8 @@ export class AppComponent {
 	@ViewChildren(AppNavItem)
 	navItems!: QueryList<AppNavItem>;
 
+	routeLoading$: Observable<boolean>;
+
 	constructor(
 		private swService: ServiceWorkerService,
 		searchMeta: SearchMeta,
@@ -39,6 +49,7 @@ export class AppComponent {
 		this.swService.launchUpdateCheckingRoutine();
 
 		router.events.subscribe(routerEvent => {
+			console.log(routerEvent);
 			if (routerEvent instanceof NavigationEnd) {
 				if (this.mobileMenuToggle) {
 					this.mobileMenuToggle.nativeElement.checked = false;
@@ -49,6 +60,17 @@ export class AppComponent {
 				}
 			}
 		});
+
+		this.routeLoading$ = router.events.pipe(
+			filter(
+				ev =>
+					ev instanceof NavigationStart ||
+					ev instanceof NavigationEnd ||
+					ev instanceof NavigationCancel ||
+					ev instanceof NavigationError,
+			),
+			map(ev => ev instanceof NavigationStart),
+		);
 	}
 
 	@HostListener('window:keydown', ['$event'])

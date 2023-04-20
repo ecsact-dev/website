@@ -59,6 +59,7 @@
 </nav>
 
 <div class="router-outline-container">
+	<div *ngIf="routeLoading$ | async" class="route-loading"></div>
 	<router-outlet></router-outlet>
 </div>
 
