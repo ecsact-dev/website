@@ -16,7 +16,7 @@ import {PageInfo} from './page-info-types';
 import {searchablePageInfos} from './searchable-page-infos';
 
 function parseDoxygenBase(el: Element): DoxygenBase {
-	const name = el.querySelector('name').textContent;
+	const name = el.querySelector('name')?.textContent || '';
 	return {
 		name,
 		refid: el.getAttribute('refid')!,
@@ -34,10 +34,9 @@ function parseDoxygenMember(el: Element): DoxygenMember {
 function parseDoxygenCompound(el: Element): DoxygenCompound {
 	return {
 		...parseDoxygenBase(el),
-		members:
-			Array.from(el.querySelectorAll('member'))
-				.map(parseDoxygenMember)
-				.filter(mem => mem.name.indexOf('__') === -1),
+		members: Array.from(el.querySelectorAll('member'))
+			.map(parseDoxygenMember)
+			.filter(mem => mem.name.indexOf('__') === -1),
 	};
 }
 
