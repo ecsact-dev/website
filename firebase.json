@@ -141,6 +141,11 @@
         "source": "/ecsact_sdk.appinstaller",
         "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk.appinstaller",
         "type": 302
+      },
+      {
+        "source": "/install.sh",
+        "destination": "https://raw.githubusercontent.com/ecsact-dev/ecsact_sdk/main/install.sh",
+        "type": 302
       }
     ],
     "rewrites": [
