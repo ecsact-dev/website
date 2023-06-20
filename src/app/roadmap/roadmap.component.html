@@ -30,21 +30,25 @@
 </ng-template>
 
 <ng-template #projectAccordionItemTpl let-projects="projects" let-title="title">
-	<button (click)="accordionItem.toggle()">
-		<h2>
+	<button *ngIf="!!title" (click)="accordionItem.toggle()">
+		<h2 class="flex flex-row items-center space-x-2">
 			<span class="i48 mr-1">{{
 				accordionItem.expanded ? 'expand_more' : 'chevron_right'
 			}}</span>
-			<span>{{ title }} ({{ projects.length }})</span>
+			<span>{{ title }}</span>
+			<span
+				class="px-2 py-1 rounded bg-content-bg border text-xs"
+				>{{ projects.length }}</span
+			>
 		</h2>
 	</button>
 	<div class="overflow-hidden">
 		<div
 			#accordionItem="cdkAccordionItem"
 			cdkAccordionItem
-			[class.hidden]="!accordionItem.expanded"
-			[class.block]="accordionItem.expanded"
-			[class.animate-slide-down]="accordionItem.expanded">
+			[class.hidden]="!accordionItem.expanded && !!title"
+			[class.block]="accordionItem.expanded || !title"
+			[class.animate-slide-down]="accordionItem.expanded || !title">
 			<ng-container *ngFor="let project of projects">
 				<ng-container
 					*ngTemplateOutlet="
@@ -57,11 +61,6 @@
 </ng-template>
 
 <ng-template #loadingProjects>
-	<h2>
-		<span class="i48 mr-1">chevron_right</span>
-		<span>In Progress</span>
-	</h2>
-
 	<section
 		class="group rounded-lg shadow-lg bg-secondary/20 dark:text-white py-2 px-4 my-4">
 		<h2
@@ -134,7 +133,7 @@
 					projectAccordionItemTpl;
 					context: {
 						projects: projects[RoadmapItemStatus.InProgress],
-						title: 'In Progress'
+						title: ''
 					}
 				"></ng-container>
 
