@@ -30,6 +30,15 @@ module.exports = {
 					'0%': {transform: 'translateX(-100%)'},
 					'100%': {transform: 'translateX(0%)'},
 				},
+				'fade-slide-right': {
+					'0%': {opacity: '0%', transform: 'translateX(-100%)'},
+					'35%': {opacity: '0%'},
+					'100%': {opacity: '100%', transform: 'translateX(0%)'},
+				},
+				'fade-out': {
+					'0%': {opacity: '100%'},
+					'100%': {opacity: '0%'},
+				},
 				'error-shake': {
 					'0%': {transform: 'translate(8px)'},
 					'20%': {transform: 'translate(-8px)'},
@@ -42,6 +51,8 @@ module.exports = {
 			animation: {
 				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'slide-right': 'slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'fade-slide-right': 'fade-slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'fade-out': 'fade-out 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'error-shake': 'error-shake 300ms 1 linear',
 			},
 		},

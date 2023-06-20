@@ -1,20 +1,6 @@
 <div></div>
 <div class="main-container">
 	<main #mainContent (cdkObserveContent)="onContentChange($event)">
-		<div
-			class="bg-primary text-black overflow-hidden flex flex-row items-center relative">
-			<div
-				class="bg-logoBlack w-16 ml-2 self-stretch bg-contain bg-no-repeat bg-center relative z-30 hidden md:block"></div>
-			<p class="m-4 relative z-30">
-				Ecsact is under heavy development. Check out our
-				<a class="text-black font-bold underline" routerLink="/roadmap"
-					>roadmap</a
-				>
-				for plans and progress.
-			</p>
-			<div
-				class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary-bright to-transparent z-20"></div>
-		</div>
 		<div class="float-right" *ngIf="canShare">
 			<button
 				class="p-2 m-2 mt-0 text-lg cursor-pointer"
@@ -23,7 +9,26 @@
 				<span class="i48">share</span>
 			</button>
 		</div>
+
 		<ng-content></ng-content>
+
+		<div class="h-10"></div>
+
+		<div
+			class="bg-primary/5 text-black overflow-hidden flex flex-row items-center relative">
+			<div
+				class="bg-logoBlack w-16 ml-2 self-stretch bg-contain bg-no-repeat bg-center relative z-30 hidden md:block"></div>
+			<p class="m-4 relative z-30 max-w-md">
+				<strong>Ecsact is under heavy development.</strong><br />
+				Check out our
+				<a class="text-black font-bold underline" routerLink="/roadmap"
+					>roadmap</a
+				>
+				for plans and progress.
+			</p>
+			<div
+				class="absolute top-0 left-0 right-0 bottom-0 bg-gradient-to-r from-primary-bright to-transparent z-20"></div>
+		</div>
 	</main>
 	<div class="main-content-scroll-buffer">
 		<div class="flex-auto"></div>

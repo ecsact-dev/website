@@ -1,69 +1,111 @@
 <article>
-	<h1 id="install">Install</h1>
-	<p>
-		The Ecsact SDK contains all the necessary tools for developing with Ecsact.
-		<strong>All</strong> integrations requires the Ecsact SDK.
-	</p>
+	<div class="my-4">
+		<div class="flex flex-col sm:flex-row items-center justify-center">
+			<div class="relative w-28 h-24">
+				<div
+					style="
+						animation-delay: 700ms;
+						animation-duration: 500ms;
+						animation-fill-mode: forwards;
+					"
+					class="animate-fade-out bg-logoBlack dark:bg-logoWhite bg-no-repeat bg-contain bg-center z-10 absolute top-0 left-0 bottom-0 right-0"></div>
+				<div
+					style="
+						animation-delay: 600ms;
+						animation-duration: 500ms;
+						animation-fill-mode: backwards;
+					"
+					class="animate-fade-slide-right bg-logoColor bg-no-repeat bg-contain bg-center z-20 absolute top-0 left-0 bottom-0 right-0"></div>
+			</div>
+			<h1 id="install" class="text-5xl font-bold max-w-sm m-0">
+				Install Ecsact
+			</h1>
+		</div>
+	</div>
 
-	<h2 id="ecsact-sdk">Ecsact SDK</h2>
-	<ng-container [ngSwitch]="os">
-		<ng-container *ngSwitchCase="'Windows 10'">
-			<p>
-				Ecsact SDK on Windows 10+ is distributed as an
-				<em>app installer</em> and is the recommended way to install the Ecsact
-				SDK. Other download options are available on our
+	<div class="my-4 mx-auto max-w-md text-center">
+		<div class="flex flex-row space-x-2 items-center justify-center">
+			<div class="text-xl font-bold">Platform</div>
+			<select
+				class="btn"
+				[(ngModel)]="selectedOs"
+				[ngModelOptions]="{standalone: true}">
+				<option *ngFor="let opt of osOptions" [value]="opt.value">
+					{{ opt.name }}
+				</option>
+			</select>
+		</div>
+	</div>
+
+	<div [ngSwitch]="selectedOs" class="my-4">
+		<div *ngSwitchCase="'Windows 10'">
+			<p class="text-center max-w-md mx-auto">
+				<a
+					class="btn text-primary bg-primary-bright text-2xl"
+					href="ms-appinstaller:?source=https://ecsact.dev/ecsact_sdk.appinstaller">
+					<span class="flex flex-row space-x-2 items-center">
+						<span class="text-black i48 text-4xl font-bold">download</span>
+						<span class="text-black font-bold">Install with app installer</span>
+					</span>
+				</a>
+			</p>
+			<p class="text-center max-w-md mx-auto text-sm">
+				See
 				<a
 					href="https://github.com/ecsact-dev/ecsact_sdk/releases"
 					target="_blank"
-					>GitHub releases page</a
-				>.
+					>latest release on GitHub</a
+				>
+				for other options.
 			</p>
-			<p>
+		</div>
+
+		<div *ngSwitchCase="'Linux'" class="sm:mx-auto">
+			<code-block-variation class="my-4 sm:mx-auto sm:rounded-lg sm:py-4 sm:px-8 sm:w-fit">
+				<pre
+					codeBlockVariationOption
+					optionTitle="Shell"><code prism language="bash">
+					curl https://ecsact.dev/install.sh -sSfL | sh
+				</code></pre>
+			</code-block-variation>
+			<p class="text-center max-w-md mx-auto text-sm">
+				See
 				<a
-					class="btn text-primary bg-primary-bright text-lg"
-					href="https://ecsact.dev/ecsact_sdk.appinstaller"
+					href="https://github.com/ecsact-dev/ecsact_sdk/releases"
+					target="_blank"
+					>latest release on GitHub</a
+				>
+				for other options.
+			</p>
+		</div>
+
+		<div *ngSwitchCase="'Mac OS'">
+			<p class="max-w-md mx-auto text-center">
+				<span class="i24 mr-1">info</span>
+				<span>Not available on macOS <strong>(yet)</strong></span>
+			</p>
+			<p class="text-center max-w-md mx-auto">
+				<a
+					class="btn text-black bg-secondary text-xl text-center"
+					href="https://github.com/ecsact-dev/ecsact_sdk/issues/169"
 					target="_blank">
-					<span class="text-black font-bold"
-						><span class="i24">download</span> ecsact_sdk.appinstaller</span
-					></a
-				>
+					<span class="flex flex-row space-x-2 items-center">
+						<span class="text-black font-bold"
+							>GitHub macOS tracking issue</span
+						>
+						<span class="text-black i24 text-xl font-bold">open_in_new</span>
+					</span>
+				</a>
 			</p>
-		</ng-container>
-
-		<ng-container *ngSwitchCase="'Linux'">
-			<p>
-				An archive (tar.gz) of the latest Ecsact SDK release can be found on our
-				<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
-					>GitHub releases page</a
-				>
-				for Linux.
-			</p>
-		</ng-container>
-
-		<ng-container *ngSwitchCase="'Mac OS'">
-			<p>
-				<span class="i24">info</span> Ecsact SDK is not available on macOS
-				(yet.) To keep up to date or provide feedback please follow the
-				<a href="https://github.com/ecsact-dev/ecsact_sdk/issues/169"
-					>macOS release tracking issue on GitHub</a
-				>.
-			</p>
-		</ng-container>
+		</div>
 
 		<p *ngSwitchDefault>
 			<span class="i24">info</span>
-			Ecsact SDK is not available for <strong>{{ os }}</strong
+			Ecsact SDK is not available for <strong>{{ selectedOs }}</strong
 			>.
 		</p>
-	</ng-container>
-	<p class="text-xs max-w-lg bg-secondary/20 rounded-md p-4">
-		<span class="i24">info</span>
-		Did we detect the wrong operating system, make a mistake, or are you looking
-		for a different download option? Check out the
-		<a href="https://github.com/ecsact-dev/ecsact_sdk/releases"
-			>latest release on GitHub</a
-		>.
-	</p>
+	</div>
+
 	<h2 id="integrations">Integrations</h2>
 	<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 		<a
