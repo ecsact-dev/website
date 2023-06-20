@@ -9,24 +9,28 @@ blender_render(
     frame_end = 103,
     frame_start = 0,
     render_format = "WEBM",
+    tags = ["manual"],
 )
 
 blender_render(
     name = "branch",
     blend_file = "branch.blend",
     render_format = "PNG",
+    tags = ["manual"],
 )
 
 blender_render(
     name = "runtime",
     blend_file = "runtime.blend",
     render_format = "PNG",
+    tags = ["manual"],
 )
 
 blender_render(
     name = "systems",
     blend_file = "systems.blend",
     render_format = "PNG",
+    tags = ["manual"],
 )
 
 bzlws_copy(
@@ -39,4 +43,5 @@ bzlws_copy(
     ],
     out = "src/assets/renders/{FILENAME}",
     force = True,
+    tags = ["manual"],
 )
