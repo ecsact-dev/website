@@ -1,27 +1,55 @@
-<div class="overflow-hidden pb-8 bg-secondary text-black relative">
+<div class="overflow-hidden pb-8 bg-secondary text-black relative min-h-[50vh]">
 	<div
-		class="flex flex-col lg:flex-row gap-4 my-8 mx-auto justify-center items-center relative z-30">
+		class="flex flex-col-reverse md:flex-row gap-4 my-8 mx-auto justify-center items-center relative z-30">
 		<div
-			class="w-full lg:w-64 h-64 bg-logoBlack bg-center bg-no-repeat opacity-80 bg-contain"></div>
-		<div class="px-4">
-			<p class="text-4xl bold text-black">Create with Ecsact</p>
-			<p class="text-xl">A language to describe your ECS</p>
-			<p class="font-bold">
-				<a class="btn text-primary/50 bg-primary-bright" routerLink="/start">
-					<span class="flex flex-row items-center text-black">
-						<span class="i48 text-2xl mr-2">rocket_launch</span>
-						Get Started
-					</span>
-				</a>
+			class="relative animate-fade-in w-full mx-4 sm:mx-0 max-w-[300px] sm:max-w-md sm:min-w-[300px] grow aspect-[1/1] my-[-32px]"
+			style="animation-duration: 300ms">
+			<div
+				class="bg-logoSvg opacity-40 bg-contain bg-no-repeat bg-center absolute top-0 left-0 right-0 bottom-0 z-50"></div>
+			<div
+				#logoMask
+				class="logo-mask z-30 absolute top-0 left-0 right-0 bottom-0"></div>
+			<div
+				#logoOutlineMask
+				class="logo-outline-mask z-40 absolute top-0 left-0 right-0 bottom-0"></div>
+			<div
+				class="absolute z-10 pointer-events-none"
+				style="
+					top: -100px;
+					left: -100px;
+					right: -100px;
+					bottom: -100px;
+					background: radial-gradient(
+						circle at 50% 50%,
+						rgb(255 244 127 / 38%) 0%,
+						rgba(220, 137, 220, 0) 63%,
+						rgba(220, 137, 220, 0) 100%
+					);
+				"></div>
+		</div>
+
+		<div class="max-w-md mx-4 lg:mx-0">
+			<h1 class="text-6xl font-mono"><strong>Ecsact</strong></h1>
+			<h2 class="text-xl font-normal">
+				<strong>Language</strong> and
+				<strong>runtime standard</strong> dedicated to the Entity Component
+				System (ECS) architecture.
+			</h2>
+			<p>
+				<a class="btn text-primary/50 bg-primary-bright" routerLink="/docs/ecs"
+					><span class="text-black"
+						>What is ECS? <span class="i48">arrow_right</span></span
+					></a
+				>
 			</p>
 		</div>
 	</div>
 
 	<div
 		class="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary z-20"></div>
-
 	<div
-		class="absolute top-0 bottom-0 left-0 right-0 z-10 bg-subtle-texture bg-repeat bg-center opacity-40"></div>
+		class="absolute top-[-50vh] bottom-[-50vh] left-[-25vw] right-[-25vw] rotate-12 z-10 bg-grid-texture bg-repeat bg-center opacity-5 pointer-events-none"></div>
+
 	<div
 		class="absolute bottom-0 left-0 right-0 h-32 opacity-25 bg-gradient-to-t from-primary z-20 border-b-4 border-primary border-solid"></div>
 </div>
@@ -45,42 +73,6 @@
 			</a>
 		</div>
 	</section>
-
-	<div class="bg-black/5 dark:bg-white/5">
-		<section class="max-w-2xl my-8 center mx-auto px-4 py-16">
-			<div class="flex flex-col lg:flex-row gap-8 items-start">
-				<div>
-					<h2>What is ECS?</h2>
-					<p>
-						ECS (Entity Component System) is an architecture where state and
-						behaviour are separated into components and systems. Components
-						(state/data) are associated with an entity and systems
-						(behaviour/function) are executed to read and mutate components.
-					</p>
-				</div>
-
-				<div>
-					<h2>Why ECS?</h2>
-					<p>
-						Components can be mixed and matched together to affect the behaviour
-						of an entity. This composition based design allows for a greater
-						amount of flexibility than other design patterns such as
-						inheritance.
-					</p>
-				</div>
-			</div>
-			<div class="flex flex-row items-center justify-center">
-				<p class="font-bold">
-					<a class="btn text-secondary/50 bg-secondary" routerLink="/docs/ecs">
-						<span class="text-black">
-							<span class="i48">school</span>
-							Learn More
-						</span>
-					</a>
-				</p>
-			</div>
-		</section>
-	</div>
 
 	<section
 		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">

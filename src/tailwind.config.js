@@ -16,10 +16,14 @@ module.exports = {
 				logoBlack: 'url(external/ecsact_logo/ecsact-black.png)',
 				logoColor: 'url(external/ecsact_logo/ecsact-color.png)',
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
+				'grid-texture': 'url(assets/bg/grid.webp)',
 				wasmLogo: 'url(assets/brand/wasm.svg)',
 				branch: 'url(assets/renders/branch.png)',
 				systems: 'url(assets/renders/systems.png)',
 				runtime: 'url(assets/renders/runtime.png)',
+				logoSvg: 'url(assets/logo.svg)',
+				logoSvgOutline: 'url(assets/logo-outline.svg)',
+				flowDownSvg: 'url(assets/flow-down.svg)',
 			},
 			keyframes: {
 				'slide-down': {
@@ -39,6 +43,10 @@ module.exports = {
 					'0%': {opacity: '100%'},
 					'100%': {opacity: '0%'},
 				},
+				'fade-in': {
+					'0%': {opacity: '0%'},
+					'100%': {opacity: '100%'},
+				},
 				'error-shake': {
 					'0%': {transform: 'translate(8px)'},
 					'20%': {transform: 'translate(-8px)'},
@@ -51,8 +59,10 @@ module.exports = {
 			animation: {
 				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'slide-right': 'slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
-				'fade-slide-right': 'fade-slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'fade-slide-right':
+					'fade-slide-right 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'fade-out': 'fade-out 150ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'fade-in': 'fade-in 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'error-shake': 'error-shake 300ms 1 linear',
 			},
 		},

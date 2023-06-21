@@ -91,3 +91,16 @@ http_archive(
 load("@bzlws//:repo.bzl", "bzlws_deps")
 
 bzlws_deps()
+
+http_archive(
+    name = "typed_css",
+    strip_prefix = "typed.css-0.8.9",
+    url = "https://github.com/brandonmcconnell/typed.css/archive/refs/tags/v0.8.9.zip",
+    build_file_content = """
+load("@io_bazel_rules_sass//:defs.bzl", "sass_library")
+package(default_visibility = ["//visibility:public"])
+sass_library(
+    name = "typed_css",
+    srcs = ["typed.scss"],
+)"""
+)

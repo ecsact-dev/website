@@ -6,6 +6,7 @@ package(default_visibility = ["//:__subpackages__"])
 sass_binary(
     name = "home_component_style",
     src = "home.component.scss",
+    deps = ["@typed_css"],
 )
 
 ng_ts_project(

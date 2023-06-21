@@ -1,0 +1,26 @@
+@import 'external/typed_css/typed';
+
+.logo-mask {
+	background: radial-gradient(
+		at 0% 0%,
+		var(--color-secondary),
+		var(--color-primary-bright)
+	);
+}
+
+.logo-outline-mask {
+	background: radial-gradient(at 0% 0%, #000000, var(--color-secondary));
+	filter: invert(1);
+}
+
+.typed-subtitle {
+	@include typed(
+		'a language.',
+		'a runtime standard.',
+		1.5,
+		(
+			caret-width: 2px,
+			caret-space: 2px,
+		)
+	);
+}

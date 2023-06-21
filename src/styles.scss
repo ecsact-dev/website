@@ -73,6 +73,9 @@ $whiteColor: #d4d4d4;
 :root {
 	--top-nav-height: 50px;
 	--side-nav-width: 300px;
+	--color-primary: #aa8f00;
+	--color-primary-bright: #dab700;
+	--color-secondary: #9dd9d2;
 
 	@media (prefers-color-scheme: dark) {
 		@include dark-color-scheme;
@@ -457,4 +460,22 @@ code-block-variation > .group > .code-block-container > pre {
 	&.code-block-variation-option-active {
 		display: block;
 	}
+}
+
+.logo-mask {
+	-webkit-mask-image: url(assets/logo.svg);
+	-webkit-mask-size: 100% 100%;
+	-webkit-mask-clip: border-box;
+	mask-image: url(assets/logo.svg);
+	mask-size: 100% 100%;
+	mask-clip: border-box;
+}
+
+.logo-outline-mask {
+	-webkit-mask-image: url(assets/logo-outline.svg);
+	-webkit-mask-size: 100% 100%;
+	-webkit-mask-clip: border-box;
+	mask-image: url(assets/logo-outline.svg);
+	mask-size: 100% 100%;
+	mask-clip: border-box;
 }
