@@ -3,8 +3,12 @@ import {
 	Component,
 	ElementRef,
 	HostListener,
+	OnDestroy,
+	OnInit,
 	ViewChild,
 } from '@angular/core';
+
+import {MediaMatcher} from '@angular/cdk/layout';
 
 function makeRadialGradient(...args: string[]): string {
 	return `radial-gradient(${args.join(', ')})`;
@@ -22,8 +26,16 @@ export class HomeComponent {
 	@ViewChild('logoOutlineMask')
 	logoOutlineMask: ElementRef<HTMLDivElement>;
 
+	private readonly _noHoverQueryList: MediaQueryList;
+
+	constructor(mediaMatch: MediaMatcher) {
+		this._noHoverQueryList = mediaMatch.matchMedia('(hover: none)');
+	}
+
 	@HostListener('window:mousemove', ['$event'])
 	onMouseMove(ev: MouseEvent) {
+		if (this._noHoverQueryList.matches) return;
+
 		const logoMaskEl = this.logoMask.nativeElement;
 		const logoOutlineMaskEl = this.logoOutlineMask.nativeElement;
 
