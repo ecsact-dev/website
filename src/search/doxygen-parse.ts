@@ -314,7 +314,6 @@ const doxygenMemberDefParseFns = {
 		return variableDef;
 	},
 	enumValue: (def: DoxygenBaseDef, el: Element): DoxygenEnumValueMemberDef => {
-		console.log('enumValue: ', el);
 		return {
 			...def,
 			kind: 'enum-value',
@@ -406,15 +405,12 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	class: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
-		console.log('class', el);
 		return doxygenConstructDataType(def, el, 'class');
 	},
 	struct: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
-		console.log('struct', el);
 		return doxygenConstructDataType(def, el, 'struct');
 	},
 	union: (def: DoxygenBaseDef, el: Element): DoxygenDataTypeDef => {
-		console.log('union', el);
 		return doxygenConstructDataType(def, el, 'union');
 	},
 	dir: (def: DoxygenBaseDef, el: Element): DoxygenDirDef => {
@@ -457,7 +453,6 @@ const doxygenCompoundDefParseFns = {
 		};
 	},
 	namespace: (def: DoxygenBaseDef, el: Element): DoxygenNamespaceDef => {
-		console.log('namespace', el);
 		var varType = el.querySelector('sectiondef[kind=var]');
 		let varTypeList: DoxygenVariableMemberDef[] = [];
 

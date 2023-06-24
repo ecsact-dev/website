@@ -56,46 +56,15 @@
 
 <article>
 	<section
-		class="max-w-md my-8 sm:-mt-16 relative z-50 center mx-auto px-8 py-8 items-center rounded-2xl sm:shadow-lg bg-bg">
-		<h2 class="text-center">Community</h2>
-		<div class="flex flex-row align-center justify-center gap-8">
-			<a
-				href="https://discord.gg/vKxQztg7gB"
-				target="_blank"
-				title="Ecsact Discord Server">
-				<div class="brand discord w-16 h-16"></div>
-			</a>
-			<a
-				href="https://github.com/ecsact-dev"
-				target="_blank"
-				title="Ecsact GitHub Org">
-				<div class="brand github w-16 h-16"></div>
-			</a>
-		</div>
-	</section>
-
-	<section
-		class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col-reverse lg:flex-row gap-8 items-center">
-		<div class="flex-1">
-			<h2>Ecsact is ECS <em>enforced</em>.</h2>
-			<p>
-				Prevent mistakes by having a language that forces the
-				<em>best</em> use of ECS.
-			</p>
-			<p class="font-bold">
-				<a class="btn text-secondary/50 bg-secondary" routerLink="/docs/lang">
-					<span class="text-black">
-						<span class="i48">school</span>
-						Learn More
-					</span>
-				</a>
-			</p>
-		</div>
-
-		<div
-			class="flex flex-[2] max-w-full overflow-hidden box-content md:max-w-md self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg mx-auto">
-			<pre
-				class="text-sm sm:text-base overflow-hidden px-6 py-4"><code ecsactLangSyntax>
+		class="top-[-100px] mb-[-100px] md:top-[-200px] md:mb-[-200px] relative z-50 flex flex-col items-center lg:flex-row gap-6 lg:items-stretch justify-center">
+		<div class="max-w-full lg:max-w-md language-container">
+			<h2 class="text-black text-center font-bold font-mono language-typed">
+				<span class="inner-text">Language</span>
+			</h2>
+			<div
+				class="flex flex-[2] overflow-hidden box-content self-stretch rounded-lg shadow-lg items-center justify-center bg-content-bg">
+				<pre
+					class="text-sm sm:text-base overflow-hidden px-6 py-4"><code ecsactLangSyntax>
 				package my.project;
 				component Health {{'{'}} f32 value; {{'}'}}
 				component Poisoned {{ '{' }} i32 potency; {{'}'}}
@@ -103,9 +72,49 @@
 					readonly Poisoned;
 					readwrite Health;
 				{{ '}' }}
-			</code></pre>
+				</code></pre>
+			</div>
+			<div class="max-w-md lg:max-w-sm px-4 py-2">
+				<p class="text-2xl">Declare components <strong>and systems</strong>.</p>
+				<p>
+					A dedicated language lets you design your ECS simulation before
+					writing any code. Mistakes are caught early at build time and prevents
+					you from deviating away from the ECS architecture.
+				</p>
+				<p class="text-center">
+					<a class="btn text-secondary/50 bg-secondary" routerLink="/docs/lang">
+						<span class="text-black">
+							<span class="i48">article</span>
+							Language Syntax
+						</span>
+					</a>
+				</p>
+			</div>
+		</div>
+
+		<div class="max-w-full md:max-w-md flex flex-col">
+			<h2 class="text-white lg:text-black text-center font-bold font-mono">
+				Runtime Standard
+			</h2>
+			<div
+				class="flex flex-col flex-[2] overflow-hidden box-content self-stretch rounded-lg shadow-lg bg-content-bg max-h-[200px] relative">
+				<div
+					class="pointer-events-none absolute top-4 left-0 right-0 h-16 bg-gradient-to-b from-content-bg z-20"></div>
+				<div
+					class="pointer-events-none absolute bottom-4 left-0 right-0 h-16 bg-gradient-to-t from-content-bg z-20"></div>
+
+				<pre class="text-sm sm:text-base overflow-hidden px-6 my-4"><code
+					class="animate-slide-down block relative top-[50%] runtime-standard-method"
+					[style.animation-duration]="scrollDuration + 'ms'"><span
+							*ngFor="let m of runtimeMethods; let i = index"
+							style="animation-iteration-count: 1; transform-origin: left;"
+							class="block animate-colorize-pulse"
+							[style.animation-delay]="((scrollDuration / runtimeMethods.length) * i) + 'ms'">{{m + '\n'}}</span></code></pre>
+			</div>
+			<p class="self-stretch"></p>
 		</div>
 	</section>
+
 	<div class="bg-black/5 dark:bg-white/5">
 		<section
 			class="max-w-2xl my-8 center mx-auto px-4 py-16 flex flex-col lg:flex-row gap-8 items-center">

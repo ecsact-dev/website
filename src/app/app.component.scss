@@ -16,7 +16,7 @@ nav.top-nav {
 	max-height: var(--top-nav-height);
 	box-sizing: border-box;
 
-	a {
+	.before-search a {
 		flex-direction: row;
 		align-items: center;
 		padding: 0 16px;
@@ -50,9 +50,8 @@ nav.top-nav {
 			pointer-events: none;
 		}
 
-		.after-search,
-		.before-search {
-			width: calc(50vw - #{$search-width * 0.5});
+		.socials {
+			display: none;
 		}
 
 		ecsact-search {

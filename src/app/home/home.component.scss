@@ -13,14 +13,28 @@
 	filter: invert(1);
 }
 
-.typed-subtitle {
-	@include typed(
-		'a language.',
-		'a runtime standard.',
-		1.5,
-		(
-			caret-width: 2px,
-			caret-space: 2px,
-		)
-	);
+.language-container:hover {
+	.language-typed {
+		.inner-text {
+			display: none;
+		}
+
+		@include typed(
+			'Language',
+			1.5,
+			(
+				caret-width: 2px,
+				caret-space: 2px,
+				iterations: 1,
+				delay: 0,
+			)
+		);
+	}
 }
+
+.runtime-standard-method {
+	animation-direction: alternate-reverse;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+

@@ -55,6 +55,16 @@ module.exports = {
 					'80%': {transform: 'translate(2px)'},
 					'100%': {transform: 'translate(0px)'},
 				},
+				'scale-pulse': {
+					'0%': {transform: 'scale(1.0)'},
+					'50%': {transform: 'scale(1.1)'},
+					'100%': {transform: 'scale(1.0)'},
+				},
+				'colorize-pulse': {
+					'0%': {color: 'var(--color-text)'},
+					'50%': {color: 'var(--color-primary)'},
+					'100%': {color: 'var(--color-text)'},
+				},
 			},
 			animation: {
 				'slide-down': 'slide-down 150ms cubic-bezier(0, 0, 0.2, 1) 1',
@@ -64,6 +74,8 @@ module.exports = {
 				'fade-out': 'fade-out 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'fade-in': 'fade-in 150ms cubic-bezier(0, 0, 0.2, 1) 1',
 				'error-shake': 'error-shake 300ms 1 linear',
+				'scale-pulse': 'scale-pulse 600ms cubic-bezier(0, 0, 0.2, 1) 1',
+				'colorize-pulse': 'colorize-pulse 600ms cubic-bezier(0, 0, 0.2, 1) 1',
 			},
 		},
 		fontFamily: {

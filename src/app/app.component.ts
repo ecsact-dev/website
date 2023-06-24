@@ -49,7 +49,6 @@ export class AppComponent {
 		this.swService.launchUpdateCheckingRoutine();
 
 		router.events.subscribe(routerEvent => {
-			console.log(routerEvent);
 			if (routerEvent instanceof NavigationEnd) {
 				if (this.mobileMenuToggle) {
 					this.mobileMenuToggle.nativeElement.checked = false;
