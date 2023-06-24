@@ -111,7 +111,54 @@
 							class="block animate-colorize-pulse"
 							[style.animation-delay]="((scrollDuration / runtimeMethods.length) * i) + 'ms'">{{m + '\n'}}</span></code></pre>
 			</div>
-			<p class="self-stretch"></p>
+			<div
+				class="max-w-md lg:max-w-sm px-4 py-2 flex flex-col items-center mx-auto">
+				<p>
+					The Ecsact Runtime standard consists of a series of C functions split
+					into modules with wrappers for other languages.
+				</p>
+				<div>
+					<div class="flex flex-row gap-4 items-center">
+						<div><span class="i48 text-xl">check_box</span></div>
+						<div class="text-lg font-bold">
+							Execute
+							<a routerLink="/docs/lang" fragment="systems">systems</a> and
+							<a routerLink="/docs/lang" fragment="actions">actions</a>
+						</div>
+					</div>
+
+					<div class="flex flex-row gap-4 items-center">
+						<div><span class="i48 text-xl">check_box</span></div>
+						<div class="text-lg font-bold">
+							<a routerLink="/docs/system-impl">System context functions</a>
+						</div>
+					</div>
+
+					<div class="flex flex-row gap-4 items-center">
+						<div><span class="i48 text-xl">check_box</span></div>
+						<div class="text-lg font-bold">
+							<a routerLink="/docs/runtime" fragment="async-module"
+								>External async simulation</a
+							>
+						</div>
+					</div>
+
+					<div class="flex flex-row gap-4 items-center">
+						<div><span class="i48 text-xl">check_box</span></div>
+						<div class="text-lg font-bold">
+							<a routerLink="/docs/runtime" fragment="meta-module"
+								>Reflection</a
+							>
+							for runtime and codegen
+						</div>
+					</div>
+
+					<div class="flex flex-row gap-4 items-center">
+						<div class="w-5"></div>
+						<a routerLink="/docs/runtime" class="text-lg text-text">... and more <span class="i24">arrow_forward</span></a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
