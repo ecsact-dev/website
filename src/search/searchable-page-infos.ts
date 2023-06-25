@@ -11,6 +11,7 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		description: 'Home page',
 		metaDescription:
 			'Language and runtime standard dedicated to the Entity Component System (ECS) architecture',
+		metaImageUrl: 'https://ecsact.dev/assets/ecsact-example-image.png',
 		keywords: ['home'],
 		title: 'Ecsact',
 	},
