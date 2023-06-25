@@ -53,7 +53,7 @@ export class AppComponent {
 				if (this.mobileMenuToggle) {
 					this.mobileMenuToggle.nativeElement.checked = false;
 				}
-				searchMeta.useSearchablePageInfo();
+				searchMeta.useSearchablePageInfo(routerEvent.urlAfterRedirects);
 				if (!location.hash) {
 					window.scrollTo(0, 0);
 				}

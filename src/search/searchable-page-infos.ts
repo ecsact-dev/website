@@ -9,6 +9,8 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 	'/': {
 		category: PageCategory.Page,
 		description: 'Home page',
+		metaDescription:
+			'Language and runtime standard dedicated to the Entity Component System (ECS) architecture',
 		keywords: ['home'],
 		title: 'Ecsact',
 	},
