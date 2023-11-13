@@ -1074,10 +1074,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@bazel/esbuild@5.5.0":
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/@bazel/esbuild/-/esbuild-5.5.0.tgz#51cff0a3f1da93c17cffe3fc52132e25d9aa14b8"
-  integrity sha512-kKB1XupmjPJD2R/JpVz5pQWnSVw6j3HF7gGJhoTzbplqqL7jQLfJLWRKmg286vkNe/g6EGrDG1ONN7dF3DT7lQ==
+"@bazel/esbuild@5.8.1":
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/@bazel/esbuild/-/esbuild-5.8.1.tgz#74668d33bfb29652cbe8e2852aa8dca5e0839e73"
+  integrity sha512-8k4LL8P3ivCnFeBOcjiFxL8U+M5VtEGuOyIqm2hfEiP8xDWsZLS7YQ7KhshKJy7Elh2dlK9oGgMtl0D/x9kxxg==
 
 "@bazel/rollup@5.5.0":
   version "5.5.0"
