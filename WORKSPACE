@@ -83,9 +83,9 @@ esbuild_repositories(
 
 http_archive(
     name = "bzlws",
-    sha256 = "93e6cec29581070fe4455a2ad6c81d4b7ee8ca1b76c2c340883100ef2686c8c7",
-    strip_prefix = "bzlws-b12ad162a63fc368785a217cd62c7afb0c9107f8",
-    url = "https://github.com/zaucy/bzlws/archive/b12ad162a63fc368785a217cd62c7afb0c9107f8.zip",
+    sha256 = "108870545c120a87ee9d0ac938324d81880423c49e17bb2503196fd326a3e39e",
+    strip_prefix = "bzlws-b7b10a115da356ec23b0cf0c697919baa7b7301c",
+    url = "https://github.com/zaucy/bzlws/archive/b7b10a115da356ec23b0cf0c697919baa7b7301c.zip",
 )
 
 load("@bzlws//:repo.bzl", "bzlws_deps")
