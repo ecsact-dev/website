@@ -10,50 +10,8 @@ This will have to be worked-around in two places:
 2. When we declare a sass_binary rule, we have to provide those extra packages as declared dependencies.
 """
 
-SASS_DEPS = ["@angular/cdk"] + [
-    "@material/" + p
-    for p in [
-        "animation",
-        "base",
-        "button",
-        "card",
-        "checkbox",
-        "chips",
-        "circular-progress",
-        "data-table",
-        "density",
-        "dialog",
-        "dom",
-        "elevation",
-        "fab",
-        "feature-targeting",
-        "floating-label",
-        "focus-ring",
-        "form-field",
-        "line-ripple",
-        "linear-progress",
-        "list",
-        "menu",
-        "menu-surface",
-        "notched-outline",
-        "icon-button",
-        "radio",
-        "ripple",
-        "rtl",
-        "select",
-        "shape",
-        "slider",
-        "snackbar",
-        "switch",
-        "tab",
-        "tab-bar",
-        "tab-indicator",
-        "tab-scroller",
-        "textfield",
-        "theme",
-        "tooltip",
-        "touch-target",
-        "tokens",
-        "typography",
-    ]
+# NOTE: any external sass deps must be placed here
+# buildifier: keep sorted
+SASS_DEPS = [
+    # "@angular/cdk",
 ]
