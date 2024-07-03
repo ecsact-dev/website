@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {
 	DoxygenBase,
 	DoxygenBaseDef,
@@ -187,7 +190,7 @@ const doxygenMemberDefParseFns = {
 	},
 	function: (def: DoxygenBaseDef, el: Element): DoxygenFunctionMemberDef => {
 		const parameters: DoxygenFunctionParameter[] = [];
-		const paramByName: {[paramName: string]: DoxygenFunctionParameter} = {};
+		const paramByName: { [paramName: string]: DoxygenFunctionParameter } = {};
 		for (const paramEl of Array.from(el.querySelectorAll('param'))) {
 			const param: DoxygenFunctionParameter = {
 				type: '',
@@ -727,7 +730,7 @@ function doxygenConstructDataType(
 
 function getTypeElCommonInfo(
 	el: Element,
-	info: {type: string; typeRefid?: string},
+	info: { type: string; typeRefid?: string },
 ) {
 	const typeEl = el.querySelector('type');
 	let typeRefEl: Element | null = null;

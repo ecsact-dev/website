@@ -1,22 +1,19 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "systems-in-cpp",
     srcs = [
         "systems-in-cpp.component.ts",
         "systems-in-cpp.module.ts",
         "systems-in-cpp-routing.module.ts",
     ],
-    angular_assets = [
-        "systems-in-cpp.component.html",
-    ],
     deps = [
         "//src/components/code-block-variation",
         "//src/components/prism",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

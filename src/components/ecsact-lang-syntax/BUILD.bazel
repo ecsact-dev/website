@@ -1,29 +1,25 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "ecsact-lang-syntax.component.scss",
+    srcs = ["ecsact-lang-syntax.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "ecsact-lang-syntax",
     srcs = [
         "ecsact-lang-syntax.component.ts",
         "ecsact-lang-syntax.module.ts",
     ],
-    angular_assets = [
-        "ecsact-lang-syntax.component.html",
-        ":styles",
-    ],
     deps = [
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
-        "@npm//@types/prismjs",
-        "@npm//prismjs",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@types/prismjs",
+        "//:node_modules/prismjs",
     ],
 )

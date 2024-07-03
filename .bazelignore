@@ -1,3 +1,3 @@
 node_modules
-realm/functions/*.js
+realm/functions
 src/assets/renders

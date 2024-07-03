@@ -1,27 +1,23 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-access.component.scss",
+    srcs = ["doxygen-access.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "doxygen-access",
     srcs = [
         "doxygen-access.component.ts",
         "doxygen-access.module.ts",
     ],
-    angular_assets = [
-        "doxygen-access.component.html",
-        ":styles",
-    ],
     deps = [
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

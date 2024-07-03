@@ -1,27 +1,23 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "lang.component.scss",
+    srcs = ["lang.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "lang",
     srcs = [
         "lang.component.ts",
         "lang.module.ts",
     ],
-    angular_assets = [
-        "lang.component.html",
-        ":styles",
-    ],
     deps = [
         "//src/components/ecsact-lang-syntax",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

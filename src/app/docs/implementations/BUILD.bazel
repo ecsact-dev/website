@@ -1,23 +1,19 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
     name = "implementations_component_style",
-    src = "implementations.component.scss",
+    srcs = ["implementations.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "implementations",
     srcs = glob(["*.ts"]),
-    angular_assets = [
-        "implementations.component.html",
-        ":implementations_component_style",
-    ],
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

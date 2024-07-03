@@ -1,15 +1,12 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "doxygen-functions-table",
     srcs = [
         "doxygen-functions-table.component.ts",
         "doxygen-functions-table.module.ts",
-    ],
-    angular_assets = [
-        "doxygen-functions-table.component.html",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-description",
@@ -18,8 +15,8 @@ ng_ts_project(
         "//src/components/doxygen-type-name",
         "//src/components/hidden-table-rows",
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

@@ -1,14 +1,14 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "doxygen-refid-link",
     srcs = [
         "doxygen-refid-link.directive.ts",
         "doxygen-refid-link.module.ts",
     ],
     deps = [
-        "@npm//@angular/router",
+        "//:node_modules/@angular/router",
     ],
 )

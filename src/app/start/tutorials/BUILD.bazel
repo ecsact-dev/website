@@ -1,8 +1,8 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "tutorials",
     srcs = ["tutorials-routing.module.ts"],
     deps = [
@@ -12,7 +12,7 @@ ng_ts_project(
         "//src/app/start/tutorials/unity/basic-example",
         "//src/app/start/tutorials/unity/moving-block",
         "//src/app/start/tutorials/unity/using-async",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

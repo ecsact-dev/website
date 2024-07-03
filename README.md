@@ -4,11 +4,15 @@ Source code for <https://ecsact.dev>
 
 ## Developing
 
-Run `yarn` with `bazel` to get the `node_modules` folder in your workspace.
+NOTE: All examples are assuming you're using [nushell](https://www.nushell.sh/).
 
-```sj
-bazel run @yarn//:yarn
+### Get `node_modules`
+
+```sh
+bazel run -- @pnpm --dir $env.PWD install --frozen-lockfile
 ```
+
+### Development Server
 
 Run the devserver with `bazel`
 

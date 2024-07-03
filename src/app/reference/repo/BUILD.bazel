@@ -1,32 +1,28 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src/app/reference:__subpackages__"])
 
 sass_binary(
     name = "repo_component_style",
-    src = "repo.component.scss",
+    srcs = ["repo.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "repo",
     srcs = [
         "repo.component.ts",
         "repo.module.ts",
-    ],
-    angular_assets = [
-        "repo.component.html",
-        ":repo_component_style",
     ],
     deps = [
         "//src/components/doxygen-page-def",
         "//src/components/doxygen-refid-link",
         "//src/search:doxygen-def-types",
         "//src/search:service",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@angular/router",
-        "@npm//rxjs",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/router",
+        "//:node_modules/rxjs",
     ],
 )
