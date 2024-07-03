@@ -8,6 +8,8 @@ ng_project(
     srcs = [
         "doxygen-variables-table.component.ts",
         "doxygen-variables-table.module.ts",
+        "doxygen-variables-table.component.html",
+        "doxygen-variables-table.component.css",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-description",

@@ -14,6 +14,8 @@ ng_project(
         "emsdk-cpp.component.ts",
         "emsdk-cpp.module.ts",
         "emsdk-cpp-routing.module.ts",
+        "emsdk-cpp-routing.component.html",
+        "emsdk-cpp-routing.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

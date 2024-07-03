@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "ecsact-lang-syntax.component.ts",
         "ecsact-lang-syntax.module.ts",
+        "ecsact-lang-syntax.component.html",
+        "ecsact-lang-syntax.component.css",
     ],
     deps = [
         "//src/search:doxygen-def-types",

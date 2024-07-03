@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "search.component.ts",
         "search.module.ts",
+        "search.component.html",
+        "search.component.scss",
     ],
     deps = [
         "//src/search:service",

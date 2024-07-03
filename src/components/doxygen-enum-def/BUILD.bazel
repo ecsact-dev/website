@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "doxygen-enum-def.component.ts",
         "doxygen-enum-def.module.ts",
+        "doxygen-enum-def.component.html",
+        "doxygen-enum-def.component.css",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-description",

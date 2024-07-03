@@ -5,7 +5,8 @@ import {
 	AfterViewInit,
 	ChangeDetectionStrategy,
 } from '@angular/core';
-import {highlight, languages} from 'prismjs';
+import { CommonModule } from '@angular/common';
+import { highlight, languages } from 'prismjs';
 
 import 'prismjs/components/prism-csharp';
 import 'prismjs/components/prism-c';
@@ -27,6 +28,8 @@ function getPrefixWhitespace(str: string): string {
 	templateUrl: './prism.component.html',
 	styleUrls: ['./prism.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [CommonModule],
+	standalone: true,
 })
 export class PrismComponent implements AfterViewInit {
 	private _language: string;
@@ -40,7 +43,7 @@ export class PrismComponent implements AfterViewInit {
 		this.hostEl.nativeElement.classList.add(`language-${this._language}`);
 	}
 
-	constructor(private hostEl: ElementRef<HTMLElement>) {}
+	constructor(private hostEl: ElementRef<HTMLElement>) { }
 
 	ngAfterViewInit() {
 		const grammar = languages[this.language];

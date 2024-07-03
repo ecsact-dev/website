@@ -2,6 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "lib": ["es2020", "dom"],
+    "strictPropertyInitialization": false,
     "paths": {
       "@/*": ["src/*"]
     }

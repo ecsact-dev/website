@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "doxygen-enumvalue-def.component.ts",
         "doxygen-enumvalue-def.module.ts",
+        "doxygen-enumvalue-def.component.html",
+        "doxygen-enumvalue-def.component.css",
     ],
     deps = [
         "//src/components/doxygen-paragraph",

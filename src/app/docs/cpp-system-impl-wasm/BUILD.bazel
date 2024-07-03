@@ -12,7 +12,8 @@ ng_project(
     name = "cpp-system-impl-wasm",
     srcs = [
         "cpp-system-impl-wasm.component.ts",
-        "cpp-system-impl-wasm.module.ts",
+        "cpp-system-impl-wasm.component.html",
+        "cpp-system-impl-wasm.component.css",
     ],
     deps = [
         "//src/components/prism",

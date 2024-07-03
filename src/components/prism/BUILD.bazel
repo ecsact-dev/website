@@ -12,7 +12,8 @@ ng_project(
     name = "prism",
     srcs = [
         "prism.component.ts",
-        "prism.module.ts",
+        "prism.component.html",
+        "prism.component.css",
     ],
     deps = [
         "//src/search:doxygen-def-types",

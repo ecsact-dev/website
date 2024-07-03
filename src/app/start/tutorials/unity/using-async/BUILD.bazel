@@ -14,6 +14,8 @@ ng_project(
         "using-async.component.ts",
         "using-async.module.ts",
         "using-async-routing.module.ts",
+        "using-async-routing.component.html",
+        "using-async-routing.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

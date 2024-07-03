@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "doxygen-name.component.ts",
         "doxygen-name.module.ts",
+        "doxygen-name.component.html",
+        "doxygen-name.component.css",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-access",

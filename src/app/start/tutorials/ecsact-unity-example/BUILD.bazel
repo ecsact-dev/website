@@ -14,6 +14,8 @@ ng_project(
         "ecsact-unity.component.ts",
         "ecsact-unity.module.ts",
         "ecsact-unity-routing.module.ts",
+        "ecsact-unity-routing.component.html",
+        "ecsact-unity-routing.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

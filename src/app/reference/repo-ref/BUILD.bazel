@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "repo-ref.component.ts",
         "repo-ref.module.ts",
+        "repo-ref.component.html",
+        "repo-ref.component.css",
     ],
     deps = [
         "//src/components/doxygen-datatype-def",

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import {
 	DoxygenMarkup,
 	DoxygenParagraph,
@@ -16,9 +16,9 @@ export class DoxygenParagraphComponent implements OnInit {
 	@Input()
 	paragraph: DoxygenParagraph;
 
-	constructor() {}
+	constructor() { }
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	isPlainText(value: DoxygenText | DoxygenMarkup): value is DoxygenPlainText {
 		return typeof value === 'string';

@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "doxygen-namespace-def.component.ts",
         "doxygen-namespace-def.module.ts",
+        "doxygen-namespace-def.component.html",
+        "doxygen-namespace-def.component.css",
     ],
     deps = [
         "//src/components/doxygen-child-block",

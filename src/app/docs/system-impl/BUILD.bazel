@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "system-impl.component.ts",
         "system-impl.module.ts",
+        "system-impl.component.html",
+        "system-impl.component.css",
     ],
     deps = [
         "//src/components/ecsact-lang-syntax",

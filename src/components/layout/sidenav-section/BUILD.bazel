@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "sidenav-section.component.ts",
         "sidenav-section.module.ts",
+        "sidenav-section.component.html",
+        "sidenav-section.component.css",
     ],
     deps = [
         "//src/search:doxygen-def-types",

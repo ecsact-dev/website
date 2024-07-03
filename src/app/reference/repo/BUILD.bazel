@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "repo.component.ts",
         "repo.module.ts",
+        "repo.component.html",
+        "repo.component.css",
     ],
     deps = [
         "//src/components/doxygen-page-def",

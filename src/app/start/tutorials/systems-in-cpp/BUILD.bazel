@@ -8,6 +8,8 @@ ng_project(
         "systems-in-cpp.component.ts",
         "systems-in-cpp.module.ts",
         "systems-in-cpp-routing.module.ts",
+        "systems-in-cpp-routing.component.html",
+        "systems-in-cpp-routing.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

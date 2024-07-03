@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "doxygen-variable-def.component.ts",
         "doxygen-variable-def.module.ts",
+        "doxygen-variable-def.component.html",
+        "doxygen-variable-def.component.css",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-definition",

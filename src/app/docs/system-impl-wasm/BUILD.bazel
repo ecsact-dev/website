@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "system-impl-wasm.component.ts",
         "system-impl-wasm.module.ts",
+        "system-impl-wasm.component.html",
+        "system-impl-wasm.component.css",
     ],
     deps = [
         "//src/components/ecsact-wasm-system-impl-validator",

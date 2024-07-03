@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "system-execution.component.ts",
         "system-execution.module.ts",
+        "system-execution.component.html",
+        "system-execution.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

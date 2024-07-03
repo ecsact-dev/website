@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "content.component.ts",
         "content.module.ts",
+        "content.component.html",
+        "content.component.css",
     ],
     deps = [
         "//src/search:doxygen-def-types",

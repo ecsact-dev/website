@@ -13,6 +13,8 @@ ng_project(
     srcs = [
         "ecsact-example-diagram.component.ts",
         "ecsact-example-diagram.module.ts",
+        "ecsact-example-diagram.component.html",
+        "ecsact-example-diagram.component.css",
     ],
     deps = [
         "//:node_modules/@angular/common",

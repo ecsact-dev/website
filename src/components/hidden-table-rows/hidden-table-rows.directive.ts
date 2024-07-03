@@ -7,7 +7,7 @@ import {
 	ChangeDetectorRef,
 } from '@angular/core';
 
-@Directive({selector: 'table[hasHiddenRows]'})
+@Directive({ selector: 'table[hasHiddenRows]' })
 export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 	@HostBinding('class.showing-hidden-rows')
 	public showHiddenRows: boolean = false;
@@ -17,18 +17,20 @@ export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 	constructor(
 		private cdr: ChangeDetectorRef,
 		private elementRef: ElementRef<HTMLTableElement>,
-	) {}
+	) { }
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
-	ngAfterViewInit() {}
+	ngAfterViewInit() { }
 
 	setupPlaceholderRow(childRow: ElementRef<HTMLElement>) {
 		if (!this._placeholderRow) {
 			this.createPlaceholderRow(childRow);
 		}
 
-		this.elementRef.nativeElement.appendChild(this._placeholderRow);
+		if (this._placeholderRow != null) {
+			this.elementRef.nativeElement.appendChild(this._placeholderRow);
+		}
 	}
 
 	private createPlaceholderRow(childRow: ElementRef<HTMLElement>) {
