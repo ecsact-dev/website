@@ -11,10 +11,10 @@ sass_binary(
 ng_project(
     name = "runtime-builder",
     srcs = [
-        "runtime-builder-routing.module.ts",
-        "runtime-builder.component.ts",
-        "runtime-builder.component.html",
         "runtime-builder.component.css",
+        "runtime-builder.component.html",
+        "runtime-builder.component.ts",
+        "runtime-builder-routing.module.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

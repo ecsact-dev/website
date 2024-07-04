@@ -11,14 +11,14 @@ sass_binary(
 ng_project(
     name = "doxygen-block",
     srcs = [
-        "doxygen-block.component.ts",
-        "doxygen-block.component.html",
         "doxygen-block.component.css",
+        "doxygen-block.component.html",
+        "doxygen-block.component.ts",
     ],
     deps = [
-        "//src/search:doxygen-def-types",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/search:doxygen-def-types",
     ],
 )

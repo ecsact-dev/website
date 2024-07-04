@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "entities",
     srcs = [
-        "entities-routing.module.ts",
-        "entities.component.ts",
-        "entities.component.html",
         "entities.component.css",
+        "entities.component.html",
+        "entities.component.ts",
+        "entities-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

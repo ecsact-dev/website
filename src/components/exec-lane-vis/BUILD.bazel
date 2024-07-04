@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "exec-lane-vis",
     srcs = [
-        "exec-lane-vis.component.ts",
-        "exec-lane-vis.component.html",
         "exec-lane-vis.component.css",
+        "exec-lane-vis.component.html",
+        "exec-lane-vis.component.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

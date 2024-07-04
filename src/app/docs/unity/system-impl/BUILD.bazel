@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "system-impl",
     srcs = [
-        "system-impl-routing.module.ts",
-        "system-impl.component.ts",
-        "system-impl.component.html",
         "system-impl.component.css",
+        "system-impl.component.html",
+        "system-impl.component.ts",
+        "system-impl-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/prism",
     ],
 )

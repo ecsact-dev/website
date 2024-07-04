@@ -11,10 +11,10 @@ sass_binary(
 ng_project(
     name = "implementations",
     srcs = [
-        "implementations-routing.module.ts",
-        "implementations.component.ts",
-        "implementations.component.html",
         "implementations.component.css",
+        "implementations.component.html",
+        "implementations.component.ts",
+        "implementations-routing.module.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

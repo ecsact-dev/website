@@ -5,15 +5,15 @@ package(default_visibility = ["//src:__subpackages__"])
 ng_project(
     name = "systems-in-cpp",
     srcs = [
+        "systems-in-cpp.component.html",
         "systems-in-cpp.component.ts",
         "systems-in-cpp-routing.module.ts",
-        "systems-in-cpp.component.html",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/prism",
     ],
 )

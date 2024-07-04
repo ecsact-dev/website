@@ -11,15 +11,15 @@ sass_binary(
 ng_project(
     name = "doxygen-page-def",
     srcs = [
-        "doxygen-page-def.component.ts",
-        "doxygen-page-def.component.html",
         "doxygen-page-def.component.css",
+        "doxygen-page-def.component.html",
+        "doxygen-page-def.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-paragraph",
-        "//src/search:doxygen-def-types",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/doxygen-paragraph",
+        "//src/search:doxygen-def-types",
     ],
 )

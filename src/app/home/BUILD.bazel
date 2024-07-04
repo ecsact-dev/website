@@ -21,19 +21,19 @@ sass_binary(
 ng_project(
     name = "home",
     srcs = [
-        "home.component.ts",
-        "home.component.html",
         "home.component.css",
+        "home.component.html",
+        "home.component.ts",
         "home-routing.module.ts",
     ],
     deps = [
-        "//src/components/ecsact-example-diagram",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/layout/content",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
         "//:node_modules/@types/node",
         "//:node_modules/detect-browser",
+        "//src/components/ecsact-example-diagram",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/layout/content",
     ],
 )

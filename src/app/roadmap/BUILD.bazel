@@ -11,13 +11,12 @@ sass_binary(
 ng_project(
     name = "roadmap",
     srcs = [
-        "roadmap.component.ts",
-        "roadmap.component.html",
         "roadmap.component.css",
+        "roadmap.component.html",
+        "roadmap.component.ts",
         "roadmap-routing.module.ts",
     ],
     deps = [
-        "//src/search:service",
         "//:node_modules/@angular/cdk",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
@@ -25,5 +24,6 @@ ng_project(
         "//:node_modules/@types/marked",
         "//:node_modules/marked",
         "//:node_modules/rxjs",
+        "//src/search:service",
     ],
 )

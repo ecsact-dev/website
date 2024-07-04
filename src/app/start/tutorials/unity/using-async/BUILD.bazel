@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "using-async",
     srcs = [
-        "using-async-routing.module.ts",
-        "using-async.component.ts",
-        "using-async.component.html",
         "using-async.component.css",
+        "using-async.component.html",
+        "using-async.component.ts",
+        "using-async-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

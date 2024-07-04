@@ -11,12 +11,15 @@ sass_binary(
 ng_project(
     name = "reference",
     srcs = [
-        "reference-routing.module.ts",
-        "reference.component.ts",
         "reference.component.html",
         "reference.component.scss",
+        "reference.component.ts",
+        "reference-routing.module.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/app/reference/overview",
         "//src/app/reference/repo",
         "//src/app/reference/repo-ref",
@@ -24,8 +27,5 @@ ng_project(
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
         "//src/search:service",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/router",
     ],
 )

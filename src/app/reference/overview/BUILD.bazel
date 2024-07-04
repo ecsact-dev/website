@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "overview",
     srcs = [
-        "overview.component.ts",
-        "overview.component.html",
         "overview.component.css",
+        "overview.component.html",
+        "overview.component.ts",
     ],
     deps = [
         "//:node_modules/@angular/core",

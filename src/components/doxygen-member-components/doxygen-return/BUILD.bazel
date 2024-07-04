@@ -11,15 +11,15 @@ sass_binary(
 ng_project(
     name = "doxygen-return",
     srcs = [
-        "doxygen-return.component.ts",
-        "doxygen-return.component.html",
         "doxygen-return.component.css",
+        "doxygen-return.component.html",
+        "doxygen-return.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-member-components/doxygen-container",
-        "//src/search:doxygen-def-types",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/doxygen-member-components/doxygen-container",
+        "//src/search:doxygen-def-types",
     ],
 )

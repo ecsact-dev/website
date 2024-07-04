@@ -9,12 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: greut/eclint-action@v0
-      with:
-        # exclude files handled by prettier
-        eclint_args: >-
-          -exclude=**/*.ts
-          -exclude=**/*.html
-          -exclude=**/*.scss
-    - run: 'bazel run @pnpm -- --dir $PWD run format:check'
+    - run: 'bazel run //tools/format:format.check'
 

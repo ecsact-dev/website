@@ -4,8 +4,17 @@ package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
     name = "start",
-    srcs = glob(["*.ts", "*.html"]),
+    srcs = glob([
+        "*.ts",
+        "*.html",
+    ]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@types/node",
+        "//:node_modules/detect-browser",
         "//src/app/start/custom",
         "//src/app/start/godot",
         "//src/app/start/tutorials",
@@ -15,11 +24,5 @@ ng_project(
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/forms",
-        "//:node_modules/@angular/router",
-        "//:node_modules/@types/node",
-        "//:node_modules/detect-browser",
     ],
 )

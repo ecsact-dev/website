@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "unity",
     srcs = [
-        "start-unity.component.ts",
         "start-unity.component.css",
         "start-unity.component.html",
+        "start-unity.component.ts",
         "start-unity-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/prism",
     ],
 )

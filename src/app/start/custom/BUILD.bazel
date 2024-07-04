@@ -5,9 +5,9 @@ package(default_visibility = ["//:__subpackages__"])
 ng_project(
     name = "custom",
     srcs = [
-        "start-custom-routing.module.ts",
-        "start-custom.component.ts",
         "start-custom.component.html",
+        "start-custom.component.ts",
+        "start-custom-routing.module.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

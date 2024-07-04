@@ -5,13 +5,13 @@ package(default_visibility = ["//src:__subpackages__"])
 ng_project(
     name = "doxygen-type-name",
     srcs = [
-        "doxygen-type-name.component.ts",
         "doxygen-type-name.component.html",
+        "doxygen-type-name.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-refid-link",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/doxygen-refid-link",
     ],
 )

@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "basic-example",
     srcs = [
+        "basic-example.component.css",
+        "basic-example.component.html",
         "basic-example.component.ts",
         "basic-example-routing.module.ts",
-        "basic-example.component.html",
-        "basic-example.component.css",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

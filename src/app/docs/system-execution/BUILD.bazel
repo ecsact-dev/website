@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "system-execution",
     srcs = [
-        "system-execution.component.ts",
-        "system-execution.component.html",
         "system-execution.component.css",
+        "system-execution.component.html",
+        "system-execution.component.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/exec-lane-vis",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/exec-lane-vis",
     ],
 )

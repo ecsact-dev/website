@@ -5,9 +5,9 @@ package(default_visibility = ["//:__subpackages__"])
 ng_project(
     name = "unreal",
     srcs = [
+        "start-unreal.component.html",
         "start-unreal.component.ts",
         "start-unreal-routing.module.ts",
-        "start-unreal.component.html",
     ],
     deps = [
         "//:node_modules/@angular/common",

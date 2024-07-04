@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "unity-sync",
     srcs = [
-        "unity-sync-routing.module.ts",
-        "unity-sync.component.ts",
-        "unity-sync.component.html",
         "unity-sync.component.css",
+        "unity-sync.component.html",
+        "unity-sync.component.ts",
+        "unity-sync-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

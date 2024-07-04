@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "moving-block",
     srcs = [
-        "moving-block-routing.module.ts",
-        "moving-block.component.ts",
-        "moving-block.component.html",
         "moving-block.component.css",
+        "moving-block.component.html",
+        "moving-block.component.ts",
+        "moving-block-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

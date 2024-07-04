@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "doxygen-variable-def",
     srcs = [
-        "doxygen-variable-def.component.ts",
-        "doxygen-variable-def.component.html",
         "doxygen-variable-def.component.css",
+        "doxygen-variable-def.component.html",
+        "doxygen-variable-def.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-member-components/doxygen-definition",
-        "//src/components/doxygen-member-components/doxygen-description",
-        "//src/components/doxygen-member-components/doxygen-location",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/doxygen-member-components/doxygen-definition",
+        "//src/components/doxygen-member-components/doxygen-description",
+        "//src/components/doxygen-member-components/doxygen-location",
     ],
 )

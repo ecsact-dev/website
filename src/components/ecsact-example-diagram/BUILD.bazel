@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "ecsact-example-diagram",
     srcs = [
-        "ecsact-example-diagram.component.ts",
-        "ecsact-example-diagram.component.html",
         "ecsact-example-diagram.component.css",
+        "ecsact-example-diagram.component.html",
+        "ecsact-example-diagram.component.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

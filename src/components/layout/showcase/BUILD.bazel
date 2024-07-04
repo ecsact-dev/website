@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "showcase",
     srcs = [
-        "showcase.component.ts",
-        "showcase.component.html",
         "showcase.component.css",
+        "showcase.component.html",
+        "showcase.component.ts",
     ],
     deps = [
         "//:node_modules/@angular/cdk",

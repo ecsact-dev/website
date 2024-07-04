@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "doxygen-file-def",
     srcs = [
-        "doxygen-file-def.component.ts",
-        "doxygen-file-def.component.html",
         "doxygen-file-def.component.css",
+        "doxygen-file-def.component.html",
+        "doxygen-file-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-function-def",
         "//src/components/doxygen-parent-block",
         "//src/components/doxygen-refid-link",
         "//src/search:doxygen-def-types",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/router",
     ],
 )

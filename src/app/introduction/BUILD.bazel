@@ -11,10 +11,10 @@ sass_binary(
 ng_project(
     name = "introduction",
     srcs = [
-        "introduction-routing.module.ts",
-        "introduction.component.ts",
-        "introduction.component.html",
         "introduction.component.css",
+        "introduction.component.html",
+        "introduction.component.ts",
+        "introduction-routing.module.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

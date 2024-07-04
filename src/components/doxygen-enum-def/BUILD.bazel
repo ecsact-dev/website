@@ -11,18 +11,18 @@ sass_binary(
 ng_project(
     name = "doxygen-enum-def",
     srcs = [
-        "doxygen-enum-def.component.ts",
-        "doxygen-enum-def.component.html",
         "doxygen-enum-def.component.css",
+        "doxygen-enum-def.component.html",
+        "doxygen-enum-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
         "//src/components/doxygen-member-components/doxygen-name",
         "//src/components/doxygen-member-components/doxygen-parameters",
         "//src/search:doxygen-def-types",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/router",
     ],
 )

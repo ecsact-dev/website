@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "ecsact-unity",
     srcs = [
-        "ecsact-unity-routing.module.ts",
-        "ecsact-unity.component.ts",
-        "ecsact-unity.component.html",
         "ecsact-unity.component.css",
+        "ecsact-unity.component.html",
+        "ecsact-unity.component.ts",
+        "ecsact-unity-routing.module.ts",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/prism",
     ],
 )

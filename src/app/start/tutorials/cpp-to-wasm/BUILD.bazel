@@ -5,16 +5,16 @@ package(default_visibility = ["//src:__subpackages__"])
 ng_project(
     name = "cpp-to-wasm",
     srcs = [
+        "cpp-to-wasm.component.html",
         "cpp-to-wasm.component.ts",
         "cpp-to-wasm-routing.module.ts",
-        "cpp-to-wasm.component.html",
     ],
     deps = [
-        "//src/components/code-block-variation",
-        "//src/components/ecsact-wasm-system-impl-validator",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/code-block-variation",
+        "//src/components/ecsact-wasm-system-impl-validator",
+        "//src/components/prism",
     ],
 )

@@ -3,6 +3,11 @@ load("@aspect_bazel_lib//lib/private:tar_toolchain.bzl", "tar_toolchain")
 load("@aspect_bazel_lib//lib:tar.bzl", "tar_lib")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 
+alias(
+    name = "format",
+    actual = "//tools/format",
+)
+
 npm_link_all_packages(name = "node_modules")
 
 # The root repo tsconfig
@@ -24,6 +29,7 @@ tar_toolchain(
     name = "libarchive_tar_toolchain",
     binary = "@libarchive//tar",
 )
+
 toolchain(
     name = "tar_toolchain",
     toolchain = ":libarchive_tar_toolchain",

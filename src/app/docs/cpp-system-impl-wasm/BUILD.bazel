@@ -11,14 +11,14 @@ sass_binary(
 ng_project(
     name = "cpp-system-impl-wasm",
     srcs = [
-        "cpp-system-impl-wasm.component.ts",
-        "cpp-system-impl-wasm.component.html",
         "cpp-system-impl-wasm.component.css",
+        "cpp-system-impl-wasm.component.html",
+        "cpp-system-impl-wasm.component.ts",
     ],
     deps = [
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/prism",
     ],
 )

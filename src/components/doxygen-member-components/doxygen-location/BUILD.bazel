@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "doxygen-location",
     srcs = [
-        "doxygen-location.component.ts",
-        "doxygen-location.component.html",
         "doxygen-location.component.css",
+        "doxygen-location.component.html",
+        "doxygen-location.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-member-components/doxygen-container",
-        "//src/search:doxygen-def-types",
-        "//src/search:service",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/doxygen-member-components/doxygen-container",
+        "//src/search:doxygen-def-types",
+        "//src/search:service",
     ],
 )

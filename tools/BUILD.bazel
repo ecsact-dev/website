@@ -5,4 +5,3 @@ angular_compiler_cli.ngc_binary(
     name = "ngc",
     visibility = ["//visibility:public"],
 )
-

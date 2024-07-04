@@ -11,18 +11,18 @@ sass_binary(
 ng_project(
     name = "emsdk-cpp",
     srcs = [
-        "emsdk-cpp-routing.module.ts",
-        "emsdk-cpp.component.ts",
-        "emsdk-cpp.component.html",
         "emsdk-cpp.component.css",
+        "emsdk-cpp.component.html",
+        "emsdk-cpp.component.ts",
+        "emsdk-cpp-routing.module.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/code-block-variation",
         "//src/components/ecsact-lang-syntax",
         "//src/components/ecsact-wasm-system-impl-validator",
         "//src/components/prism",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/router",
     ],
 )

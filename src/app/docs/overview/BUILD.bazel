@@ -11,17 +11,17 @@ sass_binary(
 ng_project(
     name = "overview",
     srcs = [
-        "overview-routing.module.ts",
-        "overview.component.ts",
-        "overview.component.html",
         "overview.component.css",
+        "overview.component.html",
+        "overview.component.ts",
+        "overview-routing.module.ts",
     ],
     deps = [
-        "//src/components/ecsact-example-diagram",
-        "//src/components/ecsact-lang-syntax",
-        "//src/components/layout/showcase",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/ecsact-example-diagram",
+        "//src/components/ecsact-lang-syntax",
+        "//src/components/layout/showcase",
     ],
 )

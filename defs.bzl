@@ -241,4 +241,3 @@ def ng_pkg(name, srcs, deps = [], visibility = ["//visibility:public"]):
         include_runfiles = False,
         visibility = ["//visibility:public"],
     )
-

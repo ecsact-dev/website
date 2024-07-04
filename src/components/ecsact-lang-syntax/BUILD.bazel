@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "ecsact-lang-syntax",
     srcs = [
-        "ecsact-lang-syntax.component.ts",
-        "ecsact-lang-syntax.component.html",
         "ecsact-lang-syntax.component.css",
+        "ecsact-lang-syntax.component.html",
+        "ecsact-lang-syntax.component.ts",
     ],
     deps = [
-        "//src/search:doxygen-def-types",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
         "//:node_modules/@types/prismjs",
         "//:node_modules/prismjs",
+        "//src/search:doxygen-def-types",
     ],
 )

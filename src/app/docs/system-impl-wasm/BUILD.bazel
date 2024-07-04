@@ -11,15 +11,15 @@ sass_binary(
 ng_project(
     name = "system-impl-wasm",
     srcs = [
-        "system-impl-wasm.component.ts",
-        "system-impl-wasm.component.html",
         "system-impl-wasm.component.css",
+        "system-impl-wasm.component.html",
+        "system-impl-wasm.component.ts",
     ],
     deps = [
-        "//src/components/ecsact-wasm-system-impl-validator",
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/ecsact-wasm-system-impl-validator",
+        "//src/components/prism",
     ],
 )

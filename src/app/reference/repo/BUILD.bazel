@@ -11,19 +11,19 @@ sass_binary(
 ng_project(
     name = "repo",
     srcs = [
-        "repo.component.ts",
-        "repo.component.html",
         "repo.component.css",
+        "repo.component.html",
+        "repo.component.ts",
     ],
     deps = [
-        "//src/components/doxygen-page-def",
-        "//src/components/doxygen-refid-link",
-        "//src/search:doxygen-def-types",
-        "//src/search:service",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/router",
         "//:node_modules/rxjs",
+        "//src/components/doxygen-page-def",
+        "//src/components/doxygen-refid-link",
+        "//src/search:doxygen-def-types",
+        "//src/search:service",
     ],
 )

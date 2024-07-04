@@ -7,6 +7,8 @@ bazel_dep(name = "aspect_rules_ts", version = "3.0.0-rc1")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "aspect_rules_esbuild", version = "0.21.0-rc1")
 bazel_dep(name = "libarchive", version = "3.7.4.bcr.2")
+bazel_dep(name = "aspect_rules_lint", version = "1.0.0-rc4")
+bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
 
 pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm", dev_dependency = True)
 use_repo(pnpm, "pnpm")

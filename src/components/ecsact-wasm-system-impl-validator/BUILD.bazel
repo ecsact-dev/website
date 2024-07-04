@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "ecsact-wasm-system-impl-validator",
     srcs = [
-        "ecsact-wasm-system-impl-validator.component.ts",
-        "ecsact-wasm-system-impl-validator.component.html",
         "ecsact-wasm-system-impl-validator.component.css",
+        "ecsact-wasm-system-impl-validator.component.html",
+        "ecsact-wasm-system-impl-validator.component.ts",
     ],
     deps = [
         "//:node_modules/@angular/common",

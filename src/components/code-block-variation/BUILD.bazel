@@ -11,9 +11,9 @@ sass_binary(
 ng_project(
     name = "code-block-variation",
     srcs = [
-        "code-block-variation.component.ts",
-        "code-block-variation.component.html",
         "code-block-variation.component.css",
+        "code-block-variation.component.html",
+        "code-block-variation.component.ts",
         "code-block-variation-option.directive.ts",
     ],
     deps = [

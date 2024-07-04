@@ -11,11 +11,14 @@ sass_binary(
 ng_project(
     name = "doxygen-namespace-def",
     srcs = [
-        "doxygen-namespace-def.component.ts",
-        "doxygen-namespace-def.component.html",
         "doxygen-namespace-def.component.css",
+        "doxygen-namespace-def.component.html",
+        "doxygen-namespace-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-child-block",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
@@ -25,8 +28,5 @@ ng_project(
         "//src/components/doxygen-refid-link",
         "//src/components/doxygen-variable-def",
         "//src/search:doxygen-def-types",
-        "//:node_modules/@angular/common",
-        "//:node_modules/@angular/core",
-        "//:node_modules/@angular/router",
     ],
 )

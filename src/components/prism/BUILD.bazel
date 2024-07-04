@@ -11,16 +11,16 @@ sass_binary(
 ng_project(
     name = "prism",
     srcs = [
-        "prism.component.ts",
-        "prism.component.html",
         "prism.component.css",
+        "prism.component.html",
+        "prism.component.ts",
     ],
     deps = [
-        "//src/search:doxygen-def-types",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
         "//:node_modules/@types/prismjs",
         "//:node_modules/prismjs",
+        "//src/search:doxygen-def-types",
     ],
 )
