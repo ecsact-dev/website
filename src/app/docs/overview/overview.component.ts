@@ -5,10 +5,10 @@ import {
 	OnDestroy,
 	OnInit,
 } from '@angular/core';
-import { ShowcaseComponent } from '../../../components/layout/showcase/showcase.component';
-import { RouterLink } from '@angular/router';
-import { EcsactLangSyntaxComponent } from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
-import { EcsactExampleDiagramComponent } from '../../../components/ecsact-example-diagram/ecsact-example-diagram.component';
+import {ShowcaseComponent} from '../../../components/layout/showcase/showcase.component';
+import {RouterLink} from '@angular/router';
+import {EcsactLangSyntaxComponent} from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
+import {EcsactExampleDiagramComponent} from '../../../components/ecsact-example-diagram/ecsact-example-diagram.component';
 
 @Component({
 	templateUrl: 'overview.component.html',

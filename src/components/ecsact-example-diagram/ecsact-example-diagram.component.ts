@@ -7,7 +7,7 @@ import {
 	AfterViewInit,
 	ElementRef,
 } from '@angular/core';
-import { NgIf, NgTemplateOutlet } from '@angular/common';
+import {NgIf, NgTemplateOutlet} from '@angular/common';
 
 @Component({
 	selector: 'ecsact-example-diagram',
@@ -18,7 +18,7 @@ import { NgIf, NgTemplateOutlet } from '@angular/common';
 	imports: [NgIf, NgTemplateOutlet],
 })
 export class EcsactExampleDiagramComponent implements OnInit, AfterViewInit {
-	@ViewChild('verticalLayoutEl', { static: false })
+	@ViewChild('verticalLayoutEl', {static: false})
 	verticalLayoutEl?: ElementRef<SVGSVGElement>;
 
 	private _verticalLayout: boolean = false;
@@ -33,9 +33,9 @@ export class EcsactExampleDiagramComponent implements OnInit, AfterViewInit {
 		}
 	}
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	ngAfterViewInit(): void {
 		this._updateVerticalLayoutViewBox();

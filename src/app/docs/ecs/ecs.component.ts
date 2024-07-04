@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { EcsactLangSyntaxComponent } from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {EcsactLangSyntaxComponent} from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
 
 @Component({
 	templateUrl: 'ecs.component.html',
@@ -8,4 +8,4 @@ import { EcsactLangSyntaxComponent } from '../../../components/ecsact-lang-synta
 	standalone: true,
 	imports: [EcsactLangSyntaxComponent],
 })
-export class EcsComponent { }
+export class EcsComponent {}

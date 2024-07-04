@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { RuntimeComponent } from './runtime.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {RuntimeComponent} from './runtime.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { RuntimeComponent } from './runtime.component';
 	],
 	exports: [],
 })
-export class RuntimeRoutingModule { }
+export class RuntimeRoutingModule {}

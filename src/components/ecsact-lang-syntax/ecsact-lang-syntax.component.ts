@@ -6,7 +6,7 @@ import {
 	ElementRef,
 	HostBinding,
 } from '@angular/core';
-import { languages, highlight } from 'prismjs';
+import {languages, highlight} from 'prismjs';
 
 languages.ecsact = {
 	number: /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,

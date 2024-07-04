@@ -25,9 +25,7 @@
 	"options": {
 		"shell": {
 			"executable": "bash",
-			"args": [
-				"-c"
-			]
+			"args": ["-c"]
 		}
 	},
 	"tasks": [

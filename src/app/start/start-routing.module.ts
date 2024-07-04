@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { StartOverviewComponent } from './start-overview.component';
-import { StartComponent } from './start.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {StartOverviewComponent} from './start-overview.component';
+import {StartComponent} from './start.component';
 
 const routes: Routes = [
 	{
@@ -63,4 +63,4 @@ const routes: Routes = [
 	],
 	exports: [],
 })
-export class StartRoutingModule { }
+export class StartRoutingModule {}

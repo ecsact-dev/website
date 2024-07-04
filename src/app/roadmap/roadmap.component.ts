@@ -1,11 +1,11 @@
 // TODO: enable ts in this file again
 // @ts-nocheck
 
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
-import { from, Observable, shareReplay, switchMap } from 'rxjs';
-import { marked } from 'marked';
-import { CdkAccordionItem, CdkAccordion } from '@angular/cdk/accordion';
-import { NgIf, NgFor, NgTemplateOutlet, AsyncPipe } from '@angular/common';
+import {Component, ChangeDetectionStrategy, ViewChild} from '@angular/core';
+import {from, Observable, shareReplay, switchMap} from 'rxjs';
+import {marked} from 'marked';
+import {CdkAccordionItem, CdkAccordion} from '@angular/cdk/accordion';
+import {NgIf, NgFor, NgTemplateOutlet, AsyncPipe} from '@angular/common';
 
 interface IRoadmapProjectRaw {
 	number: number;
@@ -98,9 +98,9 @@ export class RoadmapComponent {
 									return result;
 								},
 								[
-									/*RoadmapItemStatus.InProgress*/[],
-									/*RoadmapItemStatus.Planning*/[],
-									/*RoadmapItemStatus.Done */[],
+									/*RoadmapItemStatus.InProgress*/ [],
+									/*RoadmapItemStatus.Planning*/ [],
+									/*RoadmapItemStatus.Done */ [],
 								] as Array<IRoadmapProject[]>,
 							),
 						)

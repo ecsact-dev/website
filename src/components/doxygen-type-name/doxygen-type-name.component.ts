@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenRefidLinkDirective } from '../doxygen-refid-link/doxygen-refid-link.directive';
-import { NgIf } from '@angular/common';
+import {Component, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenRefidLinkDirective} from '../doxygen-refid-link/doxygen-refid-link.directive';
+import {NgIf} from '@angular/common';
 
 export interface IDoxygenTypeNameDef {
 	typeRefid?: string;

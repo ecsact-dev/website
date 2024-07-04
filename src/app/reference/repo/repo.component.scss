@@ -55,13 +55,13 @@ li.compound-list-item {
 	border-radius: 4px;
 }
 
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
 	.repo-directories {
 		grid-template-columns: 1fr 1fr;
 	}
 }
 
-@media(max-width: 599px) {
+@media (max-width: 599px) {
 	.repo-directories {
 		grid-template-columns: 1fr;
 	}

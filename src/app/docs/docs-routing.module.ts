@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CppSystemImplWasmComponent } from './cpp-system-impl-wasm/cpp-system-impl-wasm.component';
-import { DocsComponent } from './docs.component';
-import { LangComponent } from './lang/lang.component';
-import { OverviewComponent } from './overview/overview.component';
-import { SystemExecutionComponent } from './system-execution/system-execution.component';
-import { SystemImplWasmComponent } from './system-impl-wasm/system-impl-wasm.component';
-import { SystemImplComponent } from './system-impl/system-impl.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {CppSystemImplWasmComponent} from './cpp-system-impl-wasm/cpp-system-impl-wasm.component';
+import {DocsComponent} from './docs.component';
+import {LangComponent} from './lang/lang.component';
+import {OverviewComponent} from './overview/overview.component';
+import {SystemExecutionComponent} from './system-execution/system-execution.component';
+import {SystemImplWasmComponent} from './system-impl-wasm/system-impl-wasm.component';
+import {SystemImplComponent} from './system-impl/system-impl.component';
 
 const routes: Routes = [
 	{
@@ -99,4 +99,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [],
 })
-export class DocsRoutingModule { }
+export class DocsRoutingModule {}

@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { UnityInstallPageComponent } from './install.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {UnityInstallPageComponent} from './install.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { UnityInstallPageComponent } from './install.component';
 	],
 	exports: [],
 })
-export class UnityInstallPageRoutingModule { }
+export class UnityInstallPageRoutingModule {}

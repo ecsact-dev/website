@@ -16,10 +16,11 @@ import {
 
 @Directive({
 	selector: '[codeBlockVariationOption]',
-	standalone: true
+	standalone: true,
 })
 export class CodeBlockVariationOptionDirective
-	implements AfterViewInit, OnDestroy, ICodeBlockVariationOption {
+	implements AfterViewInit, OnDestroy, ICodeBlockVariationOption
+{
 	private _optionTitle: string = '';
 	get optionTitle(): string {
 		if (!this._optionTitle) {
@@ -35,7 +36,7 @@ export class CodeBlockVariationOptionDirective
 	constructor(
 		private hostEl: ElementRef<HTMLElement>,
 		private parent: CodeBlockVariationComponent,
-	) { }
+	) {}
 
 	setActive(active: boolean): void {
 		this.hostEl.nativeElement.classList.toggle(

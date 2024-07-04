@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { EcsComponent } from './ecs.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {EcsComponent} from './ecs.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { EcsComponent } from './ecs.component';
 	],
 	exports: [],
 })
-export class EcsRoutingModule { }
+export class EcsRoutingModule {}

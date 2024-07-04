@@ -4,18 +4,25 @@ import {
 	ChangeDetectionStrategy,
 	TrackByFunction,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { from, map, Observable, shareReplay, switchMap } from 'rxjs';
+import {ActivatedRoute} from '@angular/router';
+import {from, map, Observable, shareReplay, switchMap} from 'rxjs';
 import {
 	DoxygenCompound,
 	DoxygenMember,
 	DoxygenPageDef,
 } from '../../../search/doxygen-def-types';
-import { Search } from '../../../search/search.service';
-import { FormsModule } from '@angular/forms';
-import { DoxygenPageDefComponent } from '../../../components/doxygen-page-def/doxygen-page-def.component';
-import { DoxygenRefidLinkDirective } from '../../../components/doxygen-refid-link/doxygen-refid-link.directive';
-import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgTemplateOutlet, AsyncPipe } from '@angular/common';
+import {Search} from '../../../search/search.service';
+import {FormsModule} from '@angular/forms';
+import {DoxygenPageDefComponent} from '../../../components/doxygen-page-def/doxygen-page-def.component';
+import {DoxygenRefidLinkDirective} from '../../../components/doxygen-refid-link/doxygen-refid-link.directive';
+import {
+	NgIf,
+	NgFor,
+	NgSwitch,
+	NgSwitchCase,
+	NgTemplateOutlet,
+	AsyncPipe,
+} from '@angular/common';
 
 export enum RepoCompoundsView {
 	ByKind,
@@ -93,7 +100,10 @@ export class RepoComponent implements OnInit {
 		return compound.refid;
 	};
 
-	constructor(private search: Search, route: ActivatedRoute) {
+	constructor(
+		private search: Search,
+		route: ActivatedRoute,
+	) {
 		this.mainPage$ = route.params.pipe(
 			switchMap(params => from(search.getDef(params.repo, 'indexpage'))),
 		);

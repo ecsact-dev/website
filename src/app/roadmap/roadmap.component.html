@@ -36,10 +36,9 @@
 				accordionItem.expanded ? 'expand_more' : 'chevron_right'
 			}}</span>
 			<span>{{ title }}</span>
-			<span
-				class="px-2 py-1 rounded bg-content-bg border text-xs"
-				>{{ projects.length }}</span
-			>
+			<span class="px-2 py-1 rounded bg-content-bg border text-xs">{{
+				projects.length
+			}}</span>
 		</h2>
 	</button>
 	<div class="overflow-hidden">
@@ -133,7 +132,7 @@
 					projectAccordionItemTpl;
 					context: {
 						projects: projects[RoadmapItemStatus.InProgress],
-						title: ''
+						title: '',
 					}
 				"></ng-container>
 
@@ -142,7 +141,7 @@
 					projectAccordionItemTpl;
 					context: {
 						projects: projects[RoadmapItemStatus.Planning],
-						title: 'Planning'
+						title: 'Planning',
 					}
 				"></ng-container>
 		</cdk-accordion>

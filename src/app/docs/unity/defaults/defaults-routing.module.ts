@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { DefaultsComponent } from './defaults.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {DefaultsComponent} from './defaults.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { DefaultsComponent } from './defaults.component';
 	],
 	exports: [],
 })
-export class DefaultsRoutingModule { }
+export class DefaultsRoutingModule {}

@@ -1,7 +1,7 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowser } from '@angular/platform-browser';
-import { AppModule } from './app/app.module';
-import { initializeApp } from 'firebase/app';
+import {enableProdMode} from '@angular/core';
+import {platformBrowser} from '@angular/platform-browser';
+import {AppModule} from './app/app.module';
+import {initializeApp} from 'firebase/app';
 
 declare const process: any;
 if (process.env.NODE_ENV === 'production') {
@@ -19,4 +19,4 @@ initializeApp({
 });
 platformBrowser()
 	.bootstrapModule(AppModule)
-	.catch((err) => console.error(err));
+	.catch(err => console.error(err));

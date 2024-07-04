@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { OverviewComponent } from './overview/overview.component';
-import { ReferenceComponent } from './reference.component';
-import { RepoRefComponent } from './repo-ref/repo-ref.component';
-import { RepoComponent } from './repo/repo.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {OverviewComponent} from './overview/overview.component';
+import {ReferenceComponent} from './reference.component';
+import {RepoRefComponent} from './repo-ref/repo-ref.component';
+import {RepoComponent} from './repo/repo.component';
 
 @NgModule({
 	imports: [
@@ -34,4 +34,4 @@ import { RepoComponent } from './repo/repo.component';
 	],
 	exports: [],
 })
-export class ReferenceRoutingModule { }
+export class ReferenceRoutingModule {}

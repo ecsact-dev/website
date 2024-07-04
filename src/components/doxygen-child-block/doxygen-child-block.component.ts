@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenBlockComponent } from '../doxygen-block/doxygen-block.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenBlockComponent} from '../doxygen-block/doxygen-block.component';
 
 @Component({
 	selector: 'doxygen-child-block',
@@ -10,4 +10,4 @@ import { DoxygenBlockComponent } from '../doxygen-block/doxygen-block.component'
 	standalone: true,
 	imports: [DoxygenBlockComponent],
 })
-export class DoxygenChildBlockComponent { }
+export class DoxygenChildBlockComponent {}

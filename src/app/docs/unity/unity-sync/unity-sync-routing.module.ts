@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { UnitySyncComponent } from './unity-sync.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {UnitySyncComponent} from './unity-sync.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { UnitySyncComponent } from './unity-sync.component';
 	],
 	exports: [],
 })
-export class UnitySyncRoutingModule { }
+export class UnitySyncRoutingModule {}

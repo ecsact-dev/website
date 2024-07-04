@@ -1,8 +1,8 @@
-import { ApplicationRef, Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
-import { concat, interval } from 'rxjs';
-import { first } from 'rxjs/operators';
-import { isPlatformBrowser } from '@angular/common';
+import {ApplicationRef, Injectable, Inject, PLATFORM_ID} from '@angular/core';
+import {SwUpdate} from '@angular/service-worker';
+import {concat, interval} from 'rxjs';
+import {first} from 'rxjs/operators';
+import {isPlatformBrowser} from '@angular/common';
 
 @Injectable()
 export class ServiceWorkerService {
@@ -10,7 +10,7 @@ export class ServiceWorkerService {
 		private appRef: ApplicationRef,
 		private swUpdate: SwUpdate,
 		@Inject(PLATFORM_ID) private platform: string,
-	) { }
+	) {}
 
 	launchUpdateCheckingRoutine(checkIntervaSeconds: number = 6 * 60 * 60) {
 		if (!this.isAvailable()) return;

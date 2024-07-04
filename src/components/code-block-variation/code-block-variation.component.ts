@@ -1,7 +1,7 @@
 // TODO: enable ts in this file again
 // @ts-nocheck
 
-import { Clipboard } from '@angular/cdk/clipboard';
+import {Clipboard} from '@angular/cdk/clipboard';
 import {
 	Component,
 	OnInit,
@@ -13,8 +13,8 @@ import {
 	EventEmitter,
 	OnDestroy,
 } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import {Subscription} from 'rxjs';
+import {NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 
 export interface ICodeBlockVariationOption {
 	optionTitle: string;
@@ -34,15 +34,11 @@ export type CodeBlockVariationClipboardStatus =
 	styleUrls: ['./code-block-variation.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [
-		NgFor,
-		NgSwitch,
-		NgSwitchCase,
-		NgSwitchDefault,
-	],
+	imports: [NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
 })
 export class CodeBlockVariationComponent
-	implements OnInit, OnDestroy, AfterViewInit {
+	implements OnInit, OnDestroy, AfterViewInit
+{
 	private static globalCopyEvent = new EventEmitter<void>();
 	private static globalCopyCurrent: CodeBlockVariationComponent | null = null;
 	private globalCopySub?: Subscription;
@@ -51,13 +47,16 @@ export class CodeBlockVariationComponent
 	options: ICodeBlockVariationOption[] = [];
 	clipboardStatus: CodeBlockVariationClipboardStatus = '';
 
-	@ViewChild('codeBlocksContainer', { static: true })
+	@ViewChild('codeBlocksContainer', {static: true})
 	codeBlocksContainer?: ElementRef<HTMLDivElement>;
 
-	@ViewChild('optionSelect', { static: true })
+	@ViewChild('optionSelect', {static: true})
 	optionSelect?: ElementRef<HTMLSelectElement>;
 
-	constructor(private cdr: ChangeDetectorRef, private clipboard: Clipboard) { }
+	constructor(
+		private cdr: ChangeDetectorRef,
+		private clipboard: Clipboard,
+	) {}
 
 	onSelectChange() {
 		const value = parseInt(this.optionSelect.nativeElement.value);

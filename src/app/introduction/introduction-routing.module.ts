@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { IntroductionComponent } from './introduction.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {IntroductionComponent} from './introduction.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { IntroductionComponent } from './introduction.component';
 	],
 	exports: [],
 })
-export class IntroductionRoutingModule { }
+export class IntroductionRoutingModule {}

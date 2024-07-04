@@ -1,7 +1,7 @@
-import { PrismComponent } from '@/components/prism/prism.component';
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {PrismComponent} from '@/components/prism/prism.component';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
 @Component({
 	selector: 'ecsact-cpp-system-impl-wasm',
@@ -12,9 +12,7 @@ import { RouterModule } from '@angular/router';
 	standalone: true,
 })
 export class CppSystemImplWasmComponent implements OnInit {
+	constructor() {}
 
-	constructor() { }
-
-	ngOnInit(): void {
-	}
+	ngOnInit(): void {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
 	templateUrl: './start-unreal.component.html',
@@ -6,7 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 	standalone: true,
 })
 export class StartUnrealComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

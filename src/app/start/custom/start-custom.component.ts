@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
 	templateUrl: './start-custom.component.html',
@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 	imports: [RouterLink],
 })
 export class StartCustomComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

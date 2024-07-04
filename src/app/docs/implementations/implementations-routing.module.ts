@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ImplementationsComponent } from './implementations.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {ImplementationsComponent} from './implementations.component';
 
 @NgModule({
 	imports: [
@@ -14,4 +14,4 @@ import { ImplementationsComponent } from './implementations.component';
 	],
 	exports: [],
 })
-export class ImplementationsRoutingModule { }
+export class ImplementationsRoutingModule {}

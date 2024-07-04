@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { PrismComponent } from '../../../../components/prism/prism.component';
-import { CodeBlockVariationComponent } from '../../../../components/code-block-variation/code-block-variation.component';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {PrismComponent} from '../../../../components/prism/prism.component';
+import {CodeBlockVariationComponent} from '../../../../components/code-block-variation/code-block-variation.component';
 
 @Component({
 	templateUrl: './systems-in-cpp.component.html',
@@ -16,7 +16,7 @@ import { CodeBlockVariationComponent } from '../../../../components/code-block-v
 	],
 })
 export class SystemsInCppComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { NgFor } from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {NgFor} from '@angular/common';
 
 export interface ExecutionLaneStep {
 	systems: string[];
@@ -17,7 +17,7 @@ export class ExecLaneVisComponent implements OnInit {
 	@Input()
 	steps: ExecutionLaneStep[] = [];
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

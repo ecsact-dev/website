@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenEnumMemberDef } from '../../search/doxygen-def-types';
-import { DoxygenLocationComponent } from '../doxygen-member-components/doxygen-location/doxygen-location.component';
-import { DoxygenDescriptionComponent } from '../doxygen-member-components/doxygen-description/doxygen-description.component';
-import { NgFor, NgIf } from '@angular/common';
-import { DoxygenNameComponent } from '../doxygen-member-components/doxygen-name/doxygen-name.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenEnumMemberDef} from '../../search/doxygen-def-types';
+import {DoxygenLocationComponent} from '../doxygen-member-components/doxygen-location/doxygen-location.component';
+import {DoxygenDescriptionComponent} from '../doxygen-member-components/doxygen-description/doxygen-description.component';
+import {NgFor, NgIf} from '@angular/common';
+import {DoxygenNameComponent} from '../doxygen-member-components/doxygen-name/doxygen-name.component';
 
 @Component({
 	selector: 'doxygen-enum-def',
@@ -23,7 +23,7 @@ export class DoxygenEnumDefComponent implements OnInit {
 	@Input()
 	def: DoxygenEnumMemberDef;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

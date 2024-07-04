@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CodeBlockVariationComponent } from '../../../../components/code-block-variation/code-block-variation.component';
-import { PrismComponent } from '../../../../components/prism/prism.component';
-import { EcsactWasmSystemImplValidatorComponent } from '../../../../components/ecsact-wasm-system-impl-validator/ecsact-wasm-system-impl-validator.component';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {CodeBlockVariationComponent} from '../../../../components/code-block-variation/code-block-variation.component';
+import {PrismComponent} from '../../../../components/prism/prism.component';
+import {EcsactWasmSystemImplValidatorComponent} from '../../../../components/ecsact-wasm-system-impl-validator/ecsact-wasm-system-impl-validator.component';
 
 @Component({
 	templateUrl: './cpp-to-wasm.component.html',
@@ -18,7 +18,7 @@ import { EcsactWasmSystemImplValidatorComponent } from '../../../../components/e
 	],
 })
 export class CppToWasmComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

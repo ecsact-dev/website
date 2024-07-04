@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenContainerComponent } from '../doxygen-container/doxygen-container.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenContainerComponent} from '../doxygen-container/doxygen-container.component';
 
 @Component({
 	selector: 'doxygen-definition',

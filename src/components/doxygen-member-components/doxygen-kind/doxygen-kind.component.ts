@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 
 @Component({
 	selector: 'doxygen-kind',
@@ -11,5 +11,5 @@ export class DoxygenKindComponent {
 	@Input()
 	kind: string;
 
-	constructor() { }
+	constructor() {}
 }

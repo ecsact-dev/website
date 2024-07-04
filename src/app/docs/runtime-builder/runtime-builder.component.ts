@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
 	templateUrl: 'runtime-builder.component.html',
@@ -8,4 +8,4 @@ import { RouterLink } from '@angular/router';
 	standalone: true,
 	imports: [RouterLink],
 })
-export class Runtime_BuilderComponent { }
+export class Runtime_BuilderComponent {}

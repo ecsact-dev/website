@@ -1,9 +1,9 @@
-import { Directive, HostBinding, HostListener, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Directive, HostBinding, HostListener, Input} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Directive({
 	selector: 'a[doxygenRefidLink]',
-	standalone: true
+	standalone: true,
 })
 export class DoxygenRefidLinkDirective {
 	@Input()
@@ -18,7 +18,10 @@ export class DoxygenRefidLinkDirective {
 		return `/reference/${repo}/${this.doxygenRefidLink}`;
 	}
 
-	constructor(private route: ActivatedRoute, private router: Router) { }
+	constructor(
+		private route: ActivatedRoute,
+		private router: Router,
+	) {}
 
 	@HostListener('click', [
 		'$event.button',

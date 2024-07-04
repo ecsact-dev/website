@@ -1,10 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenDirDef } from '../../search/doxygen-def-types';
-import { DoxygenLocationComponent } from '../doxygen-member-components/doxygen-location/doxygen-location.component';
-import { DoxygenRefidLinkDirective } from '../doxygen-refid-link/doxygen-refid-link.directive';
-import { DoxygenDescriptionComponent } from '../doxygen-member-components/doxygen-description/doxygen-description.component';
-import { NgIf, NgFor } from '@angular/common';
-import { DoxygenParentBlockComponent } from '../doxygen-parent-block/doxygen-parent-block.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenDirDef} from '../../search/doxygen-def-types';
+import {DoxygenLocationComponent} from '../doxygen-member-components/doxygen-location/doxygen-location.component';
+import {DoxygenRefidLinkDirective} from '../doxygen-refid-link/doxygen-refid-link.directive';
+import {DoxygenDescriptionComponent} from '../doxygen-member-components/doxygen-description/doxygen-description.component';
+import {NgIf, NgFor} from '@angular/common';
+import {DoxygenParentBlockComponent} from '../doxygen-parent-block/doxygen-parent-block.component';
 
 @Component({
 	selector: 'doxygen-dir-def',
@@ -25,7 +25,7 @@ export class DoxygenDirDefComponent implements OnInit {
 	@Input()
 	def: DoxygenDirDef;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

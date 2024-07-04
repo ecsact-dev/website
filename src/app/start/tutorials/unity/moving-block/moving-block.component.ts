@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { EcsactLangSyntaxComponent } from '../../../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
-import { PrismComponent } from '../../../../../components/prism/prism.component';
-import { CodeBlockVariationComponent } from '../../../../../components/code-block-variation/code-block-variation.component';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {EcsactLangSyntaxComponent} from '../../../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
+import {PrismComponent} from '../../../../../components/prism/prism.component';
+import {CodeBlockVariationComponent} from '../../../../../components/code-block-variation/code-block-variation.component';
 
 @Component({
 	selector: 'moving-block',
@@ -20,7 +20,7 @@ import { CodeBlockVariationComponent } from '../../../../../components/code-bloc
 	],
 })
 export class MovingBlockComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

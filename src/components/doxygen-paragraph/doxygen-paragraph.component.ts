@@ -1,11 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 import {
 	DoxygenMarkup,
 	DoxygenParagraph,
 	DoxygenPlainText,
 	DoxygenText,
 } from '../../search/doxygen-def-types';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import {NgFor, NgIf, NgSwitch, NgSwitchCase} from '@angular/common';
 
 @Component({
 	selector: 'doxygen-paragraph',
@@ -13,20 +13,15 @@ import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 	styleUrls: ['./doxygen-paragraph.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [
-		NgFor,
-		NgIf,
-		NgSwitch,
-		NgSwitchCase,
-	],
+	imports: [NgFor, NgIf, NgSwitch, NgSwitchCase],
 })
 export class DoxygenParagraphComponent implements OnInit {
 	@Input()
 	paragraph: DoxygenParagraph;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	isPlainText(value: DoxygenText | DoxygenMarkup): value is DoxygenPlainText {
 		return typeof value === 'string';

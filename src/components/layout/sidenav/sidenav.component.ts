@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { CdkAccordion } from '@angular/cdk/accordion';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {CdkAccordion} from '@angular/cdk/accordion';
 
 /**
  * Side navigation next to the main content. Only one of these should exist at
@@ -14,7 +14,7 @@ import { CdkAccordion } from '@angular/cdk/accordion';
 	imports: [CdkAccordion],
 })
 export class SidenavComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

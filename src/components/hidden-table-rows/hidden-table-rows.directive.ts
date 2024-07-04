@@ -9,7 +9,7 @@ import {
 
 @Directive({
 	selector: 'table[hasHiddenRows]',
-	standalone: true
+	standalone: true,
 })
 export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 	@HostBinding('class.showing-hidden-rows')
@@ -20,11 +20,11 @@ export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 	constructor(
 		private cdr: ChangeDetectorRef,
 		private elementRef: ElementRef<HTMLTableElement>,
-	) { }
+	) {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
-	ngAfterViewInit() { }
+	ngAfterViewInit() {}
 
 	setupPlaceholderRow(childRow: ElementRef<HTMLElement>) {
 		if (!this._placeholderRow) {

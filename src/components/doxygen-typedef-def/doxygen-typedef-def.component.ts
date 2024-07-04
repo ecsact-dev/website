@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenTypedefMemberDef } from '../../search/doxygen-def-types';
-import { DoxygenLocationComponent } from '../doxygen-member-components/doxygen-location/doxygen-location.component';
-import { DoxygenDefinitionComponent } from '../doxygen-member-components/doxygen-definition/doxygen-definition.component';
-import { DoxygenDescriptionComponent } from '../doxygen-member-components/doxygen-description/doxygen-description.component';
-import { NgIf } from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenTypedefMemberDef} from '../../search/doxygen-def-types';
+import {DoxygenLocationComponent} from '../doxygen-member-components/doxygen-location/doxygen-location.component';
+import {DoxygenDefinitionComponent} from '../doxygen-member-components/doxygen-definition/doxygen-definition.component';
+import {DoxygenDescriptionComponent} from '../doxygen-member-components/doxygen-description/doxygen-description.component';
+import {NgIf} from '@angular/common';
 
 @Component({
 	selector: 'doxygen-typedef-def',
@@ -22,7 +22,7 @@ export class DoxygenTypedefDefComponent implements OnInit {
 	@Input()
 	def: DoxygenTypedefMemberDef;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

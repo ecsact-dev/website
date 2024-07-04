@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { EcsactUnityComponent } from './ecsact-unity.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {EcsactUnityComponent} from './ecsact-unity.component';
 
 const routes: Routes = [
 	{
@@ -13,4 +13,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class EcsactUnityRoutingModule { }
+export class EcsactUnityRoutingModule {}

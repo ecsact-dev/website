@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenTypedefMemberDef } from '../../search/doxygen-def-types';
-import { HiddenTableRowComponent } from '../hidden-table-rows/hidden-table-row.component';
-import { DoxygenDescriptionComponent } from '../doxygen-member-components/doxygen-description/doxygen-description.component';
-import { DoxygenRefidLinkDirective } from '../doxygen-refid-link/doxygen-refid-link.directive';
-import { DoxygenTypeNameComponent } from '../doxygen-type-name/doxygen-type-name.component';
-import { NgIf, NgFor } from '@angular/common';
-import { HiddenTableRowsDirective } from '../hidden-table-rows/hidden-table-rows.directive';
+import {Component, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenTypedefMemberDef} from '../../search/doxygen-def-types';
+import {HiddenTableRowComponent} from '../hidden-table-rows/hidden-table-row.component';
+import {DoxygenDescriptionComponent} from '../doxygen-member-components/doxygen-description/doxygen-description.component';
+import {DoxygenRefidLinkDirective} from '../doxygen-refid-link/doxygen-refid-link.directive';
+import {DoxygenTypeNameComponent} from '../doxygen-type-name/doxygen-type-name.component';
+import {NgIf, NgFor} from '@angular/common';
+import {HiddenTableRowsDirective} from '../hidden-table-rows/hidden-table-rows.directive';
 
 export interface IDoxygenTypesTable {
 	publicTypes?: DoxygenTypedefMemberDef[];

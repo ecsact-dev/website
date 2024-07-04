@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { EcsactWasmSystemImplValidatorComponent } from '../../../components/ecsact-wasm-system-impl-validator/ecsact-wasm-system-impl-validator.component';
-import { PrismComponent } from '../../../components/prism/prism.component';
+import {CommonModule} from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {EcsactWasmSystemImplValidatorComponent} from '../../../components/ecsact-wasm-system-impl-validator/ecsact-wasm-system-impl-validator.component';
+import {PrismComponent} from '../../../components/prism/prism.component';
 
 @Component({
 	selector: 'ecsact-system-impl-wasm',
@@ -16,7 +16,7 @@ import { PrismComponent } from '../../../components/prism/prism.component';
 	],
 })
 export class SystemImplWasmComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

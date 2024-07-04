@@ -19,14 +19,20 @@ export class SearchMeta {
 			this.title.setTitle(pageInfo.title);
 
 			if (pageInfo.metaDescription) {
-				this.meta.addTag({name: 'description', content: pageInfo.metaDescription});
+				this.meta.addTag({
+					name: 'description',
+					content: pageInfo.metaDescription,
+				});
 			} else if (pageInfo.description) {
 				this.meta.addTag({name: 'description', content: pageInfo.description});
 			}
 
-			if(pageInfo.metaImageUrl) {
+			if (pageInfo.metaImageUrl) {
 				this.meta.addTag({name: 'og:image', content: pageInfo.metaImageUrl});
-				this.meta.addTag({name: 'twitter:image', content: pageInfo.metaImageUrl});
+				this.meta.addTag({
+					name: 'twitter:image',
+					content: pageInfo.metaImageUrl,
+				});
 			}
 		} else {
 			this.title.setTitle('Ecsact');

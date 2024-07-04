@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenEnumValueMemberDef } from '../../search/doxygen-def-types';
-import { JsonPipe } from '@angular/common';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenEnumValueMemberDef} from '../../search/doxygen-def-types';
+import {JsonPipe} from '@angular/common';
 
 @Component({
 	selector: 'doxygen-enumvalue-def',
@@ -14,7 +14,7 @@ export class DoxygenEnumValueDefComponent implements OnInit {
 	@Input()
 	def: DoxygenEnumValueMemberDef;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

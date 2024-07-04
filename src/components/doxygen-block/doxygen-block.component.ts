@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenDataTypeDef } from '../../search/doxygen-def-types';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenDataTypeDef} from '../../search/doxygen-def-types';
 
 @Component({
 	selector: 'doxygen-block',
@@ -12,7 +12,7 @@ export class DoxygenBlockComponent implements OnInit {
 	@Input()
 	def: DoxygenDataTypeDef;
 
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }

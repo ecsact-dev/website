@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenFunctionParameter } from '../../../search/doxygen-def-types';
-import { DoxygenAccessComponent } from '../doxygen-access/doxygen-access.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenFunctionParameter} from '../../../search/doxygen-def-types';
+import {DoxygenAccessComponent} from '../doxygen-access/doxygen-access.component';
 
 @Component({
 	selector: 'doxygen-name',
@@ -37,5 +37,5 @@ export class DoxygenNameComponent {
 		return this.virtual != 'non-virtual';
 	}
 
-	constructor() { }
+	constructor() {}
 }

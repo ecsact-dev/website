@@ -16,10 +16,15 @@ import {
 	Search,
 	SearchResultItem,
 } from '../../search/search.service';
-import { Observable, Subscription } from 'rxjs';
-import { Location, NgIf, NgFor, AsyncPipe } from '@angular/common';
-import { ActivatedRoute, NavigationStart, Router, RouterLink } from '@angular/router';
-import { searchablePageInfos } from '../../search/searchable-page-infos';
+import {Observable, Subscription} from 'rxjs';
+import {Location, NgIf, NgFor, AsyncPipe} from '@angular/common';
+import {
+	ActivatedRoute,
+	NavigationStart,
+	Router,
+	RouterLink,
+} from '@angular/router';
+import {searchablePageInfos} from '../../search/searchable-page-infos';
 
 function shuffle<T>(array: T[]) {
 	for (let i = array.length - 1; i > 0; i--) {
@@ -36,18 +41,13 @@ function shuffle<T>(array: T[]) {
 	styleUrls: ['./search.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [
-		NgIf,
-		NgFor,
-		RouterLink,
-		AsyncPipe,
-	],
+	imports: [NgIf, NgFor, RouterLink, AsyncPipe],
 })
 export class SearchComponent implements OnInit {
-	@ViewChild('searchInput', { static: true })
+	@ViewChild('searchInput', {static: true})
 	searchInput?: ElementRef<HTMLInputElement>;
 
-	@ViewChild('searchResultsContainer', { static: true })
+	@ViewChild('searchResultsContainer', {static: true})
 	searchResultsContainer?: ElementRef<HTMLDivElement>;
 
 	defaultSearchResultItems: SearchResultItem[];

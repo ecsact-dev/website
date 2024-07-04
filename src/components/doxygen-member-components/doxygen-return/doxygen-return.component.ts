@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { DoxygenFunctionReturn } from '../../../search/doxygen-def-types';
-import { DoxygenContainerComponent } from '../doxygen-container/doxygen-container.component';
+import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {DoxygenFunctionReturn} from '../../../search/doxygen-def-types';
+import {DoxygenContainerComponent} from '../doxygen-container/doxygen-container.component';
 
 @Component({
 	selector: 'doxygen-return',
@@ -14,5 +14,5 @@ export class DoxygenReturnComponent {
 	@Input()
 	return: DoxygenFunctionReturn;
 
-	constructor() { }
+	constructor() {}
 }

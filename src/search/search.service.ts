@@ -1,9 +1,9 @@
 // TODO: enable ts in this file again
 // @ts-nocheck
 
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import Fuse from 'fuse.js';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 import {
 	DoxygenBase,
@@ -14,9 +14,9 @@ import {
 	DoxygenMemberDef,
 	DoxygenMemberWithOwner,
 } from './doxygen-def-types';
-import { parseDoxygenCompoundDef, parseDoxygenMemberDef } from './doxygen-parse';
-import { PageInfo } from './page-info-types';
-import { searchablePageInfos } from './searchable-page-infos';
+import {parseDoxygenCompoundDef, parseDoxygenMemberDef} from './doxygen-parse';
+import {PageInfo} from './page-info-types';
+import {searchablePageInfos} from './searchable-page-infos';
 
 function parseDoxygenBase(el: Element): DoxygenBase {
 	const name = el.querySelector('name')?.textContent || '';
@@ -77,7 +77,7 @@ const mainKeyMap = {
 	reference: 'name',
 };
 
-function getPathWithFragment(path: string): { path: string; fragment: string } {
+function getPathWithFragment(path: string): {path: string; fragment: string} {
 	const fragmentStartIndex = path.indexOf('#');
 	if (fragmentStartIndex !== -1) {
 		return {
@@ -86,18 +86,18 @@ function getPathWithFragment(path: string): { path: string; fragment: string } {
 		};
 	}
 
-	return { path, fragment: '' };
+	return {path, fragment: ''};
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class Search {
 	private _refreshPromise?: Promise<void>;
 	private _readySubj = new BehaviorSubject<boolean>(false);
 	private _searchItems: SearchResultItem[];
-	private _compounds: { [repo: string]: DoxygenCompound[] } = {};
-	private _repoInfos: { [repo: string]: Promise<IRepoInfo> | IRepoInfo } = {};
+	private _compounds: {[repo: string]: DoxygenCompound[]} = {};
+	private _repoInfos: {[repo: string]: Promise<IRepoInfo> | IRepoInfo} = {};
 	private _fuseInstance: Fuse<SearchResultItem>;
-	private _refidMap: { [refid: string]: number } = {};
+	private _refidMap: {[refid: string]: number} = {};
 
 	public ready$: Observable<boolean> = this._readySubj.asObservable();
 
@@ -149,7 +149,7 @@ export class Search {
 	}
 
 	search(text: string): SearchResultItem[] {
-		return this._fuseInstance.search(text, { limit: 20 }).map(item => item.item);
+		return this._fuseInstance.search(text, {limit: 20}).map(item => item.item);
 	}
 
 	private async _getCompoundDef(repo: string, refid: string) {
@@ -283,12 +283,12 @@ export class Search {
 		this._compounds[repo] = compounds;
 
 		const referenceSearchItems = compounds.reduce((items, compound) => {
-			items.push({ type: 'reference', repo, item: compound });
+			items.push({type: 'reference', repo, item: compound});
 			items.push(
 				...compound.members.map(mem => ({
 					type: 'reference' as 'reference',
 					repo,
-					item: { ...mem, owner: compound },
+					item: {...mem, owner: compound},
 				})),
 			);
 			return items;

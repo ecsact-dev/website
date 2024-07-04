@@ -1,16 +1,16 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "lib": ["es2020", "dom"],
-    "strictPropertyInitialization": false,
-    "paths": {
-      "@/*": ["src/*"]
-    }
-  },
-  "angularCompilerOptions": {
-    "compilationMode": "full",
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": ["es2020", "dom"],
+		"strictPropertyInitialization": false,
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"angularCompilerOptions": {
+		"compilationMode": "full",
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
+	}
 }

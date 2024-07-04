@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
+import {RouterLink} from '@angular/router';
 
 @Component({
 	selector: 'ecsact-overview',
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 	imports: [RouterLink],
 })
 export class OverviewComponent implements OnInit {
-	constructor() { }
+	constructor() {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 }
