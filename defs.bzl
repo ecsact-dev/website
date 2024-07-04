@@ -66,7 +66,8 @@ def pkg_web(name, index_html, entry_point, entry_deps, html_assets, script_asset
                # Generic Assets
                ["--assets"] + ["$(rootpath %s)" % s for s in html_assets] +
                ["--scripts", "--module"] + ["$(rootpath %s)" % s for s in script_assets] +
-               ["--scripts", "--module", "%s/%s" % (bundle, entry_point)],
+               ["--scripts", "--module", "%s/%s" % (bundle, entry_point)] +
+               (["--scripts", "--async", "http://localhost:35729/livereload.js"] if not production else []),
         # The input HTML template, all assets for potential access for stamping
         srcs = [index_html, ":%s" % bundle] + html_assets + script_assets,
         visibility = ["//visibility:private"],

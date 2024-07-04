@@ -5,7 +5,6 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {},
-  "type": "module",
   "dependencies": {
     "@angular/animations": "^18.0.5",
     "@angular/cdk": "^18.0.6",

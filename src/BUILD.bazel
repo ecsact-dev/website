@@ -1,13 +1,43 @@
 load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 load("//:defs.bzl", "pkg_web")
 load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@npm//:history-server/package_json.bzl", history_server = "bin")
+load("@npm//:tailwindcss/package_json.bzl", tailwindcss = "bin")
 
 package(default_visibility = ["//:__pkg__"])
 
+sass_binary(
+    name = "styles",
+    srcs = [
+        "styles.scss",
+        "syntax-highlighting.scss",
+    ],
+)
+
+tailwindcss.tailwindcss(
+    name = "tailwindcss",
+    stdout = "tailwind.css",
+    args = [
+        "--config",
+        "$(rootpath :tailwind.config.js)",
+        "--input",
+        "$(rootpath :styles.tailwind.css)",
+    ],
+    tags = ["no-sandbox"],
+    copy_srcs_to_bin = False,
+    srcs = [
+        ":styles.tailwind.css",
+        ":tailwind.config.js",
+        ":src",
+    ],
+)
+
 ng_project(
     name = "src",
-    srcs = ["main.ts"],
+    srcs = [
+        "main.ts",
+    ],
     deps = [
         "//src/app",
         "//:node_modules/@angular/common",
@@ -42,7 +72,10 @@ esbuild(
     entry_point = "main.js",
     entry_deps = [":src"],
     index_html = "main.html",
-    html_assets = [],
+    html_assets = [
+        ":styles.css",
+        ":tailwind.css",
+    ],
     script_assets = [
         ":polyfills-bundle.js",
     ],
@@ -54,6 +87,10 @@ history_server.history_server_binary(
     name = "devserver",
     args = ["$(location :dev)"],
     data = [":dev"],
+    tags = [
+        "ibazel_notify_changes",
+        "ibazel_live_reload",
+    ],
 )
 
 history_server.history_server_binary(

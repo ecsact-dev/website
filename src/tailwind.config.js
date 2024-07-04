@@ -1,8 +1,6 @@
-const content = process.argv.slice(process.argv.indexOf('--') + 1);
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content,
+	content: ["**/*.html"],
 	theme: {
 		extend: {
 			height: {
@@ -27,43 +25,43 @@ module.exports = {
 			},
 			keyframes: {
 				'slide-down': {
-					'0%': {transform: 'translateY(-100%)'},
-					'100%': {transform: 'translateY(0%)'},
+					'0%': { transform: 'translateY(-100%)' },
+					'100%': { transform: 'translateY(0%)' },
 				},
 				'slide-right': {
-					'0%': {transform: 'translateX(-100%)'},
-					'100%': {transform: 'translateX(0%)'},
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0%)' },
 				},
 				'fade-slide-right': {
-					'0%': {opacity: '0%', transform: 'translateX(-100%)'},
-					'35%': {opacity: '0%'},
-					'100%': {opacity: '100%', transform: 'translateX(0%)'},
+					'0%': { opacity: '0%', transform: 'translateX(-100%)' },
+					'35%': { opacity: '0%' },
+					'100%': { opacity: '100%', transform: 'translateX(0%)' },
 				},
 				'fade-out': {
-					'0%': {opacity: '100%'},
-					'100%': {opacity: '0%'},
+					'0%': { opacity: '100%' },
+					'100%': { opacity: '0%' },
 				},
 				'fade-in': {
-					'0%': {opacity: '0%'},
-					'100%': {opacity: '100%'},
+					'0%': { opacity: '0%' },
+					'100%': { opacity: '100%' },
 				},
 				'error-shake': {
-					'0%': {transform: 'translate(8px)'},
-					'20%': {transform: 'translate(-8px)'},
-					'40%': {transform: 'translate(4px)'},
-					'60%': {transform: 'translate(-4px)'},
-					'80%': {transform: 'translate(2px)'},
-					'100%': {transform: 'translate(0px)'},
+					'0%': { transform: 'translate(8px)' },
+					'20%': { transform: 'translate(-8px)' },
+					'40%': { transform: 'translate(4px)' },
+					'60%': { transform: 'translate(-4px)' },
+					'80%': { transform: 'translate(2px)' },
+					'100%': { transform: 'translate(0px)' },
 				},
 				'scale-pulse': {
-					'0%': {transform: 'scale(1.0)'},
-					'50%': {transform: 'scale(1.1)'},
-					'100%': {transform: 'scale(1.0)'},
+					'0%': { transform: 'scale(1.0)' },
+					'50%': { transform: 'scale(1.1)' },
+					'100%': { transform: 'scale(1.0)' },
 				},
 				'colorize-pulse': {
-					'0%': {color: 'var(--color-text)'},
-					'50%': {color: 'var(--color-primary)'},
-					'100%': {color: 'var(--color-text)'},
+					'0%': { color: 'var(--color-text)' },
+					'50%': { color: 'var(--color-primary)' },
+					'100%': { color: 'var(--color-text)' },
 				},
 			},
 			animation: {
