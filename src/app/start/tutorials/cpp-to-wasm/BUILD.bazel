@@ -8,7 +8,6 @@ ng_project(
         "cpp-to-wasm.component.ts",
         "cpp-to-wasm-routing.module.ts",
         "cpp-to-wasm.component.html",
-        "cpp-to-wasm.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

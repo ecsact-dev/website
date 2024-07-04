@@ -1,0 +1,12 @@
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "typed_css",
+    strip_prefix = "typed.css-0.8.9",
+	integrity = "sha256-lyk1CItjSFCMn54epxEg2N1/H7sBBONk5xA6BcvkeS8=",
+    url = "https://github.com/brandonmcconnell/typed.css/archive/refs/tags/v0.8.9.zip",
+    build_file_content = """
+package(default_visibility = ["//visibility:public"])
+exports_files(["typed.scss"])
+"""
+)

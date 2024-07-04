@@ -1,12 +1,21 @@
 load("//tools:ng.bzl", "ng_project")
 load("//tools:sass.bzl", "sass_binary")
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
 package(default_visibility = ["//:__subpackages__"])
 
+copy_file(
+    name = "copy_typed_scss",
+    src = "@typed_css//:typed.scss",
+    out = "typed.scss",
+)
+
 sass_binary(
     name = "home_component_style",
-    srcs = ["home.component.scss"],
-    deps = ["@typed_css"],
+    srcs = [
+        "home.component.scss",
+        "typed.scss",
+    ],
 )
 
 ng_project(
@@ -15,7 +24,7 @@ ng_project(
         "home.component.ts",
         "home.component.html",
         "home.component.css",
-        "home-routing.module.rs",
+        "home-routing.module.ts",
     ],
     deps = [
         "//src/components/ecsact-example-diagram",

@@ -30,7 +30,7 @@ def sass_binary(name, srcs, deps = [], **kwargs):
             "--load-path=node_modules",
             "--load-path={}/node_modules".format(native.package_name()),
         ] + [
-            "$(execpath {}):{}/{}".format(src, native.package_name(), _sass_out(src))
+            "$(rootpath {}):{}/{}".format(src, native.package_name(), _sass_out(src))
             for src in srcs
         ],
         **kwargs

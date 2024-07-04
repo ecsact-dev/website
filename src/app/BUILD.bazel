@@ -10,7 +10,13 @@ sass_binary(
 
 ng_project(
     name = "app",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "app-routing.module.ts",
+        "app.component.ts",
+        "app.component.css",
+        "app.component.html",
+        "service-worker.service.ts",
+    ],
     deps = [
         "//src/app/docs",
         "//src/app/docs/ecs",

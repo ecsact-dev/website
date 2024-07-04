@@ -14,19 +14,22 @@ import {
 	NavigationError,
 	NavigationCancel,
 	Router,
+	RouterModule,
 } from '@angular/router';
-import {Observable} from 'rxjs';
-import {map, filter} from 'rxjs/operators';
-import {SearchMeta} from '../search/search-meta.service';
+import { Observable } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import { SearchMeta } from '../search/search-meta.service';
 
-import {ServiceWorkerService} from './service-worker.service';
+import { ServiceWorkerService } from './service-worker.service';
+import { SearchComponent } from '../components/search/search.component';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 @Directive({
-    selector: 'a[navItem]',
-    standalone: true
+	selector: 'a[navItem]',
+	standalone: true
 })
 export class AppNavItem {
-	constructor(public element: ElementRef<HTMLAnchorElement>) {}
+	constructor(public element: ElementRef<HTMLAnchorElement>) { }
 }
 
 @Component({
@@ -34,9 +37,17 @@ export class AppNavItem {
 	templateUrl: 'app.component.html',
 	styleUrls: ['app.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		RouterModule,
+		SearchComponent,
+		AppNavItem,
+		NgIf,
+		AsyncPipe,
+	],
 })
 export class AppComponent {
-	@ViewChild('mobileMenuToggle', {static: true})
+	@ViewChild('mobileMenuToggle', { static: true })
 	mobileMenuToggle?: ElementRef<HTMLInputElement>;
 
 	@ViewChildren(AppNavItem)
@@ -89,7 +100,7 @@ export class AppComponent {
 		}
 	}
 
-	onSearchFocused() {}
+	onSearchFocused() { }
 
-	onSearchBlurred() {}
+	onSearchBlurred() { }
 }

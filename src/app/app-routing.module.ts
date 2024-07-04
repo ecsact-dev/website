@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 // These are lazy-loaded routes - note that we dynamic-import the modules here
 // to avoid having an eager dependency on them.
@@ -60,7 +60,7 @@ const routes: Routes = [
 	{
 		path: 'roadmap',
 		loadChildren: () =>
-			import('./roadmap/reference-routing.module').then(
+			import('./roadmap/roadmap-routing.module').then(
 				m => m.RoadmapRoutingModule,
 			),
 	},
@@ -94,4 +94,4 @@ const routes: Routes = [
 	],
 	exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
