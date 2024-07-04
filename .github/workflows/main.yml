@@ -8,7 +8,11 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-     - uses: greut/eclint-action@v0
-     - run: 'bazel run @pnpm -- --dir $PWD run format:check'
+    - uses: actions/checkout@v4
+    - uses: greut/eclint-action@v0
+      with:
+        # exclude files handled by prettier
+        eclint_args: >-
+          -exclude "**/*.ts"
+    - run: 'bazel run @pnpm -- --dir $PWD run format:check'
 
