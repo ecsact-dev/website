@@ -48,13 +48,13 @@ tailwindcss.tailwindcss(
         "--",
         "$(rootpaths :tailwind_content)",
     ],
+    copy_srcs_to_bin = False,
     execution_requirements = {
         "no-sandbox": "1",
     },
-    use_execroot_entry_point = False,
-    copy_srcs_to_bin = False,
     stdout = "tailwind.css",
     tags = ["no-sandbox"],
+    use_execroot_entry_point = False,
 )
 
 ng_project(
