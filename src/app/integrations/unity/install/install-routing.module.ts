@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {UnityInstallPageComponent} from './install.component';
-import {UnityInstallPageModule} from './install.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { UnityInstallPageComponent } from './install.component';
 
 @NgModule({
 	imports: [
-		UnityInstallPageModule,
 		RouterModule.forChild([
 			{
 				path: '',
@@ -16,4 +14,4 @@ import {UnityInstallPageModule} from './install.module';
 	],
 	exports: [],
 })
-export class UnityInstallPageRoutingModule {}
+export class UnityInstallPageRoutingModule { }

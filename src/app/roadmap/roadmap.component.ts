@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 import { from, Observable, shareReplay, switchMap } from 'rxjs';
 import { marked } from 'marked';

@@ -30,7 +30,7 @@ export class DoxygenParametersComponent {
 	type: string;
 
 	@Input()
-	typeRef?: string;
+	typeRef: string;
 
 	@Input()
 	access: 'public' | 'protected' | 'private';

@@ -8,6 +8,7 @@ ng_project(
         "doxygen-refid-link.directive.ts",
     ],
     deps = [
+        "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
     ],
 )

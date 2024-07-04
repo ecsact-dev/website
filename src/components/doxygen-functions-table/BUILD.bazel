@@ -6,9 +6,7 @@ ng_project(
     name = "doxygen-functions-table",
     srcs = [
         "doxygen-functions-table.component.ts",
-        "doxygen-functions-table.module.ts",
         "doxygen-functions-table.component.html",
-        "doxygen-functions-table.component.css",
     ],
     deps = [
         "//src/components/doxygen-member-components/doxygen-description",

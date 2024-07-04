@@ -11,11 +11,10 @@ sass_binary(
 ng_project(
     name = "moving-block",
     srcs = [
-        "moving-block.component.ts",
-        "moving-block.module.ts",
         "moving-block-routing.module.ts",
-        "moving-block-routing.component.html",
-        "moving-block-routing.component.css",
+        "moving-block.component.ts",
+        "moving-block.component.html",
+        "moving-block.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

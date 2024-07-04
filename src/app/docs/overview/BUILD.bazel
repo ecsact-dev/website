@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "overview",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "overview-routing.module.ts",
+        "overview.component.ts",
+        "overview.component.html",
+        "overview.component.css",
+    ],
     deps = [
         "//src/components/ecsact-example-diagram",
         "//src/components/ecsact-lang-syntax",

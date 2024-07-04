@@ -11,10 +11,10 @@ sass_binary(
 ng_project(
     name = "emsdk-cpp",
     srcs = [
+        "emsdk-cpp-routing.module.ts",
         "emsdk-cpp.component.ts",
-        "emsdk-cpp.module.ts",
-        "emsdk-cpp-routing.component.html",
-        "emsdk-cpp-routing.component.css",
+        "emsdk-cpp.component.html",
+        "emsdk-cpp.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

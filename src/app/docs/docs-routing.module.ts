@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CppSystemImplWasmComponent } from './cpp-system-impl-wasm/cpp-system-impl-wasm.component';
 import { DocsComponent } from './docs.component';
-import { DocsModule } from './docs.module';
 import { LangComponent } from './lang/lang.component';
 import { OverviewComponent } from './overview/overview.component';
 import { SystemExecutionComponent } from './system-execution/system-execution.component';
@@ -97,7 +96,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [DocsModule, RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes)],
 	exports: [],
 })
 export class DocsRoutingModule { }

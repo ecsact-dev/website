@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {Runtime_BuilderComponent} from './runtime-builder.component';
-import {Runtime_BuilderModule} from './runtime-builder.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { Runtime_BuilderComponent } from './runtime-builder.component';
 
 @NgModule({
 	imports: [
-		Runtime_BuilderModule,
 		RouterModule.forChild([
 			{
 				path: '',
@@ -16,4 +14,4 @@ import {Runtime_BuilderModule} from './runtime-builder.module';
 	],
 	exports: [],
 })
-export class Runtime_BuilderRoutingModule {}
+export class Runtime_BuilderRoutingModule { }

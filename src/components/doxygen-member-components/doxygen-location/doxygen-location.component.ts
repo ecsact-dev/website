@@ -60,7 +60,7 @@ export class DoxygenLocationComponent {
 		route.params.subscribe(() => cdr.markForCheck());
 	}
 
-	getHref(hrefBase: string): string {
+	getHref(hrefBase: string | null): string {
 		if (!hrefBase) return '';
 		hrefBase += this.location.file;
 		if (!isNaN(this.location.line)) {

@@ -1,5 +1,5 @@
-import {Component, ChangeDetectionStrategy, Input} from '@angular/core';
-import {DoxygenFunctionMemberDef} from '../../search/doxygen-def-types';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { DoxygenFunctionMemberDef } from '../../search/doxygen-def-types';
 import { HiddenTableRowComponent } from '../hidden-table-rows/hidden-table-row.component';
 import { DoxygenDescriptionComponent } from '../doxygen-member-components/doxygen-description/doxygen-description.component';
 import { DoxygenRefidLinkDirective } from '../doxygen-refid-link/doxygen-refid-link.directive';
@@ -16,20 +16,20 @@ export interface IDoxygenFunctionsTable {
 }
 
 @Component({
-    selector: 'doxygen-functions-table',
-    preserveWhitespaces: true,
-    templateUrl: './doxygen-functions-table.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        HiddenTableRowsDirective,
-        NgIf,
-        NgFor,
-        DoxygenTypeNameComponent,
-        DoxygenRefidLinkDirective,
-        DoxygenDescriptionComponent,
-        HiddenTableRowComponent,
-    ],
+	selector: 'doxygen-functions-table',
+	preserveWhitespaces: true,
+	templateUrl: './doxygen-functions-table.component.html',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		HiddenTableRowsDirective,
+		NgIf,
+		NgFor,
+		DoxygenTypeNameComponent,
+		DoxygenRefidLinkDirective,
+		DoxygenDescriptionComponent,
+		HiddenTableRowComponent,
+	],
 })
 export class DoxygenFunctionsTableComponent {
 	@Input()

@@ -7,8 +7,7 @@ ng_project(
     srcs = [
         "systems-in-cpp.component.ts",
         "systems-in-cpp-routing.module.ts",
-        "systems-in-cpp-routing.component.html",
-        "systems-in-cpp-routing.component.css",
+        "systems-in-cpp.component.html",
     ],
     deps = [
         "//src/components/code-block-variation",

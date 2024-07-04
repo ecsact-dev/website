@@ -5,7 +5,6 @@ import {
 	DoxygenPlainText,
 	DoxygenText,
 } from '../../search/doxygen-def-types';
-import { DoxygenParagraphModule } from './doxygen-paragraph.module';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
@@ -19,7 +18,6 @@ import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 		NgIf,
 		NgSwitch,
 		NgSwitchCase,
-		DoxygenParagraphModule,
 	],
 })
 export class DoxygenParagraphComponent implements OnInit {

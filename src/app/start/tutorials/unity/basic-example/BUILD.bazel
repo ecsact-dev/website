@@ -13,8 +13,8 @@ ng_project(
     srcs = [
         "basic-example.component.ts",
         "basic-example-routing.module.ts",
-        "basic-example-routing.component.html",
-        "basic-example-routing.component.css",
+        "basic-example.component.html",
+        "basic-example.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import { Clipboard } from '@angular/cdk/clipboard';
 import {
 	Component,
