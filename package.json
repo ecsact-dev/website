@@ -5,7 +5,8 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
-    "format": "prettier . --write"
+    "format:write": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "dependencies": {
     "@angular/animations": "^18.0.5",
