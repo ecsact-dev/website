@@ -4,10 +4,7 @@
   "repository": "https://github.com/seaube/ecsact-dev-website",
   "license": "UNLICENSED",
   "private": true,
-  "scripts": {
-    "format:write": "prettier . --write",
-    "format:check": "prettier . --check"
-  },
+  "scripts": {},
   "dependencies": {
     "@angular/animations": "^18.0.5",
     "@angular/cdk": "^18.0.6",
