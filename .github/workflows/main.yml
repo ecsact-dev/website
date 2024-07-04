@@ -13,6 +13,6 @@ jobs:
       with:
         # exclude files handled by prettier
         eclint_args: >-
-          -exclude "**/*.ts"
+          -exclude=**/*.ts
     - run: 'bazel run @pnpm -- --dir $PWD run format:check'
 
