@@ -6,7 +6,9 @@ indent_size = 4
 indent_style = tab
 end_of_line = lf
 insert_final_newline = true
-trim_trailing_whitespace = true
+
+[/src/assets/**]
+generated_code = true
 
 # matching what pnpm/npm/yarn will format package.json
 [package.json]
@@ -19,7 +21,7 @@ tab_width = 4
 indent_size = 4
 indent_style = space
 
-[*{yml,yaml}]
+[*.{yml,yaml}]
 tab_width = 2
 indent_size = 2
 indent_style = space
