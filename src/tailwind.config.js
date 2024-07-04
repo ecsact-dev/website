@@ -1,6 +1,8 @@
+const content = process.argv.slice(process.argv.indexOf('--') + 1);
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ["**/*.html"],
+	content,
 	theme: {
 		extend: {
 			height: {

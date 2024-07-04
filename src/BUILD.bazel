@@ -1,5 +1,6 @@
 load("//tools:ng.bzl", "ng_project")
 load("//tools:sass.bzl", "sass_binary")
+load("//tools:file_collector.bzl", "file_collector")
 load("//:defs.bzl", "pkg_web")
 load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@npm//:history-server/package_json.bzl", history_server = "bin")
@@ -15,6 +16,12 @@ sass_binary(
     ],
 )
 
+file_collector(
+    name = "tailwind_content",
+    extension = "html",
+    deps = [":src"],
+)
+
 tailwindcss.tailwindcss(
     name = "tailwindcss",
     stdout = "tailwind.css",
@@ -23,13 +30,15 @@ tailwindcss.tailwindcss(
         "$(rootpath :tailwind.config.js)",
         "--input",
         "$(rootpath :styles.tailwind.css)",
+        "--",
+        "$(rootpaths :tailwind_content)",
     ],
     tags = ["no-sandbox"],
     copy_srcs_to_bin = False,
     srcs = [
         ":styles.tailwind.css",
         ":tailwind.config.js",
-        ":src",
+        ":tailwind_content",
     ],
 )
 
