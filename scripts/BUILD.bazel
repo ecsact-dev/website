@@ -1,24 +1,24 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
 
-nodejs_binary(
+js_binary(
     name = "doxygen_devref",
     data = [
-        "@npm//download",
-        "@npm//execa",
-        "@npm//listr",
-        "@npm//yauzl",
+        "//:node_modules/download",
+        "//:node_modules/execa",
+        "//:node_modules/listr",
+        "//:node_modules/yauzl",
     ],
     entry_point = "doxygen_devref.mjs",
 )
 
-nodejs_binary(
+js_binary(
     name = "update_ecsact_sdk",
     data = [
-        "@npm//download",
-        "@npm//execa",
-        "@npm//fs-extra",
-        "@npm//listr",
-        "@npm//yauzl",
+        "//:node_modules/download",
+        "//:node_modules/execa",
+        "//:node_modules/fs-extra",
+        "//:node_modules/listr",
+        "//:node_modules/yauzl",
     ],
     entry_point = "update_ecsact_sdk.mjs",
 )

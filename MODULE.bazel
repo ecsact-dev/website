@@ -10,6 +10,13 @@ bazel_dep(name = "libarchive", version = "3.7.4.bcr.2")
 bazel_dep(name = "aspect_rules_lint", version = "1.0.0-rc4")
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
 
+bazel_dep(name = "bzlws")
+git_override(
+    module_name = "bzlws",
+    commit = "b7b10a115da356ec23b0cf0c697919baa7b7301c",
+    remote = "https://github.com/zaucy/bzlws",
+)
+
 pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm", dev_dependency = True)
 use_repo(pnpm, "pnpm")
 
