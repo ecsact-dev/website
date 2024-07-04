@@ -2,6 +2,7 @@ load("//tools:ng.bzl", "ng_project")
 load("//tools:sass.bzl", "sass_binary")
 load("//tools:file_collector.bzl", "file_collector")
 load("//:defs.bzl", "pkg_web")
+load("@aspect_bazel_lib//lib:copy_to_bin.bzl", "copy_to_bin")
 load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
 load("@npm//:history-server/package_json.bzl", history_server = "bin")
 load("@npm//:tailwindcss/package_json.bzl", tailwindcss = "bin")
@@ -22,12 +23,22 @@ file_collector(
     deps = [":src"],
 )
 
+# without this styles.tailwind.css cannot be found by tailwindcss
+copy_to_bin(
+    name = "tailwindcss_bin_srcs",
+    srcs = [
+        ":styles.tailwind.css",
+        ":tailwind.config.js",
+    ],
+)
+
 tailwindcss.tailwindcss(
     name = "tailwindcss",
     srcs = [
         ":styles.tailwind.css",
         ":tailwind.config.js",
         ":tailwind_content",
+        ":tailwindcss_bin_srcs",
     ],
     args = [
         "--config",
@@ -37,6 +48,10 @@ tailwindcss.tailwindcss(
         "--",
         "$(rootpaths :tailwind_content)",
     ],
+    execution_requirements = {
+        "no-sandbox": "1",
+    },
+    use_execroot_entry_point = False,
     copy_srcs_to_bin = False,
     stdout = "tailwind.css",
     tags = ["no-sandbox"],
