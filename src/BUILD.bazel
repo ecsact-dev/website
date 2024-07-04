@@ -88,7 +88,7 @@ esbuild(
     script_assets = [
         ":polyfills-bundle.js",
     ],
-    assets = [],
+    assets = ["//src/assets"],
     production = False if mode == "dev" else True,
 ) for mode in ["dev", "prod"]]
 
