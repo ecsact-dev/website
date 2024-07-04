@@ -14,5 +14,7 @@ jobs:
         # exclude files handled by prettier
         eclint_args: >-
           -exclude=**/*.ts
+          -exclude=**/*.html
+          -exclude=**/*.scss
     - run: 'bazel run @pnpm -- --dir $PWD run format:check'
 
