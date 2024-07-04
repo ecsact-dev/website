@@ -5,11 +5,22 @@ import {
 	OnDestroy,
 	OnInit,
 } from '@angular/core';
+import { ShowcaseComponent } from '../../../components/layout/showcase/showcase.component';
+import { RouterLink } from '@angular/router';
+import { EcsactLangSyntaxComponent } from '../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
+import { EcsactExampleDiagramComponent } from '../../../components/ecsact-example-diagram/ecsact-example-diagram.component';
 
 @Component({
 	templateUrl: 'overview.component.html',
 	styleUrls: ['overview.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		EcsactExampleDiagramComponent,
+		EcsactLangSyntaxComponent,
+		RouterLink,
+		ShowcaseComponent,
+	],
 })
 export class OverviewComponent implements OnInit, OnDestroy {
 	private mediaQuery: MediaQueryList;

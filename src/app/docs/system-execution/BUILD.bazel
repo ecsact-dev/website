@@ -12,7 +12,6 @@ ng_project(
     name = "system-execution",
     srcs = [
         "system-execution.component.ts",
-        "system-execution.module.ts",
         "system-execution.component.html",
         "system-execution.component.css",
     ],

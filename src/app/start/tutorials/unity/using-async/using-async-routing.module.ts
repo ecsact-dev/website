@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {UsingAsyncComponent} from './using-async.component';
-import {UsingAsyncModule} from './using-async.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { UsingAsyncComponent } from './using-async.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [UsingAsyncModule, RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class UsingAsyncRoutingModule {}
+export class UsingAsyncRoutingModule { }

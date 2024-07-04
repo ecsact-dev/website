@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {ImplementationsComponent} from './implementations.component';
-import {ImplementationsModule} from './implementations.module';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ImplementationsComponent } from './implementations.component';
 
 @NgModule({
 	imports: [
-		ImplementationsModule,
 		RouterModule.forChild([
 			{
 				path: '',
@@ -16,4 +14,4 @@ import {ImplementationsModule} from './implementations.module';
 	],
 	exports: [],
 })
-export class ImplementationsRoutingModule {}
+export class ImplementationsRoutingModule { }

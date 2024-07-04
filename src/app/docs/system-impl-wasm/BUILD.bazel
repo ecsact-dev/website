@@ -12,7 +12,6 @@ ng_project(
     name = "system-impl-wasm",
     srcs = [
         "system-impl-wasm.component.ts",
-        "system-impl-wasm.module.ts",
         "system-impl-wasm.component.html",
         "system-impl-wasm.component.css",
     ],

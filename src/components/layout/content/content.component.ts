@@ -9,7 +9,9 @@ import {
 	HostListener,
 	OnDestroy,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
+import { CdkObserveContent } from '@angular/cdk/observers';
 
 export interface ContentPageAnchor {
 	id: string;
@@ -59,6 +61,13 @@ function getAnchorTitleText(element: Element): string {
 	templateUrl: './content.component.html',
 	styleUrls: ['./content.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		CdkObserveContent,
+		NgIf,
+		RouterLink,
+		NgFor,
+	],
 })
 export class ContentComponent implements OnInit, OnDestroy {
 	private _anchorEventListenerCleanupFns: (() => void)[] = [];
@@ -67,12 +76,12 @@ export class ContentComponent implements OnInit, OnDestroy {
 	activePageAnchorId: string = '';
 	wantsScrollTo: string = '';
 
-	@ViewChild('mainContent', {static: true})
+	@ViewChild('mainContent', { static: true })
 	mainContent?: ElementRef<HTMLElement>;
 
 	readonly trackBy: TrackByFunction<ContentPageAnchor>;
 	readonly canShare = (window as any).navigator.canShare
-		? (window as any).navigator.canShare({url: window.location.href})
+		? (window as any).navigator.canShare({ url: window.location.href })
 		: false;
 	sharing = false;
 
@@ -94,7 +103,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 		this.sharing = true;
 		this.cdr.markForCheck();
 		try {
-			await navigator.share({url: window.location.href});
+			await navigator.share({ url: window.location.href });
 		} finally {
 			this.sharing = false;
 			this.cdr.markForCheck();
@@ -128,7 +137,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this._intersectionObserver = new IntersectionObserver(
 			entries => this.onIntersect(entries),
-			{rootMargin: '-90px 0px 0px 0px'},
+			{ rootMargin: '-90px 0px 0px 0px' },
 		);
 
 		this.refreshPageAnchors();
@@ -143,7 +152,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 	}
 
 	scrollToTop() {
-		window.scrollTo({top: 0, behavior: 'smooth'});
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
 	private scrollToPageAnchor(pageAnchor: ContentPageAnchor) {
@@ -159,7 +168,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 			topHeight -
 			topPadding;
 
-		window.scrollTo({top: y, behavior: 'smooth'});
+		window.scrollTo({ top: y, behavior: 'smooth' });
 	}
 
 	private consumeScrollToIfNeeded() {
@@ -197,7 +206,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 		}
 		this._anchorEventListenerCleanupFns = [];
 
-		for (const {element} of this.pageAnchors) {
+		for (const { element } of this.pageAnchors) {
 			this._intersectionObserver.unobserve(element);
 		}
 
@@ -217,7 +226,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 			this.pageAnchors.forEach(item => (item.indent -= smallestIndent));
 		}
 
-		for (const {element} of this.pageAnchors) {
+		for (const { element } of this.pageAnchors) {
 			this._intersectionObserver.observe(element);
 		}
 

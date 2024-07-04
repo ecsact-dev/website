@@ -4,7 +4,11 @@ package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
     name = "not-found",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "not-found-routing.module.ts",
+        "not-found.component.ts",
+        "not-found.component.html",
+    ],
     deps = [
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",

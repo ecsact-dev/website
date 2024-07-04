@@ -4,14 +4,18 @@ import {
 	ChangeDetectionStrategy,
 	TrackByFunction,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {from, map, Observable, shareReplay, switchMap} from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { from, map, Observable, shareReplay, switchMap } from 'rxjs';
 import {
 	DoxygenCompound,
 	DoxygenMember,
 	DoxygenPageDef,
 } from '../../../search/doxygen-def-types';
-import {Search} from '../../../search/search.service';
+import { Search } from '../../../search/search.service';
+import { FormsModule } from '@angular/forms';
+import { DoxygenPageDefComponent } from '../../../components/doxygen-page-def/doxygen-page-def.component';
+import { DoxygenRefidLinkDirective } from '../../../components/doxygen-refid-link/doxygen-refid-link.directive';
+import { NgIf, NgFor, NgSwitch, NgSwitchCase, NgTemplateOutlet, AsyncPipe } from '@angular/common';
 
 export enum RepoCompoundsView {
 	ByKind,
@@ -23,6 +27,18 @@ export enum RepoCompoundsView {
 	templateUrl: './repo.component.html',
 	styleUrls: ['./repo.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		NgIf,
+		NgFor,
+		DoxygenRefidLinkDirective,
+		DoxygenPageDefComponent,
+		FormsModule,
+		NgSwitch,
+		NgSwitchCase,
+		NgTemplateOutlet,
+		AsyncPipe,
+	],
 })
 export class RepoComponent implements OnInit {
 	readonly RepoCompoundsView = RepoCompoundsView;

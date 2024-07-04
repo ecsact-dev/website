@@ -12,7 +12,6 @@ ng_project(
     name = "system-impl",
     srcs = [
         "system-impl.component.ts",
-        "system-impl.module.ts",
         "system-impl.component.html",
         "system-impl.component.css",
     ],

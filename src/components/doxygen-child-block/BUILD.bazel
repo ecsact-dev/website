@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-child-block",
     srcs = [
         "doxygen-child-block.component.ts",
-        "doxygen-child-block.module.ts",
         "doxygen-child-block.component.html",
         "doxygen-child-block.component.css",
     ],

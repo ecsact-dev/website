@@ -10,17 +10,18 @@ import {AppComponent, AppNavItem} from './app.component';
 import {ServiceWorkerService} from './service-worker.service';
 
 @NgModule({
-	declarations: [AppComponent, AppNavItem],
-	imports: [
-		AppRoutingModule,
-		BrowserModule,
-		BrowserAnimationsModule,
-		RouterModule,
-		SearchModule,
-		ServiceWorkerModule.register('ngsw-worker.js'),
-	],
-	providers: [ServiceWorkerService],
-	exports: [AppComponent],
-	bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        AppRoutingModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        SearchModule,
+        ServiceWorkerModule.register('ngsw-worker.js'),
+        AppNavItem,
+    ],
+    providers: [ServiceWorkerService],
+    exports: [AppComponent],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

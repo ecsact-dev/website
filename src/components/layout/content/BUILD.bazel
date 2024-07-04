@@ -12,7 +12,6 @@ ng_project(
     name = "content",
     srcs = [
         "content.component.ts",
-        "content.module.ts",
         "content.component.html",
         "content.component.css",
     ],

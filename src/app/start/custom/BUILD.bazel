@@ -4,7 +4,11 @@ package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
     name = "custom",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "start-custom-routing.module.ts",
+        "start-custom.component.ts",
+        "start-custom.component.html",
+    ],
     deps = [
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",

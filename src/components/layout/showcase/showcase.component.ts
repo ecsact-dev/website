@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 
 /**
  * Side navigation next to the main content. Only one of these should exist at
@@ -9,9 +9,10 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 	templateUrl: './showcase.component.html',
 	styleUrls: ['./showcase.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class ShowcaseComponent implements OnInit {
-	constructor() {}
+	constructor() { }
 
 	@Input()
 	img: string;
@@ -22,5 +23,5 @@ export class ShowcaseComponent implements OnInit {
 	@Input()
 	description: string;
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 }

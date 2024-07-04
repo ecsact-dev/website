@@ -7,7 +7,10 @@ import {
 	ChangeDetectorRef,
 } from '@angular/core';
 
-@Directive({ selector: 'table[hasHiddenRows]' })
+@Directive({
+	selector: 'table[hasHiddenRows]',
+	standalone: true
+})
 export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 	@HostBinding('class.showing-hidden-rows')
 	public showHiddenRows: boolean = false;

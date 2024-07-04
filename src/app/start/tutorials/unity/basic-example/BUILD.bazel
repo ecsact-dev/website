@@ -12,7 +12,6 @@ ng_project(
     name = "basic-example",
     srcs = [
         "basic-example.component.ts",
-        "basic-example.module.ts",
         "basic-example-routing.module.ts",
         "basic-example-routing.component.html",
         "basic-example-routing.component.css",

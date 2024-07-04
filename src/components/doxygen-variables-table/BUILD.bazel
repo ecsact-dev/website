@@ -7,7 +7,6 @@ ng_project(
     name = "doxygen-variables-table",
     srcs = [
         "doxygen-variables-table.component.ts",
-        "doxygen-variables-table.module.ts",
         "doxygen-variables-table.component.html",
         "doxygen-variables-table.component.css",
     ],

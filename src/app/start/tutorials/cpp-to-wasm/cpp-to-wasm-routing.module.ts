@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {CppToWasmComponent} from './cpp-to-wasm.component';
-import {CppToWasmModule} from './cpp-to-wasm.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CppToWasmComponent } from './cpp-to-wasm.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [CppToWasmModule, RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class CppToWasmRoutingModule {}
+export class CppToWasmRoutingModule { }

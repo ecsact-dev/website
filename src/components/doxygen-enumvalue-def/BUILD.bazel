@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-enumvalue-def",
     srcs = [
         "doxygen-enumvalue-def.component.ts",
-        "doxygen-enumvalue-def.module.ts",
         "doxygen-enumvalue-def.component.html",
         "doxygen-enumvalue-def.component.css",
     ],

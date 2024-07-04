@@ -6,9 +6,6 @@ ng_project(
     name = "doxygen-refid-link",
     srcs = [
         "doxygen-refid-link.directive.ts",
-        "doxygen-refid-link.module.ts",
-        "doxygen-refid-link.component.html",
-        "doxygen-refid-link.component.css",
     ],
     deps = [
         "//:node_modules/@angular/router",

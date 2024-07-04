@@ -12,10 +12,9 @@ ng_project(
     name = "code-block-variation",
     srcs = [
         "code-block-variation.component.ts",
-        "code-block-variation.module.ts",
+        "code-block-variation.component.html",
+        "code-block-variation.component.css",
         "code-block-variation-option.directive.ts",
-        "code-block-variation-option.component.html",
-        "code-block-variation-option.component.css",
     ],
     deps = [
         "//:node_modules/@angular/cdk",

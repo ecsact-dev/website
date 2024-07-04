@@ -5,12 +5,22 @@ import {
 	DoxygenPlainText,
 	DoxygenText,
 } from '../../search/doxygen-def-types';
+import { DoxygenParagraphModule } from './doxygen-paragraph.module';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
 
 @Component({
 	selector: 'doxygen-paragraph',
 	templateUrl: './doxygen-paragraph.component.html',
 	styleUrls: ['./doxygen-paragraph.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		NgFor,
+		NgIf,
+		NgSwitch,
+		NgSwitchCase,
+		DoxygenParagraphModule,
+	],
 })
 export class DoxygenParagraphComponent implements OnInit {
 	@Input()

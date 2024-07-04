@@ -4,16 +4,19 @@ import {
 	Input,
 	ChangeDetectorRef,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {from, map, Observable, switchMap} from 'rxjs';
-import {DoxygenDefLocation} from '../../../search/doxygen-def-types';
-import {Search} from '../../../search/search.service';
+import { ActivatedRoute } from '@angular/router';
+import { from, map, Observable, switchMap } from 'rxjs';
+import { DoxygenDefLocation } from '../../../search/doxygen-def-types';
+import { Search } from '../../../search/search.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
 	selector: 'doxygen-location',
 	templateUrl: './doxygen-location.component.html',
 	styleUrls: ['./doxygen-location.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [AsyncPipe],
 })
 export class DoxygenLocationComponent {
 	@Input()

@@ -4,7 +4,7 @@ package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
     name = "start",
-    srcs = glob(["*.ts"]),
+    srcs = glob(["*.ts", "*.html"]),
     deps = [
         "//src/app/start/custom",
         "//src/app/start/godot",

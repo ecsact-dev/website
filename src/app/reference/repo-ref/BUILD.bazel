@@ -12,7 +12,6 @@ ng_project(
     name = "repo-ref",
     srcs = [
         "repo-ref.component.ts",
-        "repo-ref.module.ts",
         "repo-ref.component.html",
         "repo-ref.component.css",
     ],

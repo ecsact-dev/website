@@ -6,9 +6,7 @@ ng_project(
     name = "doxygen-type-name",
     srcs = [
         "doxygen-type-name.component.ts",
-        "doxygen-type-name.module.ts",
         "doxygen-type-name.component.html",
-        "doxygen-type-name.component.css",
     ],
     deps = [
         "//src/components/doxygen-refid-link",

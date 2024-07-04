@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "reference",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "reference-routing.module.ts",
+        "reference.component.ts",
+        "reference.component.html",
+        "reference.component.scss",
+    ],
     deps = [
         "//src/app/reference/overview",
         "//src/app/reference/repo",

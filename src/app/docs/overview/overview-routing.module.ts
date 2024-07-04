@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {OverviewComponent} from './overview.component';
-import {OverviewModule} from './overview.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { OverviewComponent } from './overview.component';
 
 @NgModule({
 	imports: [
-		OverviewModule,
 		RouterModule.forChild([
 			{
 				path: '',
@@ -16,4 +14,4 @@ import {OverviewModule} from './overview.module';
 	],
 	exports: [],
 })
-export class OverviewRoutingModule {}
+export class OverviewRoutingModule { }

@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "defaults",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "defaults-routing.module.ts",
+        "defaults.component.ts",
+        "defaults.component.html",
+        "defaults.component.css",
+    ],
     deps = [
         "//src/components/code-block-variation",
         "//src/components/ecsact-lang-syntax",

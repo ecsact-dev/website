@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "unity",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "start-unity.component.ts",
+        "start-unity.component.css",
+        "start-unity.component.html",
+        "start-unity-routing.module.ts",
+    ],
     deps = [
         "//src/components/code-block-variation",
         "//src/components/prism",

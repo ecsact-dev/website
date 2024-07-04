@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "unity-sync",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "unity-sync-routing.module.ts",
+        "unity-sync.component.ts",
+        "unity-sync.component.html",
+        "unity-sync.component.css",
+    ],
     deps = [
         "//src/components/code-block-variation",
         "//src/components/ecsact-lang-syntax",

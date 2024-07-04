@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-namespace-def",
     srcs = [
         "doxygen-namespace-def.component.ts",
-        "doxygen-namespace-def.module.ts",
         "doxygen-namespace-def.component.html",
         "doxygen-namespace-def.component.css",
     ],

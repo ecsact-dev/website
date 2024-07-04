@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "runtime",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "runtime-routing.module.ts",
+        "runtime.component.ts",
+        "runtime.component.html",
+        "runtime.component.css",
+    ],
     deps = [
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",

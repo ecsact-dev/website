@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {FirstEcsactFileComponent} from './first-ecsact-file.component';
-import {FirstEcsactFileModule} from './first-ecsact-file.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { FirstEcsactFileComponent } from './first-ecsact-file.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [FirstEcsactFileModule, RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class FirstEcsactFileRoutingModule {}
+export class FirstEcsactFileRoutingModule { }

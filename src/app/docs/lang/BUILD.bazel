@@ -12,7 +12,6 @@ ng_project(
     name = "lang",
     srcs = [
         "lang.component.ts",
-        "lang.module.ts",
         "lang.component.html",
         "lang.component.css",
     ],

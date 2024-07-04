@@ -21,7 +21,10 @@ import {SearchMeta} from '../search/search-meta.service';
 
 import {ServiceWorkerService} from './service-worker.service';
 
-@Directive({selector: 'a[navItem]'})
+@Directive({
+    selector: 'a[navItem]',
+    standalone: true
+})
 export class AppNavItem {
 	constructor(public element: ElementRef<HTMLAnchorElement>) {}
 }

@@ -6,6 +6,7 @@ import {
 	ElementRef,
 	ChangeDetectorRef,
 } from '@angular/core';
+import { NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 export enum EcsactWasmImportValidationCode {
 	Ok = 'Ok',
@@ -40,7 +41,7 @@ function toExportPreview(descriptor: WebAssembly.ModuleExportDescriptor) {
 	if (descriptor.kind !== 'function') {
 		validationCode = EcsactWasmExportValidationCode.NonFunction;
 	}
-	return {descriptor, validationCode};
+	return { descriptor, validationCode };
 }
 
 function toImportPreview(descriptor: WebAssembly.ModuleImportDescriptor) {
@@ -53,7 +54,7 @@ function toImportPreview(descriptor: WebAssembly.ModuleImportDescriptor) {
 		validationCode = EcsactWasmImportValidationCode.NonFunction;
 	}
 
-	return {descriptor, validationCode};
+	return { descriptor, validationCode };
 }
 
 @Component({
@@ -61,16 +62,23 @@ function toImportPreview(descriptor: WebAssembly.ModuleImportDescriptor) {
 	templateUrl: './ecsact-wasm-system-impl-validator.component.html',
 	styleUrls: ['./ecsact-wasm-system-impl-validator.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		NgFor,
+		NgSwitch,
+		NgSwitchCase,
+		NgSwitchDefault,
+	],
 })
 export class EcsactWasmSystemImplValidatorComponent implements OnInit {
-	@ViewChild('fileInput', {static: true})
+	@ViewChild('fileInput', { static: true })
 	fileInput?: ElementRef<HTMLInputElement>;
 
 	previewModules: EcsactWasmModulePreviewItem[] = [];
 
-	constructor(private cdr: ChangeDetectorRef) {}
+	constructor(private cdr: ChangeDetectorRef) { }
 
-	ngOnInit(): void {}
+	ngOnInit(): void { }
 
 	onFileInput(ev: any) {
 		this.previewModules = [];
@@ -99,7 +107,7 @@ export class EcsactWasmSystemImplValidatorComponent implements OnInit {
 
 						for (const imp of item.imports) {
 							if (imp.descriptor.kind === 'function') {
-								fauxImportFns[imp.descriptor.name] = function () {};
+								fauxImportFns[imp.descriptor.name] = function() { };
 							}
 						}
 

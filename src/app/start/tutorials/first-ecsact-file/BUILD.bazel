@@ -6,7 +6,6 @@ ng_project(
     name = "first-ecsact-file",
     srcs = [
         "first-ecsact-file.component.ts",
-        "first-ecsact-file.module.ts",
         "first-ecsact-file-routing.module.ts",
         "first-ecsact-file-routing.component.html",
         "first-ecsact-file-routing.component.css",

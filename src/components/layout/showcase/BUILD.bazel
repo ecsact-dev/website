@@ -12,7 +12,6 @@ ng_project(
     name = "showcase",
     srcs = [
         "showcase.component.ts",
-        "showcase.module.ts",
         "showcase.component.html",
         "showcase.component.css",
     ],

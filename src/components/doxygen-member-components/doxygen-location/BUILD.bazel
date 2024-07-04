@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-location",
     srcs = [
         "doxygen-location.component.ts",
-        "doxygen-location.module.ts",
         "doxygen-location.component.html",
         "doxygen-location.component.css",
     ],

@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "entities",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "entities-routing.module.ts",
+        "entities.component.ts",
+        "entities.component.html",
+        "entities.component.css",
+    ],
     deps = [
         "//src/components/code-block-variation",
         "//src/components/ecsact-lang-syntax",

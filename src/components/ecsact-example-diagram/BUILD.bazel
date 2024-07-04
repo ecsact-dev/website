@@ -12,7 +12,6 @@ ng_project(
     name = "ecsact-example-diagram",
     srcs = [
         "ecsact-example-diagram.component.ts",
-        "ecsact-example-diagram.module.ts",
         "ecsact-example-diagram.component.html",
         "ecsact-example-diagram.component.css",
     ],

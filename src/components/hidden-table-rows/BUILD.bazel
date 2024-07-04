@@ -13,7 +13,6 @@ ng_project(
     srcs = [
         "hidden-table-row.component.ts",
         "hidden-table-rows.directive.ts",
-        "hidden-table-rows.module.ts",
         "hidden-table-rows.component.html",
         "hidden-table-rows.component.css",
     ],

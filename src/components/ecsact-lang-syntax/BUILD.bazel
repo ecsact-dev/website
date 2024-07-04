@@ -12,7 +12,6 @@ ng_project(
     name = "ecsact-lang-syntax",
     srcs = [
         "ecsact-lang-syntax.component.ts",
-        "ecsact-lang-syntax.module.ts",
         "ecsact-lang-syntax.component.html",
         "ecsact-lang-syntax.component.css",
     ],

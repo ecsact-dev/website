@@ -11,7 +11,12 @@ sass_binary(
 
 ng_project(
     name = "home",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "home.component.ts",
+        "home.component.html",
+        "home.component.css",
+        "home-routing.module.rs",
+    ],
     deps = [
         "//src/components/ecsact-example-diagram",
         "//src/components/ecsact-lang-syntax",

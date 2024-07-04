@@ -1,7 +1,6 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {EmsdkCppComponent} from './emsdk-cpp.component';
-import {EmsdkCppModule} from './emsdk-cpp.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EmsdkCppComponent } from './emsdk-cpp.component';
 
 const routes: Routes = [
 	{
@@ -11,7 +10,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	imports: [EmsdkCppModule, RouterModule.forChild(routes)],
+	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class EmsdkCppRoutingModule {}
+export class EmsdkCppRoutingModule { }

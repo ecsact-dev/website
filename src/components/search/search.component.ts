@@ -14,8 +14,8 @@ import {
 	SearchResultItem,
 } from '../../search/search.service';
 import {Observable, Subscription} from 'rxjs';
-import {Location} from '@angular/common';
-import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import { Location, NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { ActivatedRoute, NavigationStart, Router, RouterLink } from '@angular/router';
 import {searchablePageInfos} from '../../search/searchable-page-infos';
 
 function shuffle<T>(array: T[]) {
@@ -28,10 +28,17 @@ function shuffle<T>(array: T[]) {
 }
 
 @Component({
-	selector: 'ecsact-search',
-	templateUrl: './search.component.html',
-	styleUrls: ['./search.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ecsact-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgIf,
+        NgFor,
+        RouterLink,
+        AsyncPipe,
+    ],
 })
 export class SearchComponent implements OnInit {
 	@ViewChild('searchInput', {static: true})

@@ -13,7 +13,6 @@ ng_project(
     srcs = [
         "emsdk-cpp.component.ts",
         "emsdk-cpp.module.ts",
-        "emsdk-cpp-routing.module.ts",
         "emsdk-cpp-routing.component.html",
         "emsdk-cpp-routing.component.css",
     ],

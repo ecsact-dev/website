@@ -10,7 +10,12 @@ sass_binary(
 
 ng_project(
     name = "ecs",
-    srcs = glob(["*.ts"]),
+    srcs = [
+        "ecs-routing.module.ts",
+        "ecs.component.ts",
+        "ecs.component.html",
+        "ecs.component.css",
+    ],
     deps = [
         "//src/components/ecsact-lang-syntax",
         "//:node_modules/@angular/common",

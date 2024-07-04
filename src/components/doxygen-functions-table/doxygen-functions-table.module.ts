@@ -8,15 +8,15 @@ import {HiddenTableRowsModule} from '../hidden-table-rows/hidden-table-rows.modu
 import {DoxygenFunctionsTableComponent} from './doxygen-functions-table.component';
 
 @NgModule({
-	declarations: [DoxygenFunctionsTableComponent],
-	imports: [
-		CommonModule,
-		DoxygenRefidLinkModule,
-		DoxygenParagraphModule,
-		DoxygenTypeNameModule,
-		DoxygenDescriptionModule,
-		HiddenTableRowsModule,
-	],
-	exports: [DoxygenFunctionsTableComponent],
+    imports: [
+        CommonModule,
+        DoxygenRefidLinkModule,
+        DoxygenParagraphModule,
+        DoxygenTypeNameModule,
+        DoxygenDescriptionModule,
+        HiddenTableRowsModule,
+        DoxygenFunctionsTableComponent,
+    ],
+    exports: [DoxygenFunctionsTableComponent],
 })
 export class DoxygenFunctionsTableModule {}

@@ -11,11 +11,10 @@ sass_binary(
 ng_project(
     name = "using-async",
     srcs = [
-        "using-async.component.ts",
-        "using-async.module.ts",
         "using-async-routing.module.ts",
-        "using-async-routing.component.html",
-        "using-async-routing.component.css",
+        "using-async.component.ts",
+        "using-async.component.html",
+        "using-async.component.css",
     ],
     deps = [
         "//src/components/code-block-variation",

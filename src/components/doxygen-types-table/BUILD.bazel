@@ -7,7 +7,6 @@ ng_project(
     name = "doxygen-types-table",
     srcs = [
         "doxygen-types-table.component.ts",
-        "doxygen-types-table.module.ts",
         "doxygen-types-table.component.html",
         "doxygen-types-table.component.css",
     ],

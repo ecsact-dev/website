@@ -8,7 +8,10 @@ import {
 	ViewChild,
 } from '@angular/core';
 
-import {MediaMatcher} from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { NgFor } from '@angular/common';
+import { EcsactLangSyntaxComponent } from '../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
+import { RouterLink } from '@angular/router';
 
 function makeRadialGradient(...args: string[]): string {
 	return `radial-gradient(${args.join(', ')})`;
@@ -18,6 +21,12 @@ function makeRadialGradient(...args: string[]): string {
 	templateUrl: 'home.component.html',
 	styleUrls: ['home.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		RouterLink,
+		EcsactLangSyntaxComponent,
+		NgFor,
+	],
 })
 export class HomeComponent {
 	readonly scrollDuration = 90000;

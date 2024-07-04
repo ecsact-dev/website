@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-return",
     srcs = [
         "doxygen-return.component.ts",
-        "doxygen-return.module.ts",
         "doxygen-return.component.html",
         "doxygen-return.component.css",
     ],

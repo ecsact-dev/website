@@ -12,7 +12,6 @@ ng_project(
     name = "sidenav",
     srcs = [
         "sidenav.component.ts",
-        "sidenav.module.ts",
         "sidenav.component.html",
         "sidenav.component.css",
     ],

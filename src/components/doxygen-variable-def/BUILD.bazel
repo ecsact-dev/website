@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-variable-def",
     srcs = [
         "doxygen-variable-def.component.ts",
-        "doxygen-variable-def.module.ts",
         "doxygen-variable-def.component.html",
         "doxygen-variable-def.component.css",
     ],

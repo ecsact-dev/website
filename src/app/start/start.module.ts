@@ -1,15 +1,15 @@
-import {CommonModule} from '@angular/common';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
-import { CodeBlockVariationModule } from '../../components/code-block-variation/code-block-variation.module';
-import {ContentModule} from '../../components/layout/content/content.module';
-import {SidenavSectionModule} from '../../components/layout/sidenav-section/sidenav-section.module';
-import {SidenavModule} from '../../components/layout/sidenav/sidenav.module';
-import {PrismModule} from '../../components/prism/prism.module';
-import {StartOverviewComponent} from './start-overview.component';
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { ContentModule } from '../../components/layout/content/content.module';
+import { StartOverviewComponent } from './start-overview.component';
 
-import {StartComponent} from './start.component';
+import { StartComponent } from './start.component';
+import { SidenavComponent } from '../../components/layout/sidenav/sidenav.component';
+import { SidenavSectionComponent } from '../../components/layout/sidenav-section/sidenav-section.component';
+import { PrismComponent } from '../../components/prism/prism.component';
+import { CodeBlockVariationComponent } from '../../components/code-block-variation/code-block-variation.component';
 
 @NgModule({
 	declarations: [StartComponent, StartOverviewComponent],
@@ -17,13 +17,13 @@ import {StartComponent} from './start.component';
 		CommonModule,
 		RouterModule,
 		ContentModule,
-		SidenavModule,
-		SidenavSectionModule,
+		SidenavComponent,
+		SidenavSectionComponent,
 		FormsModule,
-		PrismModule,
-		CodeBlockVariationModule,
+		PrismComponent,
+		CodeBlockVariationComponent,
 	],
 	exports: [StartComponent, StartOverviewComponent],
 	bootstrap: [],
 })
-export class StartModule {}
+export class StartModule { }

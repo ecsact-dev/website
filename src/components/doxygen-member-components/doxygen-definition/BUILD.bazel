@@ -12,7 +12,6 @@ ng_project(
     name = "doxygen-definition",
     srcs = [
         "doxygen-definition.component.ts",
-        "doxygen-definition.module.ts",
         "doxygen-definition.component.html",
         "doxygen-definition.component.css",
     ],

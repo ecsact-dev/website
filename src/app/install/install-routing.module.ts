@@ -1,19 +1,16 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {InstallComponent} from './install.component';
-import {InstallModule} from './install.module';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	imports: [
-		InstallModule,
 		RouterModule.forChild([
 			{
 				path: '',
 				pathMatch: 'full',
-				component: InstallComponent,
+				loadComponent: () => import('./install.component').then(m => m.InstallComponent),
 			},
 		]),
 	],
 	exports: [],
 })
-export class InstallRoutingModule {}
+export class InstallRoutingModule { }

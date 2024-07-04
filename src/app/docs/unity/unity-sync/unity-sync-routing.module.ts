@@ -1,11 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {UnitySyncComponent} from './unity-sync.component';
-import {UnitySyncModule} from './unity-sync.module';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { UnitySyncComponent } from './unity-sync.component';
 
 @NgModule({
 	imports: [
-		UnitySyncModule,
 		RouterModule.forChild([
 			{
 				path: '',
@@ -16,4 +14,4 @@ import {UnitySyncModule} from './unity-sync.module';
 	],
 	exports: [],
 })
-export class UnitySyncRoutingModule {}
+export class UnitySyncRoutingModule { }
