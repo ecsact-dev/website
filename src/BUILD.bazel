@@ -24,7 +24,11 @@ file_collector(
 
 tailwindcss.tailwindcss(
     name = "tailwindcss",
-    stdout = "tailwind.css",
+    srcs = [
+        ":styles.tailwind.css",
+        ":tailwind.config.js",
+        ":tailwind_content",
+    ],
     args = [
         "--config",
         "$(rootpath :tailwind.config.js)",
@@ -33,13 +37,9 @@ tailwindcss.tailwindcss(
         "--",
         "$(rootpaths :tailwind_content)",
     ],
-    tags = ["no-sandbox"],
     copy_srcs_to_bin = False,
-    srcs = [
-        ":styles.tailwind.css",
-        ":tailwind.config.js",
-        ":tailwind_content",
-    ],
+    stdout = "tailwind.css",
+    tags = ["no-sandbox"],
 )
 
 ng_project(
@@ -48,57 +48,64 @@ ng_project(
         "main.ts",
     ],
     deps = [
-        "//src/app",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/forms",
         "//:node_modules/@angular/router",
         "//:node_modules/@types/node",
+        "//src/app",
     ],
 )
 
 ng_project(
     name = "polyfills",
     srcs = ["polyfills.ts"],
-    deps = ["//:node_modules/zone.js"],
     visibility = ["//visibility:private"],
+    deps = ["//:node_modules/zone.js"],
 )
+
 esbuild(
     name = "polyfills-bundle",
-    entry_point = "polyfills.js",
     srcs = [":polyfills"],
-    define = {"process.env.NODE_ENV": "'production'"},
     config = {
-        "resolveExtensions": [".mjs", ".js"],
+        "resolveExtensions": [
+            ".mjs",
+            ".js",
+        ],
     },
-    metafile = False,
+    define = {"process.env.NODE_ENV": "'production'"},
+    entry_point = "polyfills.js",
     format = "esm",
+    metafile = False,
     minify = True,
 )
 
 [pkg_web(
     name = mode,
-    entry_point = "main.js",
+    assets = ["//src/assets"],
     entry_deps = [":src"],
-    index_html = "main.html",
+    entry_point = "main.js",
     html_assets = [
         ":styles.css",
         ":tailwind.css",
     ],
+    index_html = "main.html",
+    production = False if mode == "dev" else True,
     script_assets = [
         ":polyfills-bundle.js",
     ],
-    assets = ["//src/assets"],
-    production = False if mode == "dev" else True,
-) for mode in ["dev", "prod"]]
+) for mode in [
+    "dev",
+    "prod",
+]]
 
 history_server.history_server_binary(
     name = "devserver",
     args = ["$(location :dev)"],
     data = [":dev"],
     tags = [
-        "ibazel_notify_changes",
         "ibazel_live_reload",
+        "ibazel_notify_changes",
     ],
 )
 

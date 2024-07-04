@@ -1,8 +1,12 @@
-import { ApplicationConfig, enableProdMode, importProvidersFrom } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { initializeApp } from 'firebase/app';
-import { AppComponent } from './app/app.component';
-import { AppModule } from './app/app.module';
+import {
+	ApplicationConfig,
+	enableProdMode,
+	importProvidersFrom,
+} from '@angular/core';
+import {bootstrapApplication} from '@angular/platform-browser';
+import {initializeApp} from 'firebase/app';
+import {AppComponent} from './app/app.component';
+import {AppModule} from './app/app.module';
 
 declare const process: any;
 if (process.env.NODE_ENV === 'production') {
@@ -20,10 +24,7 @@ initializeApp({
 });
 
 const appConfig: ApplicationConfig = {
-	providers: [
-		importProvidersFrom(AppModule),
-	],
+	providers: [importProvidersFrom(AppModule)],
 };
 
-bootstrapApplication(AppComponent, appConfig)
-	.catch(err => console.error(err));
+bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));

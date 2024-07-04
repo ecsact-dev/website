@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { AppRoutingModule } from './app-routing.module';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {AppRoutingModule} from './app-routing.module';
 
-import { AppComponent, AppNavItem } from './app.component';
-import { ServiceWorkerService } from './service-worker.service';
+import {AppComponent, AppNavItem} from './app.component';
+import {ServiceWorkerService} from './service-worker.service';
 
 @NgModule({
 	declarations: [],
@@ -19,4 +19,4 @@ import { ServiceWorkerService } from './service-worker.service';
 	providers: [ServiceWorkerService],
 	exports: [],
 })
-export class AppModule { }
+export class AppModule {}
