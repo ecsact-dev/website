@@ -1,29 +1,39 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
 package(default_visibility = ["//:__subpackages__"])
 
-sass_binary(
-    name = "home_component_style",
-    src = "home.component.scss",
-    deps = ["@typed_css"],
+copy_file(
+    name = "copy_typed_scss",
+    src = "@typed_css//:typed.scss",
+    out = "typed.scss",
 )
 
-ng_ts_project(
+sass_binary(
+    name = "home_component_style",
+    srcs = [
+        "home.component.scss",
+        "typed.scss",
+    ],
+)
+
+ng_project(
     name = "home",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
+        "home.component.css",
         "home.component.html",
-        ":home_component_style",
+        "home.component.ts",
+        "home-routing.module.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@types/node",
+        "//:node_modules/detect-browser",
         "//src/components/ecsact-example-diagram",
         "//src/components/ecsact-lang-syntax",
         "//src/components/layout/content",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
-        "@npm//@types/node",
-        "@npm//detect-browser",
     ],
 )

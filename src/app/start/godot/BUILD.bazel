@@ -1,16 +1,17 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "godot",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
         "start-godot.component.html",
+        "start-godot.component.ts",
+        "start-godot-routing.module.ts",
     ],
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

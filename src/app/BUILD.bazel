@@ -1,21 +1,31 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
     name = "app_component_style",
-    src = "app.component.scss",
+    srcs = ["app.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "app",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
+        "app.component.css",
         "app.component.html",
-        ":app_component_style",
+        "app.component.ts",
+        "app.module.ts",
+        "app-routing.module.ts",
+        "service-worker.service.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@angular/service-worker",
+        "//:node_modules/firebase",
+        "//:node_modules/rxjs",
         "//src/app/docs",
         "//src/app/docs/ecs",
         "//src/app/docs/implementations",
@@ -31,12 +41,5 @@ ng_ts_project(
         "//src/app/start",
         "//src/components/search",
         "//src/search:meta-service",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
-        "@npm//@angular/router",
-        "@npm//@angular/service-worker",
-        "@npm//firebase",
-        "@npm//rxjs",
     ],
 )

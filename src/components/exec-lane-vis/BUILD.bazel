@@ -1,26 +1,23 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "exec-lane-vis.component.scss",
+    srcs = ["exec-lane-vis.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "exec-lane-vis",
     srcs = [
-        "exec-lane-vis.component.ts",
-        "exec-lane-vis.module.ts",
-    ],
-    angular_assets = [
+        "exec-lane-vis.component.css",
         "exec-lane-vis.component.html",
-        ":styles",
+        "exec-lane-vis.component.ts",
     ],
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )

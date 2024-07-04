@@ -1,5 +1,5 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("//tools:typescript.bzl", "ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:ts.bzl", "ts_project")
 
 package(default_visibility = ["//:__subpackages__"])
 
@@ -29,19 +29,19 @@ ts_project(
     ],
 )
 
-ng_ts_project(
+ng_project(
     name = "meta-service",
     srcs = ["search-meta.service.ts"],
     deps = [
         ":page-info-types",
         ":searchable-page-infos",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/platform-browser",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/platform-browser",
     ],
 )
 
-ng_ts_project(
+ng_project(
     name = "service",
     srcs = ["search.service.ts"],
     deps = [
@@ -49,8 +49,8 @@ ng_ts_project(
         ":doxygen-parse",
         ":page-info-types",
         ":searchable-page-infos",
-        "@npm//@angular/core",
-        "@npm//fuse.js",
-        "@npm//rxjs",
+        "//:node_modules/@angular/core",
+        "//:node_modules/fuse.js",
+        "//:node_modules/rxjs",
     ],
 )

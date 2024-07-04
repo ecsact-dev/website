@@ -1,29 +1,28 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "start",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
-        "start.component.html",
-        "start-overview.component.html",
-    ],
+    srcs = glob([
+        "*.ts",
+        "*.html",
+    ]),
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@types/node",
+        "//:node_modules/detect-browser",
         "//src/app/start/custom",
         "//src/app/start/godot",
         "//src/app/start/tutorials",
         "//src/app/start/unity",
         "//src/app/start/unreal",
+        "//src/components/code-block-variation",
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
-        "//src/components/code-block-variation",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/forms",
-        "@npm//@angular/router",
-        "@npm//@types/node",
-        "@npm//detect-browser",
     ],
 )

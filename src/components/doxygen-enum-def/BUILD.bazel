@@ -1,31 +1,28 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-enum-def.component.scss",
+    srcs = ["doxygen-enum-def.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "doxygen-enum-def",
     srcs = [
-        "doxygen-enum-def.component.ts",
-        "doxygen-enum-def.module.ts",
-    ],
-    angular_assets = [
+        "doxygen-enum-def.component.css",
         "doxygen-enum-def.component.html",
-        ":styles",
+        "doxygen-enum-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
         "//src/components/doxygen-member-components/doxygen-name",
         "//src/components/doxygen-member-components/doxygen-parameters",
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

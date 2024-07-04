@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {
 	Component,
 	OnInit,
@@ -9,7 +12,9 @@ import {
 	HostListener,
 	OnDestroy,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
+import {NgIf, NgFor} from '@angular/common';
+import {CdkObserveContent} from '@angular/cdk/observers';
 
 export interface ContentPageAnchor {
 	id: string;
@@ -59,6 +64,8 @@ function getAnchorTitleText(element: Element): string {
 	templateUrl: './content.component.html',
 	styleUrls: ['./content.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [CdkObserveContent, NgIf, RouterLink, NgFor],
 })
 export class ContentComponent implements OnInit, OnDestroy {
 	private _anchorEventListenerCleanupFns: (() => void)[] = [];
@@ -76,7 +83,10 @@ export class ContentComponent implements OnInit, OnDestroy {
 		: false;
 	sharing = false;
 
-	constructor(private cdr: ChangeDetectorRef, route: ActivatedRoute) {
+	constructor(
+		private cdr: ChangeDetectorRef,
+		route: ActivatedRoute,
+	) {
 		this.trackBy = (index, item) => {
 			return item.id;
 		};

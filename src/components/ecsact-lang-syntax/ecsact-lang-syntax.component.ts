@@ -68,6 +68,7 @@ function getPrefixWhitespace(str: string): string {
 	templateUrl: './ecsact-lang-syntax.component.html',
 	styleUrls: ['./ecsact-lang-syntax.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class EcsactLangSyntaxComponent implements AfterViewInit {
 	@HostBinding('attr.language')

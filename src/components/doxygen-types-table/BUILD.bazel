@@ -1,25 +1,23 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "doxygen-types-table",
     srcs = [
-        "doxygen-types-table.component.ts",
-        "doxygen-types-table.module.ts",
-    ],
-    angular_assets = [
         "doxygen-types-table.component.html",
+        "doxygen-types-table.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-paragraph",
         "//src/components/doxygen-refid-link",
         "//src/components/doxygen-type-name",
         "//src/components/hidden-table-rows",
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

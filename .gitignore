@@ -1,6 +1,7 @@
-/bazel-*
-**/node_modules
-/user.bazelrc
+bazel-*
+*.bazel.lock
+node_modules
+user.bazelrc
 /profile.json
 /.firebase
 **-debug.log

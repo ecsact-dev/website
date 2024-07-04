@@ -1,21 +1,25 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
     name = "reference_component_style",
-    src = "reference.component.scss",
+    srcs = ["reference.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "reference",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
         "reference.component.html",
-        ":reference_component_style",
+        "reference.component.scss",
+        "reference.component.ts",
+        "reference-routing.module.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/app/reference/overview",
         "//src/app/reference/repo",
         "//src/app/reference/repo-ref",
@@ -23,8 +27,5 @@ ng_ts_project(
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
         "//src/search:service",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

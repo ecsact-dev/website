@@ -60,7 +60,7 @@ const routes: Routes = [
 	{
 		path: 'roadmap',
 		loadChildren: () =>
-			import('./roadmap/reference-routing.module').then(
+			import('./roadmap/roadmap-routing.module').then(
 				m => m.RoadmapRoutingModule,
 			),
 	},

@@ -7,12 +7,15 @@ import {
 	AfterViewInit,
 	ElementRef,
 } from '@angular/core';
+import {NgIf, NgTemplateOutlet} from '@angular/common';
 
 @Component({
 	selector: 'ecsact-example-diagram',
 	templateUrl: './ecsact-example-diagram.component.html',
 	styleUrls: ['./ecsact-example-diagram.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgIf, NgTemplateOutlet],
 })
 export class EcsactExampleDiagramComponent implements OnInit, AfterViewInit {
 	@ViewChild('verticalLayoutEl', {static: false})

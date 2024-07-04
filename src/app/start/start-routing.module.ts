@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {StartOverviewComponent} from './start-overview.component';
 import {StartComponent} from './start.component';
-import {StartModule} from './start.module';
 
 const routes: Routes = [
 	{
@@ -14,7 +13,7 @@ const routes: Routes = [
 		path: 'unity',
 		pathMatch: 'prefix',
 		loadChildren: () =>
-			import('./unity/start-unity-routing-routing.module').then(
+			import('./unity/start-unity-routing.module').then(
 				m => m.StartUnityRoutingRoutingModule,
 			),
 	},
@@ -22,7 +21,7 @@ const routes: Routes = [
 		path: 'godot',
 		pathMatch: 'prefix',
 		loadChildren: () =>
-			import('./godot/start-godot-routing-routing.module').then(
+			import('./godot/start-godot-routing.module').then(
 				m => m.StartGodotRoutingRoutingModule,
 			),
 	},
@@ -30,7 +29,7 @@ const routes: Routes = [
 		path: 'unreal',
 		pathMatch: 'prefix',
 		loadChildren: () =>
-			import('./unreal/start-unreal-routing-routing.module').then(
+			import('./unreal/start-unreal-routing.module').then(
 				m => m.StartUnrealRoutingRoutingModule,
 			),
 	},
@@ -38,7 +37,7 @@ const routes: Routes = [
 		path: 'custom',
 		pathMatch: 'prefix',
 		loadChildren: () =>
-			import('./custom/start-custom-routing-routing.module').then(
+			import('./custom/start-custom-routing.module').then(
 				m => m.StartCustomRoutingRoutingModule,
 			),
 	},
@@ -53,7 +52,6 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		StartModule,
 		RouterModule.forChild([
 			{
 				path: '',

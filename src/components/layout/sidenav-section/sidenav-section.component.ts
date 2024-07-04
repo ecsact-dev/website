@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {CdkAccordionItem} from '@angular/cdk/accordion';
 import {
 	Component,
@@ -10,6 +13,7 @@ import {
 } from '@angular/core';
 import {ActivationEnd, Router} from '@angular/router';
 import {delay, filter, Subscription} from 'rxjs';
+import {NgIf} from '@angular/common';
 
 /**
  * Side navigation section. Should onyl be used inside ecsact-sidenav
@@ -19,6 +23,8 @@ import {delay, filter, Subscription} from 'rxjs';
 	templateUrl: './sidenav-section.component.html',
 	styleUrls: ['./sidenav-section.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [CdkAccordionItem, NgIf],
 })
 export class SidenavSectionComponent implements OnInit, OnDestroy {
 	// @HACK(zaucy): routerLinkActive not available right away

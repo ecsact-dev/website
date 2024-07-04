@@ -9,6 +9,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
 	templateUrl: './showcase.component.html',
 	styleUrls: ['./showcase.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class ShowcaseComponent implements OnInit {
 	constructor() {}

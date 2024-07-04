@@ -1,27 +1,24 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "search.component.scss",
+    srcs = ["search.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "search",
     srcs = [
-        "search.component.ts",
-        "search.module.ts",
-    ],
-    angular_assets = [
         "search.component.html",
-        ":styles",
+        "search.component.scss",
+        "search.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/search:service",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

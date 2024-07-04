@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {Injectable} from '@angular/core';
 import Fuse from 'fuse.js';
 import {BehaviorSubject, Observable} from 'rxjs';

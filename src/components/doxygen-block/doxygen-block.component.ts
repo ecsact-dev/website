@@ -6,6 +6,7 @@ import {DoxygenDataTypeDef} from '../../search/doxygen-def-types';
 	templateUrl: './doxygen-block.component.html',
 	styleUrls: ['./doxygen-block.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class DoxygenBlockComponent implements OnInit {
 	@Input()

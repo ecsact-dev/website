@@ -1,5 +1,8 @@
 _ALLOWED_EXTENSION = [
     "html",
+    "js",
+    "jsx",
+    "tsx",
 ]
 
 FileCollector = provider(

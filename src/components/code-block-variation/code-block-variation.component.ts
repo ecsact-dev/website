@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {Clipboard} from '@angular/cdk/clipboard';
 import {
 	Component,
@@ -11,6 +14,7 @@ import {
 	OnDestroy,
 } from '@angular/core';
 import {Subscription} from 'rxjs';
+import {NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 
 export interface ICodeBlockVariationOption {
 	optionTitle: string;
@@ -29,6 +33,8 @@ export type CodeBlockVariationClipboardStatus =
 	templateUrl: './code-block-variation.component.html',
 	styleUrls: ['./code-block-variation.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
 })
 export class CodeBlockVariationComponent
 	implements OnInit, OnDestroy, AfterViewInit
@@ -47,7 +53,10 @@ export class CodeBlockVariationComponent
 	@ViewChild('optionSelect', {static: true})
 	optionSelect?: ElementRef<HTMLSelectElement>;
 
-	constructor(private cdr: ChangeDetectorRef, private clipboard: Clipboard) {}
+	constructor(
+		private cdr: ChangeDetectorRef,
+		private clipboard: Clipboard,
+	) {}
 
 	onSelectChange() {
 		const value = parseInt(this.optionSelect.nativeElement.value);

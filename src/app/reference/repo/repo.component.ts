@@ -12,6 +12,17 @@ import {
 	DoxygenPageDef,
 } from '../../../search/doxygen-def-types';
 import {Search} from '../../../search/search.service';
+import {FormsModule} from '@angular/forms';
+import {DoxygenPageDefComponent} from '../../../components/doxygen-page-def/doxygen-page-def.component';
+import {DoxygenRefidLinkDirective} from '../../../components/doxygen-refid-link/doxygen-refid-link.directive';
+import {
+	NgIf,
+	NgFor,
+	NgSwitch,
+	NgSwitchCase,
+	NgTemplateOutlet,
+	AsyncPipe,
+} from '@angular/common';
 
 export enum RepoCompoundsView {
 	ByKind,
@@ -23,6 +34,18 @@ export enum RepoCompoundsView {
 	templateUrl: './repo.component.html',
 	styleUrls: ['./repo.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [
+		NgIf,
+		NgFor,
+		DoxygenRefidLinkDirective,
+		DoxygenPageDefComponent,
+		FormsModule,
+		NgSwitch,
+		NgSwitchCase,
+		NgTemplateOutlet,
+		AsyncPipe,
+	],
 })
 export class RepoComponent implements OnInit {
 	readonly RepoCompoundsView = RepoCompoundsView;
@@ -77,7 +100,10 @@ export class RepoComponent implements OnInit {
 		return compound.refid;
 	};
 
-	constructor(private search: Search, route: ActivatedRoute) {
+	constructor(
+		private search: Search,
+		route: ActivatedRoute,
+	) {
 		this.mainPage$ = route.params.pipe(
 			switchMap(params => from(search.getDef(params.repo, 'indexpage'))),
 		);

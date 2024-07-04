@@ -1,21 +1,25 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
     name = "docs_component_style",
-    src = "docs.component.scss",
+    srcs = ["docs.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "docs",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
+        "docs.component.css",
         "docs.component.html",
-        ":docs_component_style",
+        "docs.component.ts",
+        "docs-routing.module.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/app/docs/cpp-system-impl-wasm",
         "//src/app/docs/ecs",
         "//src/app/docs/implementations",
@@ -33,8 +37,5 @@ ng_ts_project(
         "//src/components/layout/content",
         "//src/components/layout/sidenav",
         "//src/components/layout/sidenav-section",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

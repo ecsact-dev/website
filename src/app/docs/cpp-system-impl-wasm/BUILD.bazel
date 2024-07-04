@@ -1,27 +1,24 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "cpp-system-impl-wasm.component.scss",
+    srcs = ["cpp-system-impl-wasm.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "cpp-system-impl-wasm",
     srcs = [
-        "cpp-system-impl-wasm.component.ts",
-        "cpp-system-impl-wasm.module.ts",
-    ],
-    angular_assets = [
+        "cpp-system-impl-wasm.component.css",
         "cpp-system-impl-wasm.component.html",
-        ":styles",
+        "cpp-system-impl-wasm.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/prism",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

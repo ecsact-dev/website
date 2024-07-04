@@ -3,12 +3,17 @@ import {
 	DoxygenFunctionParameter,
 	DoxygenParagraph,
 } from '../../../search/doxygen-def-types';
+import {DoxygenRefidLinkDirective} from '../../doxygen-refid-link/doxygen-refid-link.directive';
+import {NgIf} from '@angular/common';
+import {DoxygenContainerComponent} from '../doxygen-container/doxygen-container.component';
 
 @Component({
 	selector: 'doxygen-parameters',
 	templateUrl: './doxygen-parameters.component.html',
 	styleUrls: ['./doxygen-parameters.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [DoxygenContainerComponent, NgIf, DoxygenRefidLinkDirective],
 })
 export class DoxygenParametersComponent {
 	@Input()
@@ -21,7 +26,7 @@ export class DoxygenParametersComponent {
 	type: string;
 
 	@Input()
-	typeRef?: string;
+	typeRef: string;
 
 	@Input()
 	access: 'public' | 'protected' | 'private';

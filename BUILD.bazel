@@ -1,3 +1,37 @@
-package(default_visibility = ["//:__subpackages__"])
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
+load("@aspect_bazel_lib//lib/private:tar_toolchain.bzl", "tar_toolchain")
+load("@aspect_bazel_lib//lib:tar.bzl", "tar_lib")
+load("@npm//:defs.bzl", "npm_link_all_packages")
 
-exports_files(["tsconfig.json"])
+alias(
+    name = "format",
+    actual = "//tools/format",
+)
+
+npm_link_all_packages(name = "node_modules")
+
+# The root repo tsconfig
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = ["//visibility:public"],
+    deps = ["tsconfig.base.json"],
+)
+
+ts_config(
+    name = "tsconfig.node",
+    src = "tsconfig.node.json",
+    visibility = ["//visibility:public"],
+    deps = ["tsconfig.base.json"],
+)
+
+tar_toolchain(
+    name = "libarchive_tar_toolchain",
+    binary = "@libarchive//tar",
+)
+
+toolchain(
+    name = "tar_toolchain",
+    toolchain = ":libarchive_tar_toolchain",
+    toolchain_type = tar_lib.toolchain_type,
+)

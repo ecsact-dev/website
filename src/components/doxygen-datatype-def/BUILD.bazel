@@ -1,24 +1,24 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-datatype-def.component.scss",
+    srcs = ["doxygen-datatype-def.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "doxygen-datatype-def",
     srcs = [
-        "doxygen-datatype-def.component.ts",
-        "doxygen-datatype-def.module.ts",
-    ],
-    angular_assets = [
+        "doxygen-datatype-def.component.css",
         "doxygen-datatype-def.component.html",
-        ":styles",
+        "doxygen-datatype-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-child-block",
         "//src/components/doxygen-function-def",
         "//src/components/doxygen-functions-table",
@@ -33,8 +33,5 @@ ng_ts_project(
         "//src/components/doxygen-variable-def",
         "//src/components/doxygen-variables-table",
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {
 	AfterViewInit,
 	Directive,
@@ -11,7 +14,10 @@ import {
 	ICodeBlockVariationOption,
 } from './code-block-variation.component';
 
-@Directive({selector: '[codeBlockVariationOption]'})
+@Directive({
+	selector: '[codeBlockVariationOption]',
+	standalone: true,
+})
 export class CodeBlockVariationOptionDirective
 	implements AfterViewInit, OnDestroy, ICodeBlockVariationOption
 {

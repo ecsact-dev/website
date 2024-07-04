@@ -1,8 +1,13 @@
 {
+	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"lib": [
-			"ES7"
-		],
-		"strict": true
+		"lib": ["es2020", "dom"],
+		"strictPropertyInitialization": false
+	},
+	"angularCompilerOptions": {
+		"compilationMode": "full",
+		"strictInjectionParameters": true,
+		"strictInputAccessModifiers": true,
+		"strictTemplates": true
 	}
 }

@@ -1,20 +1,17 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
 
 package(default_visibility = ["//src:__subpackages__"])
 
-ng_ts_project(
+ng_project(
     name = "doxygen-type-name",
     srcs = [
-        "doxygen-type-name.component.ts",
-        "doxygen-type-name.module.ts",
-    ],
-    angular_assets = [
         "doxygen-type-name.component.html",
+        "doxygen-type-name.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-refid-link",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

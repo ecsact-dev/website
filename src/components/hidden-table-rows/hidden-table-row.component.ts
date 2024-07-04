@@ -2,12 +2,8 @@ import {
 	Component,
 	OnInit,
 	ChangeDetectionStrategy,
-	Input,
-	ViewChild,
-	TemplateRef,
 	AfterViewInit,
 	ElementRef,
-	EmbeddedViewRef,
 } from '@angular/core';
 import {HiddenTableRowsDirective} from './hidden-table-rows.directive';
 
@@ -16,6 +12,7 @@ import {HiddenTableRowsDirective} from './hidden-table-rows.directive';
 	templateUrl: './hidden-table-row.component.html',
 	styleUrls: ['./hidden-table-row.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
 })
 export class HiddenTableRowComponent implements OnInit, AfterViewInit {
 	constructor(

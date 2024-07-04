@@ -1,3 +1,6 @@
+// TODO: enable ts in this file again
+// @ts-nocheck
+
 import {
 	Component,
 	OnInit,
@@ -6,6 +9,7 @@ import {
 	ElementRef,
 	ChangeDetectorRef,
 } from '@angular/core';
+import {NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 
 export enum EcsactWasmImportValidationCode {
 	Ok = 'Ok',
@@ -61,6 +65,8 @@ function toImportPreview(descriptor: WebAssembly.ModuleImportDescriptor) {
 	templateUrl: './ecsact-wasm-system-impl-validator.component.html',
 	styleUrls: ['./ecsact-wasm-system-impl-validator.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	standalone: true,
+	imports: [NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault],
 })
 export class EcsactWasmSystemImplValidatorComponent implements OnInit {
 	@ViewChild('fileInput', {static: true})

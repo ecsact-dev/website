@@ -21,7 +21,7 @@ export class ServiceWorkerService {
 		);
 
 		timeInterval$.subscribe(() => this.swUpdate.checkForUpdate());
-		this.swUpdate.available.subscribe(() => this.forceUpdateNow());
+		this.swUpdate.versionUpdates.subscribe(() => this.forceUpdateNow());
 	}
 
 	private forceUpdateNow() {

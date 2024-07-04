@@ -1,24 +1,24 @@
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//src:__subpackages__"])
 
 sass_binary(
     name = "styles",
-    src = "doxygen-namespace-def.component.scss",
+    srcs = ["doxygen-namespace-def.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "doxygen-namespace-def",
     srcs = [
-        "doxygen-namespace-def.component.ts",
-        "doxygen-namespace-def.module.ts",
-    ],
-    angular_assets = [
+        "doxygen-namespace-def.component.css",
         "doxygen-namespace-def.component.html",
-        ":styles",
+        "doxygen-namespace-def.component.ts",
     ],
     deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
         "//src/components/doxygen-child-block",
         "//src/components/doxygen-member-components/doxygen-description",
         "//src/components/doxygen-member-components/doxygen-location",
@@ -28,8 +28,5 @@ ng_ts_project(
         "//src/components/doxygen-refid-link",
         "//src/components/doxygen-variable-def",
         "//src/search:doxygen-def-types",
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
     ],
 )

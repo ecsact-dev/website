@@ -1,23 +1,24 @@
-load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
-load("//tools:angular_ts_project.bzl", "ng_ts_project")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
 
 package(default_visibility = ["//:__subpackages__"])
 
 sass_binary(
     name = "runtime-builder_component_style",
-    src = "runtime-builder.component.scss",
+    srcs = ["runtime-builder.component.scss"],
 )
 
-ng_ts_project(
+ng_project(
     name = "runtime-builder",
-    srcs = glob(["*.ts"]),
-    angular_assets = [
+    srcs = [
+        "runtime-builder.component.css",
         "runtime-builder.component.html",
-        ":runtime-builder_component_style",
+        "runtime-builder.component.ts",
+        "runtime-builder-routing.module.ts",
     ],
     deps = [
-        "@npm//@angular/common",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
     ],
 )
