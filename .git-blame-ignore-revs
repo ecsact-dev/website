@@ -1,0 +1,4 @@
+# https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view
+
+# bzlmod + angular18 upgrade touched almost every file
+e30f6f461201f593155dbdb7b99a1831ba236d86
