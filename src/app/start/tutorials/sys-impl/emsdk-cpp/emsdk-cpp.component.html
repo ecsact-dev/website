@@ -243,6 +243,7 @@
 			Wasm file named <code>AlwaysMoveRight.wasm</code>.
 		</p>
 		<code-block-variation>
+			<!-- eclint-disable -->
 			<pre codeBlockVariationOption><code prism language="powershell">
 				$EcsactInc = (ecsact --includedir)
 				emcc -std=c++20 --no-entry -I"$EcsactInc" `
@@ -263,6 +264,7 @@
 				     AlwaysMoveRight.cc \
 				     tutorial.ecsact.systems.static.cc
 			</code></pre>
+			<!-- eclint-enable -->
 		</code-block-variation>
 		<p>I'll go over each command line option in order.</p>
 
