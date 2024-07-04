@@ -1,7 +1,8 @@
-import {enableProdMode} from '@angular/core';
-import {platformBrowser} from '@angular/platform-browser';
-import {AppModule} from './app/app.module';
-import {initializeApp} from 'firebase/app';
+import { ApplicationConfig, enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { initializeApp } from 'firebase/app';
+import { AppComponent } from './app/app.component';
+import { AppModule } from './app/app.module';
 
 declare const process: any;
 if (process.env.NODE_ENV === 'production') {
@@ -17,6 +18,12 @@ initializeApp({
 	appId: '1:1050343672321:web:eb108be4f2d458e5c88e00',
 	measurementId: 'G-61LKP46HQ3',
 });
-platformBrowser()
-	.bootstrapModule(AppModule)
+
+const appConfig: ApplicationConfig = {
+	providers: [
+		importProvidersFrom(AppModule),
+	],
+};
+
+bootstrapApplication(AppComponent, appConfig)
 	.catch(err => console.error(err));

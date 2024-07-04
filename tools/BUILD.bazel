@@ -1,7 +1,21 @@
 load("@npm//:@angular/compiler-cli/package_json.bzl", angular_compiler_cli = "bin")
+load("@aspect_rules_js//js:defs.bzl", "js_library")
+load("//tools:ts.bzl", "ts_project")
+
+package(default_visibility = ["//:__subpackages__"])
 
 # Define the @angular/compiler-cli ngc bin binary as a target
-angular_compiler_cli.ngc_binary(
-    name = "ngc",
+angular_compiler_cli.ngc_binary(name = "ngc")
+
+# ESBuild plugin to run the Angular linker
+js_library(
+    name = "ngc.esbuild",
+    srcs = ["ngc.esbuild.mjs"],
     visibility = ["//visibility:public"],
+    deps = [
+        "//:node_modules/@angular/compiler-cli",
+        "//:node_modules/@babel/core",
+        "//:node_modules/@types/babel__core",
+        "//:node_modules/@types/node",
+    ],
 )

@@ -1,9 +1,63 @@
 load("//tools:ng.bzl", "ng_project")
+load("//:defs.bzl", "pkg_web")
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
+load("@npm//:history-server/package_json.bzl", history_server = "bin")
+
+package(default_visibility = ["//:__pkg__"])
 
 ng_project(
     name = "src",
     srcs = ["main.ts"],
     deps = [
         "//src/app",
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/forms",
+        "//:node_modules/@angular/router",
+        "//:node_modules/@types/node",
     ],
+)
+
+ng_project(
+    name = "polyfills",
+    srcs = ["polyfills.ts"],
+    deps = ["//:node_modules/zone.js"],
+    visibility = ["//visibility:private"],
+)
+esbuild(
+    name = "polyfills-bundle",
+    entry_point = "polyfills.js",
+    srcs = [":polyfills"],
+    define = {"process.env.NODE_ENV": "'production'"},
+    config = {
+        "resolveExtensions": [".mjs", ".js"],
+    },
+    metafile = False,
+    format = "esm",
+    minify = True,
+)
+
+[pkg_web(
+    name = mode,
+    entry_point = "main.js",
+    entry_deps = [":src"],
+    index_html = "main.html",
+    html_assets = [],
+    script_assets = [
+        ":polyfills-bundle.js",
+    ],
+    assets = [],
+    production = False if mode == "dev" else True,
+) for mode in ["dev", "prod"]]
+
+history_server.history_server_binary(
+    name = "devserver",
+    args = ["$(location :dev)"],
+    data = [":dev"],
+)
+
+history_server.history_server_binary(
+    name = "prodserver",
+    args = ["$(location :prod)"],
+    data = [":prod"],
 )

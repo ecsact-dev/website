@@ -8,6 +8,10 @@ build --enable_runfiles
 common --@aspect_rules_ts//ts:skipLibCheck=always
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 
+# project doesn't run on windows so lets make sure if a windows user is running
+# on WSL they don't accidentally create symlinks that could interfere with that
+build:windows --experimental_convenience_symlinks=ignore
+
 run --incompatible_strict_action_env
 
 build:release --compilation_mode=opt
