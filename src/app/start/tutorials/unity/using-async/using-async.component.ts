@@ -4,6 +4,7 @@ import {RouterModule} from '@angular/router';
 import {EcsactLangSyntaxComponent} from '../../../../../components/ecsact-lang-syntax/ecsact-lang-syntax.component';
 import {PrismComponent} from '../../../../../components/prism/prism.component';
 import {CodeBlockVariationComponent} from '../../../../../components/code-block-variation/code-block-variation.component';
+import {CodeBlockVariationOptionDirective} from '../../../../../components/code-block-variation/code-block-variation-option.directive';
 
 @Component({
 	selector: 'using-async',
@@ -17,6 +18,7 @@ import {CodeBlockVariationComponent} from '../../../../../components/code-block-
 		EcsactLangSyntaxComponent,
 		PrismComponent,
 		CodeBlockVariationComponent,
+		CodeBlockVariationOptionDirective,
 	],
 })
 export class UsingAsyncComponent implements OnInit {
