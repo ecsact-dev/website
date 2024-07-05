@@ -45,13 +45,6 @@ const routes: Routes = [
 					),
 			},
 			{
-				path: 'runtime-builder',
-				loadChildren: () =>
-					import('./runtime-builder/runtime-builder-routing.module').then(
-						m => m.Runtime_BuilderRoutingModule,
-					),
-			},
-			{
 				path: 'runtime-implementations',
 				loadChildren: () =>
 					import('./implementations/implementations-routing.module').then(

@@ -51,12 +51,6 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		keywords: [],
 		title: 'Ecsact Runtime',
 	},
-	'/docs/runtime-builder': {
-		category: PageCategory.Documentation,
-		description: '',
-		keywords: [],
-		title: 'Ecsact Runtime Builder',
-	},
 	'/docs/runtime-implementations': {
 		category: PageCategory.Documentation,
 		description: '',
