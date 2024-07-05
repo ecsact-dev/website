@@ -36,10 +36,10 @@ blender_render(
 bzlws_copy(
     name = "copy_renders",
     srcs = [
-        "//src/renders:branch",
+        ":branch",
         # ":ecsact-action-anim",
-        "//src/renders:runtime",
-        "//src/renders:systems",
+        ":runtime",
+        ":systems",
         "@ecsact_logo",
     ],
     out = "src/assets/renders/{FILENAME}",
