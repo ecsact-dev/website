@@ -183,7 +183,9 @@ table {
 // De emphasize non-header text
 article {
 	*:not(.btn) {
-		p, ul, ol {
+		p,
+		ul,
+		ol {
 			opacity: 0.85;
 		}
 	}
