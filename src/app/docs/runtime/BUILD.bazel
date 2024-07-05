@@ -14,6 +14,7 @@ ng_project(
         "runtime.component.css",
         "runtime.component.html",
         "runtime.component.ts",
+        "runtime-module-block.component.html",
         "runtime-routing.module.ts",
     ],
     deps = [

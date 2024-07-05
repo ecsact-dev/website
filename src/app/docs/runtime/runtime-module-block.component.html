@@ -1,0 +1,15 @@
+<div class="px-4 py-2 rounded-2xl shadow-xl h-full border border-opacity-30">
+	<div class="flex flex-row gap-3 items-center">
+		<h3 [attr.id]="moduleName + '-module'">{{ moduleName }}</h3>
+		<p>
+			<a
+				[routerLink]="'/reference/ecsact_runtime/' + moduleName + '_8h'"
+				fragment="functions"
+				><span class="i24">article</span> ecsact/runtime/{{ moduleName }}.h</a
+			>
+		</p>
+	</div>
+	<div>
+		<ng-content />
+	</div>
+</div>
