@@ -41,16 +41,6 @@
 		gives the flexibility to control when and how runtime methods are called
 		without removing runtime capabilities.
 	</p>
-	<p>
-		If an integration provides
-		<a [routerLink]="[]" fragment="runtime-builder">runtime builder support</a>,
-		runtime access should be of the one produced by the runtime builder.
-		Otherwise a
-		<a routerLink="/docs/runtime" fragment="runtime-config-generic"
-			><span class="i24">article</span> generic runtime</a
-		>
-		may be used.
-	</p>
 	<h4 id="runtime-abstractions">Runtime Abstractions</h4>
 	<p>
 		Abstractions of the Ecsact Runtime API are encouraged to fit the practices
@@ -138,20 +128,17 @@
 			all entities.
 		</li>
 	</ul>
-	<h3 id="runtime-builder">Runtime Builder</h3>
+	<h3 id="ecsact-build">Ecsact Build</h3>
 	<p>
 		It is highly recommended that an integration provide a convenient way to
-		build an Ecsact Runtime shared library.
+		build an Ecsact Runtime shared library. Integration should be as simple as
+		collecting all the <code>.ecsact</code> files and executing
+		<code>ecsact build</code> with said ecsact files. Additionally providing a
+		convenient way for the user to select a build recipe is encouraged.
 	</p>
 	<p>
-		The
-		<a routerLink="/docs/runtime-builder"
-			><span class="i24">article</span> Ecsact Runtime Builder (RTB)</a
-		>
-		is an open source command line utility that makes it easy to build an Ecsact
-		Runtime shared library. Integrations are encouraged to use the Ecsact RTB
-		CLI to simplify runtime build support. Conveniently the Ecsact RTB CLI
-		outputs it's progress and prompts in JSON which should be easily parsable in
-		any language, engine, or framework.
+		<code>ecsact build</code> can be configured to output JSON that you should
+		able to easily read when making your integration. See
+		<code>ecsact build --help</code> for the available flags.
 	</p>
 </article>
