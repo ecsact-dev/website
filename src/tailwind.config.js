@@ -12,9 +12,9 @@ module.exports = {
 				'top-nav-height': 'var(--top-nav-height)',
 			},
 			backgroundImage: {
-				logoWhite: 'url(external/ecsact_logo/ecsact-white.png)',
-				logoBlack: 'url(external/ecsact_logo/ecsact-black.png)',
-				logoColor: 'url(external/ecsact_logo/ecsact-color.png)',
+				logoWhite: 'url(assets/renders/ecsact-white.png)',
+				logoBlack: 'url(assets/renders/ecsact-black.png)',
+				logoColor: 'url(assets/renders/ecsact-color.png)',
 				'subtle-texture': 'url(assets/bg/subtle-texture.webp)',
 				'grid-texture': 'url(assets/bg/grid.webp)',
 				wasmLogo: 'url(assets/brand/wasm.svg)',

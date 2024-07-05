@@ -13,7 +13,7 @@ bazel_dep(name = "buildifier_prebuilt", version = "6.4.0")
 bazel_dep(name = "bzlws")
 git_override(
     module_name = "bzlws",
-    commit = "b7b10a115da356ec23b0cf0c697919baa7b7301c",
+    commit = "7fdd0566709e28ba00c97d36080da2e755c89701",
     remote = "https://github.com/zaucy/bzlws",
 )
 
