@@ -45,3 +45,13 @@ bazel run //:format
 - prettier for html/css/ts
 - buildifier for starlark
 
+### Updating Renders
+
+There are several rendered assets that don't automatically build. To render them use the following
+
+```sh
+bazel run //src/renders:copy_renders
+```
+
+If you get an error about not being able to read `.param` files make sure you don't have `--experimental_convenience_symlinks=ignore` set. [bzlws issue](https://github.com/zaucy/bzlws/issues/18)
+

@@ -12,26 +12,33 @@ $whiteColor: #d4d4d4;
 	--color-text: #{$whiteColor};
 
 	.brand.ecsact {
-		background-image: url(external/ecsact_logo/ecsact-white.png);
+		background-image: url(assets/renders/ecsact-white.png);
 	}
+
 	.brand.ecsact-color {
-		background-image: url(external/ecsact_logo/ecsact-color.png);
+		background-image: url(assets/renders/ecsact-color.png);
 	}
+
 	.brand.unity {
 		background-image: url(assets/brand/unity-white.png);
 	}
+
 	.brand.unreal {
 		background-image: url(assets/brand/unreal-white.png);
 	}
+
 	.brand.unreal-stacked {
 		background-image: url(assets/brand/unreal-stacked-white.png);
 	}
+
 	.brand.godot {
 		background-image: url(assets/brand/godot-dark.png);
 	}
+
 	.brand.discord {
 		background-image: url(assets/brand/discord-mark-white.svg);
 	}
+
 	.brand.github {
 		background-image: url(assets/brand/github-mark-white.svg);
 	}
@@ -43,26 +50,33 @@ $whiteColor: #d4d4d4;
 	--color-text: #{$blackColor};
 
 	.brand.ecsact {
-		background-image: url(external/ecsact_logo/ecsact-black.png);
+		background-image: url(assets/renders/ecsact-black.png);
 	}
+
 	.brand.ecsact-color {
-		background-image: url(external/ecsact_logo/ecsact-color.png);
+		background-image: url(assets/renders/ecsact-color.png);
 	}
+
 	.brand.unity {
 		background-image: url(assets/brand/unity-black.png);
 	}
+
 	.brand.unreal {
 		background-image: url(assets/brand/unreal-black.png);
 	}
+
 	.brand.unreal-stacked {
 		background-image: url(assets/brand/unreal-stacked-black.png);
 	}
+
 	.brand.godot {
 		background-image: url(assets/brand/godot-light.png);
 	}
+
 	.brand.discord {
 		background-image: url(assets/brand/discord-mark-black.svg);
 	}
+
 	.brand.github {
 		background-image: url(assets/brand/github-mark.svg);
 	}
@@ -160,6 +174,7 @@ table {
 	tr > th:first-child {
 		border-left: 1px solid var(--color-text);
 	}
+
 	tr > td:last-child,
 	tr > th:last-child {
 		border-right: 1px solid var(--color-text);
@@ -307,6 +322,7 @@ table.sticky {
 .i48 {
 	@include icon-style(48);
 }
+
 .i24 {
 	@include icon-style(24);
 }
@@ -444,6 +460,7 @@ select.btn {
 	transform: translateY(0px);
 	opacity: 1;
 	box-shadow: 0px 0px 0px currentColor;
+
 	@media (hover: hover) {
 		&:hover {
 			text-decoration: none;
@@ -473,6 +490,7 @@ select option {
 // Internal styles for <code-block-variation>
 code-block-variation > .group > .code-block-container > pre {
 	display: none;
+
 	&.code-block-variation-option-active {
 		display: block;
 	}
