@@ -1,7 +1,7 @@
 <article>
-	<div class="my-4">
+	<div class="my-4 pb-4">
 		<div class="flex flex-col sm:flex-row items-center justify-center">
-			<div class="relative w-28 h-24">
+			<div class="relative w-32 h-28">
 				<div
 					style="
 						animation-delay: 700ms;
@@ -17,23 +17,23 @@
 					"
 					class="animate-fade-slide-right bg-logoColor bg-no-repeat bg-contain bg-center z-20 absolute top-0 left-0 bottom-0 right-0"></div>
 			</div>
-			<h1 id="install" class="text-5xl font-bold max-w-sm m-0">
-				Install Ecsact
-			</h1>
-		</div>
-	</div>
+			<div class="flex flex-col gap-2 sm:pr-3">
+				<h1 id="install" class="text-5xl max-w-sm m-0">
+					Install Ecsact
+				</h1>
 
-	<div class="my-4 mx-auto max-w-md text-center">
-		<div class="flex flex-row space-x-2 items-center justify-center">
-			<div class="text-xl font-bold">Platform</div>
-			<select
-				class="btn"
-				[(ngModel)]="selectedOs"
-				[ngModelOptions]="{standalone: true}">
-				<option *ngFor="let opt of osOptions" [value]="opt.value">
-					{{ opt.name }}
-				</option>
-			</select>
+				<div class="flex flex-row space-x-2 items-center">
+					<div class="text-2xl">Platform</div>
+					<select
+						class="btn flex-grow"
+						[(ngModel)]="selectedOs"
+						[ngModelOptions]="{standalone: true}">
+						<option *ngFor="let opt of osOptions" [value]="opt.value">
+							{{ opt.name }}
+						</option>
+					</select>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -107,30 +107,48 @@
 			>.
 		</p>
 	</div>
-
-	<h2 id="integrations">Integrations</h2>
-	<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+	
+	<div class="max-w-xl mx-auto my-8">
+	<h2 id="integrations" class="text-3xl">Integrations</h2>
+	<p>After you've installed the Ecsact SDK check out our integrations or start using the Ecsact CLI immediately in your favourite terminal.</p>
+	<div class="grid grid-flow-col-dense gap-8 my-8">
 		<a
-			class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
 			routerLink="/start/unity">
 			<div class="brand unity w-full h-full"></div>
 		</a>
-
 		<a
-			class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
+			routerLink="/start/cli">
+			<div class="w-full h-full relative text-center">
+				<div class="absolute translate-y-[-50%] top-[50%] left-0 right-0">
+					<span class="i48 text-text text-[600%]">terminal</span>
+					<div class="text-text relative text-lg font-mono top-[-20px]">Ecsact CLI</div>
+				</div>
+			</div>
+		</a>
+	</div>
+
+	<h3 id="integrations-coming-soon" class="text-3xl">Coming Soon</h3>
+	<div class="grid grid-flow-col-dense gap-8 my-8 opacity-50">
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
 			routerLink="/start/unreal">
 			<div class="brand unreal-stacked w-full h-full"></div>
 		</a>
 
 		<a
-			class="h-40 rounded-md bg-black/5 dark:bg-black/50 py-4 px-8"
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
 			routerLink="/start/godot">
 			<div class="brand godot w-full h-full"></div>
 		</a>
 	</div>
-	<p>
-		Looking for other integrations? Make a
+
+	<p class="text-center my-8">
+		Looking for other integrations?<br>
+		Make a
 		<a href="https://github.com/ecsact-dev/proposals#integrations">request</a>
 		or <a routerLink="/start/custom">build your own</a>!
 	</p>
+	</div>
 </article>
