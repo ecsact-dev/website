@@ -153,7 +153,7 @@ export class Search {
 	}
 
 	private async _getCompoundDef(repo: string, refid: string) {
-		const compountDefDoc = await new Promise<Document>((resolve, reject) => {
+		const compoundDefDoc = await new Promise<Document>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
 			xhr.onload = () => resolve(xhr.responseXML);
 			xhr.onerror = err => reject(err);
@@ -163,7 +163,7 @@ export class Search {
 		});
 
 		const compoundDef =
-			compountDefDoc.documentElement.querySelector('compounddef');
+			compoundDefDoc.documentElement.querySelector('compounddef');
 		if (!compoundDef) {
 			throw new Error(`No compound def with refid ${refid}`);
 		}

@@ -45,7 +45,7 @@ export class HomeComponent {
 		'ecsact_add_component',
 		'ecsact_count_components',
 		'ecsact_get_components',
-		'ecsact_each_componens',
+		'ecsact_each_components',
 		'ecsact_update_component',
 		'ecsact_remove_component',
 		'ecsact_async_enqueue_execution_options',

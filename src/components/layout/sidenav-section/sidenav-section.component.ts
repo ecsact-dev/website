@@ -16,7 +16,7 @@ import {delay, filter, Subscription} from 'rxjs';
 import {NgIf} from '@angular/common';
 
 /**
- * Side navigation section. Should onyl be used inside ecsact-sidenav
+ * Side navigation section. Should only be used inside ecsact-sidenav
  */
 @Component({
 	selector: 'ecsact-sidenav > ecsact-sidenav-section',
