@@ -8,6 +8,7 @@ import {SidenavSectionComponent} from '../../components/layout/sidenav-section/s
 import {FormsModule} from '@angular/forms';
 import {PrismComponent} from '../../components/prism/prism.component';
 import {CodeBlockVariationComponent} from '../../components/code-block-variation/code-block-variation.component';
+import {CodeBlockVariationOptionDirective} from '../../components/code-block-variation/code-block-variation-option.directive';
 
 const OS_OPTIONS = [
 	{
@@ -47,6 +48,7 @@ function getCurrentOs(): OperatingSystem {
 		FormsModule,
 		PrismComponent,
 		CodeBlockVariationComponent,
+		CodeBlockVariationOptionDirective,
 	],
 })
 export class StartOverviewComponent {
