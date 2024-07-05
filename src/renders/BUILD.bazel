@@ -37,6 +37,7 @@ bzlws_copy(
     name = "copy_renders",
     srcs = [
         ":branch",
+        # RGBA not detected with rules_blender for some reason
         # ":ecsact-action-anim",
         ":runtime",
         ":systems",
