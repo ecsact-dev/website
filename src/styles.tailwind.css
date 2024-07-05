@@ -1,18 +1,26 @@
 @tailwind base;
 
 @layer base {
+	html {
+		@apply font-body;
+	}
+
 	h1 {
-		@apply text-3xl mt-2 mb-4 font-bold;
+		@apply text-3xl mt-2 mb-4 font-header;
 	}
+
 	h2 {
-		@apply text-2xl mt-2 mb-4 font-bold;
+		@apply text-2xl mt-2 mb-4 font-header;
 	}
+
 	h3 {
-		@apply text-xl mt-2 mb-4 font-bold;
+		@apply text-xl mt-2 mb-4 font-header;
 	}
+
 	h4 {
-		@apply text-lg mt-2 mb-4 font-bold;
+		@apply text-lg mt-2 mb-4 font-header;
 	}
+
 	p {
 		@apply mt-2 mb-4;
 	}
