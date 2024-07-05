@@ -11,7 +11,7 @@ common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 # project doesn't run on windows so lets make sure if a windows user is running
 # on WSL they don't accidentally create symlinks that could interfere with that
 build:windows --experimental_convenience_symlinks=ignore
-build:windows --PROJECT_DOES_NOT_SUPPORT_WINDOWS_PLEASE_USE_WSL
+# build:windows --PROJECT_DOES_NOT_SUPPORT_WINDOWS_PLEASE_USE_WSL
 
 run --incompatible_strict_action_env
 

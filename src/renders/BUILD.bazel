@@ -1,5 +1,5 @@
-load("@rules_blender//:index.bzl", "blender_render")
 load("@bzlws//:index.bzl", "bzlws_copy")
+load("@rules_blender//:index.bzl", "blender_render")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -40,6 +40,7 @@ bzlws_copy(
         ":ecsact-action-anim",
         ":runtime",
         ":systems",
+        "@ecsact_logo",
     ],
     out = "src/assets/renders/{FILENAME}",
     force = True,
