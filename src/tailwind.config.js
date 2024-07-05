@@ -79,9 +79,9 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			sans: ['Raleway', 'ui-sans-serif', 'system-ui'],
-			serif: ['Raleway', 'ui-serif', 'sans-serif'],
-			mono: ["'Noto Sans Mono'", 'ui-monospace', 'SFMono-Regular', 'monospace'],
+			body: ['Nunito Sans', 'ui-sans-serif', 'system-ui'],
+			header: ['Fira Sans Condensed', 'ui-serif', 'sans-serif'],
+			mono: ["'Fira Code'", 'ui-monospace', 'SFMono-Regular', 'monospace'],
 		},
 		colors: {
 			primary: {
