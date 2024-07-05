@@ -52,7 +52,7 @@ export class HiddenTableRowsDirective implements OnInit, AfterViewInit {
 		if (this._placeholderRow.firstElementChild) {
 			this._placeholderRow.firstElementChild.appendChild(btnContainer);
 		} else {
-			console.error(`Placholder row has no elements`, this._placeholderRow);
+			console.error(`Placeholder row has no elements`, this._placeholderRow);
 		}
 	}
 
