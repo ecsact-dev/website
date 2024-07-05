@@ -11,85 +11,58 @@
 		>.
 	</p>
 	<h2 id="modules">Modules</h2>
+	<div class="grid lg:grid-cols-2 gap-4 pb-8">
+		<div moduleBlock="core">
+			<p>
+				The core module deals with storage and system execution on that storage.
+				Entities and their components' data are stored inside a
+				<em>registry</em>. Systems and actions are executed on a registry's
+				stored entities and their components based on the system or actions
+				capabilities.
+			</p>
+		</div>
 
-	<h3 id="core-module">Core</h3>
-	<p>
-		The core module deals with storage and system execution on that storage.
-		Entities and their components' data are stored inside a <em>registry</em>.
-		Systems and actions are executed on a registry's stored entities and their
-		components based on the system or actions capabilities.
-	</p>
-	<p>
-		Module methods are available in
-		<a routerLink="/reference/ecsact_runtime/core_8h" fragment="functions"
-			><span class="i24">article</span> ecsact/runtime/core.h</a
-		>
-	</p>
+		<div moduleBlock="async">
+			<p>
+				The async module handles everything involving using an external async
+				execution. This includes flushing events, enqueuing execution options,
+				and receiving async specific errors.
+			</p>
+		</div>
 
-	<h3 id="async-module">Async</h3>
-	<p>
-		The async module handles everything involving using an external async
-		execution. This includes flushing events, enqueuing execution options, and
-		receiving async specific errors.
-	</p>
-	<p>
-		Async methods are available in
-		<a routerLink="/reference/ecsact_runtime/async_8h"
-			><span class="i24">article</span> ecsact/runtime/async.h</a
-		>
-	</p>
+		<div moduleBlock="dynamic">
+			<p>
+				The dynamic module is responsible for creating new <em>types</em> and
+				even packages at runtime. A type includes enums, components, systems and
+				actions. Everything you can create when writing an Ecsact file you can
+				do programmatically with the dynamic module.
+			</p>
+		</div>
 
-	<h3 id="dynamic-module">Dynamic</h3>
-	<p>
-		The dynamic module is responsible for creating new <em>types</em> and even
-		packages at runtime. A type includes enums, components, systems and actions.
-		Everything you can create when writing an Ecsact file you can do
-		programmatically with the dynamic module.
-	</p>
-	<p>
-		Module methods are available in
-		<a routerLink="/reference/ecsact_runtime/dynamic_8h" fragment="functions"
-			><span class="i24">article</span> ecsact/runtime/dynamic.h</a
-		>
-	</p>
+		<div moduleBlock="meta">
+			<p>
+				The meta module reveals extra information about the runtime. This
+				includes debug information, type names, composite fields, system
+				capabilities and much more. This module isn't needed for simulation and
+				is mostly used for debugging and tooling.
+			</p>
+		</div>
 
-	<h3 id="meta-module">Meta</h3>
-	<p>
-		The meta module reveals extra information about the runtime. This includes
-		debug information, type names, composite fields, system capabilities and
-		much more. This module isn't needed for simulation and is mostly used for
-		debugging and tooling.
-	</p>
-	<p>
-		Module methods are available in
-		<a routerLink="/reference/ecsact_runtime/meta_8h" fragment="functions"
-			><span class="i24">article</span> ecsact/runtime/meta.h</a
-		>
-	</p>
+		<div moduleBlock="serialize">
+			<p>
+				The serialize module gives a simple API for serializing composites.
+				Useful for saving simulation state or sending information over a
+				network.
+			</p>
+		</div>
 
-	<h3 id="serialize-module">Serialize</h3>
-	<p>
-		The serialize module gives a simple API for serializing composites. Useful
-		for saving simulation state or sending information over a network.
-	</p>
-	<p>
-		Module methods are available in
-		<a routerLink="/reference/ecsact_runtime/serialize_8h" fragment="functions"
-			><span class="i24">article</span> ecsact/runtime/serialize.h</a
-		>
-	</p>
-
-	<h3 id="static-module">Static</h3>
-	<p>
-		The static module reveals a set of components, systems, and actions that
-		were available at compile-time when the runtime was built.
-	</p>
-	<p>
-		Module methods are available in
-		<a routerLink="/reference/ecsact_runtime/static_8h" fragment="functions"
-			><span class="i24">article</span> ecsact/runtime/static.h</a
-		>
-	</p>
+		<div moduleBlock="static">
+			<p>
+				The static module reveals a set of components, systems, and actions that
+				were available at compile-time when the runtime was built.
+			</p>
+		</div>
+	</div>
 
 	<h2 id="runtime-configurations">Runtime Configurations</h2>
 	<p>
