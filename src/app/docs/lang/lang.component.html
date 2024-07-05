@@ -43,6 +43,30 @@
 		*/
 	</code></pre>
 
+	<h3 id="parameters">Parameters</h3>
+	<p>
+		Statements may optionally have <em>parameters</em>. Parameters start with
+		the <code>(</code> character and end with the <code>)</code> character. Each
+		parameter has a <code>name</code> and a <code>value</code>.
+	</p>
+
+	<pre><code ecsactLangSyntax>
+		// statement with 1 parameter
+		statement(name: value);
+
+		// parameters are allowed on block statements as well
+		statement(name: value, name_two: value_two) {{'{}'}}
+
+		statement(name);       // 'value' is `true` because it was omitted
+		statement(name: true); // this is equivalent to the above
+	</code></pre>
+
+	<p>
+		Parameters are part of the syntax of the Ecsact language, but that doesn't
+		mean all statements allow all parameters. It is an error to give a statement
+		a parameter it does not support.
+	</p>
+
 	<h3 id="top-level-statements">Top Level Statements</h3>
 	<p>Top level statements are separated into 3 sections.</p>
 	<ol>
@@ -261,6 +285,26 @@
 		NOTE: Trivial actions must always be named since they are referred to
 		directly during system execution.
 	</p>
+
+	<h3 id="lazy-systems">Lazy Systems</h3>
+	<p>
+		Systems can be marked as <em>lazy</em> with the <code>lazy</code>
+		<a [routerLink]="" fragment="parameters">parameter</a>. The
+		<code>lazy</code> parameter accepts an integer or a boolean as a value. The
+		value of the parameter determines how many times a system implementation may
+		be executed. A value of <code>false</code> or <code>0</code> means the
+		system is not lazy. A value of <code>true</code> means <code>1</code>.
+	</p>
+	<pre><code ecsactLangSyntax>
+		// Run this expensive system at most 50 times per execution
+		system(lazy: 50) {{'{'}}
+			readwrite CollisionBox;
+			system ExpensiveSystem {{'{'}}
+				readwrite CollisionBox;
+				adds Colliding;
+			{{'}'}}
+		{{'}'}}
+	</code></pre>
 
 	<h2 id="fields">Fields</h2>
 	<p>Both components and actions may contain any number of fields</p>
