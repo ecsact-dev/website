@@ -1,0 +1,36 @@
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
+load("//tools:ng.bzl", "ng_project")
+load("//tools:sass.bzl", "sass_binary")
+
+package(default_visibility = ["//:__subpackages__"])
+
+copy_file(
+    name = "copy_typed_scss",
+    src = "@typed_css//:typed.scss",
+    out = "typed.scss",
+)
+
+sass_binary(
+    name = "typed-ascii-logo-styles",
+    srcs = [
+        "typed.scss",
+        "typed-ascii-logo.component.scss",
+    ],
+)
+
+ng_project(
+    name = "cli",
+    srcs = [
+        "start-cli.component.html",
+        "start-cli.component.ts",
+        "start-cli-routing.module.ts",
+        "typed-ascii-logo.component.css",
+        "typed-ascii-logo.component.html",
+        "typed-ascii-logo.component.ts",
+    ],
+    deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
+    ],
+)
