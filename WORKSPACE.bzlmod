@@ -24,7 +24,7 @@ blender_repository(name = "blender", blender_version = "system", only_system_ins
 
 http_archive(
     name = "ecsact_logo",
-    sha256 = "0ecba63837824cb9588ca350e8a9bd1263eb809be8e699aaefd0d7134fd533fe",
-    strip_prefix = "logo-ad8a285861d4744460d9d2a6458a4010a4ccf3e4",
-    urls = ["https://github.com/ecsact-dev/logo/archive/ad8a285861d4744460d9d2a6458a4010a4ccf3e4.zip"],
+    sha256 = "1f4c838f694b7be9c9280ce6da17729d54bf04683f3d0015356e22a064a32185",
+    strip_prefix = "logo-f2c8a487ea702a551e00044e766bc913c5e7c771",
+    urls = ["https://github.com/ecsact-dev/logo/archive/f2c8a487ea702a551e00044e766bc913c5e7c771.zip"],
 )
