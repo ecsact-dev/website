@@ -306,8 +306,69 @@
 		{{'}'}}
 	</code></pre>
 
+	<h3 id="reactive-systems">Reactive Systems</h3>
+	<p>
+		You can set a system to only run under certain conditions per component.
+	</p>
+	<h4 id="reactive-keywords">Keywords</h4>
+	<table>
+		<tr>
+			<th>Keyword</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td><code>oninit</code></td>
+			<td>System runs when component is initialized on qualifying entity.</td>
+		</tr>
+		<tr>
+			<td><code>onupdate</code></td>
+			<td>System runs when component is updated on qualifying entity.</td>
+		</tr>
+		<tr>
+			<td><code>onremove</code></td>
+			<td>
+				System runs once when component is removed, even though the entity no
+				longer qualifies for the system.
+			</td>
+		</tr>
+		<tr>
+			<td><code>onchange</code></td>
+			<td>
+				System runs when component is updated and one or more of its values have
+				changed.
+			</td>
+		</tr>
+	</table>
+
+	<h4 id="reactive-syntax">Syntax</h4>
+	<p>
+		The notify keyword is put in the body of a system and can be applied to all
+		components or a selective list of components:
+	</p>
+	<pre><code ecsactLangSyntax>
+		system BasicNotifySystem {{'{'}}
+			readwrite ExampleComponentA;
+			readwrite ExampleComponentB;
+
+			// You can specify notify without a body and apply to all components
+			notify oninit;
+		{{'}'}}
+
+		system MixedNotifySystem {{'{'}}
+			readwrite ExampleComponentA;
+			readwrite ExampleComponentB;
+			readwrite NoNotifiesComponent;
+
+			// You can give notify a body to specialize for each component
+			notify {{'{'}}
+				oninit ExampleComponentA;
+				onchange ExampleComponentB;
+			{{'}'}}
+		{{'}'}}
+	</code></pre>
+
 	<h2 id="fields">Fields</h2>
-	<p>Both components and actions may contain any number of fields</p>
+	<p>Both components and actions may contain any number of fields.</p>
 	<h3 id="field-types">Field Types</h3>
 	<table>
 		<tr>
