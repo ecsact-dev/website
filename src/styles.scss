@@ -349,6 +349,27 @@ table.sticky {
 	@include thin-scroll(#{var(--color-text)}, #{var(--color-content-bg)});
 }
 
+main {
+	overflow: hidden;
+	display: block;
+	position: relative;
+}
+
+@media (max-width: 599px) {
+	main {
+		margin: 0;
+	}
+}
+
+main article {
+	display: block;
+	overflow: hidden;
+	background-color: var(--color-content-bg);
+	border-radius: 3px;
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.1);
+	padding: 32px;
+}
+
 main article {
 	$preBgColor: #182122;
 
