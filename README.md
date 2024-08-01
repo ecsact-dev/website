@@ -1,3 +1,7 @@
+<p align="center">
+	<img src="https://ecsact.dev/assets/logo.svg" width="300" />
+</p>
+
 # ecsact.dev
 
 Source code for <https://ecsact.dev>
