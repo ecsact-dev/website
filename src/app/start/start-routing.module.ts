@@ -18,6 +18,14 @@ const routes: Routes = [
 			),
 	},
 	{
+		path: 'cli',
+		pathMatch: 'prefix',
+		loadChildren: () =>
+			import('./cli/start-cli-routing.module').then(
+				m => m.StartCliRoutingModule,
+			),
+	},
+	{
 		path: 'godot',
 		pathMatch: 'prefix',
 		loadChildren: () =>

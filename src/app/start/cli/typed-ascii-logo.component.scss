@@ -1,0 +1,30 @@
+@import 'typed';
+
+@mixin ascii-line($line) {
+	@include typed(
+		$line,
+		4,
+		(
+			caret-width: 0px,
+			caret-space: 2px,
+			iterations: 1,
+			delay: 0,
+			caret-speed: 0,
+		)
+	);
+}
+
+// prettier-ignore
+.typed-ascii-logo {
+	.line1  { @include ascii-line('         /##########\\'); }
+	.line2  { @include ascii-line('     ####  #/     \\##\\'); }
+	.line3  { @include ascii-line('    ######         \\##\\'); }
+	.line4  { @include ascii-line('     ####  ##\\      \\#        |@@@@'); }
+	.line5  { @include ascii-line('           \\##\\        ####   @@@@@@@@@'); }
+	.line6  { @include ascii-line('      @@@@@@@@@@@@@@@ ###### @@@@@@@@@@@@@@'); }
+	.line7  { @include ascii-line('                       ####   @@@@@@@@@'); }
+	.line8  { @include ascii-line('                   /#         |@@@@'); }
+	.line9  { @include ascii-line('         ####     /####/'); }
+	.line10 { @include ascii-line('        ###### ####/'); }
+	.line11 { @include ascii-line('         ####'); }
+}
