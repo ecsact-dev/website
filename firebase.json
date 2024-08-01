@@ -5,8 +5,8 @@
   },
   "hosting": {
     "site": "ecsact-dev",
-    "public": "bazel-bin/src/prodapp",
-    "predeploy": "bazel build //src:prodapp",
+    "public": "bazel-bin/src/prod",
+    "predeploy": "bazel build //src:prod",
     "ignore": [
       "firebase.json",
       "**/.*"
