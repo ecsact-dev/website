@@ -1,13 +1,55 @@
 <article>
-	<div class="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto">
-		<div class="always-dark text-secondary hover:text-primary-bright transition-colors min-w-[350px] text-xs text-left m-auto bg-[black] rounded-lg p-4 py-8 border">
+	<div class="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto mb-6">
+		<div
+			class="always-dark text-secondary hover:text-primary-bright transition-colors min-w-[350px] text-xs text-left m-auto bg-[black] rounded-lg p-4 py-8 border">
 			<ecsact-typed-ascii-logo />
 		</div>
 		<div class="flex-grow">
 			<h1><span class="i48">terminal</span> The Ecsact CLI</h1>
 			<p>
-				The Ecsact Command Line Interface (CLI) is the bare bones tool for working with Ecsact. It's what powers all Ecsact integrations and customizations.
+				The Ecsact Command Line Interface (CLI) is the bare bones tool for
+				working with Ecsact. It's what powers all Ecsact integrations and
+				customizations.
+			</p>
+			<p>
+				The Ecsact CLI is available when
+				<a routerLink="/start">installing the Ecsact SDK</a>.
 			</p>
 		</div>
 	</div>
+
+	<section>
+		<h1 id="subcommands">Subcommands</h1>
+		<p>
+			There are several subcommands in the Ecsact CLI. As you might exepect from
+			any CLI you may pass the <code>--help</code> flag to the CLI or any of its
+			subcommands to see the available options.
+		</p>
+
+		<pre><code prism language="bash">
+			ecsact --help        # get available subcommands
+			ecsact build --help  # get options for 'build' subcommand
+		</code></pre>
+	</section>
+
+	<section>
+		<h2 id="subcommand-config"><pre>ecsact config</pre></h2>
+		<p>
+			<code>ecsact config</code> subcommand gives various information about your
+			Ecsact SDK installation. This subcommand is mainly useful for creating
+			<a routerLink="/start/custom">custom integrations</a>, integrating into
+			your devops, or other various automation scripts.
+		</p>
+
+		<p>To see the available config key options use:</p>
+		<pre><code prism language="bash">
+				ecsact config --help
+		</code></pre>
+	</section>
+</article>
+
+<article>
+	<section>
+		<h2 id="subcommand-codegen">ecsact codegen</h2>
+	</section>
 </article>
