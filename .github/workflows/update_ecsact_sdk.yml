@@ -8,7 +8,6 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - run: bazel run @yarn//:yarn
       - run: bazel run //scripts:update_ecsact_sdk
       - run: bazel run //scripts:doxygen_devref -- --only_update --force
       - run: |
