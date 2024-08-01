@@ -29,9 +29,9 @@ ng_project(
         "typed-ascii-logo.component.ts",
     ],
     deps = [
-        "//src/components/prism",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",
+        "//src/components/prism",
     ],
 )
