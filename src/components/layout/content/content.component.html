@@ -56,7 +56,7 @@
 			</div>
 			<a
 				*ngFor="let pageAnchor of pageAnchors; trackBy: trackBy"
-				[routerLink]=""
+				[routerLink]="currentUrl$ | async"
 				[replaceUrl]="true"
 				[fragment]="pageAnchor.id"
 				[style.padding-left]="pageAnchor.indent * 8"

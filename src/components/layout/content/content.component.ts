@@ -9,12 +9,12 @@ import {
 	ElementRef,
 	ChangeDetectorRef,
 	TrackByFunction,
-	HostListener,
 	OnDestroy,
 } from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {NgIf, NgFor} from '@angular/common';
+import {ActivatedRoute, RouterLink, UrlSegment} from '@angular/router';
+import {NgIf, NgFor, AsyncPipe} from '@angular/common';
 import {CdkObserveContent} from '@angular/cdk/observers';
+import {Observable} from 'rxjs';
 
 export interface ContentPageAnchor {
 	id: string;
@@ -65,7 +65,7 @@ function getAnchorTitleText(element: Element): string {
 	styleUrls: ['./content.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	standalone: true,
-	imports: [CdkObserveContent, NgIf, RouterLink, NgFor],
+	imports: [CdkObserveContent, NgIf, RouterLink, NgFor, AsyncPipe],
 })
 export class ContentComponent implements OnInit, OnDestroy {
 	private _anchorEventListenerCleanupFns: (() => void)[] = [];
@@ -77,6 +77,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 	@ViewChild('mainContent', {static: true})
 	mainContent?: ElementRef<HTMLElement>;
 
+	readonly currentUrl$: Observable<UrlSegment[]>;
 	readonly trackBy: TrackByFunction<ContentPageAnchor>;
 	readonly canShare = (window as any).navigator.canShare
 		? (window as any).navigator.canShare({url: window.location.href})
@@ -87,6 +88,7 @@ export class ContentComponent implements OnInit, OnDestroy {
 		private cdr: ChangeDetectorRef,
 		route: ActivatedRoute,
 	) {
+		this.currentUrl$ = route.url;
 		this.trackBy = (index, item) => {
 			return item.id;
 		};
