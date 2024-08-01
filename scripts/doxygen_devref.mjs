@@ -176,9 +176,17 @@ async function generateCompileCommands(repo, task) {
 		existsSync(path.resolve(dir, 'WORKSPACE')) ||
 		existsSync(path.resolve(dir, 'WORKSPACE.bazel'))
 	) {
-		await execa('bazel', ['run', '@hedron_compile_commands//:refresh_all'], {
-			cwd: dir,
-		});
+		await execa(
+			'bazel',
+			[
+				'run',
+				'@hedron_compile_commands//:refresh_all',
+				'--experimental_convenience_symlinks=normal',
+			],
+			{
+				cwd: dir,
+			},
+		);
 	} else {
 		task.skip('Not a bazel repository');
 	}
