@@ -16,15 +16,6 @@
 	text-align: center;
 }
 
-main {
-	display: block;
-	overflow: hidden;
-	background-color: var(--color-content-bg);
-	border-radius: 3px;
-	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.1);
-	margin: 32px 0px;
-}
-
 .page-anchors-container {
 	position: sticky;
 	top: var(--top-nav-height);

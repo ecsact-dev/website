@@ -349,10 +349,23 @@ table.sticky {
 	@include thin-scroll(#{var(--color-text)}, #{var(--color-content-bg)});
 }
 
+main {
+	overflow: hidden;
+	display: block;
+	position: relative;
+}
+
 main article {
 	$preBgColor: #182122;
 
+	display: block;
+	overflow: hidden;
+	background-color: var(--color-content-bg);
+	border-radius: 3px;
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.1);
+	padding: 32px;
 	margin: 32px;
+	border-radius: 8px; // match tailwind rounded-lg
 
 	code-block-variation,
 	> section > pre,
@@ -392,6 +405,11 @@ main article {
 			margin: 0px -16px;
 			padding: 8px 16px;
 		}
+	}
+
+	@media (max-width: 599px) {
+		margin: 0;
+		border-radius: 0px;
 	}
 
 	code-block-variation,
