@@ -7,8 +7,7 @@
 			<a href="https://docs.unity3d.com/Manual/Packages.html" target="_blank"
 				>Unity Package</a
 			>
-			and is <strong>required</strong> to use Ecsact with Unity. Installing the
-			latest integration is easy.
+			and is <strong>required</strong> to use Ecsact with Unity.
 		</p>
 		<ol>
 			<li>Start your unity project</li>
@@ -31,7 +30,7 @@
 						language="uri"
 						codeBlockVariationOption
 						optionTitle="Unity Package Git URL">
-						https://github.com/ecsact-dev/ecsact_unity.git</pre
+https://github.com/ecsact-dev/ecsact_unity.git</pre
 					>
 				</code-block-variation>
 			</li>
@@ -47,6 +46,18 @@
 		>.
 	</section>
 	<section>
+		<h2>The Ecsact Window</h2>
+		<p>
+			If the Ecsact package was successfully installed, there will be a new
+			window under
+			<code
+				>Edit <span class="i24">arrow_right</span> ProjectSettings
+				<span class="i24">arrow_right</span> Ecsact</code
+			>. This is where Ecsact is configured and any setup below happens here.
+		</p>
+		<img src="assets/UnityEcsactPage.png" width="800" height="200" />
+	</section>
+	<section>
 		<h2>Assembly</h2>
 		<p>
 			For systems to be registered into Ecsact, it needs to be part of an
@@ -59,46 +70,53 @@
 
 		<p>
 			You can either do that yourself, or the integration will do that
-			automatically with the dependencies for you!
+			automatically with the dependencies for you.
 		</p>
 
 		<p>
-			Go to:
-			<code
-				>Edit <span class="i24">arrow_right</span> ProjectSettings
-				<span class="i24">arrow_right</span> Ecsact</code
-			>
-			under System Implementations.
+			Go to the <code>System Implementations</code> section of the Ecsact window
+			and press the <code>Create New Assembly Defintion</code>button. Follow the
+			prompt to choose where it's created.
 		</p>
 		<img src="assets/assembly_setup.png" width="800" height="200" />
-		<p>
-			All you have to do is press the button and follow the prompt to choose
-			where it's created.
-		</p>
+		<p></p>
 	</section>
 	<section>
 		<h2>Unity Sync</h2>
 		<p>
-			Enabling
+			To enable
 			<a routerLink="/docs/unity/unity-sync" routerLinkActive="active"
 				>Unity Sync</a
 			>
-			is very simple. All you have to do is go to
-			<code
-				>Edit <span class="i24">arrow_right</span> ProjectSettings
-				<span class="i24">arrow_right</span> Ecsact</code
-			>
-			and checkmark <code>Enable Unity Sync</code>. When enabled, it will search
-			for any Unity Sync files automatically and add them to its pool which is
-			listed below.
+			go to the <code>Runtime Settings</code> section and checkmark
+			<code>Enable Unity Sync</code>. When enabled, it will search for any C#
+			files using Unity Sync automatically and display them under
+			<code>Unity Sync Scripts.</code>
 		</p>
 		<img src="assets/UnitySyncEnable.png" width="800" height="300" />
-
+	</section>
+	<section>
+		<h2>Recipes</h2>
+		<p>
+			Ecsact supports having multiple <a>recipes</a>. You can use other
+			implementations, or there's one available for EnTT that comes packaged in
+			the Ecsact SDK. If you're having any errors related to recipes make sure
+			it's set under <code>Ecsact Build Settings</code>
+		</p>
+		<img src="assets/UnityRecipeConfig.png" width="800" height="300" />
+	</section>
+	<section>
 		<h2>Learning about the Unity Integration</h2>
 		<p>
-			If you want to learn about the Ecsact Integration for Unity, you can
-			follow our <a href="start/tutorials/unity/basic-example">tutorial</a> that
-			goes over the basics.
+			To learn more about the Ecsact Integration for Unity, you can follow our
+			<a
+				routerLink="/start/tutorials/unity/basic-example"
+				routerLinkActive="active"
+				>tutorial</a
+			>
+			that goes over the basics. You can also refer to the
+			<a routerLink="/docs/overview" routerLinkActive="active">documentation</a>
+			under <code>Unity Integration</code> to learn more.
 		</p>
 	</section>
 </article>
