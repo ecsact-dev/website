@@ -23,26 +23,11 @@ const routes: Routes = [
 			import('./start/start-routing.module').then(m => m.StartRoutingModule),
 	},
 	{
-		path: 'install',
-		pathMatch: 'prefix',
-		loadChildren: () =>
-			import('./install/install-routing.module').then(
-				m => m.InstallRoutingModule,
-			),
-	},
-	{
 		path: 'introduction',
 		pathMatch: 'prefix',
 		loadChildren: () =>
 			import('./introduction/introduction-routing.module').then(
 				m => m.IntroductionRoutingModule,
-			),
-	},
-	{
-		path: 'integrations/unity/install',
-		loadChildren: () =>
-			import('./integrations/unity/install/install-routing.module').then(
-				m => m.UnityInstallPageRoutingModule,
 			),
 	},
 	{
