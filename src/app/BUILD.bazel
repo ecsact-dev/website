@@ -31,8 +31,6 @@ ng_project(
         "//src/app/docs/implementations",
         "//src/app/docs/runtime",
         "//src/app/home",
-        "//src/app/install",
-        "//src/app/integrations/unity/install",
         "//src/app/introduction",
         "//src/app/not-found",
         "//src/app/reference",
