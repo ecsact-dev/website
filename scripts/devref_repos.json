@@ -21,25 +21,11 @@
 		"url": "https://github.com/ecsact-dev/ecsact_interpret/archive/e1c9fa55f25c84f52fb4ff3f7a7b9e2f62849d50.zip"
 	},
 	{
-		"name": "ecsact_rtb",
-		"commit": "712b233979e7650e191a629c82f4666ef85c838f",
-		"sha256": "2df1e9318fb04a5ddc9fb1657ed6d0627ba207677a5bdadbab1ade5e67e5e2bd",
-		"stripPrefix": "ecsact_rtb-712b233979e7650e191a629c82f4666ef85c838f",
-		"url": "https://github.com/ecsact-dev/ecsact_rtb/archive/712b233979e7650e191a629c82f4666ef85c838f.zip"
-	},
-	{
 		"name": "ecsact_rt_entt",
 		"commit": "8d90c6bfcbbafdf8d29ff269fb3ee66798c21ae7",
 		"sha256": "8852f220c624fb3c81e1d75125edb2e35a7cbd7049ed30606d148c52d7926900",
 		"stripPrefix": "ecsact_rt_entt-8d90c6bfcbbafdf8d29ff269fb3ee66798c21ae7",
 		"url": "https://github.com/ecsact-dev/ecsact_rt_entt/archive/8d90c6bfcbbafdf8d29ff269fb3ee66798c21ae7.zip"
-	},
-	{
-		"name": "ecsact_si_wasm",
-		"commit": "3f239173ab315a2fb87f5cea311d55c1f93d616e",
-		"sha256": "12071a41c55ea58a706eac6fedf2493397da1681c4241860878c982acd3b5a71",
-		"stripPrefix": "ecsact_si_wasm-3f239173ab315a2fb87f5cea311d55c1f93d616e",
-		"url": "https://github.com/ecsact-dev/ecsact_si_wasm/archive/3f239173ab315a2fb87f5cea311d55c1f93d616e.zip"
 	},
 	{
 		"name": "ecsact_lang_cpp",
