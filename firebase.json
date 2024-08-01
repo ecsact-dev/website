@@ -1,195 +1,218 @@
 {
-	"$schema": "./node_modules/firebase-tools/schema/firebase-config.json",
-	"functions": {
-		"runtime": "nodejs16"
-	},
-	"hosting": {
-		"site": "ecsact-dev",
-		"public": "bazel-bin/src/prodapp",
-		"predeploy": "bazel build //src:prodapp",
-		"ignore": ["firebase.json", "**/.*"],
-		"redirects": [
-			{
-				"source": "/ecsact_sdk_0.6.2_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.2_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.2_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.2_amd64.deb",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_amd64.deb",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.0_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.0_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.0_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.6.0_amd64.deb",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_amd64.deb",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.5.0_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.5.0_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.5.0_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.7_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.7_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.7_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.6_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.6_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.6_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.5_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.5_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.5_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.4_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.4_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.4_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.3_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.3_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.3_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.2_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.2_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.2_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.1_windows_x64.zip",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_windows_x64.zip",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.1_linux_x64.tar.gz",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_linux_x64.tar.gz",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.1_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk_0.4.0_windows_x64.msix",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk_0.4.0_windows_x64.msix",
-				"type": 302
-			},
-			{
-				"source": "/ecsact_sdk.appinstaller",
-				"destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk.appinstaller",
-				"type": 302
-			},
-			{
-				"source": "/install.sh",
-				"destination": "https://raw.githubusercontent.com/ecsact-dev/ecsact_sdk/main/install.sh",
-				"type": 302
-			}
-		],
-		"rewrites": [
-			{
-				"source": "**",
-				"destination": "/index.html"
-			}
-		]
-	}
+  "$schema": "./node_modules/firebase-tools/schema/firebase-config.json",
+  "functions": {
+    "runtime": "nodejs16"
+  },
+  "hosting": {
+    "site": "ecsact-dev",
+    "public": "bazel-bin/src/prodapp",
+    "predeploy": "bazel build //src:prodapp",
+    "ignore": [
+      "firebase.json",
+      "**/.*"
+    ],
+    "redirects": [
+      {
+        "source": "/ecsact_sdk_0.7.0_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.7.0/ecsact_sdk_0.7.0_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.7.0_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.7.0/ecsact_sdk_0.7.0_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.7.0_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.7.0/ecsact_sdk_0.7.0_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.7.0_amd64.deb",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.7.0/ecsact_sdk_0.7.0_amd64.deb",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.2_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.2_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.2_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.2_amd64.deb",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.2/ecsact_sdk_0.6.2_amd64.deb",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.0_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.0_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.0_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.6.0_amd64.deb",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.6.0/ecsact_sdk_0.6.0_amd64.deb",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.5.0_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.5.0_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.5.0_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.5.0/ecsact_sdk_0.5.0_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.7_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.7_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.7_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.7/ecsact_sdk_0.4.7_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.6_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.6_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.6_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.6/ecsact_sdk_0.4.6_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.5_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.5_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.5_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.5/ecsact_sdk_0.4.5_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.4_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.4_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.4_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.4/ecsact_sdk_0.4.4_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.3_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.3_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.3_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.3/ecsact_sdk_0.4.3_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.2_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.2_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.2_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.2/ecsact_sdk_0.4.2_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.1_windows_x64.zip",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_windows_x64.zip",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.1_linux_x64.tar.gz",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_linux_x64.tar.gz",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.1_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.1/ecsact_sdk_0.4.1_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk_0.4.0_windows_x64.msix",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.4.0/ecsact_sdk_0.4.0_windows_x64.msix",
+        "type": 302
+      },
+      {
+        "source": "/ecsact_sdk.appinstaller",
+        "destination": "https://github.com/ecsact-dev/ecsact_sdk/releases/download/0.7.0/ecsact_sdk.appinstaller",
+        "type": 302
+      },
+      {
+        "source": "/install.sh",
+        "destination": "https://raw.githubusercontent.com/ecsact-dev/ecsact_sdk/main/install.sh",
+        "type": 302
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
 }
