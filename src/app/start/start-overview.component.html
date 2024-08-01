@@ -1,5 +1,5 @@
-<article>
-	<div class="my-4 pb-4">
+<div class="my-24 mb-8 p-8 mx-auto bg-content-bg rounded-lg max-w-xl shadow-lg">
+	<div class="mb-8 pb-4">
 		<div class="flex flex-col sm:flex-row items-center justify-center">
 			<div class="relative w-32 h-28">
 				<div
@@ -61,7 +61,7 @@
 
 		<div *ngSwitchCase="'Linux'" class="sm:mx-auto">
 			<code-block-variation
-				class="my-4 sm:mx-auto sm:rounded-lg sm:py-4 sm:px-8 sm:w-fit">
+				class="my-4 sm:mx-auto sm:rounded-lg sm:py-4 sm:px-8 sm:w-fit bg-secondary/50 dark:bg-secondary/5">
 				<pre
 					codeBlockVariationOption
 					optionTitle="Shell"><code prism language="bash">
@@ -105,53 +105,53 @@
 			>.
 		</p>
 	</div>
+</div>
 
-	<div class="max-w-xl mx-auto my-8">
-		<h2 id="integrations" class="text-3xl">Integrations</h2>
-		<p>
-			After you've installed the Ecsact SDK check out our integrations or start
-			using the Ecsact CLI immediately in your favourite terminal.
-		</p>
-		<div class="grid grid-flow-col-dense gap-8 my-8">
-			<a
-				class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/unity">
-				<div class="brand unity w-full h-full"></div>
-			</a>
-			<a
-				class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/cli">
-				<div class="w-full h-full relative text-center">
-					<div class="absolute translate-y-[-50%] top-[50%] left-0 right-0">
-						<span class="i48 text-text text-[600%]">terminal</span>
-						<div class="text-text relative text-lg font-mono top-[-20px]">
-							Ecsact CLI
-						</div>
+<div class="max-w-xl mx-auto my-8">
+	<h2 id="integrations" class="text-3xl">Integrations</h2>
+	<p>
+		After you've installed the Ecsact SDK check out our integrations or start
+		using the Ecsact CLI immediately in your favourite terminal.
+	</p>
+	<div class="grid grid-flow-col-dense gap-8 my-8">
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
+			routerLink="/start/unity">
+			<div class="brand unity w-full h-full"></div>
+		</a>
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
+			routerLink="/start/cli">
+			<div class="w-full h-full relative text-center">
+				<div class="absolute translate-y-[-50%] top-[50%] left-0 right-0">
+					<span class="i48 text-text text-[600%]">terminal</span>
+					<div class="text-text relative text-lg font-mono top-[-20px]">
+						Ecsact CLI
 					</div>
 				</div>
-			</a>
-		</div>
-
-		<h3 id="integrations-coming-soon" class="text-3xl">Coming Soon</h3>
-		<div class="grid grid-flow-col-dense gap-8 my-8 opacity-50">
-			<a
-				class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/unreal">
-				<div class="brand unreal-stacked w-full h-full"></div>
-			</a>
-
-			<a
-				class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-black/5 dark:bg-black/50 py-4 px-8"
-				routerLink="/start/godot">
-				<div class="brand godot w-full h-full"></div>
-			</a>
-		</div>
-
-		<p class="text-center my-8">
-			Looking for other integrations?<br />
-			Make a
-			<a href="https://github.com/ecsact-dev/proposals#integrations">request</a>
-			or <a routerLink="/start/custom">build your own</a>!
-		</p>
+			</div>
+		</a>
 	</div>
-</article>
+
+	<h3 id="integrations-coming-soon" class="text-3xl">Coming Soon</h3>
+	<div class="grid grid-flow-col-dense gap-8 my-8 opacity-50">
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
+			routerLink="/start/unreal">
+			<div class="brand unreal-stacked w-full h-full"></div>
+		</a>
+
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
+			routerLink="/start/godot">
+			<div class="brand godot w-full h-full"></div>
+		</a>
+	</div>
+
+	<p class="text-center my-8">
+		Looking for other integrations?<br />
+		Make a
+		<a href="https://github.com/ecsact-dev/proposals#integrations">request</a>
+		or <a routerLink="/start/custom">build your own</a>!
+	</p>
+</div>
