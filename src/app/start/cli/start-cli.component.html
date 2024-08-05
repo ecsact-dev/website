@@ -42,10 +42,103 @@
 
 		<p>To see the available config key options use:</p>
 		<pre><code prism language="bash">
-				ecsact config --help
+			ecsact config --help
 		</code></pre>
 	</section>
-	<p class="font-bold text-xl">
-		More documentation on the CLI will be coming soon
-	</p>
+
+	<section>
+		<h2 id="subcommand-codegen"><pre>ecsact codegen</pre></h2>
+		<p>
+			<code>ecsact codegen</code> subcommand allows you to generate code based
+			on your <code>.ecsact</code> files with
+			<a routerLink="/docs/extend/codegen" fragment="codegen-plugins"
+				>Ecsact codegen plugins</a
+			>.
+		</p>
+		<p>Example usage:</p>
+		<pre><code prism language="bash">
+			# create ecsact_runtime shared library
+			ecsact codegen example.ecsact -p cpp_header
+		</code></pre>
+		<p>
+			This will generate a file called <code>example.ecsact.hh</code> because it
+			utilised the built-in <code>cpp_header</code> plugin. You may also give
+			relative or absolute paths to the plugin flag (<code>-p</code>) for custom
+			plugins.
+		</p>
+		<p>To see the available codegen options use:</p>
+		<pre><code prism language="bash">
+			ecsact codegen --help
+		</code></pre>
+	</section>
+
+	<section>
+		<h2 id="subcommand-build"><pre>ecsact build</pre></h2>
+		<p>
+			<code>ecsact build</code> subcommand allows you to build an Ecsact
+			<a routerLink="docs/runtime-implementations">runtime implementation</a> by
+			combining your <code>.ecsact</code> files and
+			<a routerLink="/docs/extend/build-recipe">build recipes</a> (or
+			<a routerLink="/start/cli" fragment="subcommand-recipe-bundle"
+				>build recipe bundles</a
+			>). The result of running this subcommand is a shared library built for
+			your platform ready to be utilized by your game directly or your Ecsact
+			game engine integration.
+		</p>
+		<p>Example usage:</p>
+		<pre><code prism language="bash">
+			# create ecsact_runtime shared library
+			ecsact build example.ecsact -r rt_entt -o ecsact_runtime
+		</code></pre>
+		<p>
+			This will generate a file called
+			<code>ecsact_runtime.dll</code> (or <code>ecsact_runtime.so</code> on
+			Linux.) This is a shared library which utilises the
+			<a href="https://github.com/ecsact-dev/ecsact_rt_entt" target="_blank">
+				<span class="i24">open_in_new</span> <code>rt_entt</code> (Ecsact EnTT
+				runtime)</a
+			>
+			build recipe which implements several of the Ecsact
+			<a routerLink="/docs/runtime" fragment="core">core module</a> functions.
+			The runtime implementation is specifically tailored to be utilized with
+			the <code>.ecsact</code> files you passed to the subcommand. This allows
+			runtimes to be optimized specifically for your application.
+		</p>
+		<p>
+			Ecsact game engine integrations use <code>ecsact build</code> under the
+			hood and it is recommended to use <code>ecsact build</code> with your
+			build system when writing a custom solution.
+		</p>
+		<p>To see the available build options use:</p>
+		<pre><code prism language="bash">
+			ecsact build --help
+		</code></pre>
+	</section>
+
+	<section>
+		<h2 id="subcommand-recipe-bundle"><pre>ecsact recipe-bundle</pre></h2>
+		<p>
+			<code>ecsact recipe-bundle</code> subcommands allows you to create a
+			'bundled recipe' which is usually used for distributing a build recipe.
+			Build recipes are YAML files that long lists of source files relative to
+			the recipes path. Using build recipe YAML files can be error-prone since
+			the developer has to make sure the other source files and codegen plugins
+			are installed in the correct location. Build recipe bundles solve this
+			issue by bundling the recipe YAML, source files, and codegen plugins all
+			into one file. This file can then be utilised with
+			<a routerLink="/start/cli" fragment="subcommand-build"
+				><code>ecsact build</code></a
+			>
+			directly.
+		</p>
+		<p>Example usage:</p>
+		<pre><code prism language="bash">
+			# create example.ecsact-recipe-bundle
+			ecsact recipe-bundle example_recipe.yml -o example.ecsact-recipe-bundle
+		</code></pre>
+		<p>To see the available recipe bundle options use:</p>
+		<pre><code prism language="bash">
+			ecsact recipe-bundle --help
+		</code></pre>
+	</section>
 </article>
