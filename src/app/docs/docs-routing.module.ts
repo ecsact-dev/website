@@ -14,8 +14,12 @@ const routes: Routes = [
 		component: DocsComponent,
 		children: [
 			{
-				path: 'overview',
+				path: '',
 				component: OverviewComponent,
+			},
+			{
+				path: 'overview',
+				redirectTo: '',
 			},
 			{
 				path: 'lang',
@@ -82,6 +86,13 @@ const routes: Routes = [
 				loadChildren: () =>
 					import('./unity/system-impl/system-impl-routing.module').then(
 						m => m.SystemImplRoutingModule,
+					),
+			},
+			{
+				path: 'extend',
+				loadChildren: () =>
+					import('./extend/extend-routing.module').then(
+						m => m.ExtendRoutingModule,
 					),
 			},
 		],

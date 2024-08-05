@@ -95,4 +95,26 @@ export const searchablePageInfos: {[key: string]: PageInfo | undefined} = {
 		keywords: ['tutorial', 'unity sync', 'learn unity', 'moving block'],
 		title: 'Unity Moving Block Example',
 	},
+	'/docs/extend/build-recipe': {
+		category: PageCategory.Documentation,
+		keywords: [
+			'build',
+			'recipe',
+			'yaml',
+			'yml',
+			'build-recipe-bundle',
+			'bundle',
+			'programming',
+			'code',
+			'plugin',
+		],
+		title: 'Build Recipe',
+		description: 'Learn about Ecsact build recipes',
+	},
+	'/docs/extend/codegen': {
+		category: PageCategory.Documentation,
+		keywords: ['codegen', 'programming', 'code', 'plugin', 'C'],
+		title: 'Codegen',
+		description: 'Learn about Ecsact codegen',
+	},
 };

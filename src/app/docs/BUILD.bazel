@@ -26,6 +26,7 @@ ng_project(
         "//src/app/docs/lang",
         "//src/app/docs/overview",
         "//src/app/docs/runtime",
+        "//src/app/docs/extend",
         "//src/app/docs/system-execution",
         "//src/app/docs/system-impl",
         "//src/app/docs/system-impl-wasm",
