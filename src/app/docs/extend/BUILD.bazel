@@ -4,7 +4,10 @@ package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
     name = "extend",
-    srcs = glob(["*.ts", "*.html"]),
+    srcs = glob([
+        "*.ts",
+        "*.html",
+    ]),
     deps = [
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
