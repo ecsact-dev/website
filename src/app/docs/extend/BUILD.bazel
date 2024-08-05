@@ -1,0 +1,17 @@
+load("//tools:ng.bzl", "ng_project")
+
+package(default_visibility = ["//:__subpackages__"])
+
+ng_project(
+    name = "extend",
+    srcs = glob([
+        "*.ts",
+        "*.html",
+    ]),
+    deps = [
+        "//:node_modules/@angular/common",
+        "//:node_modules/@angular/core",
+        "//:node_modules/@angular/router",
+        "//src/components/prism",
+    ],
+)

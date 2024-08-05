@@ -1,0 +1,253 @@
+<article>
+	<section>
+		<h1 id="codegen">Ecsact Codegen</h1>
+		<p>
+			Codegen is a core part of what makes Ecsact possible. It's used for
+			programming language support, creating database schemas, optimizing
+			runtime implementations, or collecting general information about your
+			Ecsact files.
+		</p>
+
+		<h1 id="how-to-use">How to use Ecsact Codegen</h1>
+		<p>
+			The typical way Ecsact codegen is used is via game engine integration
+			and/or the <a routerLink="/start/cli">Ecsact CLI</a> coupled with your
+			programming languages build system, but no matter where codegen is ran it
+			all boils down to
+			<a routerLink="/docs/extend/codegen" fragment="codegen-plugins"
+				>codegen plugins</a
+			>.
+		</p>
+
+		<h2 id="usage-integrations">Integrations</h2>
+		<p>
+			Ecsact game engine integrations likely run one or more codegen plugins to
+			better support Ecsact with the game engine. This can simply be language
+			wrappers/bindings or more detailed integral support. Typically these
+			codegen plugins are ran automatically when <code>.ecsact</code> change (if
+			recognized by the game engine.)
+		</p>
+		<p>
+			For example the Unity integration uses the C# Ecsact codegen plugin to
+			generate <code>.cs</code> files to make using Ecsact easier with Unity.
+		</p>
+		<p>
+			If you plan on making a custom engine integration please refer to the
+			<a routerLink="/start/custom">custom integration start page</a>.
+		</p>
+
+		<h2 id="usage-bazel">Bazel</h2>
+		<p>
+			The
+			<a href="https://github.com/ecsact-dev/rules_ecsact">rules_ecsact</a>
+			repository is the official bazel support for Ecsact. The
+			<code>ecsact_codegen</code> bazel rule is the best way to get started
+			generating code. <strong>More documentation to come.</strong>
+		</p>
+
+		<h2 id="usage-build-system">Other Build Systems</h2>
+		<p>
+			You're likely familiar with <em>some</em> build system for the programming
+			language you use. Ideally the programming language(s) you use have an
+			<em>official</em> build system. At this time Ecsact is probably not
+			supported as a first class citizen, but integrating with your build system
+			with the <a routerLink="/start/cli">Ecsact CLI</a> should be pretty
+			straight forward. Simply execute the Escact CLI
+			<code>codegen</code> subcommand with your ecsact files and the plugins you
+			want:
+		</p>
+		<pre><code prism language="bash">
+			ecsact codegen your_ecsact_file.ecsact --plugin=your_plugin
+		</code></pre>
+		<p>
+			See <a routerLink="/start/cli">Ecsact CLI start page</a> for more details.
+		</p>
+
+		<h1 id="well-known">Well Known Codegen Plugins</h1>
+		<p>
+			The Ecsact core development team maintains various codegen plugins. If you
+			create a codegen plugin and want it displayed here please open a pull
+			request or create an issue at our
+			<a href="https://github.com/ecsact-dev/website" target="_blank">
+				<span class="i24">open_in_new</span> website repository</a
+			>.
+		</p>
+
+		<h2 id="well-known-sdk">
+			Available in the <a routerLink="/start">Ecsact SDK</a>
+		</h2>
+		<p>
+			Plugins available in the Ecsact SDK can be listed with the
+			<a routerLink="/start/cli">Ecsact CLI</a> <code>config</code> subcommand:
+		</p>
+		<pre><code prism language="bash">
+			ecsact config builtin_plugins
+		</code></pre>
+		<ul>
+			@for (item of known_sdk_plugins; track item.href) {
+				<li>
+					<a [attr.href]="item.href" target="_blank"
+						><span class="i24">open_in_new</span> {{ item.title }}</a
+					>
+					<span> - {{ item.description }}</span>
+				</li>
+			}
+		</ul>
+
+		<h1 id="codegen-plugins">Codegen Plugins</h1>
+		<p>
+			Ecsact codegen plugins are dynamic libraries with 2 exported C functions.
+			Keep in mind during the development of Ecsact this API is likely to
+			change.
+		</p>
+
+		<h2 id="ecsact-plugin-name"><code>ecsact_plugin_name</code></h2>
+		<p>
+			The first is the plugin 'name'. A plugin name is both a name and the
+			extension of the output file the plugin is responsible for generating. For
+			example if you had an Ecsact file called
+			<code>example.ecsact</code> and you generated code with a plugin with the
+			name <code>my_plugin</code> you would get a file named
+			<code>example.ecsact.my_plugin</code>.
+		</p>
+		<pre><code prism language="c">const char* ecsact_plugin_name();</code></pre>
+		<p>
+			The return value is a <code>NULL-terminated</code> string with static
+			storage. In C it simply would be something like this.
+		</p>
+		<pre><code prism language="c">
+			const char* ecsact_plugin_name() {{'{'}}
+				return "my_plugin";
+			{{'}'}}
+		</code></pre>
+
+		<h2 id="ecsact-plugin"><code>ecsact_plugin</code></h2>
+		<p>
+			The second function is the plugin 'entry point'. The entry point is called
+			once for every Ecsact package. When implementing your plugin you have
+			access to all the
+			<a routerLink="/docs/runtime" fragment="meta">meta module</a> functions.
+			This gives you details about the various components, systems, fields and
+			more of the package.
+		</p>
+		<pre><code prism language="c">
+			void ecsact_codegen_plugin(
+				ecsact_package_id,
+				ecsact_codegen_write_fn_t,
+				ecsact_codegen_report_fn_t
+			);
+		</code></pre>
+		<p>
+			There are 2 functions that get passed into your entrypoint. A write
+			function and a report function. The write function is writes to the file
+			your generating and the report function is for reporting warnings and
+			errors to the user.
+		</p>
+
+		<p>
+			The write function takes a pointer to some bytes and the length of those
+			bytes and returns <code>void</code>.
+		</p>
+		<pre><code prism language="c">
+			void(const char*, int32_t);
+		</code></pre>
+
+		<p>
+			The report function is similar to the write function except it also takes
+			a report type enum as the first parameter.
+		</p>
+		<pre><code prism language="c">
+			void(ecsact_codegen_report_type, const char*, int32_t);
+		</code></pre>
+
+		<p>
+			The report types mean different things. There is some wiggle room on what
+			they mean so it may vary depending on the environment you're codegen
+			plugin is running in.
+		</p>
+
+		<table>
+			<tr>
+				<th>Report Type</th>
+				<th>Description</th>
+			</tr>
+			<tr>
+				<td><code>ECSACT_CODEGEN_REPORT_INFO</code></td>
+				<td>
+					Report some various information. May or may not be shown to the user.
+					Mostly used for debugging.
+				</td>
+			</tr>
+			<tr>
+				<td><code>ECSACT_CODEGEN_REPORT_WARNING</code></td>
+				<td>Warning that may or may not be shown to the user.</td>
+			</tr>
+			<tr>
+				<td><code>ECSACT_CODEGEN_REPORT_ERROR</code></td>
+				<td>
+					An error has occurred, but codegen may still continue. Must be shown
+					to user.
+				</td>
+			</tr>
+
+			<tr>
+				<td><code>ECSACT_CODEGEN_REPORT_ERROR</code></td>
+				<td>
+					An error has occurred and codegen may <strong>not</strong> continue.
+					Must be shown to user.
+				</td>
+			</tr>
+		</table>
+
+		<h2 id="codegen-cpp-wrapper" class="mt-4">Codegen C++ Wrapper</h2>
+		<p>
+			The C API can be a little daunting to use. The Ecsact core development
+			team uses a C++ wrapper for creating plugins. If you're using C++ to
+			develop your Ecsact plugin we highly recommend using it. To start using it
+			include the <code>ecsact/codegen/plugin.hh</code> header and construct the
+			<code>ecsact::codegen_plugin_context</code> object with the plugin's entry
+			point arguments.
+		</p>
+
+		<pre><code prism language="cpp">
+			#include "ecsact/codegen/plugin.hh" // C++ plugin wrapper
+			#include "ecsact/runtime/meta.hh"   // C++ meta module wrapper
+
+			extern "C" auto ecsact_codegen_plugin(
+				ecsact_package_id           pkg_id,
+				ecsact_codegen_write_fn_t   write_fn,
+				ecsact_codegen_report_fn_t  report_fn
+			) -> void {{'{'}}
+				auto ctx = ecsact::codegen_plugin_context{{'{'}}pkg_id, write_fn, report_fn{{'}'}};
+				
+				ctx.writef("hello\n"); // write to file
+				ctx.info("its me!"); // report something
+				
+				// Use the meta module C++ wrapper
+				for(auto comp_id : ecsact::meta::get_component_ids(ctx.package_id)) {{'{'}}
+					auto comp_name = ecsact::meta::component_name(comp_id);
+					ctx.writef("found component {{'{}'}}\n", comp_name);
+				{{'}'}}
+			{{'}'}}
+		</code></pre>
+
+		<p>
+			The various <code>ctx.*</code> methods wrap around
+			<a
+				href="https://en.cppreference.com/w/cpp/utility/format/format"
+				target="_blank"
+				><span class="i24">open_in_new</span> <code>std::format</code></a
+			>
+			so the same rules apply for writing/printing out various types.
+		</p>
+
+		<p>
+			There are other C++ utilities that the core team uses that can be found in
+			the
+			<a
+				href="https://github.com/ecsact-dev/ecsact_lang_cpp/blob/main/ecsact/cpp_codegen_plugin_util.hh"
+				><span class="i24">open_in_new</span> C++ language support repository</a
+			>.
+		</p>
+	</section>
+</article>

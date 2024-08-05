@@ -25,6 +25,9 @@ module.exports = {
 				logoSvgOutline: 'url(assets/logo-outline.svg)',
 				flowDownSvg: 'url(assets/flow-down.svg)',
 			},
+			backgroundSize: {
+				half: '50%',
+			},
 			keyframes: {
 				'slide-down': {
 					'0%': {transform: 'translateY(-100%)'},

@@ -22,6 +22,7 @@ ng_project(
         "//:node_modules/@angular/router",
         "//src/app/docs/cpp-system-impl-wasm",
         "//src/app/docs/ecs",
+        "//src/app/docs/extend",
         "//src/app/docs/implementations",
         "//src/app/docs/lang",
         "//src/app/docs/overview",
