@@ -55,7 +55,10 @@
 			Great! We have a simple <code>.Ecsact</code> file we can build on. Now we
 			can make a C# script in Unity, for our use it will be called
 			<code>BasicExample.cs</code>. This script will allow us to
-			<a href="/docs/unity/entities">create an entity</a> with some components
+			<a routerLink="/docs/unity/entities" routerLinkActive="true"
+				>create an entity</a
+			>
+			with some components
 		</p>
 		<p>We'll start by declaring the components we'll be adding to our entity</p>
 		<code-block-variation>
@@ -95,10 +98,11 @@
 	<section>
 		<h2 id="listeners">Runtime Listeners</h2>
 		<p>
-			The <a href="docs/unity/defaults">Runtime</a> gives you access to
-			everything used during Unity's runtime. For example, listeners can be
-			added for changes to component state or when an entity is created or
-			destroyed.
+			The
+			<a routerLink="/docs/unity/defaults" routerLinkActive="true">Runtime</a>
+			gives you access to everything used during Unity's runtime. For example,
+			listeners can be added for changes to component state or when an entity is
+			created or destroyed.
 		</p>
 
 		<code-block-variation>
@@ -140,7 +144,8 @@
 
 	<section>
 		<h2 id="system-implement">
-			Implementing a <a routerLink="/docs/unity/system-impl">System</a>
+			Implementing a
+			<a routerLink="/docs/unity/system-impl" routerLinkActive="true">System</a>
 		</h2>
 		<p>
 			Now the entity has components, which will cause our system to trigger. Now
@@ -250,7 +255,7 @@
 			</code></pre>
 		</code-block-variation>
 		<p>
-			This example is on the
+			This example is based on the
 			<a href="https://github.com/ecsact-dev/ecsact-examples" target="_blank"
 				>ecsact-examples</a
 			>

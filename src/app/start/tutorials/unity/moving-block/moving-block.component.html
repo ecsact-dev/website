@@ -6,7 +6,11 @@
 		<p>
 			This tutorial will take a look at how Ecsact, the Unity API, and Unity
 			Sync can be used create a simple game. If you haven't tried the
-			<a routerLink="/start/tutorials/unity/basic-example">basic example</a>
+			<a
+				routerLink="/start/tutorials/unity/basic-example"
+				routerLinkActive="true"
+				>basic example</a
+			>
 			yet, it's recommended to start there first. We'll be using the scene
 			<code>MovingBlock</code> in the
 			<a href="https://github.com/ecsact-dev/ecsact-examples" target="_blank"
@@ -42,9 +46,12 @@
 		<h2 id="gameobject">Adding a GameObject with Unity Sync</h2>
 		<p>
 			We're going to start by using a
-			<a href="docs/unity/unity-sync">Unity Sync</a> script to add a GameObject
-			to the scene. But first we'll need to create some components to filter our
-			entities. We will always use <code>example</code> as our ecsact file name.
+			<a routerLink="/docs/unity/unity-sync" routerLinkActive="true"
+				>Unity Sync</a
+			>
+			script to add a GameObject to the scene. But first we'll need to create
+			some components to filter our entities. We will always use
+			<code>example</code> as our ecsact file name.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -576,6 +583,6 @@
 	<!-- NOTE(Kelwan): Temporarily disabled until recipe for the async reference is implemented -->
 	<!-- <p>
 		If you're interested in making multiplayer games, check out the much shorter
-		<a href="start/tutorials/unity/using-async">using-async</a> tutorial.
+		<a routerLink="/start/tutorials/unity/using-async" routerLinkActive="true">using-async</a> tutorial.
 	</p> -->
 </article>
