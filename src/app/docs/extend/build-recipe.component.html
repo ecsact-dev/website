@@ -1,3 +1,92 @@
 <article>
-	<section>TODO: build recipe docs</section>
+	<section>
+		<h1 id="ecsact-build-recipes">Ecsact Build Recipes</h1>
+		<p>
+			Ecsact build recipes are YAML files that configure a build for a
+			<a routerLink="/docs/runtime-implementations">runtime implementation</a>.
+			These recipe files get consumed by the
+			<a routerLink="/start/cli">Ecsact CLI</a> <code>build</code> subcommand.
+		</p>
+	</section>
+
+	<section>
+		<h1 id="how-to-use">How to use an Ecsact Build Recipe</h1>
+		<p>
+			Build recipes are usually used in an integration pretty seemlessly. Most
+			of the time you won't even need to pay attention to it. If customizing the
+			build recipe is available there should be a dropdown or a simple way to
+			select build recipes in the game engine integration settings.
+		</p>
+		<p>
+			For custom integrations or projects not using an engine you'll want to use
+			the <a routerLink="/start/cli">Ecsact CLI</a>{{ ' ' }}
+			<code>build</code> subcommand directly.
+		</p>
+	</section>
+
+	<section>
+		<h1 id="writing-a-build-recipe">Writing a build recipe</h1>
+		<p>
+			Writing a build recipe is simple, but creating an Ecsact runtime
+			implementation is no trivial feat. For that reason, learning how to write
+			a build recipe is considered an advanced topic.
+		</p>
+		<p>
+			Build recipes are likely going to change dramatically as Ecsact develops.
+			For that reason this article is not going to dive deep into the build
+			recipe YAML format. Instead we'll go over the high level concepts and some
+			recommendations for distributing your build recipes. If that doesn't scare
+			you away then take a look at the
+			<a
+				href="https://github.com/ecsact-dev/ecsact_rt_entt/blob/main/build_recipe.yml"
+				target="_blank"
+				class="whitespace-nowrap">
+				<span class="i24">open_in_new</span> ecsact_rt_entt build recipe</a
+			>
+			for an example.
+		</p>
+
+		<h2 id="build-recipe-sources">Sources</h2>
+		<p>
+			The build recipe includes a list of sources that are required to build the
+			runtime implementation. Source files include programming language source
+			files or codegen plugins that should run on the <code>.ecsact</code> files
+			included when building the runtime.
+		</p>
+
+		<h2 id="build-recipe-exports">Exports</h2>
+		<p>
+			A list of exported Ecsact runtime module functions are listed in the build
+			recipe. These are functions that the runtime implementation implements.
+			The exported functions will be used by another runtime (<a
+				routerLink="/docs/extend/build-recipe"
+				fragment="build-recipe-imports"
+				>see imports</a
+			>) or by the game or game engine directly.
+		</p>
+
+		<h2 id="build-recipe-imports">Imports</h2>
+		<p>
+			A list of imported Ecsact runtime module functions are listed in the build
+			recipe. These are functions that the
+			<a routerLink="/docs/extend/build-recipe" fragment="build-recipe-exports"
+				>exported functions</a
+			>
+			utilise at runtime. This allows multiple recipes to be combined to create
+			a single runtime.
+		</p>
+
+		<h2 id="build-recipe-distribution">Distribution</h2>
+		<p>
+			Distributing a build recipe YAML file is fine, but it does have some down
+			sides. Namely all the source files and codegen plugins need to be
+			carefully placed next to the build recipe in order for them to be
+			discoverable. This can be error proned when developers are installing your
+			build recipe. Instead we recommend using the
+			<a routerLink="/start/cli">Ecsact CLI</a>
+			<code>recipe-bundle</code> command which will generate a
+			<code>.ecsact-recipe-bundle</code> with all your source files and plugins
+			all packaged neatly into 1 file.
+		</p>
+	</section>
 </article>
