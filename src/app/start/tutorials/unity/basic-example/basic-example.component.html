@@ -7,7 +7,7 @@
 			This will cover the basics of using Ecsact with Unity. We will create
 			entities, add components and implement systems using C#. The scene
 			<code>Basic Example</code> in
-			<a href="https://github.com/ecsact-dev/unity-example" target="_blank"
+			<a href="https://github.com/ecsact-dev/ecsact-examples" target="_blank"
 				>unity-example</a
 			>
 			has all the contents of this tutorial.
@@ -55,15 +55,19 @@
 			Great! We have a simple <code>.Ecsact</code> file we can build on. Now we
 			can make a C# script in Unity, for our use it will be called
 			<code>BasicExample.cs</code>. This script will allow us to
-			<a href="/docs/unity/entities">create an entity</a> with some components
+			<a routerLink="/docs/unity/entities" routerLinkActive="true"
+				>create an entity</a
+			>
+			with some components
 		</p>
 		<p>We'll start by declaring the components we'll be adding to our entity</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-				// Declare an Example component type
-				var exampleComponent = new example.Example {{'{'}}
-					example_value = 5,
-				{{'}'}};
+				void start() {{'{'}}
+					// Declare an Example component type
+					var exampleComponent = new example.Example {{'{'}}
+						example_value = 0,
+					{{'}'}};
 
 				var removeComponent = new example.ToBeRemoved {{'{'}}{{'}'}};
 			</code></pre>
@@ -73,7 +77,13 @@
 			Components can be declared from the namespace that is derived from the
 			name of your package in the <code>.ecsact</code> file. Now that we have
 			our components, we can add them to a newly created entity using the
-			Runner's <code>executionOptions</code>
+			<a
+				routerLink="/docs/unity/defaults"
+				routerLinkActive="true"
+				fragment="runner"
+				>Runner's</a
+			>
+			<code>executionOptions</code>
 		</p>
 
 		<code-block-variation>
@@ -88,32 +98,29 @@
 	<section>
 		<h2 id="listeners">Runtime Listeners</h2>
 		<p>
-			The <a href="docs/unity/defaults">Runtime</a> gives you access to
-			everything used during Unity's runtime. For example, listeners can be
-			added for changes to component state or when an entity is created or
-			destroyed.
+			The
+			<a routerLink="/docs/unity/defaults" routerLinkActive="true">Runtime</a>
+			gives you access to everything used during Unity's runtime. For example,
+			listeners can be added for changes to component state or when an entity is
+			created or destroyed.
 		</p>
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
-				// Added on the class to cleanup event listeners
+				// Declared on the script, added on the class to cleanup event listeners
 				List<{{'System.Action'}}> cleanUpFns = new();
-
+				
+				// Callbacks from the Ecsact Runtime used to change state in Unity
 				cleanUpFns.AddRange(new[] {{'{'}}
-					// Callback invoked when Example component is added
 					Ecsact.Defaults.Runtime.OnInitComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
-						Debug.Log("Example component added");
 						Debug.Log(component.example_value);
 					{{'}'}}),
-					// Callback invoked when Example component is updated
 					Ecsact.Defaults.Runtime.OnUpdateComponent<{{'example.Example'}}>((entity, component) => {{'{'}}
 						Debug.Log(component.example_value);
 					{{'}'}}),
-					// Callback invoked when Example component is removed
 					Ecsact.Defaults.Runtime.OnRemoveComponent<{{'example.ToBeRemoved'}}>((entity, component) => {{'{'}}
 						Debug.Log("Example component removed");
 					{{'}'}}),
-					// Callback invoked on the creation of an entity
 					Ecsact.Defaults.Runtime.OnEntityCreated((entityId, placeholderId) => {{'{'}}
 						Debug.Log("Entity created");
 					{{'}'}})
@@ -137,13 +144,15 @@
 
 	<section>
 		<h2 id="system-implement">
-			Implementing a <a routerLink="/docs/unity/system-impl">System</a>
+			Implementing a
+			<a routerLink="/docs/unity/system-impl" routerLinkActive="true">System</a>
 		</h2>
 		<p>
 			Now the entity has components, which will cause our system to trigger. Now
 			we need to implement the system for it to happen. If you haven't setup
 			your <a routerLink="/start/unity">Assembly Definition</a> now is the time.
-			If the script is not part of an assembly, it will not be found. We'll name
+			If the script is not part of an assembly, it will not be found. Your
+			system scripts must be in the same hierarchy as the assembly. We'll name
 			our new system script
 			<code>BasicExampleSystem.cs</code>
 		</p>
@@ -161,10 +170,10 @@
 
 						// Modify and update its value
 						value.example_value +=1;
-						context.Update<{{'example.Example'}}>(value);
+						context.Update(value);
 
 						if(value.example_value >= 100) {{'{'}}
-							// Remove the component from the context
+							// Remove the component from the entity
 							context.Remove<{{'example.ToBeRemoved'}}>();
 						{{'}'}}
 					{{'}'}}
@@ -173,24 +182,95 @@
 		</code-block-variation>
 
 		<p>
-			Every tick, which in this example occurs on <code>fixed update</code> the
-			example_value is increased by 1. Once it reaches a certain value, the
-			component <code>ToBeRemoved</code> is removed. After this the entity no
-			longer has the required components to continue being iterated over.
+			Every tick, the <code>example_value</code> that's a field on our component
+			is increased by 1. Once it reaches a value of 100, the component
+			<code>ToBeRemoved</code> is removed. After this the entity no longer has
+			the required components to continue being iterated over.
 		</p>
 
 		<img src="/assets/BasicExampleSuccess.png" height="300" width="400" />
 		<p>
-			Assuming things worked, <code>example_value</code> will increase until it
-			reaches 100. Then on its conclusion you should see the
+			On its conclusion, you'll receive the
 			<code>OnRemoveComponent</code> callback
 		</p>
 	</section>
 	<section>
+		<h2 id="example-file">Basic Example File</h2>
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				using System.Collections.Generic;
+				using UnityEngine;
+				
+				public class BasicExample : MonoBehaviour
+				{{'{'}}
+				
+				  List<{{'System.Action'}}> cleanUpFns = new();
+				  int entityId;
+				
+				  void Start()
+				  {{'{'}}
+					// Callbacks from the Ecsact Runtime used to change state in Unity
+					cleanUpFns.AddRange(new[] {{'{'}}
+					  Ecsact.Defaults.Runtime.OnInitComponent<{{'example.Example'}}>(
+						  (entity, component) => {{'{'}}
+						  		Debug.Log(component.example_value);
+					  {{'}'}}),
+					  Ecsact.Defaults.Runtime.OnUpdateComponent<{{'example.Example'}}>(
+						  (entity, component) => {{'{'}}
+						 		Debug.Log(component.example_value);
+					  {{'}'}}),
+				
+					  Ecsact.Defaults.Runtime.OnRemoveComponent<{{'example.Example'}}>(
+						  (entity, component) => {{'{'}} Debug.Log("Component removed"); 
+					  {{'}'}}),
+					  Ecsact.Defaults.Runtime.OnEntityCreated(
+						  (entityId, placeholderId) => {{'{'}} Debug.Log("Entity created"); 
+					  {{'}'}})
+					{{'}'}});
+				
+					// Declare an Example component type
+					var exampleComponent = new example.Example
+					{{'{'}}
+					  example_value = 0,
+					{{'}'}};
+				
+					// Declare a ToBeRemoved component type
+					var removeComponent = new example.ToBeRemoved {{'{'}}{{'}'}};
+				
+					// Create an entity and add an initial components list
+					Ecsact.Defaults.Runner.executionOptions.CreateEntity()
+						.AddComponent(exampleComponent)
+						.AddComponent(removeComponent);
+				  {{'}'}}
+				
+				  void OnDestroy()
+				  {{'{'}}
+					foreach (var cleanUpFn in cleanUpFns)
+					{{'{'}}
+					  cleanUpFn();
+					{{'}'}}
+				  {{'}'}}
+				{{'}'}}
+				
+			</code></pre>
+		</code-block-variation>
+		<p>
+			This example is based on the
+			<a href="https://github.com/ecsact-dev/ecsact-examples" target="_blank"
+				>ecsact-examples</a
+			>
+			repository as a reference. You can load the scene
+			<code>BasicExample.unity</code> and you'll see something like this:
+		</p>
+		<video width="600" loop muted autoplay>
+			<source src="assets/UnityBasicExampleCountdown.webm" type="video/webm" />
+		</video>
+	</section>
+	<section>
 		<h2 id="next-steps">Next Steps</h2>
 		<p>
-			This taught you the basics of using Ecsact with Unity. If you want to
-			learn more about Unity Sync and Nested Systems, check out
+			This covers the basics of using Ecsact with Unity. To learn about Unity
+			Sync and Nested Systems, check out
 			<a href="start/tutorials/unity/moving-block">Example Using Unity Sync</a>
 		</p>
 	</section>
