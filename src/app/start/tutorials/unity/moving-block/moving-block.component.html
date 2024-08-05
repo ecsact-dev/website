@@ -8,12 +8,18 @@
 			Sync can be used create a simple game. If you haven't tried the
 			<a routerLink="/start/tutorials/unity/basic-example">basic example</a>
 			yet, it's recommended to start there first. We'll be using the scene
-			<code>EcsactExample</code> in the
-			<a href="https://github.com/ecsact-dev/unity-example" target="_blank"
+			<code>MovingBlock</code> in the
+			<a href="https://github.com/ecsact-dev/ecsact-examples" target="_blank"
 				>unity-example</a
 			>
-			repository. You can either use the scene provided, or make your own and
-			build it however you like.
+			repository. It's given as a reference point and should look something like
+			this:
+		</p>
+		<img src="/assets/MovingBlockScene.png" height="800" width="600" />
+		<p>
+			You can use it as a reference, remove the scripts and GameObjects to
+			follow along, or make your own environment in a scene of your own. You'll
+			see later how it comes into play with collision
 		</p>
 		<h3>Prerequisites</h3>
 		<ol>
@@ -27,9 +33,8 @@
 	<section>
 		<h2>Setup</h2>
 		<p>
-			You'll want to <a routerLink="/start/unity">setup</a> your Assembly file,
-			get the Ecsact Integration and enable Unity Sync. You can read about how
-			to do that.
+			Make sure to <a routerLink="/start/unity">setup</a> your Assembly file,
+			get the Ecsact Integration and enable Unity Sync before continuing.
 		</p>
 	</section>
 
@@ -97,21 +102,21 @@
 		</p>
 
 		<p>
-			Let's see if our script is working! Let's have an initial entity spawn by
-			using
+			Let's see if our script is working! Using
 			<a routerLink="/docs/unity/entities" fragment="dynamic-entity"
 				>Dynamic Entity</a
-			>. If everything worked correctly, when you enter playmode a gameObject
-			should spawn at the position you inputted for the entity.
+			>, spawn an entity with the components we just declared. When you enter
+			playmode a gameObject will instantiate at the position you inputted for
+			the entity.
 		</p>
 	</section>
 
 	<section>
 		<h2 id="blocks">Generating Blocks</h2>
 		<p>
-			What if we took this one step further? We've managed to use Unity Sync
-			with our Dynamic Entity, and now we can can adapt to changes in entities
-			during runtime. Let's go into our <code>.ecsact</code> file.
+			What if we took this one step further? We used Unity Sync with our Dynamic
+			Entity, and now we can can adapt to changes in entities during runtime.
+			Let's go into our <code>.ecsact</code> file.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -123,7 +128,7 @@
 					i32 pos_y;
 				{{'}'}}
 
-				// An action that will happen on an input
+				// An action that will happen on an input, generates new blocks at runtime
 				action PerformGenerateBlock {{'{'}}
 					i32 pos_x;
 					i32 pos_y;
@@ -150,8 +155,8 @@
 		<p>
 			Now we have the code in place to make a block spawn from an action. Any
 			newly generated entities will be pooled for Unity Sync. This means the
-			Sync script that adds the Block GameObject will be automatically added to
-			our new entities. Let's make a way to perform our action.
+			Sync script we wrote will add the <code>Block</code> gameObject to all our
+			new entities. Let's make a way to perform our action.
 		</p>
 
 		<code-block-variation>
@@ -197,6 +202,16 @@
 			GameObject to be present during the runtime. With Ecsact and pushing the
 			action accounted for, all that's left to do is implement the systems.
 		</p>
+		<p>
+			Note: Make sure your
+			<a
+				routerLink="/start/unity"
+				routerLinkActive="true"
+				fragment="folder-hierarchy"
+				>folder hierarchy</a
+			>
+			is in your Assembly Definition
+		</p>
 
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -227,10 +242,10 @@
 						var block = context.Get<{{'example.QueueBlock'}}>();
 
 						builder
-							.AddComponent<{{'example.Block'}}>(
+							.AddComponent(
 								new example.Block{{'{'}}{{'}'}}
 							)
-							.AddComponent<{{'example.Position'}}>(
+							.AddComponent(
 								new example.Position{{'{'}}x = block.pos_x, y = block.pos_y{{'}'}}
 							)
 							.Finish();
@@ -240,12 +255,14 @@
 		</code-block-variation>
 
 		<p>
-			When the <code>InputAction</code> is pressed, a new entity will be
-			generated with a block the same way our <code>Dynamic Entity</code> does.
-			But there's a small difference. When an entity is spawned at runtime, the
-			Position of the entity won't be applied to the gameobject itself. We can
-			use <a routerLink="/docs/unity/unity-sync">Unity Sync</a> to solve that
-			problem.
+			To reiterate, when the <code>InputAction</code> is pressed a new entity
+			will be generated with a block the same way our first
+			<code>Dynamic Entity</code> does. But there's a small difference. When an
+			entity is spawned at runtime, the Position of the entity won't be applied
+			to the gameobject itself. We can use
+			<a routerLink="/docs/unity/unity-sync">Unity Sync</a> to solve that
+			problem. Create a script called `SyncMove` that listen to callbacks from
+			the `init` and `update` component events.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -269,19 +286,19 @@
 			</code></pre>
 		</code-block-variation>
 		<p>
-			A listener for <code>OnUpdate</code> was added too. This will be used a
-			bit later for Movement.
+			The listener for <code>OnUpdate</code> will be important when we add
+			movement.
 		</p>
 	</section>
 
 	<section>
 		<h2 id="movement">Movement</h2>
 		<p>
-			So we can generate entities at will during runtime and manipulate their
-			data. The only problem now is we can't interact with them. Let's add
-			movement to all the entity blocks that we spawn. We'll add
-			<code>Velocity</code>, a move action, and a corresponding system to apply
-			changes.
+			We're not generating entities at will during runtime and can manipulate
+			their data. The only thing missing is we can't interact with them. Let's
+			add movement to all the entity blocks that we spawn. We'll add
+			<code>Velocity</code>, a <code>Move</code> action, and a corresponding
+			system to apply changes.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code ecsactLangSyntax>
@@ -315,6 +332,14 @@
 			<code>Ecsact</code>, any Dynamic Entities and
 			<code>GenerateBlockSystem</code> to see the effects.
 		</p>
+
+		<code-block-variation>
+			<pre codeBlockVariationOption><code prism language="csharp">
+				// Add to your builder we used for GenerateBlock
+				builder.AddComponent(new example.CanMove {{'{'}}{{'}'}})
+			</code></pre>
+		</code-block-variation>
+
 		<p>
 			Let's move to Unity. In our example, we'll add a script to the same
 			GameObject that holds our <code>Dynamic Entity</code> called
@@ -372,11 +397,9 @@
 			</code></pre>
 		</code-block-variation>
 		<p>
-			We've done our Ecsact declarations and added the ability to push our
-			<code>Action</code>. Now like before we implement our systems. This might
-			start to feel familiar, the workflow of getting to and from Ecsact doesn't
-			change very much. We'll make another script we'll drop into our systems
-			folder called <code>MoveSystems</code>.
+			Now We'll implement our newly declared systems <code>Move</code> and
+			<code>ApplyVelocity</code>. Drop the new script into our systems folder
+			and call it <code>MoveSystems</code>.
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -391,10 +414,10 @@
 						var velocity = context.Get<{{'example.Velocity'}}>();
 						var move = context.Action<{{'example.Move'}}>();
 
-						velocity.x_value = move.dir_x;
-						velocity.y_value = move.dir_y;
+						velocity.x_value += move.dir_x;
+						velocity.y_value += move.dir_y;
 
-						context.Update<{{'example.Velocity'}}>(velocity);
+						context.Update(velocity);
 					{{'}'}}
 
 					[Ecsact.DefaultSystemImpl(typeof(example.ApplyVelocity))]
@@ -411,22 +434,21 @@
 						position.x += velocity.x_value;
 						position.y += velocity.y_value;
 
-						context.Update<{{'example.Position'}}>(position);
+						context.Update(position);
 					{{'}'}}
 				{{'}'}}
 			</code></pre>
 		</code-block-variation>
 		<p>
-			Since we already added <code>SyncMove</code> earlier, the gameobject
+			Since we already added <code>SyncMove</code> earlier, the GameObject
 			should be updated whenever the position of the entity is.
 		</p>
 	</section>
 	<section>
 		<h2 id="collision">Basic Collision</h2>
 		<p>
-			We have movement, great! We can finally interact with our game in some
-			way. The big problem now is we can go off the screen, and there's no way
-			to
+			We have movement, great! We can finally interact with our entities. The
+			big problem now is we can go off the screen, and there's no way to
 			<code>interact</code> with the other entities in our scene. We're going to
 			cover one of the ways in which you can compare entities and create
 			interactions with <code>Nested Systems</code>.
@@ -455,11 +477,12 @@
 			<a routerLink="/docs/lang" fragment="nested-systems">Nested System</a>
 			takes each entity that qualifies for <code>CollisionComparer</code>, and
 			compares each one against all of the qualified entities in
-			<code>CheckCollision</code>. You can view it as a nested for loop.
+			<code>CheckCollision</code>.
 		</p>
 		<p>
 			Note: You need to add the <code>Collider</code> component to any entities
-			that you want to be considered.
+			that you want to be considered. Don't forget the
+			<code>GenerateBlock</code> builder from before!
 		</p>
 		<code-block-variation>
 			<pre codeBlockVariationOption><code prism language="csharp">
@@ -487,27 +510,19 @@
 							position.x = position.prev_x;
 							position.y = position.prev_y;
 
-							if(position.x < otherPos.x) {{'{'}}
-								velocity.x_value = -0.5f;
-							{{'}'}} else {{'{'}}
-								velocity.x_value = 0.5f;
-							{{'}'}}
+							velocity.x_value = -velocity.x_value * 0.5f;
+							velocity.y_value = -velocity.y_value * 0.5f;
 
-							if(position.y < otherPos.y) {{'{'}}
-								velocity.y_value = -0.5f;
-							{{'}'}} else {{'{'}}
-								velocity.y_value = 0.5f;
-							{{'}'}}
-
-							context.Update<{{'example.Velocity'}}>(velocity);
-							context.Update<{{'example.Position'}}>(position);
+							context.Update(velocity);
+							context.Update(position);
 						{{'}'}}
 					{{'}'}}
 				{{'}'}}
 			</code></pre>
 		</code-block-variation>
 		<p>
-			There's only 1 system implementation. If there's nothing for a
+			<code>CollisionComparer</code> doesn't need an implementation because its
+			components are <code>readonly</code>. If there's nothing for a
 			<code>system</code> to consider then the system is considered
 			<a routerLink="/docs/system-impl" fragment="trivial-implementations"
 				>trivial</a
@@ -546,14 +561,11 @@
 				{{'}'}}
 			</code></pre>
 		</code-block-variation>
-		<img src="/assets/MovingBlockScene.png" height="800" width="600" />
 		<p>
-			If you've opened up the project you will see this. There are gameObjects
-			called <code>boundaries</code> in the project that will create a little
-			game area. You can just as easily make your own in any way you like. The
-			last thing left to do is add our new <code>StaticCollider</code> script to
-			these gameObjects. Now, we can move, spawn new blocks that can also move,
-			and run into game boundaries!
+			The last step is to apply our static colliders to boundaries in our game
+			level. You'll see in the reference example that there are GameObjects
+			called <code>boundaries</code> using this script. If you're making your
+			own, add them to your boundary so the generated blocks collide with them
 		</p>
 	</section>
 	<h2 id="conclusion">Conclusion</h2>

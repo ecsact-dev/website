@@ -1,7 +1,7 @@
 <article>
 	<h1>Setting Up Unity</h1>
 	<section>
-		<h2>Ecsact Integration Package</h2>
+		<h2 id="integration-package">Ecsact Integration Package</h2>
 		<p>
 			Unity Ecsact Integration is provided as a
 			<a href="https://docs.unity3d.com/Manual/Packages.html" target="_blank"
@@ -46,7 +46,7 @@ https://github.com/ecsact-dev/ecsact_unity.git</pre
 		>.
 	</section>
 	<section>
-		<h2>The Ecsact Window</h2>
+		<h2 id="ecsact-window">The Ecsact Window</h2>
 		<p>
 			If the Ecsact package was successfully installed, there will be a new
 			window under
@@ -58,7 +58,7 @@ https://github.com/ecsact-dev/ecsact_unity.git</pre
 		<img src="assets/UnityEcsactPage.png" width="800" height="200" />
 	</section>
 	<section>
-		<h2>Assembly</h2>
+		<h2 id="assembly">Assembly</h2>
 		<p>
 			For systems to be registered into Ecsact, it needs to be part of an
 			Assembly. In addition, it will need the following dependencies:
@@ -82,7 +82,22 @@ https://github.com/ecsact-dev/ecsact_unity.git</pre
 		<p></p>
 	</section>
 	<section>
-		<h2>Unity Sync</h2>
+		<h2 id="folder-hierarchy">Folder hierarchy</h2>
+		<p>
+			Everything done with Ecsact, including system implementations, has to be
+			contained in the hierarchy of the generated
+			<a [routerLink]="" fragment="assembly">Assembly</a> definition. If you're
+			just learning we'd recommend putting everything in
+			<code
+				>Assets <span class="i24">arrow_right</span> Scripts
+				<span class="i24">arrow_right</span> Ecsact</code
+			>
+		</p>
+		<p>You should have a configuration that looks something like this:</p>
+		<img src="assets/UnityFolderHierarchy.png" width="400" height="200" />
+	</section>
+	<section>
+		<h2 id="unity-sync">Unity Sync</h2>
 		<p>
 			To enable
 			<a routerLink="/docs/unity/unity-sync" routerLinkActive="active"
@@ -96,7 +111,7 @@ https://github.com/ecsact-dev/ecsact_unity.git</pre
 		<img src="assets/UnitySyncEnable.png" width="800" height="300" />
 	</section>
 	<section>
-		<h2>Recipes</h2>
+		<h2 id="recipes">Recipes</h2>
 		<p>
 			Ecsact supports having multiple <a>recipes</a>. You can use other
 			implementations, or there's one available for EnTT that comes packaged in
@@ -106,7 +121,7 @@ https://github.com/ecsact-dev/ecsact_unity.git</pre
 		<img src="assets/UnityRecipeConfig.png" width="800" height="300" />
 	</section>
 	<section>
-		<h2>Learning about the Unity Integration</h2>
+		<h2 id="learn">Learning about the Unity Integration</h2>
 		<p>
 			To learn more about the Ecsact Integration for Unity, you can follow our
 			<a
