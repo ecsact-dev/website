@@ -42,6 +42,10 @@ $whiteColor: #d4d4d4;
 	.brand.github {
 		background-image: url(assets/brand/github-mark-white.svg);
 	}
+
+	.brand.ecsact-cli {
+		background-image: url(assets/brand/ecsact-cli-white.png);
+	}
 }
 
 @mixin light-color-scheme {
@@ -80,6 +84,10 @@ $whiteColor: #d4d4d4;
 	.brand.github {
 		background-image: url(assets/brand/github-mark.svg);
 	}
+
+	.brand.ecsact-cli {
+		background-image: url(assets/brand/ecsact-cli-black.png);
+	}
 }
 
 :root {
@@ -114,7 +122,7 @@ code {
 	box-sizing: content-box;
 }
 
-pre > code {
+pre>code {
 	padding: 0px;
 	border-radius: 0px;
 	background-color: transparent;
@@ -170,13 +178,13 @@ table {
 		border-top: 1px solid var(--color-text);
 	}
 
-	tr > td:first-child,
-	tr > th:first-child {
+	tr>td:first-child,
+	tr>th:first-child {
 		border-left: 1px solid var(--color-text);
 	}
 
-	tr > td:last-child,
-	tr > th:last-child {
+	tr>td:last-child,
+	tr>th:last-child {
 		border-right: 1px solid var(--color-text);
 	}
 
@@ -197,6 +205,7 @@ table {
 
 // De emphasize non-header text
 article {
+
 	p,
 	ul,
 	ol {
@@ -311,7 +320,7 @@ table.sticky {
 		'FILL' 0,
 		'wght' 400,
 		'GRAD' 0,
-		'opsz' $size;
+		'opsz'$size;
 	vertical-align: top;
 	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
@@ -368,8 +377,8 @@ main article {
 	border-radius: 8px; // match tailwind rounded-lg
 
 	code-block-variation,
-	> section > pre,
-	> pre {
+	>section>pre,
+	>pre {
 		// Always using the dark theme in pre article tags
 		@include dark-color-scheme;
 		color: var(--color-text);
@@ -387,9 +396,10 @@ main article {
 	}
 
 	@media (max-width: 1600px) {
+
 		code-block-variation,
-		> section > pre,
-		> pre {
+		>section>pre,
+		>pre {
 			margin: 0px -32px;
 			border-radius: 0px;
 			box-shadow: none;
@@ -400,8 +410,8 @@ main article {
 		margin: 16px;
 
 		code-block-variation,
-		> section > pre,
-		> pre {
+		>section>pre,
+		>pre {
 			margin: 0px -16px;
 			padding: 8px 16px;
 		}
@@ -413,8 +423,8 @@ main article {
 	}
 
 	code-block-variation,
-	section > pre,
-	> pre {
+	section>pre,
+	>pre {
 		overflow-x: auto;
 		@include thin-scroll(#{var(--color-text)}, $preBgColor);
 	}
@@ -504,7 +514,7 @@ select option {
 }
 
 // Internal styles for <code-block-variation>
-code-block-variation > .group > .code-block-container > pre {
+code-block-variation>.group>.code-block-container>pre {
 	display: none;
 
 	&.code-block-variation-option-active {

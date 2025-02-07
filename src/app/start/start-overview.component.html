@@ -107,7 +107,7 @@
 	</div>
 </div>
 
-<div class="max-w-xl mx-auto px-6 my-8">
+<div class="max-w-2xl mx-auto px-6 my-8">
 	<h2 id="integrations" class="text-3xl">Integrations</h2>
 	<p>
 		After you've installed the Ecsact SDK check out our integrations or start
@@ -121,15 +121,13 @@
 		</a>
 		<a
 			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
+			routerLink="/start/unreal">
+			<div class="brand unreal-stacked w-full h-full"></div>
+		</a>
+		<a
+			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
 			routerLink="/start/cli">
-			<div class="w-full h-full relative text-center">
-				<div class="absolute translate-y-[-50%] top-[50%] left-0 right-0">
-					<span class="i48 text-text text-[600%]">terminal</span>
-					<div class="text-text relative text-lg font-mono top-[-20px]">
-						Ecsact CLI
-					</div>
-				</div>
-			</div>
+			<div class="brand ecsact-cli w-full h-full"></div>
 		</a>
 	</div>
 
@@ -137,14 +135,16 @@
 	<div class="grid grid-flow-col-dense gap-8 my-8 opacity-50">
 		<a
 			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
-			routerLink="/start/unreal">
-			<div class="brand unreal-stacked w-full h-full"></div>
-		</a>
-
-		<a
-			class="aspect-square rounded-lg shadow-lg border border-transparent hover:border-secondary transition-colors bg-content-bg py-4 px-8"
 			routerLink="/start/godot">
 			<div class="brand godot w-full h-full"></div>
+		</a>
+		<a
+			class="aspect-square rounded-lg border border-transparent py-4 px-8">
+			<div class="brand w-full h-full"></div>
+		</a>
+		<a
+			class="aspect-square rounded-lg border border-transparent py-4 px-8">
+			<div class="brand w-full h-full"></div>
 		</a>
 	</div>
 
