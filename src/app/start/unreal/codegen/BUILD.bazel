@@ -3,14 +3,12 @@ load("//tools:ng.bzl", "ng_project")
 package(default_visibility = ["//:__subpackages__"])
 
 ng_project(
-    name = "unreal",
+    name = "codegen",
     srcs = [
-        "start-unreal.component.html",
-        "start-unreal.component.ts",
-        "start-unreal-routing.module.ts",
+        "unreal-codegen.component.html",
+        "unreal-codegen.component.ts",
     ],
     deps = [
-        "//src/app/start/unreal/codegen",
         "//:node_modules/@angular/common",
         "//:node_modules/@angular/core",
         "//:node_modules/@angular/router",

@@ -8,6 +8,14 @@ const routes: Routes = [
 		loadComponent: () =>
 			import('./start-unreal.component').then(m => m.StartUnrealComponent),
 	},
+	{
+		path: 'codegen',
+		pathMatch: 'full',
+		loadComponent: () =>
+			import('./codegen/unreal-codegen.component').then(
+				m => m.UnrealCodegenComponent,
+			),
+	},
 ];
 
 @NgModule({

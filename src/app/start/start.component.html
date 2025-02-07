@@ -44,7 +44,8 @@
 			<a routerLink="/start/cli" routerLinkActive="active">Overview</a>
 		</ecsact-sidenav-section>
 		<ecsact-sidenav-section title="Unreal Engine">
-			<a routerLink="/start/unreal" routerLinkActive="active">Setup</a>
+			<a routerLink="/start/unreal" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Setup</a>
+			<a routerLink="/start/unreal/codegen" routerLinkActive="active">Codegen</a>
 		</ecsact-sidenav-section>
 		<ecsact-sidenav-section title="Godot">
 			<a routerLink="/start/godot" routerLinkActive="active"
