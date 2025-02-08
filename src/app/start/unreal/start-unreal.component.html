@@ -3,17 +3,34 @@
 	<section>
 		<h2 id="plugin-install">Plugin Installation</h2>
 		<p>
-		To get started using Ecsact with your Unreal project we highly recommend installing the <a href="https://github.com/ecsact-dev/ecsact_unreal">Ecsact Unreal plugin</a>. At the time of writing this the Ecsact plugin has not been published to <a href="http://fab.com/" target="_blank">Fab</a> (<a href="https://github.com/ecsact-dev/ecsact_unreal/issues/21">tracking issue on github</a>.) For now the release archive are available on the <a href="https://github.com/ecsact-dev/ecsact_unreal/releases">Ecsact Unreal plugin Github releases</a> page. Extract 
-		<code>EcsactUnreal-Win64.zip</code> to your Unreal engine marketplace plugins directory to install.
+			To get started using Ecsact with your Unreal project we highly recommend
+			installing the
+			<a href="https://github.com/ecsact-dev/ecsact_unreal"
+				>Ecsact Unreal plugin</a
+			>. At the time of writing this the Ecsact plugin has not been published to
+			<a href="http://fab.com/" target="_blank">Fab</a> (<a
+				href="https://github.com/ecsact-dev/ecsact_unreal/issues/21"
+				>tracking issue on github</a
+			>.) For now the release archive are available on the
+			<a href="https://github.com/ecsact-dev/ecsact_unreal/releases"
+				>Ecsact Unreal plugin Github releases</a
+			>
+			page. Extract <code>EcsactUnreal-Win64.zip</code> to your Unreal engine
+			marketplace plugins directory to install.
 		</p>
-			<pre
-				codeBlockVariationOption
-				optionTitle="Bash"><code prism language="bash">
+		<pre
+			codeBlockVariationOption
+			optionTitle="Bash"><code prism language="bash">
 				# Ecsact Unreal zip contents should be extracted here
 				[UE-Install-Dir]/Engine/Plugins/Marketplace/Ecsact
 			</code></pre>
 		<p></p>
-		<p>Once you have installed the Ecsact Unreal plugin go to <code>Edit <span class="i24">arrow_right</span> Plugins</code>. Find the Ecsact plugin and make sure it's enabled for your project. You may have to restart your editor after enabling the plugin.</p>
+		<p>
+			Once you have installed the Ecsact Unreal plugin go to
+			<code>Edit <span class="i24">arrow_right</span> Plugins</code>. Find the
+			Ecsact plugin and make sure it's enabled for your project. You may have to
+			restart your editor after enabling the plugin.
+		</p>
 		<div class="flex flex-row gap-8 justify-center">
 			<a href="/assets/unreal/unreal-setup-01.png">
 				<img src="/assets/unreal/unreal-setup-01.png" />
@@ -22,25 +39,48 @@
 				<img src="/assets/unreal/unreal-setup-02.png" />
 			</a>
 		</div>
-		<div class="flex flex-col lg:flex-row items-center justify-center gap-8 my-8">
+		<div
+			class="flex flex-col lg:flex-row items-center justify-center gap-8 my-8">
 			<div>
 				<h2 id="plugin-install">Ecsact Plugin Settings</h2>
-				<p>After enabling the Ecsact plugin and restarting your editor you should have new project settings specifically for Ecsact. You can find the settings in <code>Project Settings <span class="i24">arrow_right</span> Plugins <span class="i24">arrow_right</span> Ecsact</code>.</p>
 				<p>
-					Here you are able to configure and enable/disable different features of the plugin. For your first setup we recommend enabling the build system and adding the <code>rt_entt</code> build recipe.
+					After enabling the Ecsact plugin and restarting your editor you should
+					have new project settings specifically for Ecsact. You can find the
+					settings in
+					<code
+						>Project Settings <span class="i24">arrow_right</span> Plugins
+						<span class="i24">arrow_right</span> Ecsact</code
+					>.
+				</p>
+				<p>
+					Here you are able to configure and enable/disable different features
+					of the plugin. For your first setup we recommend enabling the build
+					system and adding the <code>rt_entt</code> build recipe.
 				</p>
 			</div>
 			<a href="/assets/unreal/unreal-setup-03.png">
 				<img class="max-w-md" src="/assets/unreal/unreal-setup-03.png" />
 			</a>
 		</div>
-		<div class="flex flex-col lg:flex-row items-center justify-center gap-8 my-8">
+		<div
+			class="flex flex-col lg:flex-row items-center justify-center gap-8 my-8">
 			<a href="/assets/unreal/unreal-setup-04.png">
 				<img class="max-w-sm" src="/assets/unreal/unreal-setup-04.png" />
 			</a>
 			<div>
 				<h2 id="plugin-install">Whats next?</h2>
-				<p>From this point on when you have the editor open the Escact Runtime will be built automatically when changes to <code>.ecsact</code> in your <code>Source</code> directory change. If no Ecsact files are detected you should get a warning in your editor output log. If this is your first Ecsact project then we recommend reading the <a routerLink="/start/tutorials/first-ecsact-file">your first Ecsact file</a> tutorial. Otherwise, take a look at some of the Ecsact Unreal plugin specific features below for further reading.</p>
+				<p>
+					From this point on when you have the editor open the Escact Runtime
+					will be built automatically when changes to <code>.ecsact</code> in
+					your <code>Source</code> directory change. If no Ecsact files are
+					detected you should get a warning in your editor output log. If this
+					is your first Ecsact project then we recommend reading the
+					<a routerLink="/start/tutorials/first-ecsact-file"
+						>your first Ecsact file</a
+					>
+					tutorial. Otherwise, take a look at some of the Ecsact Unreal plugin
+					specific features below for further reading.
+				</p>
 			</div>
 		</div>
 	</section>
