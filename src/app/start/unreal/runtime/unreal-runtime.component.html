@@ -1,6 +1,133 @@
 <article>
-	<h1>Ecsact Runtime access</h1>
 	<section>
-		
+		<h1>Ecsact Runtime in Unreal</h1>
+		<p>
+			Since Unreal uses C++ natively, the
+			<a routerLink="/docs/runtime">Ecsact runtime API</a> can by used
+			implicitly in an Unreal project. That being said the
+			<a routerLink="/start/unreal">Ecsact Unreal plugin</a>
+			builds on top of the Ecsact API to fit Unreals development patterns and
+			styles. Additionally the Ecsact Unreal plugin sets up your C++ includes so
+			that you can find the Ecsact Runtime headers that came with your
+			<a routerLink="/start">Ecsact SDK installation</a>.
+		</p>
+		<h2 id="getting-started">Getting Started</h2>
+		<p>All you have to do to get started using the Ecsact runtime API is:</p>
+		<ul>
+			<li><a routerLink="/start">Install the Ecsact SDK</a></li>
+			<li>
+				<a routerLink="/start/unreal">Install the Ecsact Unreal Plugin</a>
+			</li>
+			<li>
+				Add the <code>Ecsact</code> module to your <code>*.Build.cs</code> as a
+				dependency
+			</li>
+		</ul>
+
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="ExampleModule.Build.cs"><code prism language="csharp">
+				using UnrealBuildTool;
+				public class ExampleModule : ModuleRules {{'{'}}
+					public Example(ReadOnlyTargetRules Target) : base(Target) {{'{'}}
+						// ...
+						PublicDependencyModuleNames.AddRange(new string[] {{'{'}}
+							// ... your other dependencies ...
+							"Ecsact",
+						{{'}'}});
+					{{'}'}}
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2 id="building-the-runtime">Building The Runtime</h2>
+		<p>
+			The easiest way to build the Ecsact runtime in an Unreal project is to
+			enable the Ecsact build system in the Ecsact plugin settings. From there
+			you can specify what
+			<a routerLink="/docs/extend/build-recipe">build recipes</a> you want. If
+			you don't know what a build recipe is, that's okay! For simple
+			functionality just select <code>rt_entt</code> and if you want Wasm
+			support also add <code>si_wasmer</code>.
+		</p>
+		<div class="flex flex-col-reverse 2xl:flex-row items-center gap-8 py-2">
+			<div>
+				<p>
+					After you've done that the Ecsact Unreal plugin should watch for any
+					changes to your <code>.ecsact</code> files in your
+					<code>Source</code> directory and re-build the runtime for you.
+				</p>
+
+				<p>
+					If you want to manually trigger a re-build you can go to
+					<code
+						>Tools <span class="i24">arrow_right</span> Ecsact
+						<span class="i24">arrow_right</span> Re-build Runtime</code
+					>.
+				</p>
+				<p>
+					Make sure you watch out for errors with your
+					<code>.ecsact</code> files in the Output Log!
+				</p>
+			</div>
+			<a href="/assets/unreal/unreal-setup-03.png">
+				<img class="max-w-lg" src="/assets/unreal/unreal-setup-03.png" />
+			</a>
+		</div>
+	</section>
+
+	<section>
+		<h2 id="using-the-runtime">Using The Runtime</h2>
+		<p>
+			We recommend using the Unreal specific APIs when using any unreal
+			functionality.
+		</p>
+		<ul>
+			<li><a routerLink="/start/unreal/runner">Ecsact Runner</a> for Unreal</li>
+			<li>
+				<a routerLink="/start/unreal/subsystems">Ecsact Subsystems</a> for
+				Unreal
+			</li>
+		</ul>
+		<p>
+			However sometimes you need to get into the nitty gritty. In that case you
+			can include any of the Ecsact runtime headers in your Unnreal module that
+			depends on the <code>Ecsact</code> Unreal plugin module.
+		</p>
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="Unreal C++"><code prism language="csharp">
+				#include "ecsact/runtime/core.h" // this should just work!
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2 id="system-impls">System Implementations and Unreal</h2>
+		<p>
+			<a routerLink="/docs/system-impl">System implementations</a> are
+			implemented as normal in an Unreal project. That's another way to say that
+			there isn't any high level Unreal specific API in regards to compiling and
+			building Ecsact system implementations.
+		</p>
+		<p>
+			The current recommended way to build systems is with
+			<a routerLink="/start/tutorials/cpp-to-wasm">Wasm</a> or the C function
+			<code>ecsact_set_system_execution_impl</code> at runtime.
+		</p>
+		<p>
+			We do plan to eventually allow you to create Ecsact systems with the
+			Unreal Build tool as a dynamic Unreal module. Subscribe to the
+			<a
+				href="https://github.com/ecsact-dev/ecsact_unreal/issues/23"
+				_target="_blank"
+				><span class="i24">open_in_new</span> Github tracking issue</a
+			>
+			for updates.
+		</p>
 	</section>
 </article>
