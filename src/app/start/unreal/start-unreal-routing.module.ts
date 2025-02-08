@@ -16,6 +16,30 @@ const routes: Routes = [
 				m => m.UnrealCodegenComponent,
 			),
 	},
+	{
+		path: 'runner',
+		pathMatch: 'full',
+		loadComponent: () =>
+			import('./runner/unreal-runner.component').then(
+				m => m.UnrealRunnerComponent,
+			),
+	},
+	{
+		path: 'runtime',
+		pathMatch: 'full',
+		loadComponent: () =>
+			import('./runtime/unreal-runtime.component').then(
+				m => m.UnrealRuntimeComponent,
+			),
+	},
+	{
+		path: 'subsystems',
+		pathMatch: 'full',
+		loadComponent: () =>
+			import('./subsystems/unreal-subsystems.component').then(
+				m => m.UnrealSubsystemsComponent,
+			),
+	},
 ];
 
 @NgModule({
