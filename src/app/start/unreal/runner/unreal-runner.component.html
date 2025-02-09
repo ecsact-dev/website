@@ -1,3 +1,262 @@
 <article>
 	<h1>Ecsact Runner</h1>
+	<p>
+		The Ecsact Runner is a UObject that is automatically created when your game
+		starts that executes your Ecsact systems. The Ecsact Unreal plugin comes
+		with 2 runner classes.
+		<a [routerLink]="[]" fragment="sync-runner"
+			><code>UEcsactSyncRunner</code></a
+		>
+		and
+		<a [routerLink]="[]" fragment="async-runner"
+			><code>UEcsactAsyncRunner</code></a
+		>. As the names imply one is synchronous and the other is asynchronous.
+		Alternatively you may create a
+		<a [routerLink]="[]" fragment="custom-runner">custom runner</a> or
+		<a [routerLink]="[]" fragment="no-runner">no runner</a>
+		at all. Keep reading to understand the differences between the different
+		runners.
+	</p>
+	<p>
+		By the default the Ecsact Unreal plugin is configured to automatically
+		choose between the two depending on which Runtime API functions are
+		available.
+	</p>
+
+	<section>
+		<h2 id="execution">Execution</h2>
+		<p>
+			Each runner implementation handles execution differently, but the API is
+			the same.
+		</p>
+		<h3 id="execution-push-action">Executing Ecsact Actions</h3>
+		<p>
+			Executing an <a routerLink="/docs/lang" fragment="actions">action</a> is
+			as simple as calling <code>PushAction</code> on your runner instance. This
+			can be done anywhere on the game thread and the runner implementation will
+			queue up the action as soon as possible. Make sure you include your
+			<a routerLink="/start/unreal/codegen">code generated</a> Ecsact C++
+			header.
+		</p>
+
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
+				#include "CoolCharacter.h"
+				#include "EcsactUnreal/EcsactExecution.h"   // for accessing EcsactUnrealExecution::Runner
+				#include "Example.ecsact.hh"                // generated from Ecsact.ecsact file
+
+				void ACoolCharacter::DoCoolAction(const FInputActionValue{{'&'}} Value) {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+					Runner-&gt;PushAction(example::CoolAction{{'{'}}.power = 10.f{{'}'}});
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+
+		<h3 id="execution-entity">Create & Destroy Entities</h3>
+		<p>
+			While its not often that you should need to create and destroy entities
+			there are times it is necessary. The runner execution has two functions
+			for easily creating and destroying entities. <code>CreateEntity</code> and
+			<code>DestroyEntity</code>.
+		</p>
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
+				#include "CoolCharacter.h"
+				#include "EcsactUnreal/EcsactExecution.h"   // for accessing EcsactUnrealExecution::Runner
+				#include "ecsact/runtime/common.h"          // for ECSACT_INVALID_ID
+				#include "Example.ecsact.hh"                // generated from Ecsact.ecsact file
+
+				ACoolCharacter::ACoolCharacter() {{'{'}}
+					// Set initial value to an invalid ID
+					// Will be created later in CreatePlayerEntity()
+					PlayerEntity = ECSACT_INVALID_ID(entity);
+				{{'}'}}
+
+				void ACoolCharacter::CreatePlayerEntity() {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+
+					// Assign the entity ID for later
+					PlayerEntity = Runner-&gt;CreateEntity()
+						.AddComponent(example::Position{{'{}'}})
+						.AddComponent(example::Player{{'{}'}});
+				{{'}'}}
+
+				void ACoolCharacter::DestroyPlayerEntity() {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+					Runner-&gt;DestroyEntity(PlayerEntity);
+					PlayerEntity = ECSACT_INVALID_ID(entity);
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+
+		<h3 id="execution-add-component">Manipulating Components</h3>
+		<p>
+			Sometimes (but rarely) you'll even need to manipulate some components.
+			Even though we recommend you use systems to read and write to components
+			we have methods for conveniently doing so without.
+		</p>
+
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
+				#include "CoolCharacter.h"
+				#include "EcsactUnreal/EcsactExecution.h"   // for accessing EcsactUnrealExecution::Runner
+				#include "Example.ecsact.hh"                // generated from Ecsact.ecsact file
+
+				void ACoolCharacter::ColorizeMe() {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+					// Add the 'Color' component to me!
+					// NOTE: this is considered an error if the entity already has this component
+					// NOTE: prefer adding components in a system!
+					Runner-&gt;AddCompnent(PlayerEntity, example::Color{{'{'}}.r = 1.0f, .g = 0.0f, .b = 0.0f{{'}'}});
+				{{'}'}}
+
+				void ACoolCharacter::DecolorizeMe() {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+					// Remove the 'Color' component!
+					// NOTE: this is considered an error if the entity does not have this component
+					// NOTE: prefer removing components in a system!
+					Runner-&gt;RemoveComponent&lt;example::Color&gt;(PlayerEntity);
+				{{'}'}}
+
+				void ACoolCharacter::MakeMeBlue() {{'{'}}
+					UEcsactRunner* Runner = EcsactUnrealExecution::Runner(GetWorld()).Get();
+					// NOTE: this is considered an error if the entity does not have this component
+					// NOTE: prefer updating components in a system!
+					Runner-&gt;UpdateComponent(PlayerEntity, example::Color{{'{'}}.r = 0.0f, .g = 0.0f, .b = 1.0f{{'}'}});
+				{{'}'}}
+			</code></pre>
+		</code-block-variation>
+	</section>
+
+	<section>
+		<h2 id="sync-runner">Synchronous Runner</h2>
+		<p>
+			The <code>USyncRunner</code> runs
+			<code>ecsact_execute_systems</code> every tick. Meaning that every tick
+			your Ecsact systems will execute. If you derive from this class make sure
+			you're calling <code>Super::Tick</code> or none of your
+			<a routerLink="/start/unreal/subsystems">runner subsystems</a> will fire
+			any Ecsact events. Your
+			<a routerLink="/start/unreal/runtime" fragment="building-the-runtime"
+				>Ecsact Runtime</a
+			>
+			must built to support the
+			<a routerLink="/docs/runtime" fragment="core">core module</a> at least
+			partially for this runner to work. No other module is required for this
+			runner to work.
+		</p>
+		<p>
+			All of the
+			<a [routerLink]="[]" fragment="execution">runner execution methods</a> are
+			added to an internal execution options list and will be passed to
+			<code>ecsact_execute_systems</code> on the next tick.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="async-runner">Asynchronous Runner</h2>
+		<p>
+			The <code>USyncRunner</code> runs
+			<code>ecsact_async_flush_events</code> every tick. Meaning that all
+			component events that have happened in the background will trigger every
+			tick. If you derive from this class make sure you're calling
+			<code>Super::Tick</code> or none of your
+			<a routerLink="/start/unreal/subsystems">runner subsystems</a> will fire
+			any Ecsact events. Your
+			<a routerLink="/start/unreal/runtime" fragment="building-the-runtime"
+				>Ecsact Runtime</a
+			>
+			must built to support the
+			<a routerLink="/docs/runtime" fragment="async">async module</a> at least
+			partially for this runner to work. No other module is required for this
+			runner to work.
+		</p>
+		<p>
+			All of the
+			<a [routerLink]="[]" fragment="execution">runner execution methods</a> use
+			the <code>ecsact_async_enqueue_execution_options</code> method under the
+			hood making all execution options queued up asynchronous instantly.
+		</p>
+	</section>
+
+	<section>
+		<h2 id="custom-runner">Make your own Runner</h2>
+		<p>
+			Making your own runner can be the perfect way to control
+			<em>ecsactly</em> how your Ecsact execution works. However, it's a bit of
+			an under taking. Sometimes when you find yourself wanting to create a
+			custom runner you really just want to
+			<a [routerLink]="[]" fragment="control-runner-start"
+				>control when your runner starts</a
+			>
+			instead.
+		</p>
+
+		<p>
+			If you're still interested in creating your own runner then we recommend
+			carefully studying the <code>UEcsactSyncRunner</code> or
+			<code>UEcsactAsyncRunner</code>
+			<a href="https://github.com/ecsact-dev/ecsact_unreal">source code</a>.
+			Sometimes simplying deriving from one of the two is good enough.
+		</p>
+		<p>
+			After you've created your Ecsact runner you can assign the
+			<code>Custom Runner Class</code> in the Ecsact Unreal plugin settings. If
+			you'd prefer to start it manually then set it to <code>None</code> and
+			follow the
+			<a [routerLink]="[]" fragment="control-runner-start">instructions below</a
+			>.
+		</p>
+
+		<h3 id="control-runner-start">Control when your runner starts</h3>
+		<div class="flex flex-col items-center">
+			<p>
+				If you don't like that your Ecsact runner starts right away and want to
+				choose when it starts then you came to the right place. Go to
+				<code>Edit Project Settings Plugins Ecsact</code> and set your Runner as
+				<code>Custom</code> and the Custom Runner Class to <code>None</code>.
+			</p>
+			<div>
+				<a href="/assets/unreal/unreal-custom-runner-01.png">
+					<img
+						class="rounded-lg shadow-lg"
+						src="/assets/unreal/unreal-custom-runner-01.png" />
+				</a>
+			</div>
+		</div>
+		<p>
+			Now when your game starts nothing will happen. Fortunately this can be
+			remedied with the by calling <code>StartCustomRunner</code> in the Ecsact
+			game instance subsystem.
+		</p>
+		<code-block-variation class="m-0 rounded-md mt-3">
+			<pre
+				codeBlockVariationOption
+				optionTitle="C++"><code prism language="cpp">
+				auto* EcsactGameInstanceSubsystem = GetWorld()-&gt;GetGameInstance()-&gt;GetSubsystem&lt;UEcsactGameInstanceSubsystem&gt;();
+				// NOTE: you can pass int a built-in runner _OR_ your own custom runner
+				EcsactGameInstanceSubsystem-&gt;StartCustomRunner&lt;UEcsactSyncRunner&gt;();
+			</code></pre>
+		</code-block-variation>
+		<p>Afterwards your runner should be running!</p>
+	</section>
+
+	<section>
+		<h2 id="no-runner">Using no runner</h2>
+		<p>
+			Choosing to use no runner disables a lot of the Ecsact Unreal plugin
+			functionality. Consider using a
+			<a [routerLink]="[]" fragment="custom-runner">custom runner</a> and
+			<a [routerLink]="[]" fragment="control-runner-start"
+				>manually controlling when it starts</a
+			>
+			instead.
+		</p>
+	</section>
 </article>
