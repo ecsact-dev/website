@@ -1,22 +1,58 @@
 <article>
 	<h1>Ecsact -> Unreal C++</h1>
-	<p>A large part of what makes Ecsact work is code generation and with Unreal projects thats no exception. The Ecsact Unreal plugin is not only an Unreal plugin, but an Ecsact Codegen plugin as well!</p>
+	<p>
+		A large part of what makes Ecsact work is code generation and with Unreal
+		projects thats no exception. The Ecsact Unreal plugin is not only an Unreal
+		plugin, but an Ecsact Codegen plugin as well!
+	</p>
 	<h2 id="whats-generated">What's Generated?</h2>
 	<p>
-		The goal of the codegen plugin is to remove a lot of boilerplate code that would otherwise be tedious to write. By default the Ecsact Unreal codegen plugin generates the following:
+		The goal of the codegen plugin is to remove a lot of boilerplate code that
+		would otherwise be tedious to write. By default the Ecsact Unreal codegen
+		plugin generates the following:
 	</p>
 	<ul>
-		<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/structs-in-unreal-engine" _target="_blank"><span class="i24">open_in_new</span> <code>UStructs</code></a> for every component in your Ecsact file</li>
-		<li><a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-mass-entity-in-unreal-engine" _target="blank"><span class="i24">open_in_new</span> Unreal Mass Entity</a> Fragments or Tags for every component in your Ecsact file</li>
-		<li>Ecsact Runner Subsystem with easily overridable component events</li>
+		<li>
+			<a
+				href="https://dev.epicgames.com/documentation/en-us/unreal-engine/structs-in-unreal-engine"
+				_target="_blank"
+				><span class="i24">open_in_new</span> <code>UStructs</code></a
+			>
+			for every component in your Ecsact file
+		</li>
+		<li>
+			<a
+				href="https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-mass-entity-in-unreal-engine"
+				_target="blank"
+				><span class="i24">open_in_new</span> Unreal Mass Entity</a
+			>
+			Fragments or Tags for every component in your Ecsact file
+		</li>
+		<li>
+			<a routerLink="/start/unreal/subsystems" fragment="codegen-subsystems"
+				>Ecsact Runner Subsystem for component end entity lifecycle evnts</a
+			>
+		</li>
 		<li>Ecsact Runner Subsystem for Ecsact to Entity Mass communication</li>
 	</ul>
 
 	<h2 id="setup-codegen">Setup Codegen</h2>
 	<p>
-	We recommend using the <code>EcsactUnrealCodegen</code> command line tool that comes with the <a routerLink="/start">Ecsact SDK</a> since <code>0.9.0</code>. Simply execute <code>EcsactUnrealCodegen</code> for your project and the tool will search for all <code>.ecsact</code> files in your <code>Source</code> directory and use the Ecsact codegen tool with the Ecsat Unreal codegen plugin. The Ecsact Unreal plugin is required to be installed for the tool to find the right codegen plugin. If you run into issues please see the output of <code>EcsactUnrealCodegen</code> for details.</p>
+		We recommend using the <code>EcsactUnrealCodegen</code> command line tool
+		that comes with the <a routerLink="/start">Ecsact SDK</a> since
+		<code>0.9.0</code>. Simply execute <code>EcsactUnrealCodegen</code> for your
+		project and the tool will search for all <code>.ecsact</code> files in your
+		<code>Source</code> directory and use the Ecsact codegen tool with the Ecsat
+		Unreal codegen plugin. The Ecsact Unreal plugin is required to be installed
+		for the tool to find the right codegen plugin. If you run into issues please
+		see the output of <code>EcsactUnrealCodegen</code> for details.
+	</p>
 	<h3 id="run-codegen-command-line">Command Line or Script</h3>
-	<p>Replace <code>path/to/project.uproject</code> with the path to your unreal project file and <code>path/to/unreal/install</code> with the full path to your Unreal Engine installation directory</p>
+	<p>
+		Replace <code>path/to/project.uproject</code> with the path to your unreal
+		project file and <code>path/to/unreal/install</code> with the full path to
+		your Unreal Engine installation directory
+	</p>
 	<pre><code prism language="bash">
 		EcsactUnrealCodegen path/to/project.uproject --engine-dir path/to/unreal/install
 	</code></pre>

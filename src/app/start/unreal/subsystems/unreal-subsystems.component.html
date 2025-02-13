@@ -1,6 +1,85 @@
 <article>
-	<h1>Ecsact Runner Subsystems</h1>
+	<h1>Ecsact Subsystems</h1>
+	<p>
+		The <a routerLink="/start/unreal/runner">Ecsact Runner</a> has
+		<em>subsystems</em> that start when the runner starts. Subsystems are
+		<em>the</em> way to listen for component events and entity lifecycle events.
+		If you want to know when an Ecsact entity is created/destroyed or an Ecsact
+		component is added, updated, or removed then Ecsact Runner subsystems is
+		what you want!
+	</p>
 	<section>
-		
+		<h2 id="codegen-subsystems">Built-in Codegen Subsystems</h2>
+		<p>
+			There are a few built-in
+			<a routerLink="/start/unreal/codegen">code generated</a> subsystems that
+			are a must in any Ecsact unreal project. These subsystems allow you to
+			listen to specific component events with their correct typings in C++ or
+			even blueprints.
+		</p>
+		<p>
+			Lets say we have this simple <code>.ecsact</code> file that has a
+			<code>Health</code> component and <code>Dead</code> tag.
+		</p>
+		<pre><code ecsactLangSyntax>
+			main package example;
+			component Health {{'{'}} f32 amount; {{'}'}}
+			component Dead;
+		</code></pre>
+		<p>
+			After your Ecsact Codegen is ran and you've re-built your project you will
+			have access to a new subsystem that you can extend in either bluprint or
+			c++. The generated subsystem name will be prefixed with your Ecsact
+			package name (in this case <code>example</code>.) Following the unreal
+			naming convention it will have the first letter capitalized.
+		</p>
+		<div class="flex flex-row gap-4 text-center my-4">
+			<div>
+				<div class="hidden lg:block text-lg font-bold">C++</div>
+				<a href="/assets/unreal/unreal-subsystem-cpp-create.png">
+					<img src="/assets/unreal/unreal-subsystem-cpp-create.png" />
+				</a>
+			</div>
+			<div class="hidden lg:block">
+				<div class="text-lg font-bold">Blueprint</div>
+				<a href="/assets/unreal/unreal-subsystem-bp-create.png">
+					<img src="/assets/unreal/unreal-subsystem-bp-create.png" />
+				</a>
+			</div>
+		</div>
+		<p>
+			Events are exposed as <code>BlueprintNativeEvent</code> in the subsystem.
+			Meaning in blueprints you can easily implement these events in the event
+			graph or in C++ as a virtual member function.
+		</p>
+		<div class="flex flex-col gap-4 items-center justify-center my-4">
+			<div>
+				<div class="text-lg font-bold text-center">C++</div>
+				<div>
+					<code-block-variation class="m-0 rounded-md mt-3">
+						<pre
+							codeBlockVariationOption
+							optionTitle="C++"><code prism language="cpp">
+							#include "Example__ecsact__ue.h" // generated header
+
+							auto UMySubsystem::UpdateHealth_Implementation(
+								int32           Entity,
+								FExampleHealth  Health
+							) -&gt; void {{'{'}}
+								// TODO: play cool heal effect
+							{{'}'}}
+						</code></pre>
+					</code-block-variation>
+				</div>
+			</div>
+			<div>
+				<div class="text-lg font-bold text-center">Blueprint</div>
+				<a href="/assets/unreal/unreal-bp-subsystem-01.png">
+					<img
+						class="rounded-md mt-3"
+						src="/assets/unreal/unreal-bp-subsystem-01.png" />
+				</a>
+			</div>
+		</div>
 	</section>
 </article>
