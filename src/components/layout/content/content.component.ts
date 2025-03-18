@@ -68,10 +68,9 @@ function getAnchorTitleText(element: Element): string {
 	imports: [CdkObserveContent, NgIf, RouterLink, NgFor, AsyncPipe],
 })
 export class ContentComponent implements OnInit, OnDestroy {
-	private _anchorEventListenerCleanupFns: (() => void)[] = [];
-	private _intersectionObserver: IntersectionObserver;
+	private anchorCheckInterval: any;
 	pageAnchors: ContentPageAnchor[] = [];
-	activePageAnchorId: string = '';
+	activePageAnchorIds: string[] = [];
 	wantsScrollTo: string = '';
 
 	@ViewChild('mainContent', {static: true})
@@ -113,41 +112,36 @@ export class ContentComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	private onIntersect(entries: IntersectionObserverEntry[]) {
-		const entry = entries[0];
-		if (entry.boundingClientRect.top < 90) {
-			if (entry.isIntersecting) {
-				for (let i = 0; this.pageAnchors.length > i; ++i) {
-					if (this.pageAnchors[i].id == entry.target.id) {
-						const prevIndex = i - 1;
-						if (prevIndex > 0) {
-							this.activePageAnchorId = this.pageAnchors[prevIndex].id;
-						} else {
-							this.activePageAnchorId = entry.target.id;
-						}
-
-						this.cdr.detectChanges();
-						break;
-					}
-				}
-			} else {
-				this.activePageAnchorId = entry.target.id;
-				this.cdr.detectChanges();
+	checkActivePageAnchors() {
+		let newActiveAnchorIds: [string, number][] = [];
+		for (const anchor of this.pageAnchors) {
+			const rect = anchor.element.getBoundingClientRect();
+			if (rect.top > -50 && rect.top < 90) {
+				newActiveAnchorIds.push([anchor.id, rect.top]);
 			}
+		}
+
+		if (newActiveAnchorIds.length > 0) {
+			if (newActiveAnchorIds.length > 1) {
+				newActiveAnchorIds = newActiveAnchorIds.filter(
+					([_, top]) => Math.abs(top) < 50,
+				);
+			}
+
+			this.activePageAnchorIds = newActiveAnchorIds.map(([id]) => id);
+			this.cdr.detectChanges();
 		}
 	}
 
 	ngOnInit(): void {
-		this._intersectionObserver = new IntersectionObserver(
-			entries => this.onIntersect(entries),
-			{rootMargin: '-90px 0px 0px 0px'},
-		);
-
+		this.anchorCheckInterval = setInterval(() => {
+			this.checkActivePageAnchors();
+		}, 500);
 		this.refreshPageAnchors();
 	}
 
 	ngOnDestroy(): void {
-		this._intersectionObserver.disconnect();
+		clearInterval(this.anchorCheckInterval);
 	}
 
 	onContentChange(changes: MutationRecord[]) {
@@ -187,14 +181,6 @@ export class ContentComponent implements OnInit, OnDestroy {
 	}
 
 	private createPageAnchor(element: Element) {
-		const eventHandler = ev => {
-			this.activePageAnchorId = element.id;
-			this.cdr.detectChanges();
-		};
-		element.addEventListener('mouseover', eventHandler);
-		this._anchorEventListenerCleanupFns.push(() => {
-			element.removeEventListener('mouseover', eventHandler);
-		});
 		return {
 			id: element.id,
 			title: getAnchorTitleText(element),
@@ -204,15 +190,6 @@ export class ContentComponent implements OnInit, OnDestroy {
 	}
 
 	refreshPageAnchors() {
-		for (const fn of this._anchorEventListenerCleanupFns) {
-			fn();
-		}
-		this._anchorEventListenerCleanupFns = [];
-
-		for (const {element} of this.pageAnchors) {
-			this._intersectionObserver.unobserve(element);
-		}
-
 		const mainEl = this.mainContent!.nativeElement;
 		this.pageAnchors = Array.from(mainEl.querySelectorAll('[id]')).map(el =>
 			this.createPageAnchor(el),
@@ -227,10 +204,6 @@ export class ContentComponent implements OnInit, OnDestroy {
 
 		if (smallestIndent > 0) {
 			this.pageAnchors.forEach(item => (item.indent -= smallestIndent));
-		}
-
-		for (const {element} of this.pageAnchors) {
-			this._intersectionObserver.observe(element);
 		}
 
 		this.cdr.detectChanges();

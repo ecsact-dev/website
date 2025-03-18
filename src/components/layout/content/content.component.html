@@ -60,7 +60,7 @@
 				[replaceUrl]="true"
 				[fragment]="pageAnchor.id"
 				[style.padding-left]="pageAnchor.indent * 8"
-				[class.active]="activePageAnchorId === pageAnchor.id">
+				[class.active]="activePageAnchorIds.indexOf(pageAnchor.id) !== -1">
 				{{ pageAnchor.title }}
 			</a>
 		</div>
