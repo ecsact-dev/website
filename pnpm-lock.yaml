@@ -104,8 +104,8 @@ devDependencies:
     specifier: 7.24.7
     version: 7.24.7(@babel/core@7.25.2)
   '@rollup/plugin-commonjs':
-    specifier: 26.0.1
-    version: 26.0.1(rollup@4.19.2)
+    specifier: 26.0.3
+    version: 26.0.3(rollup@4.19.2)
   '@rollup/plugin-node-resolve':
     specifier: 15.2.3
     version: 15.2.3(rollup@4.19.2)
@@ -2905,8 +2905,8 @@ packages:
   /@protobufjs/utf8@1.1.0:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
 
-  /@rollup/plugin-commonjs@26.0.1(rollup@4.19.2):
-    resolution: {integrity: sha512-UnsKoZK6/aGIH6AdkptXhNvhaqftcjq3zZdT+LY5Ftms6JR06nADcDsYp5hTU9E2lbJUEOhdlY5J4DNTneM+jQ==}
+  /@rollup/plugin-commonjs@26.0.3(rollup@4.19.2):
+    resolution: {integrity: sha512-2BJcolt43MY+y5Tz47djHkodCC3c1VKVrBDKpVqHKpQ9z9S158kCCqB8NF6/gzxLdNlYW9abB3Ibh+kOWLp8KQ==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0||^4.0.0
@@ -5468,6 +5468,7 @@ packages:
 
   /glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
     dependencies:
       foreground-child: 3.2.1
