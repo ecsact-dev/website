@@ -10,31 +10,31 @@ dependencies:
     version: 18.1.3(@angular/core@18.1.3)
   '@angular/cdk':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(rxjs@7.8.1)
+    version: 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(rxjs@7.8.1)
   '@angular/common':
-    specifier: ^18.1.3
-    version: 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+    specifier: ^19.0.0
+    version: 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
   '@angular/core':
     specifier: ^18.1.3
     version: 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
   '@angular/forms':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
+    version: 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
   '@angular/material':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/animations@18.1.3)(@angular/cdk@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/forms@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
+    version: 18.1.3(@angular/animations@18.1.3)(@angular/cdk@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/forms@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
   '@angular/platform-browser':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)
+    version: 18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)
   '@angular/platform-browser-dynamic':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/common@18.1.3)(@angular/compiler@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)
+    version: 18.1.3(@angular/common@19.2.25)(@angular/compiler@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)
   '@angular/router':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
+    version: 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
   '@angular/service-worker':
     specifier: ^18.1.3
-    version: 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)
+    version: 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)
   '@fortawesome/angular-fontawesome':
     specifier: ^0.15.0
     version: 0.15.0(@angular/core@18.1.3)
@@ -244,14 +244,14 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@angular/cdk@18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(rxjs@7.8.1):
+  /@angular/cdk@18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(rxjs@7.8.1):
     resolution: {integrity: sha512-u14xbuXQz+36nBeHSwRcwRoS64WNhOdK97H47nI1WaIZZaGGvKHR1Wwk2XletDRtIHv2622sJm8h+dbaBNeTGQ==}
     peerDependencies:
       '@angular/common': ^18.0.0 || ^19.0.0
       '@angular/core': ^18.0.0 || ^19.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
       rxjs: 7.8.1
       tslib: 2.6.3
@@ -287,11 +287,11 @@ packages:
       - supports-color
     dev: true
 
-  /@angular/common@18.1.3(@angular/core@18.1.3)(rxjs@7.8.1):
-    resolution: {integrity: sha512-TC71jVph4L+QaXlyJTrW27nbqis4sWwr9hD/RDSNkfY9XCvYDb2MjYjKrpbN03FWiv7lmcKT9zgse1fYENFsKQ==}
+  /@angular/common@19.2.25(@angular/core@18.1.3)(rxjs@7.8.1):
+    resolution: {integrity: sha512-WteFLyfDPvilzpSGHk64bqowa4NnHdbjNl1xXeGr038fgTjp0l0NdiUPqeDtYT4pf5lWl6477pPoQN7o//NyyQ==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     peerDependencies:
-      '@angular/core': 18.1.3
+      '@angular/core': 19.2.25
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
@@ -344,7 +344,7 @@ packages:
       tslib: 2.6.3
       zone.js: 0.14.8
 
-  /@angular/forms@18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
+  /@angular/forms@18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
     resolution: {integrity: sha512-4kic/9hpS0HkbTORIkrdox7K40EcVT9VIbBruPoxX7jbfiW5jFaJ/05hLRvRt9RF8Sd9G+g5Uohmkcq/5hmsng==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     peerDependencies:
@@ -353,14 +353,14 @@ packages:
       '@angular/platform-browser': 18.1.3
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
-      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)
+      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)
       rxjs: 7.8.1
       tslib: 2.6.3
     dev: false
 
-  /@angular/material@18.1.3(@angular/animations@18.1.3)(@angular/cdk@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/forms@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
+  /@angular/material@18.1.3(@angular/animations@18.1.3)(@angular/cdk@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/forms@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
     resolution: {integrity: sha512-4xsn84orqtJwE9c2kgHeMxP/rOEvs8XrUOcyA89WE025uDXk69lAsm7XsCpwOL9iDjTBFPTOXFIbR+s9jvU39w==}
     peerDependencies:
       '@angular/animations': ^18.0.0 || ^19.0.0
@@ -372,16 +372,16 @@ packages:
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/animations': 18.1.3(@angular/core@18.1.3)
-      '@angular/cdk': 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(rxjs@7.8.1)
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/cdk': 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
-      '@angular/forms': 18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
-      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)
+      '@angular/forms': 18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1)
+      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)
       rxjs: 7.8.1
       tslib: 2.6.3
     dev: false
 
-  /@angular/platform-browser-dynamic@18.1.3(@angular/common@18.1.3)(@angular/compiler@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3):
+  /@angular/platform-browser-dynamic@18.1.3(@angular/common@19.2.25)(@angular/compiler@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3):
     resolution: {integrity: sha512-VhYfyPcdKrsLrkd5Lq7W+pqE49DZBpUeCqM/Q+s9rhTSiCCKe9Ikktq8yPZ9iHDpFr203P+T1EMHmILnLvf+gQ==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     peerDependencies:
@@ -390,14 +390,14 @@ packages:
       '@angular/core': 18.1.3
       '@angular/platform-browser': 18.1.3
     dependencies:
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/compiler': 18.1.3(@angular/core@18.1.3)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
-      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)
+      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)
       tslib: 2.6.3
     dev: false
 
-  /@angular/platform-browser@18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3):
+  /@angular/platform-browser@18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3):
     resolution: {integrity: sha512-/k5Xt/WjOk6OlRqb1Wd0ZUQ3NjSbafQyDC9Icy0Mb8qJtiXZjA4VCMkZIiQD7cBxO0F/BsAiYnYNjWrIkCZICA==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     peerDependencies:
@@ -409,12 +409,12 @@ packages:
         optional: true
     dependencies:
       '@angular/animations': 18.1.3(@angular/core@18.1.3)
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
       tslib: 2.6.3
     dev: false
 
-  /@angular/router@18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
+  /@angular/router@18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3)(@angular/platform-browser@18.1.3)(rxjs@7.8.1):
     resolution: {integrity: sha512-6fXiTgdUnaGGF32Un4+7LttG1N9rziansigvLBzFG//qYU0Ihk49phqDdWxz11iaJ+uK1YVafkjSFvV7z9cgDA==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     peerDependencies:
@@ -423,14 +423,14 @@ packages:
       '@angular/platform-browser': 18.1.3
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
-      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@18.1.3)(@angular/core@18.1.3)
+      '@angular/platform-browser': 18.1.3(@angular/animations@18.1.3)(@angular/common@19.2.25)(@angular/core@18.1.3)
       rxjs: 7.8.1
       tslib: 2.6.3
     dev: false
 
-  /@angular/service-worker@18.1.3(@angular/common@18.1.3)(@angular/core@18.1.3):
+  /@angular/service-worker@18.1.3(@angular/common@19.2.25)(@angular/core@18.1.3):
     resolution: {integrity: sha512-fWpFMNOBUTFpRWYf6Tlc6HXr6UG8YTFqXIBs2Wmcwv0oVwj6ZQX6+ieI14fYI8lYpuAx8L+oh6oKMQ3gOiH08Q==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
     hasBin: true
@@ -438,7 +438,7 @@ packages:
       '@angular/common': 18.1.3
       '@angular/core': 18.1.3
     dependencies:
-      '@angular/common': 18.1.3(@angular/core@18.1.3)(rxjs@7.8.1)
+      '@angular/common': 19.2.25(@angular/core@18.1.3)(rxjs@7.8.1)
       '@angular/core': 18.1.3(rxjs@7.8.1)(zone.js@0.14.8)
       tslib: 2.6.3
     dev: false
