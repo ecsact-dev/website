@@ -152,8 +152,8 @@ devDependencies:
     specifier: ^3.3.3
     version: 3.3.3
   requirejs:
-    specifier: 2.3.6
-    version: 2.3.6
+    specifier: 2.3.7
+    version: 2.3.7
   rollup:
     specifier: ^4.19.2
     version: 4.19.2
@@ -3378,6 +3378,7 @@ packages:
   /abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+    requiresBuild: true
     dev: true
 
   /abort-controller@3.0.0:
@@ -4709,6 +4710,7 @@ packages:
   /env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
     engines: {node: '>=6'}
+    requiresBuild: true
     dev: true
 
   /environment@1.1.0:
@@ -4863,6 +4865,7 @@ packages:
 
   /exponential-backoff@3.1.1:
     resolution: {integrity: sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==}
+    requiresBuild: true
     dev: true
 
   /express@4.19.2:
@@ -6970,6 +6973,7 @@ packages:
     resolution: {integrity: sha512-taM24ViiimT/XntxbPyJQzCG+p4EKOpgD3mxFwW38mGjVUrfERQOeY4EDHjdnptttfHuHQXFx+lTP08Q+mLa/w==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
+    requiresBuild: true
     dependencies:
       abbrev: 2.0.0
     dev: true
@@ -7926,8 +7930,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /requirejs@2.3.6:
-    resolution: {integrity: sha512-ipEzlWQe6RK3jkzikgCupiTbTvm4S0/CAU5GlgptkN5SO6F3u0UD0K18wy6ErDqiCyP4J4YYe1HuAShvsxePLg==}
+  /requirejs@2.3.7:
+    resolution: {integrity: sha512-DouTG8T1WanGok6Qjg2SXuCMzszOo0eHeH9hDZ5Y4x8Je+9JB38HdTLT4/VA8OaUhBa0JPVHJ0pyBkM1z+pDsw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
