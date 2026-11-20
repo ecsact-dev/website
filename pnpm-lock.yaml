@@ -152,8 +152,8 @@ devDependencies:
     specifier: ^3.3.3
     version: 3.3.3
   requirejs:
-    specifier: 2.3.6
-    version: 2.3.6
+    specifier: 2.3.7
+    version: 2.3.7
   rollup:
     specifier: ^4.19.2
     version: 4.19.2
@@ -7926,8 +7926,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /requirejs@2.3.6:
-    resolution: {integrity: sha512-ipEzlWQe6RK3jkzikgCupiTbTvm4S0/CAU5GlgptkN5SO6F3u0UD0K18wy6ErDqiCyP4J4YYe1HuAShvsxePLg==}
+  /requirejs@2.3.7:
+    resolution: {integrity: sha512-DouTG8T1WanGok6Qjg2SXuCMzszOo0eHeH9hDZ5Y4x8Je+9JB38HdTLT4/VA8OaUhBa0JPVHJ0pyBkM1z+pDsw==}
     engines: {node: '>=0.4.0'}
     hasBin: true
     dev: true
